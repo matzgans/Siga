@@ -19,6 +19,6 @@ class HakAkses
         if(in_array(auth()->user()->role, $roles)){
             return $next($request);
         }
-        return redirect('/');
+        return redirect('/dashboard');
     }
 }

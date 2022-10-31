@@ -16,7 +16,8 @@ class DesaController extends Controller
     public function index()
     {
         $data = Desa::all();
-        return view('desa.desa-index', compact('data'));
+        $active = 'desa';
+        return view('desa.desa-index', compact('data', 'active'));
     }
 
     /**
@@ -39,16 +40,16 @@ class DesaController extends Controller
     {
         $user = new User();
         $user->name = strtolower($request->nama_desa);
-        $user->email = strtolower(str_replace(' ','.',$request->nama_desa."@gmail.com"));
+        $user->email = strtolower(str_replace(' ', '.', $request->nama_desa . "@gmail.com"));
         $user->password = bcrypt("desa123");
         $user->role = "desa";
         $user->remember_token = Str::random(60);
         $user->save();
-        $request->request->add(['user_id'=>$user->id]);
+        $request->request->add(['user_id' => $user->id]);
         Desa::create([
-            'nama_desa'=>ucfirst($request->nama_desa),
-            'kepala_desa'=>$request->kepala_desa,
-            'user_id'=>$request->user_id,
+            'nama_desa' => ucfirst($request->nama_desa),
+            'kepala_desa' => $request->kepala_desa,
+            'user_id' => $request->user_id,
         ]);
         return redirect()->back();
     }
@@ -96,11 +97,11 @@ class DesaController extends Controller
     public function destroy($id)
     {
         $data = Desa::FindOrFail($id);
-        if($data->user != null){
+        if ($data->user != null) {
             $data->delete();
             $data->user->delete();
             return redirect()->back();
-        }else{
+        } else {
             $data->delete();
             return redirect()->back();
         }

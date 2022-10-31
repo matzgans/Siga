@@ -1,69 +1,168 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Halaman Register</title>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
-    
-    
+    <meta charset="utf-8">
+    <meta content="width=device-width, initial-scale=1.0" name="viewport">
+
+    <title>Daftar Admin SIGA</title>
+    <meta content="" name="description">
+    <meta content="" name="keywords">
+
+    <!-- Favicons -->
+    <link href="{{ asset('assetsAdmin') }}/img/favicon.png" rel="icon">
+    <link href="{{ asset('assetsAdmin') }}/img/apple-touch-icon.png" rel="apple-touch-icon">
+
+    <!-- Google Fonts -->
+    <link href="https://fonts.gstatic.com" rel="preconnect">
+    <link
+        href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i|Nunito:300,300i,400,400i,600,600i,700,700i|Poppins:300,300i,400,400i,500,500i,600,600i,700,700i"
+        rel="stylesheet">
+
+    <!-- Vendor CSS Files -->
+    <link href="{{ asset('assetsAdmin') }}/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+    <link href="{{ asset('assetsAdmin') }}/vendor/bootstrap-icons/bootstrap-icons.css" rel="stylesheet">
+    <link href="{{ asset('assetsAdmin') }}/vendor/boxicons/css/boxicons.min.css" rel="stylesheet">
+    <link href="{{ asset('assetsAdmin') }}/vendor/quill/quill.snow.css" rel="stylesheet">
+    <link href="{{ asset('assetsAdmin') }}/vendor/quill/quill.bubble.css" rel="stylesheet">
+    <link href="{{ asset('assetsAdmin') }}/vendor/remixicon/remixicon.css" rel="stylesheet">
+    <link href="{{ asset('assetsAdmin') }}/vendor/simple-datatables/style.css" rel="stylesheet">
+
+    <!-- Template Main CSS File -->
+    <link href="{{ asset('assetsAdmin') }}/css/style.css" rel="stylesheet">
+
+    <!-- =======================================================
+  * Template Name: NiceAdmin - v2.4.1
+  * Template URL: https://bootstrapmade.com/nice-admin-bootstrap-admin-html-template/
+  * Author: BootstrapMade.com
+  * License: https://bootstrapmade.com/license/
+  ======================================================== -->
 </head>
+
 <body>
-    <div class="row justify-content-center">
-        <h1>Silahkan Register</h1>
-        <div class="col-md-8">
-            @if(Session('message'))
-                <div class="alert alert-danger" role="alert">
-                    {{Session('message')}}
-                </div>
-            @endif
-            <form action="{{route('auth.registerproses')}}" method="post" class="row">
-                @csrf
-                <div class="col-md-12 col-12">
-                    <label for="name">Nama</label>
-                    <input type="text" name="name" id="name" class="@error('name') is-invalid @enderror" required>
-                    @error('name')
-                        <div class="invalid-feedback">
-                            {{$message}}
+
+    <main>
+        <div class="container">
+
+            <section
+                class="section register min-vh-100 d-flex flex-column align-items-center justify-content-center py-4">
+                <div class="container">
+                    <div class="row justify-content-center">
+                        <div class="col-lg-4 col-md-6 d-flex flex-column align-items-center justify-content-center">
+
+                            <div class="d-flex justify-content-center py-4">
+                                <a href="index.html" class="logo d-flex align-items-center w-auto">
+                                    <img src="{{ asset('assetsAdmin') }}/img/logo.png" alt="">
+                                    <span class="d-none d-lg-block">SIGA - Bone Bolango</span>
+                                </a>
+                            </div><!-- End Logo -->
+
+                            <div class="card mb-3">
+
+                                <div class="card-body">
+
+                                    <div class="pt-4 pb-2">
+                                        <h5 class="card-title text-center pb-0 fs-4">Buat Akun</h5>
+                                        @if (Session('message'))
+                                            <div class="alert alert-danger" role="alert">
+                                                {{ Session('message') }}
+                                            </div>
+                                        @endif
+                                    </div>
+
+                                    <form class="row g-3 needs-validation" action="{{ route('auth.registerproses') }}"
+                                        method="post" novalidate>
+                                        @csrf
+                                        <div class="col-12">
+                                            <label for="nama" class="form-label">Nama</label>
+                                            <input type="text" name="name" id="name"
+                                                class="@error('name') is-invalid @enderror form-control" required>
+                                            @error('name')
+                                                <div class="invalid-feedback">
+                                                    {{ $message }}
+                                                </div>
+                                            @enderror
+                                        </div>
+
+                                        <div class="col-12">
+                                            <label for="email">Email</label>
+                                            <input type="email" name="email" id="email"
+                                                class="form-control @error('email') is-invalid @enderror" required>
+                                            @error('email')
+                                                <div class="invalid-feedback">
+                                                    {{ $message }}
+                                                </div>
+                                            @enderror
+                                        </div>
+
+                                        <div class="col-6">
+                                            <label for="password">Password</label>
+                                            <input type="password" name="password" id="password"
+                                                class="form-control @error('password') is-invalid @enderror" required>
+                                            @error('password')
+                                                <div class="invalid-feedback">
+                                                    {{ $message }}
+                                                </div>
+                                            @enderror
+                                        </div>
+
+                                        <div class="col-6">
+                                            <label for="current_password">Konfirmasi Password</label>
+                                            <input type="password" name="current_password" id="current_password"
+                                                class="form-control @error('current_password') is-invalid @enderror"
+                                                required>
+                                            @error('current_password')
+                                                <div class="invalid-feedback">
+                                                    {{ $message }}
+                                                </div>
+                                            @enderror
+                                        </div>
+                                        <div class="col-12">
+                                            <button class="btn btn-primary w-100" type="submit">Create
+                                                Account</button>
+                                        </div>
+                                        <div class="col-12">
+                                            <p class="small mb-0">Sudah Punya Akun? <a href="{{ route('login') }}">Log
+                                                    in</a></p>
+                                        </div>
+                                    </form>
+
+                                </div>
+                            </div>
+
+                            <div class="credits">
+                                <!-- All the links in the footer should remain intact. -->
+                                <!-- You can delete the links only if you purchased the pro version. -->
+                                <!-- Licensing information: https://bootstrapmade.com/license/ -->
+                                <!-- Purchase the pro version with working PHP/AJAX contact form: https://bootstrapmade.com/nice-admin-bootstrap-admin-html-template/ -->
+                                Designed by <a href="https://bootstrapmade.com/" class="text-danger">Akatsuki</a>
+                            </div>
+
                         </div>
-                    @enderror
+                    </div>
                 </div>
-                <div class="col-md-12 col-12">
-                    <label for="email">Email</label>
-                    <input type="email" name="email" id="email" class="@error('email') is-invalid @enderror" required>
-                    @error('email')
-                        <div class="invalid-feedback">
-                            {{$message}}
-                        </div>
-                    @enderror
-                </div>
-                <div class="col-md-12 col-12">
-                    <label for="password">Password</label>
-                    <input type="password" name="password" id="password" class="@error('password') is-invalid @enderror" required>
-                    @error('password')
-                        <div class="invalid-feedback">
-                            {{$message}}
-                        </div>
-                    @enderror
-                </div>
-                <div class="col-md-12 col-12">
-                    <label for="current_password">Konfirmasi Password</label>
-                    <input type="password" name="current_password" id="current_password" class="@error('current_password') is-invalid @enderror" required>
-                    @error('current_password')x
-                        <div class="invalid-feedback">
-                            {{$message}}
-                        </div>
-                    @enderror
-                </div>
-                <div class="col-md-12 col-12">
-                    <button type="submit" class="btn btn-success">Register</button>
-                </div>
-            </form>
+
+            </section>
+
         </div>
-    </div>
-    
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
+    </main><!-- End #main -->
+
+    <a href="#" class="back-to-top d-flex align-items-center justify-content-center"><i
+            class="bi bi-arrow-up-short"></i></a>
+
+    <!-- Vendor JS Files -->
+    <script src="{{ asset('assetsAdmin') }}/vendor/apexcharts/apexcharts.min.js"></script>
+    <script src="{{ asset('assetsAdmin') }}/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+    <script src="{{ asset('assetsAdmin') }}/vendor/chart.js/chart.min.js"></script>
+    <script src="{{ asset('assetsAdmin') }}/vendor/echarts/echarts.min.js"></script>
+    <script src="{{ asset('assetsAdmin') }}/vendor/quill/quill.min.js"></script>
+    <script src="{{ asset('assetsAdmin') }}/vendor/simple-datatables/simple-datatables.js"></script>
+    <script src="{{ asset('assetsAdmin') }}/vendor/tinymce/tinymce.min.js"></script>
+    <script src="{{ asset('assetsAdmin') }}/vendor/php-email-form/validate.js"></script>
+
+    <!-- Template Main JS File -->
+    <script src="{{ asset('assetsAdmin') }}/js/main.js"></script>
 
 </body>
+
 </html>

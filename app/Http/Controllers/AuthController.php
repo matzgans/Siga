@@ -27,21 +27,21 @@ class AuthController extends Controller
     public function registerproses(Request $request)
     {
         $request->validate([
-            'name'=>['required','min:4','max:50'],
-            'email'=>['required','email','unique:users','max:50'],
-            'password'=>['required','max:50'],
-            'current_password'=>['required','max:50'],
+            'name' => ['required', 'min:4', 'max:50'],
+            'email' => ['required', 'email', 'unique:users', 'max:50'],
+            'password' => ['required', 'max:50'],
+            'current_password' => ['required', 'max:50'],
         ]);
 
-        if($request->current_password != $request->password){
+        if ($request->current_password != $request->password) {
             return redirect()->back()->with('message', 'Periksa password');
-        }else{
+        } else {
             User::create([
-                'name'=>$request->name,
-                'email'=>$request->email,
-                'role'=>"admin",
-                'password'=>bcrypt($request->password),
-                'remember_token'=>Str::random(60),
+                'name' => $request->name,
+                'email' => $request->email,
+                'role' => "admin",
+                'password' => bcrypt($request->password),
+                'remember_token' => Str::random(60),
             ]);
             return redirect()->route('login');
         }
@@ -67,13 +67,13 @@ class AuthController extends Controller
     public function loginproses(Request $request)
     {
         $request->validate([
-            'email'=>['required','email','min:7','max:50'],
-            'password'=>['required','min:7','max:50'],
+            'email' => ['required', 'email', 'min:7', 'max:50'],
+            'password' => ['required', 'min:5', 'max:50'],
         ]);
-        if(Auth::attempt($request->only('email', 'password'))){
-            return redirect('/');
-        }else{
-            return redirect()->back()->with('message','Periksa Email Dan Password');
+        if (Auth::attempt($request->only('email', 'password'))) {
+            return redirect('/dashboard');
+        } else {
+            return redirect()->back()->with('message', 'Periksa Email Dan Password');
         }
     }
 
