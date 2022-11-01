@@ -17,7 +17,8 @@ class DesaController extends Controller
     {
         $data = Desa::all();
         $active = 'desa';
-        return view('desa.desa-index', compact('data', 'active'));
+        $pageTitle = 'Desa';
+        return view('desa.desa-index', compact('data', 'active', 'pageTitle'));
     }
 
     /**
@@ -40,9 +41,9 @@ class DesaController extends Controller
     {
         $user = new User();
         $user->name = strtolower($request->nama_desa);
-        $user->email = strtolower(str_replace(' ', '.', $request->nama_desa . "@gmail.com"));
-        $user->password = bcrypt("desa123");
-        $user->role = "desa";
+        $user->email = strtolower(str_replace(' ', '.', $request->nama_desa . '@gmail.com'));
+        $user->password = bcrypt('desa123');
+        $user->role = 'desa';
         $user->remember_token = Str::random(60);
         $user->save();
         $request->request->add(['user_id' => $user->id]);
@@ -73,7 +74,10 @@ class DesaController extends Controller
      */
     public function edit(Desa $desa)
     {
-        //
+        $data = Desa::all();
+        $active = 'desa';
+        $pageTitle = 'Edit Desa';
+        return view('desa.desa-edit', compact('data', 'active', 'pageTitle'));
     }
 
     /**

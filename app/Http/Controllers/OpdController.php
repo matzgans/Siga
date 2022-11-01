@@ -16,7 +16,9 @@ class OpdController extends Controller
     public function index()
     {
         $data = Opd::all();
-        return view('opd.opd-index', compact('data'));
+        $active = 'opd';
+        $pageTitle = 'OPD';
+        return view('opd.opd-index', compact('data', 'active', 'pageTitle'));
     }
 
     /**
@@ -37,19 +39,19 @@ class OpdController extends Controller
      */
     public function store(Request $request)
     {
-        $user = new User(); 
+        $user = new User();
         $user->name = $request->nama_istansi;
-        $user->email = strtolower(str_replace(' ', '.', $request->nama_istansi."@gmail.com"));
-        $user->password = bcrypt("opd123");
-        $user->role = "opd";
+        $user->email = strtolower(str_replace(' ', '.', $request->nama_istansi . '@gmail.com'));
+        $user->password = bcrypt('opd123');
+        $user->role = 'opd';
         $user->remember_token = Str::random(60);
         $user->save();
 
-        $request->request->add(['user_id'=>$user->id]);
+        $request->request->add(['user_id' => $user->id]);
         Opd::create([
-            'nama_istansi'=>$request->nama_istansi,
-            'kepala_istansi'=>$request->kepala_istansi,
-            'user_id'=>$request->user_id,
+            'nama_istansi' => $request->nama_istansi,
+            'kepala_istansi' => $request->kepala_istansi,
+            'user_id' => $request->user_id,
         ]);
         return redirect()->back();
     }
@@ -97,10 +99,10 @@ class OpdController extends Controller
     public function destroy($id)
     {
         $data = Opd::FindOrFail($id);
-        if($data->user != null){
+        if ($data->user != null) {
             $data->delete();
             $data->user->delete();
-        }else{
+        } else {
             $data->delete();
         }
         return redirect()->back();

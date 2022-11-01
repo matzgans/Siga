@@ -1,38 +1,53 @@
-@extends('dashboard.dashboard-index')
+@extends('admin')
 @section('content')
-    <h1>Ini data Desa</h1>
     <div class="col-10">
-        <div class="container" id="container"></div>
-        <table class="table table-bordered">
-            <thead>
-                <tr>
-                    <th>No</th>
-                    <th>Nama Desa</th>
-                    <th>Kepala Desa</th>
-                    <th>Email</th>
-                    <th>Aksi</th>
-                </tr>
-            </thead>
-            <tbody>
-                @foreach ($data as $index => $item)
-                    <tr>
-                        <td>{{ $index + 1 }}</td>
-                        <td>{{ $item->nama_desa }}</td>
-                        <td>{{ $item->kepala_desa }}</td>
-                        <td>{{ $item->user->email }}</td>
-                        <td>
-                            <a href="{{ route('desa.destroy', $item->id) }}" class="btn btn-danger">Hapus</a>
-                        </td>
-                    </tr>
-                @endforeach
-            </tbody>
-        </table>
+
+        <div class="card">
+            <div class="card-body">
+                <button type="button" class="btn btn-sm btn-primary mb-3" data-bs-toggle="modal"
+                    data-bs-target="#staticBackdrop">
+                    <i class="bi bi-plus-lg"></i> Data Desa
+                </button>
+                <table class="table table-hover" id="dataTable">
+                    <thead>
+                        <tr>
+                            <th>No</th>
+                            <th>Nama Desa</th>
+                            <th>Kepala Desa</th>
+                            <th>Email</th>
+                            <th>Aksi</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach ($data as $index => $item)
+                            <tr>
+                                <td>{{ $index + 1 }}</td>
+                                <td>{{ $item->nama_desa }}</td>
+                                <td>{{ $item->kepala_desa }}</td>
+                                <td>{{ $item->user->email }}</td>
+                                <td>
+                                    <a href="{{ route('desa.destroy', $item->id) }}"
+                                        class="btn btn-sm btn-danger rounded-circle"><i
+                                            class="ri ri-delete-bin-line"></i></a>
+                                    <a href="{{ route('desa.edit', $item->id) }}"
+                                        class="btn btn-sm btn-warning rounded-circle"><i
+                                            class="ri ri-edit-box-line text-white"></i></a>
+                                </td>
+                            </tr>
+                        @endforeach
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+        <script>
+            $(document).ready(function() {
+                $('#dataTable').DataTable();
+            });
+        </script>
 
         <!-- Vertically centered modal -->
         <!-- Button trigger modal -->
-        <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#staticBackdrop">
-            Tambah Data Desa
-        </button>
 
         <!-- Modal -->
         <div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
@@ -40,7 +55,7 @@
             <div class="modal-dialog">
                 <div class="modal-content">
                     <div class="modal-header">
-                        <h5 class="modal-title" id="staticBackdropLabel">Modal title</h5>
+                        <h5 class="modal-title" id="staticBackdropLabel">Tambah Data Desa</h5>
                         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                     </div>
                     <div class="modal-body">
@@ -48,11 +63,11 @@
                             @csrf
                             <div class="col-md-6 col-12 mb-2">
                                 <label for="nama">Nama Desa</label>
-                                <input type="text" name="nama_desa" id="nama_desa">
+                                <input type="text" class="form-control" name="nama_desa" id="nama_desa">
                             </div>
                             <div class="col-md-6 col-12 mb-2">
                                 <label for="kepala_desa">Kepala Desa</label>
-                                <input type="text" name="kepala_desa" id="kepala_desa">
+                                <input type="text" class="form-control" name="kepala_desa" id="kepala_desa">
                             </div>
                     </div>
                     <div class="modal-footer">
@@ -65,9 +80,6 @@
         </div>
 
     </div>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
-        integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous">
-    </script>
 
     </body>
 

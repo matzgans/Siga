@@ -15,7 +15,9 @@ class TahunController extends Controller
     public function index()
     {
         $data = Tahun::all();
-        return view('tahun.tahun-index', compact('data'));
+        $active = 'tahun';
+        $pageTitle = 'Tahun';
+        return view('tahun.tahun-index', compact('data', 'active', 'pageTitle'));
     }
 
     /**
@@ -37,7 +39,7 @@ class TahunController extends Controller
     public function store(Request $request)
     {
         Tahun::create([
-            'nama_tahun'=>$request->nama_tahun,
+            'nama_tahun' => $request->nama_tahun,
         ]);
         return redirect()->back();
     }

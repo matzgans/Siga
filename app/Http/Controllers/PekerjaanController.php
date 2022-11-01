@@ -15,7 +15,9 @@ class PekerjaanController extends Controller
     public function index()
     {
         $data = Pekerjaan::all();
-        return view('pekerjaan.pekerjaan-index',compact('data'));
+        $active = 'pekerjaan';
+        $pageTitle = 'Pekerjaan';
+        return view('pekerjaan.pekerjaan-index', compact('data', 'active', 'pageTitle'));
     }
 
     /**
@@ -25,7 +27,6 @@ class PekerjaanController extends Controller
      */
     public function create()
     {
-        
     }
 
     /**
@@ -37,7 +38,7 @@ class PekerjaanController extends Controller
     public function store(Request $request)
     {
         Pekerjaan::create([
-            'nama_pekerjaan'=>$request->nama_pekerjaan,
+            'nama_pekerjaan' => $request->nama_pekerjaan,
         ]);
         return redirect()->back();
     }

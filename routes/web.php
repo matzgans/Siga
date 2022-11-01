@@ -23,6 +23,8 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
+Route::get('/', [DashboardController::class, 'index'])->name('dashboard');
+
 
 Route::group(['middleware' => ['auth', 'HakAkses:admin']], function () {
     // desa

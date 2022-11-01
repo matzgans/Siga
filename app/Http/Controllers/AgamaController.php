@@ -15,7 +15,9 @@ class AgamaController extends Controller
     public function index()
     {
         $data = Agama::all();
-        return view('agama.agama-index', compact('data'));
+        $active = 'agama';
+        $pageTitle = 'Agama';
+        return view('agama.agama-index', compact('data','active','pageTitle'));
     }
 
     /**
