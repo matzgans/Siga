@@ -46,15 +46,15 @@
             <div class="modal-dialog">
                 <div class="modal-content">
                     <div class="modal-header">
-                        <h5 class="modal-title" id="staticBackdropLabel">Modal title</h5>
+                        <h5 class="modal-title" id="staticBackdropLabel">Tambah Tahun</h5>
                         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                     </div>
                     <div class="modal-body">
                         <form action="{{ route('tahun.store') }}" method="post" class="row">
                             @csrf
                             <div class="col-md-6 col-12 mb-2">
-                                <label for="nama">Tahun</label>
-                                <input type="number" name="nama_tahun" id="nama_tahun">
+                                <label for="nama" class="form-label">Tahun</label>
+                                <input type="number" class="form-control" name="nama_tahun" id="nama_tahun">
                             </div>
                     </div>
                     <div class="modal-footer">

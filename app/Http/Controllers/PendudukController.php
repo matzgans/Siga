@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Penduduk;
+use App\Models\{Penduduk, Klasifikasi_umur, Desa, Agama, Pekerjaan, Tahun};
 use Illuminate\Http\Request;
 
 class PendudukController extends Controller
@@ -14,7 +14,20 @@ class PendudukController extends Controller
      */
     public function index()
     {
-        //
+        $active = 'penduduk';
+        $pageTitle = 'Penduduk';
+        $klasifikasi = Klasifikasi_umur::all();
+        $agama = Agama::all();
+        $pekerjaan = Pekerjaan::all();
+        $tahun = Tahun::all();
+        $penduduk = Penduduk::orderBy('nama', 'asc')->get();
+        $penduduk_laki = Penduduk::where('jk','l')->orderBy('nama', 'asc')->get();
+        $penduduk_perempuan = Penduduk::where('jk','p')->orderBy('nama', 'asc')->get();
+        
+        return view('penduduk.penduduk-index',
+        compact('active', 'pageTitle', 'klasifikasi' ,
+         'agama', 'pekerjaan', 'tahun', 
+         'penduduk_laki', 'penduduk_perempuan', 'penduduk'));
     }
 
     /**
@@ -35,7 +48,27 @@ class PendudukController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $data = Penduduk::create([
+            'nik'=>$request->nik,
+            'nama'=>$request->nama,
+            'tempat_lahir'=>$request->tempat_lahir,
+            'tanggal_lahir'=>$request->tanggal_lahir,
+            'jk'=>$request->jk,
+            'klasifikasi_umur_id'=>$request->klasifikasi_umur_id,
+            'umur'=>$request->umur,
+            'agama_id'=>$request->agama_id,
+            'pekerjaan_id'=>$request->pekerjaan_id,
+            'tahun_id'=>$request->pekerjaan_id,
+            'desa_id'=>auth()->user()->desa->id,
+            'alamat'=>$request->alamat,
+            'foto'=>$request->foto,
+        ]);
+        if($request->hasFile('foto')){
+            $request->file('foto')->move('foto_penduduk/',$request->file('foto')->getClientOriginalName());
+            $data->foto = $request->file('foto')->getClientOriginalName();
+            $data->save();
+        }
+        return redirect()->back();
     }
 
     /**
@@ -44,9 +77,12 @@ class PendudukController extends Controller
      * @param  \App\Models\Penduduk  $penduduk
      * @return \Illuminate\Http\Response
      */
-    public function show(Penduduk $penduduk)
+    public function show($id)
     {
-        //
+        $active = 'show_penduduk';
+        $pageTitle = 'Lihat Penduduk';
+        $data = Penduduk::FindOrFail($id);
+        return view('penduduk.penduduk-show',compact('active', 'pageTitle', '$data'));
     }
 
     /**
@@ -55,9 +91,17 @@ class PendudukController extends Controller
      * @param  \App\Models\Penduduk  $penduduk
      * @return \Illuminate\Http\Response
      */
-    public function edit(Penduduk $penduduk)
+    public function edit($id)
     {
-        //
+        $active = 'pendudukedit';
+        $pageTitle = 'Pendudukedit';
+        $data = Penduduk::FindOrFail($id);
+        $klasifikasi = Klasifikasi_umur::all();
+        $agama = Agama::all();
+        $pekerjaan = Pekerjaan::all();
+        $tahun = Tahun::all();
+        return view('penduduk.penduduk-edit', compact('data', 'active', 'pageTitle',
+         'klasifikasi', 'agama', 'pekerjaan', 'agama', 'tahun'));
     }
 
     /**
@@ -67,9 +111,53 @@ class PendudukController extends Controller
      * @param  \App\Models\Penduduk  $penduduk
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Penduduk $penduduk)
+    public function update(Request $request, $id)
     {
-        //
+        $data = Penduduk::FindOrFail($id);
+        if($request->foto != null){
+            if (file_exists(public_path() . '/foto_penduduk/'.$data->foto)) {
+                unlink(public_path() . '/foto_penduduk/'.$data->foto);
+                
+            }
+            $data->update([
+                'nik'=>$request->nik,
+                'nama'=>$request->nama,
+                'tempat_lahir'=>$request->tempat_lahir,
+                'tanggal_lahir'=>$request->tanggal_lahir,
+                'jk'=>$request->jk,
+                'klasifikasi_umur_id'=>$request->klasifikasi_umur_id,
+                'umur'=>$request->umur,
+                'agama_id'=>$request->agama_id,
+                'pekerjaan_id'=>$request->pekerjaan_id,
+                'tahun_id'=>$request->pekerjaan_id,
+                'desa_id'=>auth()->user()->desa->id,
+                'alamat'=>$request->alamat,
+                'foto'=>$request->foto,
+            ]);
+            if($request->hasFile('foto')){
+                $request->file('foto')->move('foto_penduduk/',$request->file('foto')->getClientOriginalName());
+                $data->foto = $request->file('foto')->getClientOriginalName();
+                $data->save();
+            }
+            return redirect()->route('penduduk.index');
+        }else{
+            Penduduk::FindOrFail($id)->update([
+                'nik'=>$request->nik,
+                'nama'=>$request->nama,
+                'tempat_lahir'=>$request->tempat_lahir,
+                'tanggal_lahir'=>$request->tanggal_lahir,
+                'jk'=>$request->jk,
+                'klasifikasi_umur_id'=>$request->klasifikasi_umur_id,
+                'umur'=>$request->umur,
+                'agama_id'=>$request->agama_id,
+                'pekerjaan_id'=>$request->pekerjaan_id,
+                'tahun_id'=>$request->pekerjaan_id,
+                'desa_id'=>auth()->user()->desa->id,
+                'alamat'=>$request->alamat,
+                'foto'=>$data->foto,
+            ]);
+            return redirect()->route('penduduk.index');
+        }
     }
 
     /**
@@ -78,8 +166,15 @@ class PendudukController extends Controller
      * @param  \App\Models\Penduduk  $penduduk
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Penduduk $penduduk)
+    public function destroy($id)
     {
-        //
+        $data = Penduduk::FindOrFail($id);
+        if (file_exists(public_path() . '/foto_penduduk/'.$data->foto)) {
+            unlink(public_path() . '/foto_penduduk/'.$data->foto);
+            $data->delete();
+        }else{
+            $data->delete();
+        }
+        return redirect()->back();
     }
 }

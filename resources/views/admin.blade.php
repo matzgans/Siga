@@ -220,7 +220,7 @@
                         data-bs-toggle="dropdown">
                         <img src="{{ asset('assetsAdmin') }}/img/profile-img.jpg" alt="Profile"
                             class="rounded-circle">
-                        <span class="d-none d-md-block dropdown-toggle ps-2">K. Anderson</span>
+                        <span class="d-none d-md-block dropdown-toggle ps-2">{{auth()->user()->name}}</span>
                     </a><!-- End Profile Iamge Icon -->
 
                     <ul class="dropdown-menu dropdown-menu-end dropdown-menu-arrow profile">
@@ -290,39 +290,55 @@
                 </a>
             </li><!-- End Dashboard Nav -->
 
-            <li class="nav-item">
-                <a class="nav-link {{ $active != 'desa' ? 'collapsed' : 'active' }}"
-                    href="{{ route('desa.index') }}">
-                    <i class="ri ri-home-4-line"></i><span>Desa</span>
-                </a>
-            </li>
+            @if(auth()->user()->role == "admin")
+                <li class="nav-item">
+                    <a class="nav-link {{ $active != 'desa' ? 'collapsed' : 'active' }}"
+                        href="{{ route('desa.index') }}">
+                        <i class="ri ri-home-4-line"></i><span>Desa</span>
+                    </a>
+                </li>
 
-            <li class="nav-item">
-                <a class="nav-link {{ $active != 'opd' ? 'collapsed' : 'active' }}" href="{{ route('opd.index') }}">
-                    <i class="ri ri-building-line"></i><span>OPD</span>
-                </a>
-            </li>
+                <li class="nav-item">
+                    <a class="nav-link {{ $active != 'opd' ? 'collapsed' : 'active' }}" href="{{ route('opd.index') }}">
+                        <i class="ri ri-building-line"></i><span>OPD</span>
+                    </a>
+                </li>
 
-            <li class="nav-item">
-                <a class="nav-link {{ $active != 'pekerjaan' ? 'collapsed' : 'active' }}"
-                    href="{{ route('pekerjaan.index') }}">
-                    <i class="bi bi-person-badge"></i><span>Pekerjaan</span>
-                </a>
-            </li>
+                <li class="nav-item">
+                    <a class="nav-link {{ $active != 'pekerjaan' ? 'collapsed' : 'active' }}"
+                        href="{{ route('pekerjaan.index') }}">
+                        <i class="bi bi-person-badge"></i><span>Pekerjaan</span>
+                    </a>
+                </li>
 
-            <li class="nav-item">
-                <a class="nav-link {{ $active != 'tahun' ? 'collapsed' : 'active' }}"
-                    href="{{ route('tahun.index') }}">
-                    <i class="bi bi-calendar"></i><span>Tahun</span>
-                </a>
-            </li>
+                <li class="nav-item">
+                    <a class="nav-link {{ $active != 'tahun' ? 'collapsed' : 'active' }}"
+                        href="{{ route('tahun.index') }}">
+                        <i class="bi bi-calendar"></i><span>Tahun</span>
+                    </a>
+                </li>
 
-            <li class="nav-item">
-                <a class="nav-link {{ $active != 'agama' ? 'collapsed' : 'active' }}"
-                    href="{{ route('agama.index') }}">
-                    <i class="ri ri-user-2-fill"></i><span>Agama</span>
-                </a>
-            </li>
+                <li class="nav-item">
+                    <a class="nav-link {{ $active != 'agama' ? 'collapsed' : 'active' }}"
+                        href="{{ route('agama.index') }}">
+                        <i class="ri ri-user-2-fill"></i><span>Agama</span>
+                    </a>
+                </li>
+
+                <li class="nav-item">
+                    <a class="nav-link {{ $active != 'klasifikasi_umur' ? 'collapsed' : 'active' }}"
+                        href="{{ route('klasifikasiumur.index') }}">
+                        <i class="ri ri-user-2-fill"></i><span>Klasifikasi Umur</span>
+                    </a>
+                </li>
+            @elseif(auth()->user()->role == "desa")
+                <li class="nav-item">
+                    <a class="nav-link {{ $active != 'penduduk' ? 'collapsed' : 'active' }}"
+                        href="{{ route('penduduk.index') }}">
+                        <i class="ri ri-user-4-line"></i><span>Penduduk</span>
+                    </a>
+                </li>
+            @endif
 
         </ul>
 

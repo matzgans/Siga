@@ -73,7 +73,7 @@
                                     <form class="row g-3 needs-validation" action="{{ route('auth.registerproses') }}"
                                         method="post" novalidate>
                                         @csrf
-                                        <div class="col-12">
+                                        <div class="col-md-12 col-12">
                                             <label for="nama" class="form-label">Nama</label>
                                             <input type="text" name="name" id="name"
                                                 class="@error('name') is-invalid @enderror form-control" required>
@@ -84,7 +84,7 @@
                                             @enderror
                                         </div>
 
-                                        <div class="col-12">
+                                        <div class="col-md-12 col-12">
                                             <label for="email">Email</label>
                                             <input type="email" name="email" id="email"
                                                 class="form-control @error('email') is-invalid @enderror" required>
@@ -95,7 +95,7 @@
                                             @enderror
                                         </div>
 
-                                        <div class="col-6">
+                                        <div class="col-md-12 col-12">
                                             <label for="password">Password</label>
                                             <input type="password" name="password" id="password"
                                                 class="form-control @error('password') is-invalid @enderror" required>
@@ -106,7 +106,7 @@
                                             @enderror
                                         </div>
 
-                                        <div class="col-6">
+                                        <div class="col-md-12 col-12">
                                             <label for="current_password">Konfirmasi Password</label>
                                             <input type="password" name="current_password" id="current_password"
                                                 class="form-control @error('current_password') is-invalid @enderror"

@@ -15,11 +15,13 @@ return new class extends Migration
     {
         Schema::create('penduduks', function (Blueprint $table) {
             $table->id();
-            $table->integer('nik')->unique();
+            $table->string('nik')->unique();
             $table->string('nama');
             $table->string('tempat_lahir');
             $table->timestamp('tanggal_lahir')->nullable();
             $table->enum('jk', ['l','p']);
+            $table->integer('umur');
+            $table->foreignId('klasifikasi_umur_id')->constrained('klasifikasi_umurs');
             $table->foreignId('agama_id')->constrained('agamas');
             $table->foreignId('desa_id')->constrained('desas');
             $table->foreignId('pekerjaan_id')->constrained('pekerjaans');

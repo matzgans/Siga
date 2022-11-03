@@ -1,6 +1,6 @@
 @extends('admin')
 @section('content')
-    <div class="col-10">
+    <div class="col-md-12 col-xxs-12 col-12">
 
         <div class="card">
             <div class="card-body">
@@ -40,48 +40,45 @@
             </div>
         </div>
 
-        <script>
-            $(document).ready(function() {
-                $('#dataTable').DataTable();
-            });
-        </script>
+        
 
-        <!-- Vertically centered modal -->
-        <!-- Button trigger modal -->
+    </div>
+    <script>
+        $(document).ready(function() {
+            $('#dataTable').DataTable();
+        });
+    </script>
 
-        <!-- Modal -->
-        <div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
-            aria-labelledby="staticBackdropLabel" aria-hidden="true">
-            <div class="modal-dialog">
-                <div class="modal-content">
-                    <div class="modal-header">
-                        <h5 class="modal-title" id="staticBackdropLabel">Tambah Data Desa</h5>
-                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                    </div>
-                    <div class="modal-body">
-                        <form action="{{ route('desa.store') }}" method="post" class="row">
-                            @csrf
-                            <div class="col-md-6 col-12 mb-2">
-                                <label for="nama">Nama Desa</label>
-                                <input type="text" class="form-control" name="nama_desa" id="nama_desa">
-                            </div>
-                            <div class="col-md-6 col-12 mb-2">
-                                <label for="kepala_desa">Kepala Desa</label>
-                                <input type="text" class="form-control" name="kepala_desa" id="kepala_desa">
-                            </div>
-                    </div>
-                    <div class="modal-footer">
-                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                        <button type="submit" class="btn btn-primary">Simpan</button>
-                        </form>
-                    </div>
+    <!-- Vertically centered modal -->
+    <!-- Button trigger modal -->
+
+    <!-- Modal -->
+    <div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
+        aria-labelledby="staticBackdropLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="staticBackdropLabel">Tambah Data Desa</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <form action="{{ route('desa.store') }}" method="post" class="row">
+                        @csrf
+                        <div class="col-md-6 col-12 mb-2">
+                            <label for="nama">Nama Desa</label>
+                            <input type="text" class="form-control" name="nama_desa" id="nama_desa">
+                        </div>
+                        <div class="col-md-6 col-12 mb-2">
+                            <label for="kepala_desa">Kepala Desa</label>
+                            <input type="text" class="form-control" name="kepala_desa" id="kepala_desa">
+                        </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                    <button type="submit" class="btn btn-primary">Simpan</button>
+                    </form>
                 </div>
             </div>
         </div>
-
     </div>
-
-    </body>
-
-    </html>
 @endsection

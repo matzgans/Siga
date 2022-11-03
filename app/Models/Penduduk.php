@@ -4,7 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
-use App\Models\{Desa, Agama, Pekerjaan, Tahun};
+use App\Models\{Desa, Agama, Pekerjaan, Tahun, Klasifikasi_umur};
 
 class Penduduk extends Model
 {
@@ -16,6 +16,8 @@ class Penduduk extends Model
         'tempat_lahir',
         'tanggal_lahir',
         'jk',
+        'umur',
+        'klasifikasi_umur_id',
         'agama_id',
         'desa_id',
         'pekerjaan_id',
@@ -42,5 +44,10 @@ class Penduduk extends Model
     public function tahun()
     {
         return $this->belongsTo(Tahun::class);
+    }
+
+    public function Klasifikasi_umur()
+    {
+        return $this->belongsTo(Klasifikasi_umur::class);
     }
 }

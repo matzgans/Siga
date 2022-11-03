@@ -1,5 +1,6 @@
 @extends('admin');
 @section('content')
+@if(auth()->user()->role == "admin")
     <!-- Left side columns -->
     <div class="col-lg-8">
         <div class="row">
@@ -690,4 +691,5 @@
         </div><!-- End News & Updates -->
 
     </div><!-- End Right side columns -->
+@endif
 @endsection

@@ -18,4 +18,9 @@ class DashboardController extends Controller
         $pageTitle = 'Dashboard';
         return view('dashboard.dashboard-index', compact('active', 'desa','opd','pekerjaan','tahun','agama', 'pageTitle'));
     }
+
+    public function landing()
+    {
+        return view('welcome');
+    }
 }
