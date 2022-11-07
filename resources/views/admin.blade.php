@@ -331,11 +331,25 @@
                         <i class="ri ri-user-2-fill"></i><span>Klasifikasi Umur</span>
                     </a>
                 </li>
+
+                <li class="nav-item">
+                    <a class="nav-link {{ $active != 'jabatan' ? 'collapsed' : 'active' }}"
+                        href="{{ route('jabatan.index') }}">
+                        <i class="ri ri-user-2-fill"></i><span>Jabatan</span>
+                    </a>
+                </li>
             @elseif(auth()->user()->role == "desa")
                 <li class="nav-item">
                     <a class="nav-link {{ $active != 'penduduk' ? 'collapsed' : 'active' }}"
                         href="{{ route('penduduk.index') }}">
                         <i class="ri ri-user-4-line"></i><span>Penduduk</span>
+                    </a>
+                </li>
+            @elseif(auth()->user()->role == "opd")
+                <li class="nav-item">
+                    <a class="nav-link {{ $active != 'pegawai' ? 'collapsed' : 'active' }}"
+                        href="{{ route('pegawai.index') }}">
+                        <i class="ri ri-user-4-line"></i><span>pegawai</span>
                     </a>
                 </li>
             @endif

@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\{Penduduk, Klasifikasi_umur, Desa, Agama, Pekerjaan, Tahun};
 use Illuminate\Http\Request;
+use PDF;
 
 class PendudukController extends Controller
 {
@@ -20,9 +21,25 @@ class PendudukController extends Controller
         $agama = Agama::all();
         $pekerjaan = Pekerjaan::all();
         $tahun = Tahun::all();
-        $penduduk = Penduduk::orderBy('nama', 'asc')->get();
-        $penduduk_laki = Penduduk::where('jk','l')->orderBy('nama', 'asc')->get();
-        $penduduk_perempuan = Penduduk::where('jk','p')->orderBy('nama', 'asc')->get();
+        
+        $penduduk = Penduduk::join('desas', 'desas.id','=','penduduks.desa_id')
+                        ->select('penduduks.*')
+                        ->where('desas.user_id',auth()->user()->id)->get();
+        
+        $penduduk_laki = Penduduk::join('desas', 'desas.id','=','penduduks.desa_id')
+                        ->select('penduduks.*')
+                        ->where('desas.user_id',auth()->user()->id)
+                        ->where('jk','l')->get();
+
+        $penduduk_perempuan = Penduduk::join('desas', 'desas.id','=','penduduks.desa_id')
+                        ->select('penduduks.*')
+                        ->where('desas.user_id',auth()->user()->id)
+                        ->where('jk','p')->get();
+                                
+        // $data = Penduduk::where('desa_id', auth()->user()->desa->id);
+        // $penduduk = $data->get();
+        // $penduduk_laki = $data->where('jk','l')->orderBy('nama', 'asc')->get();
+        // $penduduk_perempuan =  $data->where('jk','p')->orderBy('nama', 'asc')->get();
         
         return view('penduduk.penduduk-index',
         compact('active', 'pageTitle', 'klasifikasi' ,
@@ -58,7 +75,7 @@ class PendudukController extends Controller
             'umur'=>$request->umur,
             'agama_id'=>$request->agama_id,
             'pekerjaan_id'=>$request->pekerjaan_id,
-            'tahun_id'=>$request->pekerjaan_id,
+            'tahun_id'=>$request->tahun_id,
             'desa_id'=>auth()->user()->desa->id,
             'alamat'=>$request->alamat,
             'foto'=>$request->foto,
@@ -129,7 +146,7 @@ class PendudukController extends Controller
                 'umur'=>$request->umur,
                 'agama_id'=>$request->agama_id,
                 'pekerjaan_id'=>$request->pekerjaan_id,
-                'tahun_id'=>$request->pekerjaan_id,
+                'tahun_id'=>$request->tahun_id,
                 'desa_id'=>auth()->user()->desa->id,
                 'alamat'=>$request->alamat,
                 'foto'=>$request->foto,
@@ -151,7 +168,7 @@ class PendudukController extends Controller
                 'umur'=>$request->umur,
                 'agama_id'=>$request->agama_id,
                 'pekerjaan_id'=>$request->pekerjaan_id,
-                'tahun_id'=>$request->pekerjaan_id,
+                'tahun_id'=>$request->tahun_id,
                 'desa_id'=>auth()->user()->desa->id,
                 'alamat'=>$request->alamat,
                 'foto'=>$data->foto,
@@ -176,5 +193,18 @@ class PendudukController extends Controller
             $data->delete();
         }
         return redirect()->back();
+    }
+
+    public function pdf()
+    {
+        $perempuan = Penduduk::join('desas','desas.id','=','penduduks.desa_id')
+                        ->select('penduduks.*','desas.id')
+                        ->where('desas.user_id',auth()->user()->id)
+                        ->where('jk','p')
+                        ->get();
+
+
+        $pdf = PDF::loadView('penduduk.penduduk-pdf', ['perempuan'=>$perempuan]);
+        return $pdf->stream();
     }
 }

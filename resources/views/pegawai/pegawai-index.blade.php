@@ -3,45 +3,48 @@
     <div class="col-md-12 col-12 mb-2">
         <button type="button" class="btn btn-sm mb-3 btn-primary" data-bs-toggle="modal"
             data-bs-target="#staticBackdrop">
-            <i class="bi bi-plus-lg"></i> Tambah Penduduk
+            <i class="bi bi-plus-lg"></i> Tambah Pegawai
         </button>
-        <a type="button" href="{{route('penduduk.pdf')}}" class="btn btn-sm mb-3 btn-primary" >
-            <i class="bi bi-plus-lg"></i> cetak Penduduk
+        <a type="button" href="{{route('pegawai.pdf')}}" class="btn btn-sm mb-3 btn-primary" >
+            <i class="bi bi-plus-lg"></i> cetak pegawai
         </a>
         <div class="card">
             <div class="card-body">
                 <p class="card-title">Laki - Laki</p>
-                <table class="table table-hover" id="dataTable">
+                <table class="table table-hover dataTable" id="dataTable">
                     <thead>
                         <tr>
                             <th>No</th>
                             <th>Nik</th>
                             <th>Nama</th>
                             <th>Umur</th>
+                            <th>Jabatan</th>
                             <th>Aksi</th>
                         </tr>
                     </thead>
                     <tbody>
-                        @foreach($penduduk_laki as $index=>$item)
-                            <tr>
-                                <td>{{$index+1}}</td>
-                                <td>{{$item->nik}}</td>
-                                <td>{{$item->nama}}</td>
-                                <td>{{$item->umur}}</td>
-                                <td>
-                                    <a href="{{ route('penduduk.destroy', $item->id) }}"
-                                        class="btn btn-danger btn-sm rounded-circle"><i
-                                            class="ri ri-delete-bin-line"></i></a>
-                                    <a href="{{ route('penduduk.edit', $item->id) }}"
-                                        class="btn btn-warning btn-sm rounded-circle"><i
-                                            class="ri ri-person-bin-line"></i>edit</a>
-                                    <a href="{{ route('penduduk.show', $item->id) }}"
-                                        class="btn btn-primary btn-sm rounded-circle"><i
-                                            class="ri ri-person-bin-line"></i>Show</a>
-                                </td>
-                                
-                            </tr>
-                        @endforeach
+                        
+                        @foreach ($pegawai_laki as $value=>$item)
+                        <tr>
+                            <td>{{$value+1}}</td>
+                            <td>{{$item->nik}}</td>
+                            <td>{{$item->nama}}</td>
+                            <td>{{$item->umur}}</td>
+                            <td>{{$item->jabatan->status_jabatan}}</td>
+                            <td>
+                                <a href="{{ route('pegawai.destroy', $item->id) }}"
+                                    class="btn btn-danger btn-sm rounded-circle"><i
+                                        class="ri ri-delete-bin-line"></i></a>
+                                <a href="{{ route('pegawai.edit', $item->id) }}"
+                                    class="btn btn-warning btn-sm rounded-circle"><i
+                                        class="ri ri-person-bin-line"></i>edit</a>
+                                <a href="{{ route('pegawai.show', $item->id) }}"
+                                    class="btn btn-primary btn-sm rounded-circle"><i
+                                        class="ri ri-person-bin-line"></i>Show</a>
+                            </td>
+                        </tr>
+                    @endforeach
+                        
                     </tbody>
                 </table>
             </div>
@@ -52,37 +55,40 @@
             <div class="card-body">
                 <p class="card-title">Perempuan</p>
                 
-                <table class="table table-hover" id="dataTable">
+                <table class="table table-hover dataTable" id="dataTable">
                     <thead>
                         <tr>
                             <th>No</th>
                             <th>Nik</th>
                             <th>Nama</th>
                             <th>Umur</th>
+                            <th>Jabatan</th>
                             <th>Aksi</th>
                         </tr>
                     </thead>
                     <tbody>
-                        @foreach($penduduk_perempuan as $index=>$item)
+
+                        @foreach ($pegawai_perempuan as $value=>$item)
                             <tr>
-                                <td>{{$index+1}}</td>
+                                <td>{{$value+1}}</td>
                                 <td>{{$item->nik}}</td>
                                 <td>{{$item->nama}}</td>
                                 <td>{{$item->umur}}</td>
+                                <td>{{$item->jabatan->status_jabatan}}</td>
                                 <td>
-                                    <a href="{{ route('penduduk.destroy', $item->id) }}"
+                                    <a href="{{ route('pegawai.destroy', $item->id) }}"
                                         class="btn btn-danger btn-sm rounded-circle"><i
                                             class="ri ri-delete-bin-line"></i></a>
-                                    <a href="{{ route('penduduk.edit', $item->id) }}"
+                                    <a href="{{ route('pegawai.edit', $item->id) }}"
                                         class="btn btn-warning btn-sm rounded-circle"><i
                                             class="ri ri-person-bin-line"></i>edit</a>
-                                    <a href="{{ route('penduduk.show', $item->id) }}"
+                                    <a href="{{ route('pegawai.show', $item->id) }}"
                                         class="btn btn-primary btn-sm rounded-circle"><i
                                             class="ri ri-person-bin-line"></i>Show</a>
                                 </td>
-                                
                             </tr>
                         @endforeach
+                       
                     </tbody>
                 </table>
             </div>
@@ -93,37 +99,40 @@
             <div class="card-body">
                 <p class="card-title">Penduduk</p>
                 
-                <table class="table table-hover" id="dataTable">
+                <table class="table table-hover dataTable" id="dataTable">
                     <thead>
                         <tr>
                             <th>No</th>
                             <th>Nik</th>
                             <th>Nama</th>
                             <th>Umur</th>
+                            <th>Jabatan</th>
                             <th>Aksi</th>
                         </tr>
                     </thead>
                     <tbody>
-                        @foreach($penduduk as $index=>$item)
+
+                        @foreach ($pegawai as $value=>$item)
                             <tr>
-                                <td>{{$index+1}}</td>
+                                <td>{{$value+1}}</td>
                                 <td>{{$item->nik}}</td>
                                 <td>{{$item->nama}}</td>
                                 <td>{{$item->umur}}</td>
+                                <td>{{$item->jabatan->status_jabatan}}</td>
                                 <td>
-                                    <a href="{{ route('penduduk.destroy', $item->id) }}"
+                                    <a href="{{ route('pegawai.destroy', $item->id) }}"
                                         class="btn btn-danger btn-sm rounded-circle"><i
                                             class="ri ri-delete-bin-line"></i></a>
-                                    <a href="{{ route('penduduk.edit', $item->id) }}"
+                                    <a href="{{ route('pegawai.edit', $item->id) }}"
                                         class="btn btn-warning btn-sm rounded-circle"><i
                                             class="ri ri-person-bin-line"></i>edit</a>
-                                    <a href="{{ route('penduduk.show', $item->id) }}"
+                                    <a href="{{ route('pegawai.show', $item->id) }}"
                                         class="btn btn-primary btn-sm rounded-circle"><i
                                             class="ri ri-person-bin-line"></i>Show</a>
                                 </td>
-                                
                             </tr>
                         @endforeach
+
                     </tbody>
                 </table>
             </div>
@@ -131,7 +140,7 @@
     </div>
         <script>
             $(document).ready(function() {
-                $('#dataTable').DataTable();
+                $('.dataTable').DataTable();
             });
         </script>
         <!-- Vertically centered modal -->
@@ -144,11 +153,11 @@
             <div class="modal-dialog">
                 <div class="modal-content">
                     <div class="modal-header">
-                        <h5 class="modal-title" id="staticBackdropLabel">Tambah Data Penduduk</h5>
+                        <h5 class="modal-title" id="staticBackdropLabel">Tambah Data Pegawai</h5>
                         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                     </div>
                     <div class="modal-body">
-                        <form action="{{ route('penduduk.store') }}" method="post" class="row" enctype="multipart/form-data">
+                        <form action="{{ route('pegawai.store') }}" method="post" class="row" enctype="multipart/form-data">
                             @csrf
                             <div class="col-md-6 col-12 mb-2">
                                 <label for="nik" class="form-label">Nik</label>
@@ -197,11 +206,11 @@
                                 </select>
                             </div>
                             <div class="col-md-6 col-12 mb-2">
-                                <label for="pekerjaan" class="form-label">Pekerjaan</label>
-                                <select class="form-select" name="pekerjaan_id" id="pekerjaan_id" aria-label="Default select example">
-                                    <option selected>Pilih Pekerjaan</option>
-                                    @foreach ($pekerjaan as $item)    
-                                        <option value="{{$item->id}}">{{$item->nama_pekerjaan}}</option>
+                                <label for="jabatan_id" class="form-label">Jabatan</label>
+                                <select class="form-select" name="jabatan_id" id="jabatan_id" aria-label="Default select example">
+                                    <option selected>Pilih Jabatan</option>
+                                    @foreach ($jabatan as $item)    
+                                        <option value="{{$item->id}}">{{$item->status_jabatan}}</option>
                                     @endforeach
                                 </select>
                             </div>

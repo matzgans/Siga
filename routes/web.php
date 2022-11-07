@@ -6,10 +6,12 @@ use App\Http\Controllers\{
     AgamaController,
     OpdController,
     PekerjaanController,
+    PegawaiController,
     TahunController,
     AuthController,
     DashboardController,
-    Klasifikasi_umurController
+    Klasifikasi_umurController,
+    JabatanController
 };
 use Illuminate\Support\Facades\Route;
 
@@ -59,9 +61,15 @@ Route::group(['middleware' => ['auth', 'HakAkses:admin']], function () {
     Route::get('/klasifikasiumur/index', [Klasifikasi_umurController::class, 'index'])->name('klasifikasiumur.index');
     Route::post('/klasifikasiumur/store', [Klasifikasi_umurController::class, 'store'])->name('klasifikasiumur.store');
     Route::get('/klasifikasiumur/destroy/{id}', [Klasifikasi_umurController::class, 'destroy'])->name('klasifikasiumur.destroy');
+    
+    // klasifikasi umur
+    Route::get('/jabatan/index', [JabatanController::class, 'index'])->name('jabatan.index');
+    Route::post('/jabatan/store', [JabatanController::class, 'store'])->name('jabatan.store');
+    Route::get('/jabatan/destroy/{id}', [JabatanController::class, 'destroy'])->name('jabatan.destroy');
 
 });
 
+// desa
 Route::group(['middleware' => ['auth', 'HakAkses:desa']], function () {
     Route::get('/penduduk/index', [PendudukController::class, 'index'])->name('penduduk.index');
     Route::post('/penduduk/store', [PendudukController::class, 'store'])->name('penduduk.store');
@@ -69,9 +77,21 @@ Route::group(['middleware' => ['auth', 'HakAkses:desa']], function () {
     Route::get('/penduduk/destroy/{id}', [PendudukController::class, 'destroy'])->name('penduduk.destroy');
     Route::post('/penduduk/update/{id}', [PendudukController::class, 'update'])->name('penduduk.update');
     Route::get('/penduduk/show/{id}', [PendudukController::class, 'show'])->name('penduduk.show');
+    Route::get('/penduduk/pdf', [PendudukController::class, 'pdf'])->name('penduduk.pdf');
 });
 
-Route::group(['middleware' => ['auth', 'HakAkses:desa,admin']], function () {
+// opd
+Route::group(['middleware' => ['auth', 'HakAkses:opd']], function () {
+    Route::get('/pegawai/index', [PegawaiController::class, 'index'])->name('pegawai.index');
+    Route::post('/pegawai/store', [PegawaiController::class, 'store'])->name('pegawai.store');
+    Route::get('/pegawai/edit/{id}', [PegawaiController::class, 'edit'])->name('pegawai.edit');
+    Route::get('/pegawai/destroy/{id}', [PegawaiController::class, 'destroy'])->name('pegawai.destroy');
+    Route::post('/pegawai/update/{id}', [PegawaiController::class, 'update'])->name('pegawai.update');
+    Route::get('/pegawai/show/{id}', [PegawaiController::class, 'show'])->name('pegawai.show');
+    Route::get('/pegawai/pdf', [PegawaiController::class, 'pdf'])->name('pegawai.pdf');
+});
+
+Route::group(['middleware' => ['auth', 'HakAkses:opd,desa,admin']], function () {
     Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard');
 });
 Route::get('/penduduks/index', [PendudukController::class, 'index'])->name('penduduks.index');
