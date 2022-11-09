@@ -1,41 +1,45 @@
 @extends('admin')
 @section('content')
-    <div class="col-10">
+    <div class="col-12">
         <div class="card">
             <div class="card-body">
                 <button type="button" class="btn btn-sm btn-primary mb-3" data-bs-toggle="modal"
                     data-bs-target="#staticBackdrop">
                     <i class="bi bi-plus-lg"></i> Data Opd
                 </button>
-                <table class="table table-hover" id="dataTable">
-                    <thead>
-                        <tr>
-                            <th>No</th>
-                            <th>Nama Istansi</th>
-                            <th>Kepala Istansi</th>
-                            <th>Email</th>
-                            <th>Aksi</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        @foreach ($data as $index => $item)
+                <div style="overflow-x: auto">
+                    <table class="table table-hover" id="dataTable">
+                        <thead>
                             <tr>
-                                <td>{{ $index + 1 }}</td>
-                                <td>{{ $item->nama_istansi }}</td>
-                                <td>{{ $item->kepala_istansi }}</td>
-                                <td>{{ $item->user->email }}</td>
-                                <td>
-                                    <a href="{{ route('opd.destroy', $item->id) }}" class="btn btn-danger">Hapus</a>
-                                </td>
+                                <th>No</th>
+                                <th>Nama Istansi</th>
+                                <th>Kepala Istansi</th>
+                                <th>Email</th>
+                                <th>Aksi</th>
                             </tr>
-                        @endforeach
-                    </tbody>
-                </table>
+                        </thead>
+                        <tbody>
+                            @foreach ($data as $index => $item)
+                                <tr>
+                                    <td>{{ $index + 1 }}</td>
+                                    <td>{{ $item->nama_istansi }}</td>
+                                    <td>{{ $item->kepala_istansi }}</td>
+                                    <td>{{ $item->user->email }}</td>
+                                    <td>
+                                        <a href="{{ route('opd.destroy', $item->id) }}" class="btn btn-danger">Hapus</a>
+                                    </td>
+                                </tr>
+                            @endforeach
+                        </tbody>
+                    </table>
+                </div>
             </div>
         </div>
         <script>
             $(document).ready(function() {
-                $('#dataTable').DataTable();
+                $('#dataTable').DataTable({
+                    resposive:true
+                });
             });
         </script>
 

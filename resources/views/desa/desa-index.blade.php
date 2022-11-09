@@ -1,6 +1,6 @@
 @extends('admin')
 @section('content')
-    <div class="col-md-12 col-xxs-12 col-12">
+    <div class="col-md-12 col-xs-12 col-12">
 
         <div class="card">
             <div class="card-body">
@@ -8,35 +8,37 @@
                     data-bs-target="#staticBackdrop">
                     <i class="bi bi-plus-lg"></i> Data Desa
                 </button>
-                <table class="table table-hover" id="dataTable">
-                    <thead>
-                        <tr>
-                            <th>No</th>
-                            <th>Nama Desa</th>
-                            <th>Kepala Desa</th>
-                            <th>Email</th>
-                            <th>Aksi</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        @foreach ($data as $index => $item)
+                <div style="overflow-x: auto">
+                    <table class="table table-hover" id="dataTable">
+                        <thead>
                             <tr>
-                                <td>{{ $index + 1 }}</td>
-                                <td>{{ $item->nama_desa }}</td>
-                                <td>{{ $item->kepala_desa }}</td>
-                                <td>{{ $item->user->email }}</td>
-                                <td>
-                                    <a href="{{ route('desa.destroy', $item->id) }}"
-                                        class="btn btn-sm btn-danger rounded-circle"><i
-                                            class="ri ri-delete-bin-line"></i></a>
-                                    <a href="{{ route('desa.edit', $item->id) }}"
-                                        class="btn btn-sm btn-warning rounded-circle"><i
-                                            class="ri ri-edit-box-line text-white"></i></a>
-                                </td>
+                                <th>No</th>
+                                <th>Nama Desa</th>
+                                <th>Kepala Desa</th>
+                                <th>Email</th>
+                                <th>Aksi</th>
                             </tr>
-                        @endforeach
-                    </tbody>
-                </table>
+                        </thead>
+                        <tbody>
+                            @foreach ($data as $index => $item)
+                                <tr>
+                                    <td>{{ $index + 1 }}</td>
+                                    <td>{{ $item->nama_desa }}</td>
+                                    <td>{{ $item->kepala_desa }}</td>
+                                    <td>{{ $item->user->email }}</td>
+                                    <td>
+                                        <a href="{{ route('desa.destroy', $item->id) }}"
+                                            class="btn btn-sm btn-danger rounded-circle"><i
+                                                class="ri ri-delete-bin-line"></i></a>
+                                        <a href="{{ route('desa.edit', $item->id) }}"
+                                            class="btn btn-sm btn-warning rounded-circle"><i
+                                                class="ri ri-edit-box-line text-white"></i></a>
+                                    </td>
+                                </tr>
+                            @endforeach
+                        </tbody>
+                    </table>
+                </div>
             </div>
         </div>
 
@@ -45,7 +47,9 @@
     </div>
     <script>
         $(document).ready(function() {
-            $('#dataTable').DataTable();
+            $('#dataTable').DataTable({
+                responsive:true
+            });
         });
     </script>
 

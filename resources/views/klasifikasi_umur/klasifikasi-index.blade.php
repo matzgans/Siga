@@ -8,30 +8,32 @@
                 data-bs-target="#staticBackdrop">
                 <i class="bi bi-plus-lg"></i> Data Desa
             </button>
-            <table class="table table-hover" id="dataTable">
-                <thead>
-                    <tr>
-                        <th>No</th>
-                        <th>Umur</th>
-                        <th>Kategori</th>
-                        <th>Aksi</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    @foreach ($data as $index=>$item)
+            <div style="overflow-x: auto">
+                <table class="table table-hover" id="dataTable">
+                    <thead>
                         <tr>
-                            <td>{{$index+1}}</td>
-                            <td>{{$item->umur}}</td>
-                            <td>{{$item->kategori}}</td>
-                            <td>
-                                <a href="{{ route('klasifikasiumur.destroy', $item->id) }}"
-                                    class="btn btn-sm btn-danger rounded-circle"><i
-                                        class="ri ri-delete-bin-line"></i></a>
-                            </td>
+                            <th>No</th>
+                            <th>Umur</th>
+                            <th>Kategori</th>
+                            <th>Aksi</th>
                         </tr>
-                    @endforeach
-                </tbody>
-            </table>
+                    </thead>
+                    <tbody>
+                        @foreach ($data as $index=>$item)
+                            <tr>
+                                <td>{{$index+1}}</td>
+                                <td>{{$item->umur}}</td>
+                                <td>{{$item->kategori}}</td>
+                                <td>
+                                    <a href="{{ route('klasifikasiumur.destroy', $item->id) }}"
+                                        class="btn btn-sm btn-danger rounded-circle"><i
+                                            class="ri ri-delete-bin-line"></i></a>
+                                </td>
+                            </tr>
+                        @endforeach
+                    </tbody>
+                </table>
+            </div>
         </div>
     </div>
 
@@ -66,7 +68,9 @@
 </div>
 <script>
     $(document).ready(function() {
-        $('#dataTable').DataTable();
+        $('#dataTable').DataTable({
+            responsive:true
+        });
     });
 </script>
 

@@ -1,39 +1,43 @@
 @extends('admin')
 @section('content')
-    <div class="col-10">
+    <div class="col-12">
         <div class="card">
             <div class="card-body">
                 <button type="button" class="btn btn-sm mb-3 btn-primary" data-bs-toggle="modal"
                     data-bs-target="#staticBackdrop">
                     <i class="bi bi-plus-lg"></i> Tambah Pekerjaan
                 </button>
-                <table class="table table-hover" id="dataTable">
-                    <thead>
-                        <tr>
-                            <th>No</th>
-                            <th>Nama Pekerjaan</th>
-                            <th>Aksi</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        @foreach ($data as $index => $item)
+                <div style="overflow-x: auto">
+                    <table class="table table-hover" id="dataTable">
+                        <thead>
                             <tr>
-                                <td>{{ $index + 1 }}</td>
-                                <td>{{ $item->nama_pekerjaan }}</td>
-                                <td>
-                                    <a href="{{ route('pekerjaan.destroy', $item->id) }}"
-                                        class="btn btn-danger btn-sm rounded-circle"><i
-                                            class="ri ri-delete-bin-line"></i></a>
-                                </td>
+                                <th>No</th>
+                                <th>Nama Pekerjaan</th>
+                                <th>Aksi</th>
                             </tr>
-                        @endforeach
-                    </tbody>
-                </table>
+                        </thead>
+                        <tbody>
+                            @foreach ($data as $index => $item)
+                                <tr>
+                                    <td>{{ $index + 1 }}</td>
+                                    <td>{{ $item->nama_pekerjaan }}</td>
+                                    <td>
+                                        <a href="{{ route('pekerjaan.destroy', $item->id) }}"
+                                            class="btn btn-danger btn-sm rounded-circle"><i
+                                                class="ri ri-delete-bin-line"></i></a>
+                                    </td>
+                                </tr>
+                            @endforeach
+                        </tbody>
+                    </table>
+                </div>
             </div>
         </div>
         <script>
             $(document).ready(function() {
-                $('#dataTable').DataTable();
+                $('#dataTable').DataTable({
+                    responsive : true
+                });
             });
         </script>
 
