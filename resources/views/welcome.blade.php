@@ -59,65 +59,82 @@
                             <li><a href="#">Pendidikan Terakhir</a></li>
                         </ul>
                     </li>
-                    <li class="dropdown"><a href="#"><span>Kesehatan</span> <i class="bi bi-chevron-down"></i></a>
+                    <li class="dropdown"><a href="#"><span>Data Terpilah</span><i class="bi bi-chevron-down"></i></a>
                         <ul>
-                            <li><a href="#">Angka Harapan Hidup</a></li>
-                            <li class="dropdown"><a href=""><span>Kematian Ibu Hamil</span> <i
-                                        class="bi bi-chevron-down"></i></a>
+                            <li class="dropdown w-75"><a href="#"><span>Bidang Kesehatan</span> <i class="bi bi-chevron-down"></i></a>
                                 <ul>
-                                    <li><a href="#">Jumlah Kematian</a></li>
-                                    <li><a href="#">Penyebab Kematian</a></li>
+                                    <li><a href="#">Angka Harapan Hidup</a></li>
+                                    <li class="dropdown"><a href=""><span>Kematian Ibu Hamil</span> <i
+                                                class="bi bi-chevron-down"></i></a>
+                                        <ul>
+                                            <li><a href="#">Jumlah Kematian</a></li>
+                                            <li><a href="#">Penyebab Kematian</a></li>
+                                        </ul>
+                                    </li>
+                                    <li><a href="#">Kelompok Umur</a></li>
+                                    <li><a href="#">Pendidikan Terakhir</a></li>
                                 </ul>
                             </li>
-                            <li><a href="#">Kelompok Umur</a></li>
-                            <li><a href="#">Pendidikan Terakhir</a></li>
+                            <li class="dropdown w-75"><a href="#"><span>Bidang Pendidikan</span> <i
+                                        class="bi bi-chevron-down"></i></a>
+                                <ul>
+                                    <li><a href="#">Data Putus Sekolah</a></li>
+                                    <li><a href="#">Jumlah Guru</a></li>
+                                    <li><a href="#">Sekolah</a></li>
+                                    <li><a href="#">Angka Partisipasi</a></li>
+                                </ul>
+                            </li>
+                            <li class="dropdown w-75"><a href="#"><span>Bidang Ekonomi</span> <i class="bi bi-chevron-down"></i></a>
+                                <ul>
+                                    <li><a href="#">Data Angka Kerja</a></li>
+                                    <li><a href="#">Data Penduduk Miskin</a></li>
+                                    <li class="dropdown"><a href="#"><span>Pekerja Di Sektor</span> <i
+                                                class="bi bi-chevron-down"></i></a>
+                                        <ul>
+                                            <li><a href="#">Formal</a></li>
+                                            <li><a href="#">Informal</a></li>
+                                        </ul>
+                                    </li>
+                                </ul>
+                            </li>
+                            <li class="dropdown w-75"><a href="#"><span>Bidang Politik</span> <i class="bi bi-chevron-down"></i></a>
+                                <ul>
+                                    <li><a href="#">Data Camat</a></li>
+                                    <li><a href="#">Data Kepala Desa</a></li>
+                                    <li><a href="#">Data PNS</a></li>
+                                    <li><a href="#">Data DPRD</a></li>
+                                </ul>
+                            </li>
+                            <li class="dropdown w-75"><a href="#"><span>Bidang Hukum/Sosial Budaya</span> <i
+                                        class="bi bi-chevron-down"></i></a>
+                                <ul>
+                                    <li><a href="#">Data Penghuni Lapas</a></li>
+                                    <li><a href="#">Data Disabilitas</a></li>
+                                    <li><a href="#">Data Perceraian</a></li>
+                                    <li><a href="#">Data Pengadilan Negeri</a></li>
+                                    <li><a href="#">Data Pengadilan Agama</a></li>
+                                </ul>
+                            </li>
                         </ul>
                     </li>
-                    <li class="dropdown"><a href="#"><span>Pendidikan</span> <i
+                    <li class="dropdown"><a href="#"><span>Kekerasan</span> <i
                                 class="bi bi-chevron-down"></i></a>
                         <ul>
-                            <li><a href="#">Data Putus Sekolah</a></li>
-                            <li><a href="#">Jumlah Guru</a></li>
-                            <li><a href="#">Sekolah</a></li>
-                            <li><a href="#">Angka Partisipasi</a></li>
+                            <li class="dropdown"><a href="#">Kekerasan Terhadap <i class="bi bi-chevron-down"></i></a>
+                                <ul>
+                                    <li><a href="#">Perempuan</a></li>
+                                    <li><a href="#">Anak</a></li>
+                                </ul>
+                            </li>
+                            <li><a href="#">Data Lokasi Kekerasan</a></li>
+                            <li><a href="#">Data Status Kekerasan</a></li>
                         </ul>
                     </li>
-                    <li class="dropdown"><a href="#"><span>SDA Lingkukan</span> <i
+                    <li class="dropdown w-50"><a href="#"><span>SDA Lingkukan</span> <i
                                 class="bi bi-chevron-down"></i></a>
                         <ul>
                             <li><a href="#">Data Bencana Lingkungan Terhadap Gender</a></li>
                             <li><a href="#">Data Bencana Lingkungan Terhadap Anak</a></li>
-                        </ul>
-                    </li>
-                    <li class="dropdown"><a href="#"><span>Ekonomi</span> <i class="bi bi-chevron-down"></i></a>
-                        <ul>
-                            <li><a href="#">Data Angka Kerja</a></li>
-                            <li><a href="#">Data Penduduk Miskin</a></li>
-                            <li class="dropdown"><a href="#"><span>Pekerja Di Sektor</span> <i
-                                        class="bi bi-chevron-down"></i></a>
-                                <ul>
-                                    <li><a href="#">Formal</a></li>
-                                    <li><a href="#">Informal</a></li>
-                                </ul>
-                            </li>
-                        </ul>
-                    </li>
-                    <li class="dropdown"><a href="#"><span>Politik</span> <i class="bi bi-chevron-down"></i></a>
-                        <ul>
-                            <li><a href="#">Data Camat</a></li>
-                            <li><a href="#">Data Kepala Desa</a></li>
-                            <li><a href="#">Data PNS</a></li>
-                            <li><a href="#">Data DPRD</a></li>
-                        </ul>
-                    </li>
-                    <li class="dropdown"><a href="#"><span>Hukum/Sosial Budaya</span> <i
-                                class="bi bi-chevron-down"></i></a>
-                        <ul>
-                            <li><a href="#">Data Penghuni Lapas</a></li>
-                            <li><a href="#">Data Disabilitas</a></li>
-                            <li><a href="#">Data Perceraian</a></li>
-                            <li><a href="#">Data Pengadilan Negeri</a></li>
-                            <li><a href="#">Data Pengadilan Agama</a></li>
                         </ul>
                     </li>
                 </ul>
@@ -135,7 +152,7 @@
                 <div class="col-lg-6 d-flex flex-column justify-content-center pt-4 pt-lg-0 order-2 order-lg-1"
                     data-aos="fade-up" data-aos-delay="200">
                     <h1>Sistem Informasi Gender dan Anak</h1>
-                    <p class="text-white">Data terpilah Gender dan Anak di Jawa Barat berfungsi untuk memotret tingkat
+                    <p class="text-white">Data terpilah Gender dan Anak di Bone Bolango berfungsi untuk memotret tingkat
                         keberhasilan pembangunan pemberdayaan perempuan, perlindungan perempuan dan anak melalui
                         strategi Pengarusutamaan Gender (PUG) dan Pengarusutamaan Hak Anak (PUHA).</p>
                     <div class="d-flex justify-content-center justify-content-lg-start">
