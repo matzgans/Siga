@@ -35,10 +35,7 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.2.0/css/bootstrap.min.css">
     <link rel="stylesheet" href="https://cdn.datatables.net/1.12.1/css/dataTables.bootstrap5.min.css">
 
-    {{-- DataTable JS --}}
-    <script src="https://code.jquery.com/jquery-3.5.1.js"></script>
-    <script src="https://cdn.datatables.net/1.12.1/js/jquery.dataTables.min.js"></script>
-    <script src="https://cdn.datatables.net/1.12.1/js/dataTables.bootstrap5.min.js"></script>
+   
 
     <!-- =======================================================
   * Template Name: NiceAdmin - v2.4.1
@@ -289,8 +286,9 @@
                     <span>Dashboard</span>
                 </a>
             </li><!-- End Dashboard Nav -->
-
+            
             @if(auth()->user()->role == "admin")
+            <span>Data Master</span>
                 <li class="nav-item">
                     <a class="nav-link {{ $active != 'desa' ? 'collapsed' : 'active' }}"
                         href="{{ route('desa.index') }}">
@@ -352,6 +350,14 @@
                         <i class="ri ri-user-4-line"></i><span>pegawai</span>
                     </a>
                 </li>
+                @if(auth()->user()->opd->nama_istansi == "Dinas Kesehatan")
+                    <li class="nav-item">
+                        <a class="nav-link {{ $active != 'pkematian' ? 'collapsed' : 'active' }}"
+                            href="{{ route('pkematian.index') }}">
+                            <i class="ri ri-user-4-line"></i><span>Penyebab Kematian</span>
+                        </a>
+                    </li>
+                @endif
             @endif
 
         </ul>
@@ -407,8 +413,12 @@
 
     <!-- Template Main JS File -->
     <script src="{{ asset('assetsAdmin') }}/js/main.js"></script>
+     {{-- DataTable JS --}}
+     <script src="https://code.jquery.com/jquery-3.5.1.js"></script>
+     <script src="https://cdn.datatables.net/1.12.1/js/jquery.dataTables.min.js"></script>
+     <script src="https://cdn.datatables.net/1.12.1/js/dataTables.bootstrap5.min.js"></script>
 
-
+@yield('scripts')
 
 </body>
 

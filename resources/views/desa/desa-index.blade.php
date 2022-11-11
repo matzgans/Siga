@@ -45,13 +45,13 @@
         
 
     </div>
-    <script>
+    {{-- <script>
         $(document).ready(function() {
             $('#dataTable').DataTable({
                 responsive:true
             });
         });
-    </script>
+    </script> --}}
 
     <!-- Vertically centered modal -->
     <!-- Button trigger modal -->

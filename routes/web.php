@@ -11,7 +11,8 @@ use App\Http\Controllers\{
     AuthController,
     DashboardController,
     Klasifikasi_umurController,
-    JabatanController
+    JabatanController,
+    PkematianController
 };
 use Illuminate\Support\Facades\Route;
 
@@ -26,7 +27,12 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', [DashboardController::class, 'landing'])->name('landingx');
+Route::prefix('/')->group( function(){
+    Route::get('/', [DashboardController::class, 'landing'])->name('landing');
+    Route::get('/ipg', [DashboardController::class, 'ipg'])->name('ipg');
+    Route::get('/dataterpilah', [DashboardController::class, 'dataterpilah'])->name('dataterpilah');
+
+});
 
 
 Route::group(['middleware' => ['auth', 'HakAkses:admin']], function () {
@@ -82,6 +88,7 @@ Route::group(['middleware' => ['auth', 'HakAkses:desa']], function () {
 
 // opd
 Route::group(['middleware' => ['auth', 'HakAkses:opd']], function () {
+    // pegawai
     Route::get('/pegawai/index', [PegawaiController::class, 'index'])->name('pegawai.index');
     Route::post('/pegawai/store', [PegawaiController::class, 'store'])->name('pegawai.store');
     Route::get('/pegawai/edit/{id}', [PegawaiController::class, 'edit'])->name('pegawai.edit');
@@ -89,6 +96,12 @@ Route::group(['middleware' => ['auth', 'HakAkses:opd']], function () {
     Route::post('/pegawai/update/{id}', [PegawaiController::class, 'update'])->name('pegawai.update');
     Route::get('/pegawai/show/{id}', [PegawaiController::class, 'show'])->name('pegawai.show');
     Route::get('/pegawai/pdf', [PegawaiController::class, 'pdf'])->name('pegawai.pdf');
+
+    // pkematian
+    Route::get('/pkematian/index', [PkematianController::class, 'index'])->name('pkematian.index');
+    Route::post('/pkematian/store', [PkematianController::class, 'store'])->name('pkematian.store');
+    Route::get('/pkematian/edit/{id}', [PkematianController::class, 'edit'])->name('pkematian.edit');
+    Route::get('/pkematian/destroy/{id}', [PkematianController::class, 'destroy'])->name('pkematian.destroy');
 });
 
 Route::group(['middleware' => ['auth', 'HakAkses:opd,desa,admin']], function () {

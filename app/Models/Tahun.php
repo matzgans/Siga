@@ -4,7 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
-use App\Models\{Penduduk};
+use App\Models\{Penduduk, Pkematian};
 
 class Tahun extends Model
 {
@@ -17,5 +17,10 @@ class Tahun extends Model
     public function penduduk()
     {
         return $this->hasOne(Penduduk::class);
+    }
+
+    public function pkematian()
+    {
+        return $this->hasOne(Pkematian::class);
     }
 }
