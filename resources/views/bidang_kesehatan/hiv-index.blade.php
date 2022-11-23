@@ -11,37 +11,46 @@
     </a>
     <div class="card">
         <div class="card-body">
-            <p class="card-title">Data Penyebab Kematian Ibu Hamil</p>
+            @if(Session('message'))
+                <div class="alert alert-danger" role="alert">
+                    {{Session('message')}}
+                </div>
+            @endif
+            <p class="card-title">Data Hiv / Aids</p>
             <table class="table table-hover" id="dataTable">
                 <thead>
                     <tr>
                         <th>No</th>
                         <th>Tahun</th>
                         <th>Desa</th>
-                        <th>Partus Lama</th>
-                        <th>Infeksi</th>
-                        <th>Hipertensi</th>
-                        <th>Pendarahan</th>
-                        <th>Penyebab Lainya</th>
+                        <th>Perempuan</th>
+                        <th>Laki - Laki </th>
                         <th>Sumber</th>
+                        <th>Keterangan</th>
+                        <th>Aksi</th>
                     </tr>
                 </thead>
                 <tbody>
-                    @forelse ($data as $value=>$item)
-                    <tr>
-                        <td>{{$value+1}}</td>
-                        <td>{{$item->tahun->nama_tahun}}</td>
-                        <td>{{$item->desa->nama_desa}}</td>
-                        <td>{{$item->jum_partuslama}} KH</td>
-                        <td>{{$item->jum_infeksi}} Orang</td>
-                        <td>{{$item->jum_hirpetensi}} Orang</td>
-                        <td>{{$item->jum_pendarahan}} Orang</td>
-                        <td>{{$item->jum_penyebablain}} Orang</td>
-                        <td>{{$item->sumber}}</td>
-                    </tr>
-                    @empty
-                        Data belum di input
-                    @endforelse
+                    @foreach ($data as $value=>$item)
+                        <tr>
+                            <td>{{$value+1}}</td>
+                            <td>{{$item->tahun->nama_tahun}}</td>
+                            <td>{{$item->desa->nama_desa}}</td>
+                            <td>{{$item->p}}</td>
+                            <td>{{$item->l}}</td>
+                            <td>{{$item->sumber}}</td>
+                            <td>{{$item->ket}}</td>
+                            <td>
+                                <a href="{{ route('hiv.destroy', $item->id) }}"
+                                    class="btn btn-danger btn-sm rounded-circle"><i
+                                        class="ri ri-delete-bin-line"></i></a>
+                                <a href="{{ route('hiv.edit', $item->id) }}"
+                                    class="btn btn-warning btn-sm rounded-circle"><i
+                                        class="ri ri-person-bin-line"></i>edit</a>
+                            </td>
+                        </tr>
+                    @endforeach
+                    
                 </tbody>
             </table>
         </div>
@@ -53,11 +62,11 @@
         <div class="modal-dialog">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h5 class="modal-title" id="staticBackdropLabel">Tambah Data Penyebab Kematian Ibu Hamil</h5>
+                    <h5 class="modal-title" id="staticBackdropLabel">Tambah Data Penderita Hiv / Aids</h5>
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <div class="modal-body">
-                    <form action="{{ route('pkematian.store') }}" method="post" class="row" enctype="multipart/form-data">
+                    <form action="{{ route('hiv.store') }}" method="post" class="row" enctype="multipart/form-data">
                         @csrf
                         
                         <div class="col-md-6 col-12 mb-2">
@@ -70,26 +79,24 @@
                             </select>
                         </div>
                         <div class="col-md-6 col-12 mb-2">
-                            <label for="jum_partuslama" class="form-label">Jumlah Partuslama</label>
-                            <input type="number" class="form-control" name="jum_partuslama" id="jum_partuslama">
+                            <label for="l" class="form-label">Jumlah Laki - Laki</label>
+                            <input type="number" class="form-control" name="l" id="l">
                         </div>
                         <div class="col-md-6 col-12 mb-2">
-                            <label for="jum_infeksi" class="form-label">Jumlah Infeksi</label>
-                            <input type="number" class="form-control" name="jum_infeksi" id="jum_infeksi">
+                            <label for="p" class="form-label">Jumlah Perempuan</label>
+                            <input type="number" class="form-control" name="p" id="p">
                         </div>
                         <div class="col-md-6 col-12 mb-2">
-                            <label for="jum_hirpetensi" class="form-label">Jumlah Hipertensi</label>
-                            <input type="number" class="form-control" name="jum_hirpetensi" id="jum_hirpetensi">
+                            <label for="sumber" class="form-label">Sumber</label>
+                            <select class="form-select" name="sumber" id="sumber" aria-label="Default select example">
+                                <option selected>Sumber</option>
+                                <option Value="Dinas Kesahatan">Dinas Kesahatan</option>
+                                <option Value="Puskesmas">Puskesmas</option>
+                                <option value="Desa">Desa</option>
+                                <option value="Data Lainya">Data Lainya</option>
+                            </select>
                         </div>
                         <div class="col-md-6 col-12 mb-2">
-                            <label for="jum_pendarahan" class="form-label">Jumlah Pendarahan</label>
-                            <input type="number" class="form-control" name="jum_pendarahan" id="jum_pendarahan">
-                        </div>
-                        <div class="col-md-6 col-12 mb-2">
-                            <label for="jum_penyebablain" class="form-label">Jumlah Penyebab Lain</label>
-                            <input type="number" class="form-control" name="jum_penyebablain" id="jum_penyebablain">
-                        </div>
-                        <div class="col-md-12 col-12 mb-2">
                             <label for="tahun" class="form-label">Tahun</label>
                             <select class="form-select" name="tahun_id" id="tahun_id" aria-label="Default select example">
                                 <option selected>Pilih Tahun</option>
@@ -97,6 +104,10 @@
                                     <option value="{{$item->id}}">{{$item->nama_tahun}}</option>
                                 @endforeach
                             </select>
+                        </div>
+                        <div class="col-md-6 col-12 mb-2">
+                            <label for="ket" class="form-label">Keterangan</label>
+                            <textarea name="ket" class="form-control" id="ket"></textarea>
                         </div>
                 </div>
                 <div class="modal-footer">
@@ -110,7 +121,7 @@
 
    
 @endsection
-@section('scripta')
+@section('scripts')
 <script>
     $(document).ready(function() {
         $('#dataTable').DataTable();

@@ -336,6 +336,20 @@
                         <i class="ri ri-user-2-fill"></i><span>Jabatan</span>
                     </a>
                 </li>
+
+                <span>Data Terpilah Bidang Kesehatan</span>
+                <li class="nav-item">
+                    <a class="nav-link {{ $active != 'pkematian' ? 'collapsed' : 'active' }}"
+                        href="{{ route('pkematian.index') }}">
+                        <i class="ri ri-user-4-line"></i><span>Penyebab Kematian ibu Hamil</span>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link {{ $active != 'hiv' ? 'collapsed' : 'active' }}"
+                        href="{{ route('hiv.index') }}">
+                        <i class="ri ri-user-4-line"></i><span>Penderita Hiv / Aids</span>
+                    </a>
+                </li>
             @elseif(auth()->user()->role == "desa")
                 <li class="nav-item">
                     <a class="nav-link {{ $active != 'penduduk' ? 'collapsed' : 'active' }}"

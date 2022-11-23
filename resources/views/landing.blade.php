@@ -54,7 +54,7 @@
 
             <nav id="navbar" class="navbar">
                 <ul>
-                    <li><a class="nav-link scrollto active" href="#hero">Home</a></li>
+                    <li><a class="nav-link scrollto active" href="/">Home</a></li>
                     <li class="dropdown"><a href="#"><span>IPGA</span> <i class="bi bi-chevron-down"></i></a>
                         <ul>
                             <li><a href="#">Persentase penduduk</a></li>
@@ -65,54 +65,12 @@
                     </li>
                     <li class="dropdown"><a href="#"><span>Data Terpilah</span><i class="bi bi-chevron-down"></i></a>
                         <ul>
-                            <li class="dropdown w-75"><a href="#"><span>Bidang Kesehatan</span> <i class="bi bi-chevron-down"></i></a>
-                                <ul>
-                                    <li><a href="#">Angka Harapan Hidup</a></li>
-                                    <li><a href="{{route('dataterpilah')}}">Angka Kematian Ibu Hamil</a></li>
-                                    <li><a href="#">Kelompok Umur</a></li>
-                                    <li><a href="#">Pendidikan Terakhir</a></li>
-                                </ul>
-                            </li>
-                            <li class="dropdown w-75"><a href="#"><span>Bidang Pendidikan</span> <i
-                                        class="bi bi-chevron-down"></i></a>
-                                <ul>
-                                    <li><a href="#">Data Putus Sekolah</a></li>
-                                    <li><a href="#">Jumlah Guru</a></li>
-                                    <li><a href="#">Sekolah</a></li>
-                                    <li><a href="#">Angka Partisipasi</a></li>
-                                </ul>
-                            </li>
-                            <li class="dropdown w-75"><a href="#"><span>Bidang Ekonomi</span> <i class="bi bi-chevron-down"></i></a>
-                                <ul>
-                                    <li><a href="#">Data Angka Kerja</a></li>
-                                    <li><a href="#">Data Penduduk Miskin</a></li>
-                                    <li class="dropdown"><a href="#"><span>Pekerja Di Sektor</span> <i
-                                                class="bi bi-chevron-down"></i></a>
-                                        <ul>
-                                            <li><a href="#">Formal</a></li>
-                                            <li><a href="#">Informal</a></li>
-                                        </ul>
-                                    </li>
-                                </ul>
-                            </li>
-                            <li class="dropdown w-75"><a href="#"><span>Bidang Politik</span> <i class="bi bi-chevron-down"></i></a>
-                                <ul>
-                                    <li><a href="#">Data Camat</a></li>
-                                    <li><a href="#">Data Kepala Desa</a></li>
-                                    <li><a href="#">Data PNS</a></li>
-                                    <li><a href="#">Data DPRD</a></li>
-                                </ul>
-                            </li>
-                            <li class="dropdown w-75"><a href="#"><span>Bidang Hukum/Sosial Budaya</span> <i
-                                        class="bi bi-chevron-down"></i></a>
-                                <ul>
-                                    <li><a href="#">Data Penghuni Lapas</a></li>
-                                    <li><a href="#">Data Disabilitas</a></li>
-                                    <li><a href="#">Data Perceraian</a></li>
-                                    <li><a href="#">Data Pengadilan Negeri</a></li>
-                                    <li><a href="#">Data Pengadilan Agama</a></li>
-                                </ul>
-                            </li>
+                            <li><a href="{{route('bkesehatan')}}">Bidang Kesehatan</a></li>
+                            <li><a href="{{route('bpendidikan')}}">Bidang Pendidikan</a></li>
+                            <li><a href="{{route('bsda')}}">Bidang SDA / Lingkungan</a></li>
+                            <li><a href="{{route('bekonomi')}}">Bidang Ekonomi / Ketenagaan Kerja</a></li>
+                            <li><a href="{{route('bpolitik')}}">Bidang Politik Dan Pengambilan Keputusan</a></li>
+                            <li><a href="{{route('bhukum')}}">Bidang Hukum Dan Sosial Budaya</a></li>
                         </ul>
                     </li>
                     <li class="dropdown"><a href="#"><span>Kekerasan</span> <i

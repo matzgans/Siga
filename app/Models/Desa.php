@@ -4,7 +4,8 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
-use App\Models\{User, Penduduk, Pkematian};
+use App\Models\{User, Penduduk, Pkematian, Hiv};
+
 
 class Desa extends Model
 {
@@ -29,5 +30,10 @@ class Desa extends Model
     public function pkematian()
     {
         return $this->hasOne(Pkematian::class);
+    }
+
+    public function hiv()
+    {
+        return $this->hasOne(Hiv::class);
     }
 }

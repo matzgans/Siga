@@ -12,7 +12,8 @@ use App\Http\Controllers\{
     DashboardController,
     Klasifikasi_umurController,
     JabatanController,
-    PkematianController
+    PkematianController,
+    HivController,
 };
 use Illuminate\Support\Facades\Route;
 
@@ -30,7 +31,12 @@ use Illuminate\Support\Facades\Route;
 Route::prefix('/')->group( function(){
     Route::get('/', [DashboardController::class, 'landing'])->name('landing');
     Route::get('/ipg', [DashboardController::class, 'ipg'])->name('ipg');
-    Route::get('/dataterpilah', [DashboardController::class, 'dataterpilah'])->name('dataterpilah');
+    Route::get('/bkesehatan', [DashboardController::class, 'bkesehatan'])->name('bkesehatan');
+    Route::get('/bpendidikan', [DashboardController::class, 'bpendidikan'])->name('bpendidikan');
+    Route::get('/bsda', [DashboardController::class, 'bsda'])->name('bsda');
+    Route::get('/bekonomi', [DashboardController::class, 'bekonomi'])->name('bekonomi');
+    Route::get('/bpolitik', [DashboardController::class, 'bpolitik'])->name('bpolitik');
+    Route::get('/bhukum', [DashboardController::class, 'bhukum'])->name('bhukum');
 
 });
 
@@ -87,7 +93,7 @@ Route::group(['middleware' => ['auth', 'HakAkses:desa']], function () {
 });
 
 // opd
-Route::group(['middleware' => ['auth', 'HakAkses:opd']], function () {
+Route::group(['middleware' => ['auth', 'HakAkses:opd,admin']], function () {
     // pegawai
     Route::get('/pegawai/index', [PegawaiController::class, 'index'])->name('pegawai.index');
     Route::post('/pegawai/store', [PegawaiController::class, 'store'])->name('pegawai.store');
@@ -97,11 +103,20 @@ Route::group(['middleware' => ['auth', 'HakAkses:opd']], function () {
     Route::get('/pegawai/show/{id}', [PegawaiController::class, 'show'])->name('pegawai.show');
     Route::get('/pegawai/pdf', [PegawaiController::class, 'pdf'])->name('pegawai.pdf');
 
-    // pkematian
+    // Data Terpilah Bidang Kesehatan
+    // 1. Kematia Ibu Hamil
     Route::get('/pkematian/index', [PkematianController::class, 'index'])->name('pkematian.index');
     Route::post('/pkematian/store', [PkematianController::class, 'store'])->name('pkematian.store');
+    Route::post('/pkematian/update/{id}', [PkematianController::class, 'update'])->name('pkematian.update');
     Route::get('/pkematian/edit/{id}', [PkematianController::class, 'edit'])->name('pkematian.edit');
     Route::get('/pkematian/destroy/{id}', [PkematianController::class, 'destroy'])->name('pkematian.destroy');
+
+    // 2. Penderita Hiv
+    Route::get('/hiv/index', [HivController::class, 'index'])->name('hiv.index');
+    Route::post('/hiv/store', [HivController::class, 'store'])->name('hiv.store');
+    Route::post('/hiv/update/{id}', [HivController::class, 'update'])->name('hiv.update');
+    Route::get('/hiv/edit/{id}', [HivController::class, 'edit'])->name('hiv.edit');
+    Route::get('/hiv/destroy/{id}', [HivController::class, 'destroy'])->name('hiv.destroy');
 });
 
 Route::group(['middleware' => ['auth', 'HakAkses:opd,desa,admin']], function () {

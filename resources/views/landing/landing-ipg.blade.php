@@ -22,6 +22,7 @@
         </div>
 
         <div class="row content">
+            
             <div class="col-lg-12">
                 <table class="table table-hover table-bordered dataTable" id="dataTable">
                     <thead>
