@@ -30,7 +30,10 @@ use Illuminate\Support\Facades\Route;
 
 Route::prefix('/')->group( function(){
     Route::get('/', [DashboardController::class, 'landing'])->name('landing');
-    Route::get('/ipg', [DashboardController::class, 'ipg'])->name('ipg');
+    Route::get('/ipg-penduduk', [DashboardController::class, 'ipgPenduduk'])->name('ipg-penduduk');
+    Route::get('/ipg-jenkel', [DashboardController::class, 'ipgJenkel'])->name('ipg-jenkel');
+    Route::get('/ipg-umur', [DashboardController::class, 'ipgUmur'])->name('ipg-umur');
+    Route::get('/ipg-pendidikan', [DashboardController::class, 'ipgPendidikan'])->name('ipg-pendidikan');
     Route::get('/bkesehatan', [DashboardController::class, 'bkesehatan'])->name('bkesehatan');
     Route::get('/bpendidikan', [DashboardController::class, 'bpendidikan'])->name('bpendidikan');
     Route::get('/bsda', [DashboardController::class, 'bsda'])->name('bsda');

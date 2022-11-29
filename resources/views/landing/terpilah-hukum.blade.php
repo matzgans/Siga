@@ -21,147 +21,150 @@
             <h2>{{$title}}</h2>
         </div>
 
-        <div class="row content">
-            <div class="col-lg-12 mb-3">
-                <div class="d-flex align-items-start">
-                    <div class="nav flex-column nav-pills me-3" id="v-pills-tab" role="tablist" aria-orientation="vertical">
-                      <button class="nav-link active" id="v-pills-home-tab" data-bs-toggle="pill" data-bs-target="#v-pills-home" type="button" role="tab" aria-controls="v-pills-home" aria-selected="true">Jumlah Dan Penyebab Kematian Ibu Hamil</button>
-                      <button class="nav-link" id="v-pills-home-tab" data-bs-toggle="pill" data-bs-target="#v-pills-jumbayi" type="button" role="tab" aria-controls="v-pills-home" aria-selected="false">Jumlah Kematian Bayi</button>
-                      <button class="nav-link" id="v-pills-profile-tab" data-bs-toggle="pill" data-bs-target="#v-pills-profile" type="button" role="tab" aria-controls="v-pills-profile" aria-selected="false">Penderita Hiv / Aids</button>
+        <div class="card">
+            <div class="card-header">
+                <ul class="nav nav-pills mb-3" id="pills-tab" role="tablist">
+                    <li class="nav-item" role="presentation">
+                        <button class="nav-link active" id="pills-kematianIbu-tab" data-bs-toggle="pill"
+                            data-bs-target="#pills-kematianIbu" type="button" role="tab"
+                            aria-controls="pills-kematianIbu" aria-selected="true">Kematian Ibu Hamil</button>
+                    </li>
+                    <li class="nav-item" role="presentation">
+                        <button class="nav-link" id="pills-kematianBayi-tab" data-bs-toggle="pill"
+                            data-bs-target="#pills-kematianBayi" type="button" role="tab"
+                            aria-controls="pills-kematianBayi" aria-selected="false">Kematian Bayi</button>
+                    </li>
+                    <li class="nav-item" role="presentation">
+                        <button class="nav-link" id="pills-penderitaHiv-tab" data-bs-toggle="pill"
+                            data-bs-target="#pills-penderitaHiv" type="button" role="tab"
+                            aria-controls="pills-penderitaHiv" aria-selected="false">Penderita HIV/AIDS</button>
+                    </li>
+                </ul>
+            </div>
+            <div class="card-body">
+                <div class="tab-content" id="pills-tabContent">
+                    <div class="tab-pane fade show active" id="pills-kematianIbu" role="tabpanel"
+                        aria-labelledby="pills-kematianIbu-tab">
+                        <h5 class="card-title">Penyebab Kematian Ibu Hamil</h5>
+                        <table class="table table-hover table-bordered dataTable" id="dataTable">
+                            <thead class="text-light" style="background-color:#37517E;">
+                                <tr>
+                                    <th>No</th>
+                                    <th>Tahun</th>
+                                    <th>Desa</th>
+                                    <th>Jumlah kematian</th>
+                                    <th>Partus Lama</th>
+                                    <th>Infeksi</th>
+                                    <th>Hipertensi</th>
+                                    <th>Pendarahan</th>
+                                    <th>Penyebab Lainya</th>
+                                    <th>Sumber</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @forelse ($data as $value=>$item)
+                                    <tr>
+                                        <td>{{ $value + 1 }}</td>
+                                        <td>{{ $item->tahun->nama_tahun }}</td>
+                                        <td>{{ $item->desa->nama_desa }}</td>
+                                        <td>{{ $item->jum_partuslama +
+                                            $item->jum_infeksi +
+                                            $item->jum_hirpetensi +
+                                            $item->jum_pendarahan +
+                                            $item->jum_penyebablain }}
+                                            Orang</td>
+                                        <td>{{ $item->jum_partuslama }} KH</td>
+                                        <td>{{ $item->jum_infeksi }} Orang</td>
+                                        <td>{{ $item->jum_hirpetensi }} Orang</td>
+                                        <td>{{ $item->jum_pendarahan }} Orang</td>
+                                        <td>{{ $item->jum_penyebablain }} Orang</td>
+                                        <td>{{ $item->sumber }}</td>
+                                    </tr>
+                                @empty
+                                    Data belum di input
+                                @endforelse
+                            </tbody>
+
+                        </table>
                     </div>
-                    <div class="tab-content" id="v-pills-tabContent">
-                      <div class="tab-pane fade show active" id="v-pills-home" role="tabpanel" aria-labelledby="v-pills-home-tab" tabindex="0">
-                        <div class="card">
-                            <div class="card-body">
-                                <h5 class="card-title">Penyebab Kematian Ibu Hamil</h5>
-                                <table class="table table-hover table-bordered dataTable" id="dataTable">
-                                    <thead class="bg-success text-light">
-                                        <tr>
-                                            <th>No</th>
-                                            <th>Tahun</th>
-                                            <th>Desa</th>
-                                            <th>Jumlah kematian</th>
-                                            <th>Partus Lama</th>
-                                            <th>Infeksi</th>
-                                            <th>Hipertensi</th>
-                                            <th>Pendarahan</th>
-                                            <th>Penyebab Lainya</th>
-                                            <th>Sumber</th>
-                                        </tr>
-                                    </thead>
-                                    <tbody>
-                                        @forelse ($data as $value=>$item)
-                                        <tr>
-                                            <td>{{$value+1}}</td>
-                                            <td>{{$item->tahun->nama_tahun}}</td>
-                                            <td>{{$item->desa->nama_desa}}</td>
-                                            <td>{{$item->jum_partuslama +$item->jum_infeksi + $item->jum_hirpetensi
-                                            + $item->jum_pendarahan +$item->jum_penyebablain}}  Orang</td>
-                                            <td>{{$item->jum_partuslama}} KH</td>
-                                            <td>{{$item->jum_infeksi}} Orang</td>
-                                            <td>{{$item->jum_hirpetensi}} Orang</td>
-                                            <td>{{$item->jum_pendarahan}} Orang</td>
-                                            <td>{{$item->jum_penyebablain}} Orang</td>
-                                            <td>{{$item->sumber}}</td>
-                                        </tr>
-                                        @empty
-                                            Data belum di input
-                                        @endforelse
-                                    </tbody>
-                
-                                </table>
-                            </div>
-                        </div>
-                      </div>
-                      <div class="tab-pane fade" id="v-pills-jumbayi" role="tabpanel" aria-labelledby="v-pills-profile-tab" tabindex="0">
-                        <div class="card">
-                            <div class="card-body">
-                                <h5 class="card-title">Penyebab Kematian Ibu Hamil</h5>
-                                <table class="table table-hover table-bordered dataTable" id="dataTable">
-                                    <thead class="bg-success text-light">
-                                        <tr>
-                                            <th>No</th>
-                                            <th>Tahun</th>
-                                            <th>Desa</th>
-                                            <th>Jumlah kematian</th>
-                                            <th>Partus Lama</th>
-                                            <th>Infeksi</th>
-                                            <th>Hipertensi</th>
-                                            <th>Pendarahan</th>
-                                            <th>Penyebab Lainya</th>
-                                            <th>Sumber</th>
-                                        </tr>
-                                    </thead>
-                                    <tbody>
-                                        @forelse ($data as $value=>$item)
-                                        <tr>
-                                            <td>{{$value+1}}</td>
-                                            <td>{{$item->tahun->nama_tahun}}</td>
-                                            <td>{{$item->desa->nama_desa}}</td>
-                                            <td>{{$item->jum_partuslama +$item->jum_infeksi + $item->jum_hirpetensi
-                                            + $item->jum_pendarahan +$item->jum_penyebablain}}  Orang</td>
-                                            <td>{{$item->jum_partuslama}} KH</td>
-                                            <td>{{$item->jum_infeksi}} Orang</td>
-                                            <td>{{$item->jum_hirpetensi}} Orang</td>
-                                            <td>{{$item->jum_pendarahan}} Orang</td>
-                                            <td>{{$item->jum_penyebablain}} Orang</td>
-                                            <td>{{$item->sumber}}</td>
-                                        </tr>
-                                        @empty
-                                            Data belum di input
-                                        @endforelse
-                                    </tbody>
-                
-                                </table>
-                            </div>
-                        </div>
-                      </div>
-                      <div class="tab-pane fade" id="v-pills-profile" role="tabpanel" aria-labelledby="v-pills-profile-tab" tabindex="0">
-                        <div class="card">
-                            <div class="card-body">
-                                <h5 class="card-title">Penyebab Kematian Ibu Hamil</h5>
-                                <table class="table table-hover table-bordered dataTable" id="dataTable">
-                                    <thead class="bg-success text-light">
-                                        <tr>
-                                            <th>No</th>
-                                            <th>Tahun</th>
-                                            <th>Desa</th>
-                                            <th>Jumlah kematian</th>
-                                            <th>Partus Lama</th>
-                                            <th>Infeksi</th>
-                                            <th>Hipertensi</th>
-                                            <th>Pendarahan</th>
-                                            <th>Penyebab Lainya</th>
-                                            <th>Sumber</th>
-                                        </tr>
-                                    </thead>
-                                    <tbody>
-                                        @forelse ($data as $value=>$item)
-                                        <tr>
-                                            <td>{{$value+1}}</td>
-                                            <td>{{$item->tahun->nama_tahun}}</td>
-                                            <td>{{$item->desa->nama_desa}}</td>
-                                            <td>{{$item->jum_partuslama +$item->jum_infeksi + $item->jum_hirpetensi
-                                            + $item->jum_pendarahan +$item->jum_penyebablain}}  Orang</td>
-                                            <td>{{$item->jum_partuslama}} KH</td>
-                                            <td>{{$item->jum_infeksi}} Orang</td>
-                                            <td>{{$item->jum_hirpetensi}} Orang</td>
-                                            <td>{{$item->jum_pendarahan}} Orang</td>
-                                            <td>{{$item->jum_penyebablain}} Orang</td>
-                                            <td>{{$item->sumber}}</td>
-                                        </tr>
-                                        @empty
-                                            Data belum di input
-                                        @endforelse
-                                    </tbody>
-                
-                                </table>
-                            </div>
-                        </div>
-                      </div>
+                    <div class="tab-pane fade" id="pills-kematianBayi" role="tabpanel"
+                        aria-labelledby="pills-kematianBayi-tab">
+                        <h5 class="card-title">Penyebab Kematian Bayi</h5>
+                        <table class="table table-hover table-bordered dataTable" id="dataTable">
+                            <thead class="text-light" style="background-color:#37517E;">
+                                <tr>
+                                    <th>No</th>
+                                    <th>Tahun</th>
+                                    <th>Desa</th>
+                                    <th>Jumlah kematian</th>
+                                    <th>Partus Lama</th>
+                                    <th>Infeksi</th>
+                                    <th>Hipertensi</th>
+                                    <th>Pendarahan</th>
+                                    <th>Penyebab Lainya</th>
+                                    <th>Sumber</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @forelse ($data as $value=>$item)
+                                    <tr>
+                                        <td>{{ $value + 1 }}</td>
+                                        <td>{{ $item->tahun->nama_tahun }}</td>
+                                        <td>{{ $item->desa->nama_desa }}</td>
+                                        <td>{{ $item->jum_partuslama +
+                                            $item->jum_infeksi +
+                                            $item->jum_hirpetensi +
+                                            $item->jum_pendarahan +
+                                            $item->jum_penyebablain }}
+                                            Orang</td>
+                                        <td>{{ $item->jum_partuslama }} KH</td>
+                                        <td>{{ $item->jum_infeksi }} Orang</td>
+                                        <td>{{ $item->jum_hirpetensi }} Orang</td>
+                                        <td>{{ $item->jum_pendarahan }} Orang</td>
+                                        <td>{{ $item->jum_penyebablain }} Orang</td>
+                                        <td>{{ $item->sumber }}</td>
+                                    </tr>
+                                @empty
+                                    Data belum di input
+                                @endforelse
+                            </tbody>
+
+                        </table>
                     </div>
-                  </div>
-                
+                    <div class="tab-pane fade" id="pills-penderitaHiv" role="tabpanel"
+                        aria-labelledby="pills-penderitaHiv-tab">
+                        <h5 class="card-title">Penderita HIV/AIDS</h5>
+                        <table class="table table-hover table-bordered dataTable" id="dataTable">
+                            <thead class="text-light" style="background-color:#37517E;">
+                                <tr>
+                                    <th>No</th>
+                                    <th>Tahun</th>
+                                    <th>Desa</th>
+                                    <th>Laki - Laki</th>
+                                    <th>Perempuan</th>
+                                    <th>Sumber</th>
+                                    <th>Keterangan</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @forelse ($hiv as $value=>$item)
+                                    <tr>
+                                        <td>{{ $value + 1 }}</td>
+                                        <td>{{ $item->tahun->nama_tahun }}</td>
+                                        <td>{{ $item->desa->nama_desa }}</td>
+                                        <td>{{ $item->p }} orang</td>
+                                        <td>{{ $item->l }} orang</td>
+                                        <td>{{ $item->sumber }}</td>
+                                        <td>{{ $item->ket }}</td>
+                                    </tr>
+                                @empty
+                                    Data belum di input
+                                @endforelse
+                            </tbody>
+
+                        </table>
+                    </div>
+                </div>
             </div>
         </div>
 

@@ -48,19 +48,19 @@
     <header id="header" class="fixed-top ">
         <div class="container d-flex align-items-center">
 
-            <h1 class="logo me-auto"><a href="/">Arsha</a></h1>
+            <h1 class="logo me-auto"><a href="/">SIGA</a></h1>
             <!-- Uncomment below if you prefer to use an image logo -->
             <!-- <a href="index.html" class="logo me-auto"><img src="assets/img/logo.png" alt="" class="img-fluid"></a>-->
 
             <nav id="navbar" class="navbar">
                 <ul>
                     <li><a class="nav-link scrollto active" href="/">Home</a></li>
-                    <li class="dropdown"><a href="#"><span>IPGA</span> <i class="bi bi-chevron-down"></i></a>
+                    <li class="dropdown"><a href="#"><span>IPG</span> <i class="bi bi-chevron-down"></i></a>
                         <ul>
-                            <li><a href="#">Persentase penduduk</a></li>
-                            <li><a href="{{route('ipg')}}">Jenis Kelamin</a></li>
-                            <li><a href="#">Kelompok Umur</a></li>
-                            <li><a href="#">Pendidikan Terakhir</a></li>
+                            <li><a href="{{route('ipg-penduduk')}}">Persentase penduduk</a></li>
+                            <li><a href="{{route('ipg-jenkel')}}">Jenis Kelamin</a></li>
+                            <li><a href="{{route('ipg-umur')}}">Kelompok Umur</a></li>
+                            <li><a href="{{route('ipg-pendidikan')}}">Pendidikan Terakhir</a></li>
                         </ul>
                     </li>
                     <li class="dropdown"><a href="#"><span>Data Terpilah</span><i class="bi bi-chevron-down"></i></a>
