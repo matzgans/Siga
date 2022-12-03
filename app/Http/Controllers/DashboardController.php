@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\{Desa, User, Opd, Tahun, Agama, Pekerjaan, Pkematian, Hiv};
+use App\Models\{Desa, User, Opd, Tahun, Agama, Pekerjaan, Pkematian, Hiv, Ptssekolah};
 
 class DashboardController extends Controller
 {
@@ -46,9 +46,11 @@ class DashboardController extends Controller
 
     public function ipgPendidikan()
     {
+        $data = Ptssekolah::all();
+        $ptsSekolah = Ptssekolah::orderBy('created_at', 'ASC')->get();
         $title = 'Data Pendidikan Terakhir';
         $subtitle = "Data dajdajd daidhadnada dadiahdiad adihadahr ahairhairhriara  arahriahrai arairiayriy";
-        return view('landing.landing-ipg-pendidikan', compact('title', 'subtitle'));
+        return view('landing.landing-ipg-pendidikan', compact('title', 'subtitle', 'data','ptsSekolah'));
     }
 
     public function bkesehatan()
@@ -63,11 +65,11 @@ class DashboardController extends Controller
 
     public function bpendidikan()
     {
-        $data = Pkematian::all();
-        $hiv = Hiv::orderBy('created_at', 'ASC')->get();
+        $data = Ptssekolah::all();
+        $ptsSekolah = Ptssekolah::orderBy('created_at', 'ASC')->get();
         $title = 'Data Terpilah Bidang Pendidikan';
         $subtitle = "Data Kematian merupakan data dari jumlah kematian ibu, ditampilkan secara lengkap dan terupdate";
-        return view('landing.terpilah-pend', compact('title', 'subtitle', 'data', 'hiv'));
+        return view('landing.terpilah-pend', compact('title', 'subtitle', 'data', 'ptsSekolah'));
     }
 
     public function bsda()

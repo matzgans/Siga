@@ -10,14 +10,14 @@
         <i class="bi bi-plus-lg"></i> cetak
     </a>
     <div class="card">
-        <div class="card-body">
+        <div class="card-body" style="overflow-y: auto">
             @if(Session('message'))
                 <div class="alert alert-danger" role="alert">
                     {{Session('message')}}
                 </div>
             @endif
             <p class="card-title">Data Hiv / Aids</p>
-            <table class="table table-hover" id="dataTable">
+            <table class="table table-sm table-hover dataTable" id="dataTable">
                 <thead>
                     <tr>
                         <th>No</th>

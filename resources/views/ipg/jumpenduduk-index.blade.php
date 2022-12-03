@@ -17,59 +17,68 @@
                 </div>
             @endif
             <p class="card-title">Data Jumlah Penduduk menurut Jenis Kelamin</p>
-            <table class="table table-hover" id="dataTable">
-                <thead>
-                    <tr>
-                        <th>No</th>
-                        <th>Tahun</th>
-                        <th>Desa</th>
-                        <th>L (0-5)</th>
-                        <th>P (0-5)</th>
-                        <th>L (6-12)</th>
-                        <th>P (6-12)</th>
-                        <th>L (13-17)</th>
-                        <th>P (13-17)</th>
-                        <th>L (18-50)</th>
-                        <th>P (18-50)</th>
-                        <th>L (51 +)</th>
-                        <th>P (51 +)</th>
-                        <th>Keterangan</th>
-                        <th>Sumber</th>
-                        <th>Aksi</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    @forelse ($data as $value=>$item)
+            <div class="overflow-auto">
+                <table class="table table-hover dataTable" id="dataTable">
+                    <thead>
                         <tr>
-                            <td>{{$value+1}}</td>
-                            <td>{{$item->tahun->nama_tahun}}</td>
-                            <td>{{$item->desa->nama_desa}}</td>
-                            <td>{{$item->l0}}</td>
-                            <td>{{$item->p0}}</td>
-                            <td>{{$item->l6}}</td>
-                            <td>{{$item->p6}}</td>
-                            <td>{{$item->l13}}</td>
-                            <td>{{$item->p13}}</td>
-                            <td>{{$item->l18}}</td>
-                            <td>{{$item->p18}}</td>
-                            <td>{{$item->l51}}</td>
-                            <td>{{$item->p51}}</td>
-                            <td>{{$item->ket}}</td>
-                            <td>{{$item->sumber}}</td>
-                            <td>
-                                <a href="{{ route('prespenduduk.destroy', $item->id) }}"
-                                    class="btn btn-danger btn-sm rounded-circle"><i
-                                        class="ri ri-delete-bin-line"></i></a>
-                                <a href="{{ route('prespenduduk.edit', $item->id) }}"
-                                    class="btn btn-warning btn-sm rounded-circle"><i
-                                        class="ri ri-person-bin-line"></i>edit</a>
-                            </td>
+                            <th rowspan="2">No</th>
+                            <th rowspan="2">Tahun</th>
+                            <th rowspan="2">Desa</th>
+                            <th colspan="2">0-5</th>
+                            <th colspan="2">6-12</th>
+                            <th colspan="2">13-17</th>
+                            <th colspan="2">18-50</th>
+                            <th colspan="2">51 +</th>
+                            <th rowspan="2">Keterangan</th>
+                            <th rowspan="2">Sumber</th>
+                            <th rowspan="2">Aksi</th>
                         </tr>
-                    @empty
-                        <span>Data belum diimput</span>
-                    @endforelse
-                </tbody>
-            </table>
+                        <tr>
+                            <th>L</th>
+                            <th>P</th>
+                            <th>L</th>
+                            <th>P</th>
+                            <th>L</th>
+                            <th>P</th>
+                            <th>L </th>
+                            <th>P</th>
+                            <th>L</th>
+                            <th>P</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @forelse ($data as $value=>$item)
+                            <tr>
+                                <td>{{$value+1}}</td>
+                                <td>{{$item->tahun->nama_tahun}}</td>
+                                <td>{{$item->desa->nama_desa}}</td>
+                                <td>{{$item->l0}}</td>
+                                <td>{{$item->p0}}</td>
+                                <td>{{$item->l6}}</td>
+                                <td>{{$item->p6}}</td>
+                                <td>{{$item->l13}}</td>
+                                <td>{{$item->p13}}</td>
+                                <td>{{$item->l18}}</td>
+                                <td>{{$item->p18}}</td>
+                                <td>{{$item->l51}}</td>
+                                <td>{{$item->p51}}</td>
+                                <td>{{$item->ket}}</td>
+                                <td>{{$item->sumber}}</td>
+                                <td>
+                                    <a href="{{ route('prespenduduk.destroy', $item->id) }}"
+                                        class="btn btn-danger btn-sm rounded-circle"><i
+                                            class="ri ri-delete-bin-line"></i></a>
+                                    <a href="{{ route('prespenduduk.edit', $item->id) }}"
+                                        class="btn btn-warning text-white btn-sm rounded-circle"><i
+                                            class="ri ri-edit-box-fill"></i></a>
+                                </td>
+                            </tr>
+                        @empty
+                            <span>Data belum diimput</span>
+                        @endforelse
+                    </tbody>
+                </table>
+            </div>
         </div>
     </div>
 </div>

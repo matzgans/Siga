@@ -1,13 +1,13 @@
 @extends('admin')
 @section('content')
-    <div class="col-10">
+    <div class="col-12">
         <div class="card">
-            <div class="card-body">
+            <div class="card-body" style="overflow-y: auto">
                 <button type="button" class="btn btn-sm mb-3 btn-primary" data-bs-toggle="modal"
                     data-bs-target="#staticBackdrop">
                     <i class="bi bi-plus-lg"></i> Tambah Agama
                 </button>
-                <table class="table table-bordered" id="dataTable">
+                <table class="table table-bordered table-sm dataTable" id="dataTable">
                     <thead>
                         <tr>
                             <th>No</th>

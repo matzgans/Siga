@@ -17,49 +17,56 @@
                 </div>
             @endif
             <p class="card-title">Data Angka Putus Sekolah</p>
-            <table class="table table-hover" id="dataTable">
-                <thead>
-                    <tr>
-                        <th>No</th>
-                        <th>Tahun</th>
-                        <th>Desa</th>
-                        <th>L(SD)</th>
-                        <th>P(SD)</th>
-                        <th>L(SMP)</th>
-                        <th>P(SMP)</th>
-                        <th>L(SMA)</th>
-                        <th>P(SMA)</th>
-                        <th>Keterangan</th>
-                        <th>Sumber</th>
-                        <th>Aksi</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    @foreach ($data as $value=>$item)
+            <div class="overflow-auto">
+                <table class="table table-hover" id="dataTable">
+                    <thead>
                         <tr>
-                            <td>{{$value+1}}</td>
-                            <td>{{$item->tahun->nama_tahun}}</td>
-                            <td>{{$item->desa->nama_desa}}</td>
-                            <td>{{$item->lsd}}</td>
-                            <td>{{$item->psd}}</td>
-                            <td>{{$item->lsmp}}</td>
-                            <td>{{$item->psmp}}</td>
-                            <td>{{$item->lsma}}</td>
-                            <td>{{$item->psma}}</td>
-                            <td>{{$item->ket}}</td>
-                            <td>{{$item->sumber}}</td>
-                            <td>
-                                <a href="{{ route('ptssekolah.destroy', $item->id) }}"
-                                    class="btn btn-danger btn-sm rounded-circle"><i
-                                        class="ri ri-delete-bin-line"></i></a>
-                                <a href="{{ route('ptssekolah.edit', $item->id) }}"
-                                    class="btn btn-warning btn-sm rounded-circle"><i
-                                        class="ri ri-person-bin-line"></i>edit</a>
-                            </td>
+                            <th rowspan="2">No</th>
+                            <th rowspan="2">Tahun</th>
+                            <th rowspan="2">Desa</th>
+                            <th colspan="2">SD</th>
+                            <th colspan="2">SMP</th>
+                            <th colspan="2">SMA</th>
+                            <th rowspan="2">Keterangan</th>
+                            <th rowspan="2">Sumber</th>
+                            <th rowspan="2">Aksi</th>
                         </tr>
-                    @endforeach
-                </tbody>
-            </table>
+                        <tr>
+                            <th>L</th>
+                            <th>P</th>
+                            <th>L</th>
+                            <th>P</th>
+                            <th>L</th>
+                            <th>P</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach ($data as $value=>$item)
+                            <tr>
+                                <td>{{$value+1}}</td>
+                                <td>{{$item->tahun->nama_tahun}}</td>
+                                <td>{{$item->desa->nama_desa}}</td>
+                                <td>{{$item->lsd}}</td>
+                                <td>{{$item->psd}}</td>
+                                <td>{{$item->lsmp}}</td>
+                                <td>{{$item->psmp}}</td>
+                                <td>{{$item->lsma}}</td>
+                                <td>{{$item->psma}}</td>
+                                <td>{{$item->ket}}</td>
+                                <td>{{$item->sumber}}</td>
+                                <td>
+                                    <a href="{{ route('ptssekolah.destroy', $item->id) }}"
+                                        class="btn btn-danger btn-sm rounded-circle"><i
+                                            class="ri ri-delete-bin-line"></i></a>
+                                    <a href="{{ route('ptssekolah.edit', $item->id) }}"
+                                        class="btn btn-warning text-white btn-sm rounded-circle"><i
+                                            class="ri ri-edit-box-fill"></i></a>
+                                </td>
+                            </tr>
+                        @endforeach
+                    </tbody>
+                </table>
+            </div>
         </div>
     </div>
 </div>

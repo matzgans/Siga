@@ -52,8 +52,7 @@
 
         <div class="d-flex align-items-center justify-content-between">
             <a href="index.html" class="logo d-flex align-items-center">
-                <img src="{{ asset('assetsAdmin') }}/img/logo.png" alt="">
-                <span class="d-none d-lg-block">SIGA - BONBOL</span>
+                <img src="{{ asset('foto_landing') }}/SIgafix.png" alt="" style="width: 90px;">
             </a>
             <i class="bi bi-list toggle-sidebar-btn"></i>
         </div><!-- End Logo -->
@@ -460,6 +459,13 @@
      <script src="https://cdn.datatables.net/1.12.1/js/jquery.dataTables.min.js"></script>
      <script src="https://cdn.datatables.net/1.12.1/js/dataTables.bootstrap5.min.js"></script>
 
+     <script>
+        $(document).ready(function() {
+            $('.dataTable').DataTable({
+                responsive: true
+            });
+        });
+    </script>
 @yield('scripts')
 
 </body>

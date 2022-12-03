@@ -17,53 +17,61 @@
                 </div>
             @endif
             <p class="card-title">Data Angka Partisipasi Sekolah</p>
-            <table class="table table-hover" id="dataTable">
-                <thead>
-                    <tr>
-                        <th>No</th>
-                        <th>Tahun</th>
-                        <th>Desa</th>
-                        <th>p(7-12)</th>
-                        <th>l(7-12)</th>
-                        <th>l(13-15)</th>
-                        <th>p(13-15)</th>
-                        <th>l(16-18)</th>
-                        <th>p(16-18)</th>
-                        <th>l(19-24)</th>
-                        <th>p(19-24)</th>
-                        <th>Keterangan</th>
-                        <th>Sumber</th>
-                        <th>Aksi</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    @foreach ($data as $value=>$item)
+            <div class="overflow-auto">
+                <table class="table table-hover" id="dataTable">
+                    <thead>
                         <tr>
-                            <td>{{$value+1}}</td>
-                            <td>{{$item->tahun->nama_tahun}}</td>
-                            <td>{{$item->desa->nama_desa}}</td>
-                            <td>{{$item->l7}}%</td>
-                            <td>{{$item->p7}}%</td>
-                            <td>{{$item->l13}}%</td>
-                            <td>{{$item->p13}}%</td>
-                            <td>{{$item->l16}}%</td>
-                            <td>{{$item->p16}}%</td>
-                            <td>{{$item->l19}}%</td>
-                            <td>{{$item->p19}}%</td>
-                            <td>{{$item->ket}}</td>
-                            <td>{{$item->sumber}}</td>
-                            <td>
-                                <a href="{{ route('partsekolah.destroy', $item->id) }}"
-                                    class="btn btn-danger btn-sm rounded-circle"><i
-                                        class="ri ri-delete-bin-line"></i></a>
-                                <a href="{{ route('partsekolah.edit', $item->id) }}"
-                                    class="btn btn-warning btn-sm rounded-circle"><i
-                                        class="ri ri-person-bin-line"></i>edit</a>
-                            </td>
+                            <th rowspan="2">No</th>
+                            <th rowspan="2">Tahun</th>
+                            <th rowspan="2">Desa</th>
+                            <th colspan="2">7-12</th>
+                            <th colspan="2">13-15</th>
+                            <th colspan="2">16-18</th>
+                            <th colspan="2">19-24</th>
+                            <th rowspan="2">Keterangan</th>
+                            <th rowspan="2">Sumber</th>
+                            <th rowspan="2">Aksi</th>
                         </tr>
-                    @endforeach
-                </tbody>
-            </table>
+                        <tr>
+                            <th>L</th>
+                            <th>P</th>
+                            <th>L</th>
+                            <th>P</th>
+                            <th>L</th>
+                            <th>P</th>
+                            <th>L</th>
+                            <th>P</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach ($data as $value=>$item)
+                            <tr>
+                                <td>{{$value+1}}</td>
+                                <td>{{$item->tahun->nama_tahun}}</td>
+                                <td>{{$item->desa->nama_desa}}</td>
+                                <td>{{$item->l7}}%</td>
+                                <td>{{$item->p7}}%</td>
+                                <td>{{$item->l13}}%</td>
+                                <td>{{$item->p13}}%</td>
+                                <td>{{$item->l16}}%</td>
+                                <td>{{$item->p16}}%</td>
+                                <td>{{$item->l19}}%</td>
+                                <td>{{$item->p19}}%</td>
+                                <td>{{$item->ket}}</td>
+                                <td>{{$item->sumber}}</td>
+                                <td>
+                                    <a href="{{ route('partsekolah.destroy', $item->id) }}"
+                                        class="btn btn-danger btn-sm rounded-circle"><i
+                                            class="ri ri-delete-bin-line"></i></a>
+                                    <a href="{{ route('partsekolah.edit', $item->id) }}"
+                                        class="btn btn-warning btn-sm rounded-circle"><i
+                                            class="ri ri-person-bin-line"></i>edit</a>
+                                </td>
+                            </tr>
+                        @endforeach
+                    </tbody>
+                </table>
+            </div>
         </div>
     </div>
 </div>

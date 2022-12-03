@@ -25,7 +25,7 @@
             
             <div class="col-lg-12">
                 <table class="table table-hover table-bordered dataTable" id="dataTable">
-                    <thead>
+                    <thead class="text-white align-middle" style="background-color: #37517e">
                         <tr>
                             <th rowspan="2">No</th>
                             <th rowspan="2">Desa</th>

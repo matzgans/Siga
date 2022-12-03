@@ -48,7 +48,8 @@
     <header id="header" class="fixed-top ">
         <div class="container d-flex align-items-center">
 
-            <a class="logo me-auto" href="/"><img src="{{asset('foto_landing')}}/SIgafix.png" alt="" style="height: 120px;"></a>
+            <a class="logo me-auto" href="/"><img src="{{ asset('foto_landing') }}/SIgafix.png" alt=""
+                    style="width: 120px;"></a>
             <!-- Uncomment below if you prefer to use an image logo -->
             <!-- <a href="index.html" class="logo me-auto"><img src="assets/img/logo.png" alt="" class="img-fluid"></a>-->
 
@@ -57,26 +58,27 @@
                     <li><a class="nav-link scrollto active" href="/">Home</a></li>
                     <li class="dropdown"><a href="#"><span>IPG</span> <i class="bi bi-chevron-down"></i></a>
                         <ul>
-                            <li><a href="{{route('ipg-penduduk')}}">Persentase penduduk</a></li>
-                            <li><a href="{{route('ipg-jenkel')}}">Jenis Kelamin</a></li>
-                            <li><a href="{{route('ipg-umur')}}">Kelompok Umur</a></li>
-                            <li><a href="{{route('ipg-pendidikan')}}">Pendidikan Terakhir</a></li>
+                            <li><a href="{{ route('ipg-penduduk') }}">Persentase penduduk</a></li>
+                            <li><a href="{{ route('ipg-jenkel') }}">Jenis Kelamin</a></li>
+                            <li><a href="{{ route('ipg-umur') }}">Kelompok Umur</a></li>
+                            <li><a href="{{ route('ipg-pendidikan') }}">Pendidikan Terakhir</a></li>
                         </ul>
                     </li>
-                    <li class="dropdown"><a href="#"><span>Data Terpilah</span><i class="bi bi-chevron-down"></i></a>
-                        <ul>
-                            <li><a href="{{route('bkesehatan')}}">Bidang Kesehatan</a></li>
-                            <li><a href="{{route('bpendidikan')}}">Bidang Pendidikan</a></li>
-                            <li><a href="{{route('bsda')}}">Bidang SDA / Lingkungan</a></li>
-                            <li><a href="{{route('bekonomi')}}">Bidang Ekonomi / Ketenagaan Kerja</a></li>
-                            <li><a href="{{route('bpolitik')}}">Bidang Politik Dan Pengambilan Keputusan</a></li>
-                            <li><a href="{{route('bhukum')}}">Bidang Hukum Dan Sosial Budaya</a></li>
-                        </ul>
-                    </li>
-                    <li class="dropdown"><a href="#"><span>Kekerasan</span> <i
+                    <li class="dropdown"><a href="#"><span>Data Terpilah</span><i
                                 class="bi bi-chevron-down"></i></a>
                         <ul>
-                            <li class="dropdown"><a href="#">Kekerasan Terhadap <i class="bi bi-chevron-down"></i></a>
+                            <li><a href="{{ route('bkesehatan') }}">Bidang Kesehatan</a></li>
+                            <li><a href="{{ route('bpendidikan') }}">Bidang Pendidikan</a></li>
+                            <li><a href="{{ route('bsda') }}">Bidang SDA / Lingkungan</a></li>
+                            <li><a href="{{ route('bekonomi') }}">Bidang Ekonomi / Ketenagaan Kerja</a></li>
+                            <li><a href="{{ route('bpolitik') }}">Bidang Politik Dan Pengambilan Keputusan</a></li>
+                            <li><a href="{{ route('bhukum') }}">Bidang Hukum Dan Sosial Budaya</a></li>
+                        </ul>
+                    </li>
+                    <li class="dropdown"><a href="#"><span>Kekerasan</span> <i class="bi bi-chevron-down"></i></a>
+                        <ul>
+                            <li class="dropdown"><a href="#">Kekerasan Terhadap <i
+                                        class="bi bi-chevron-down"></i></a>
                                 <ul>
                                     <li><a href="#">Perempuan</a></li>
                                     <li><a href="#">Anak</a></li>
@@ -101,7 +103,7 @@
     </header><!-- End Header -->
     @yield('content')
     <!-- ======= Hero Section ======= -->
-    
+
 
     <!-- ======= Footer ======= -->
     <footer id="footer">
@@ -202,18 +204,81 @@
 
     <!-- Template Main JS File -->
     <script src="{{ asset('assets') }}/js/main.js"></script>
+    <script src="{{ asset('assets') }}/js/echarts.min.js"></script>
 
     <script src="https://code.jquery.com/jquery-3.5.1.js"></script>
     <script src="https://cdn.datatables.net/1.12.1/js/jquery.dataTables.min.js"></script>
     <script src="https://cdn.datatables.net/1.12.1/js/dataTables.bootstrap5.min.js"></script>
+    <script>
+        var chartDom = document.getElementById('chart');
+        var myChart = echarts.init(chartDom);
+        var option;
+
+        option = {
+            tooltip: {
+                trigger: 'item'
+            },
+            legend: {
+                top: '1%',
+                orient: 'vertical',
+                left: 'left'
+            },
+            series: [{
+                name: 'Jumlah',
+                type: 'pie',
+                radius: ['30%', '50%'],
+                avoidLabelOverlap: false,
+                label: {
+                    show: false,
+                    position: 'center'
+                },
+                emphasis: {
+                    label: {
+                        show: true,
+                        fontSize: '20',
+                        fontWeight: 'bold'
+                    }
+                },
+                labelLine: {
+                    show: false
+                },
+                data: [{
+                        value: 1048,
+                        name: 'Search Engine'
+                    },
+                    {
+                        value: 735,
+                        name: 'Direct'
+                    },
+                    {
+                        value: 580,
+                        name: 'Email'
+                    },
+                    {
+                        value: 484,
+                        name: 'Union Ads'
+                    },
+                    {
+                        value: 300,
+                        name: 'Video Ads'
+                    }
+                ]
+            }]
+        };
+
+        option && myChart.setOption(option);
+    </script>
 
     <script>
         $(document).ready(function() {
             $('.dataTable').DataTable({
-                responsive : true
+                responsive: true
             });
         });
     </script>
+
+
+
 
 </body>
 

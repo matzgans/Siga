@@ -22,30 +22,33 @@
         </div>
 
         <div class="card">
-            <div class="card-header">
-                <ul class="nav nav-pills mb-3" id="pills-tab" role="tablist">
-                    <li class="nav-item" role="presentation">
-                        <button class="nav-link active" id="pills-kematianIbu-tab" data-bs-toggle="pill"
-                            data-bs-target="#pills-kematianIbu" type="button" role="tab"
-                            aria-controls="pills-kematianIbu" aria-selected="true">Kematian Ibu Hamil</button>
-                    </li>
-                    <li class="nav-item" role="presentation">
-                        <button class="nav-link" id="pills-kematianBayi-tab" data-bs-toggle="pill"
-                            data-bs-target="#pills-kematianBayi" type="button" role="tab"
-                            aria-controls="pills-kematianBayi" aria-selected="false">Kematian Bayi</button>
-                    </li>
-                    <li class="nav-item" role="presentation">
-                        <button class="nav-link" id="pills-penderitaHiv-tab" data-bs-toggle="pill"
-                            data-bs-target="#pills-penderitaHiv" type="button" role="tab"
-                            aria-controls="pills-penderitaHiv" aria-selected="false">Penderita HIV/AIDS</button>
-                    </li>
-                </ul>
-            </div>
+            <ul class="nav nav-tabs" id="myTab" role="tablist">
+                <li class="nav-item" role="presentation">
+                    <button class="nav-link active" id="home-tab" data-bs-toggle="tab"
+                        data-bs-target="#home" type="button" role="tab" aria-controls="home"
+                        aria-selected="true">Presentase Penduduk</button>
+                </li>
+                <li class="nav-item" role="presentation">
+                    <button class="nav-link" id="profile-tab" data-bs-toggle="tab" data-bs-target="#profile"
+                        type="button" role="tab" aria-controls="profile" aria-selected="false">Jenis
+                        Kelamin</button>
+                </li>
+                <li class="nav-item" role="presentation">
+                    <button class="nav-link" id="contact-tab" data-bs-toggle="tab" data-bs-target="#contact"
+                        type="button" role="tab" aria-controls="contact"
+                        aria-selected="false">Kelompok Umur</button>
+                </li>
+                <li class="nav-item" role="presentation">
+                    <button class="nav-link" id="contact-tab" data-bs-toggle="tab"
+                        data-bs-target="#contact" type="button" role="tab" aria-controls="contact"
+                        aria-selected="false">Pendidikan Terakhir</button>
+                </li>
+            </ul>
             <div class="card-body">
                 <div class="tab-content" id="pills-tabContent">
                     <div class="tab-pane fade show active" id="pills-kematianIbu" role="tabpanel"
                         aria-labelledby="pills-kematianIbu-tab">
-                        <h5 class="card-title">Penyebab Kematian Ibu Hamil</h5>
+                        <h5 class="card-title"></h5>
                         <table class="table table-hover table-bordered dataTable" id="dataTable">
                             <thead class="text-light" style="background-color:#37517E;">
                                 <tr>
@@ -147,7 +150,7 @@
                                 </tr>
                             </thead>
                             <tbody>
-                                @forelse ($hiv as $value=>$item)
+                                @forelse ($ptsSekolah as $value=>$item)
                                     <tr>
                                         <td>{{ $value + 1 }}</td>
                                         <td>{{ $item->tahun->nama_tahun }}</td>

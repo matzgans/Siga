@@ -17,49 +17,51 @@
                 </div>
             @endif
             <p class="card-title">Data Penyebab Kematian Ibu Hamil</p>
-            <table class="table table-hover" id="dataTable">
-                <thead>
-                    <tr>
-                        <th>No</th>
-                        <th>Tahun</th>
-                        <th>Desa</th>
-                        <th>Partus Lama</th>
-                        <th>Infeksi</th>
-                        <th>Hipertensi</th>
-                        <th>Pendarahan</th>
-                        <th>Penyebab Lainya</th>
-                        <th>Keterangan</th>
-                        <th>Sumber</th>
-                        <th>Aksi</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    @forelse ($data as $value=>$item)
-                    <tr>
-                        <td>{{$value+1}}</td>
-                        <td>{{$item->tahun->nama_tahun}}</td>
-                        <td>{{$item->desa->nama_desa}}</td>
-                        <td>{{$item->jum_partuslama}} KH</td>
-                        <td>{{$item->jum_infeksi}} Orang</td>
-                        <td>{{$item->jum_hirpetensi}} Orang</td>
-                        <td>{{$item->jum_pendarahan}} Orang</td>
-                        <td>{{$item->jum_penyebablain}} Orang</td>
-                        <td>{{$item->ket}}</td>
-                        <td>{{$item->sumber}}</td>
-                        <td>
-                            <a href="{{ route('pkematian.destroy', $item->id) }}"
-                                class="btn btn-danger btn-sm rounded-circle"><i
-                                    class="ri ri-delete-bin-line"></i></a>
-                            <a href="{{ route('pkematian.edit', $item->id) }}"
-                                class="btn btn-warning btn-sm rounded-circle"><i
-                                    class="ri ri-person-bin-line"></i>edit</a>
-                        </td>
-                    </tr>
-                    @empty
-                        Data belum di input
-                    @endforelse
-                </tbody>
-            </table>
+            <div class="overflow-auto">
+                <table class="table table-hover table-sm dataTable" id="dataTable">
+                    <thead>
+                        <tr>
+                            <th>No</th>
+                            <th>Tahun</th>
+                            <th>Desa</th>
+                            <th>Partus Lama</th>
+                            <th>Infeksi</th>
+                            <th>Hipertensi</th>
+                            <th>Pendarahan</th>
+                            <th>Penyebab Lainya</th>
+                            <th>Keterangan</th>
+                            <th>Sumber</th>
+                            <th>Aksi</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @forelse ($data as $value=>$item)
+                        <tr>
+                            <td>{{$value+1}}</td>
+                            <td>{{$item->tahun->nama_tahun}}</td>
+                            <td>{{$item->desa->nama_desa}}</td>
+                            <td>{{$item->jum_partuslama}} KH</td>
+                            <td>{{$item->jum_infeksi}} Orang</td>
+                            <td>{{$item->jum_hirpetensi}} Orang</td>
+                            <td>{{$item->jum_pendarahan}} Orang</td>
+                            <td>{{$item->jum_penyebablain}} Orang</td>
+                            <td>{{$item->ket}}</td>
+                            <td>{{$item->sumber}}</td>
+                            <td>
+                                <a href="{{ route('pkematian.destroy', $item->id) }}"
+                                    class="btn btn-danger btn-sm rounded-circle"><i
+                                        class="ri ri-delete-bin-line"></i></a>
+                                <a href="{{ route('pkematian.edit', $item->id) }}"
+                                    class="btn btn-warning text-white btn-sm rounded-circle"><i
+                                        class="ri-edit-box-fill"></i></a>
+                            </td>
+                        </tr>
+                        @empty
+                            Data belum di input
+                        @endforelse
+                    </tbody>
+                </table>
+            </div>
         </div>
     </div>
 </div>

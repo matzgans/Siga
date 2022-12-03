@@ -3,13 +3,13 @@
     <div class="col-md-12 col-xs-12 col-12">
 
         <div class="card">
-            <div class="card-body">
+            <div class="card-body" style="overflow-y: auto">
                 <button type="button" class="btn btn-sm btn-primary mb-3" data-bs-toggle="modal"
                     data-bs-target="#staticBackdrop">
                     <i class="bi bi-plus-lg"></i> Data Desa
                 </button>
                 <div style="overflow-x: auto">
-                    <table class="table table-hover" id="dataTable">
+                    <table class="table table-sm table-hover dataTable" id="dataTable">
                         <thead>
                             <tr>
                                 <th>No</th>
