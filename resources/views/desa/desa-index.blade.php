@@ -15,7 +15,6 @@
                                 <th>No</th>
                                 <th>Nama Desa</th>
                                 <th>Kepala Desa</th>
-                                <th>Email</th>
                                 <th>Aksi</th>
                             </tr>
                         </thead>
@@ -25,7 +24,6 @@
                                     <td>{{ $index + 1 }}</td>
                                     <td>{{ $item->nama_desa }}</td>
                                     <td>{{ $item->kepala_desa }}</td>
-                                    <td>{{ $item->user->email }}</td>
                                     <td>
                                         <a href="{{ route('desa.destroy', $item->id) }}"
                                             class="btn btn-sm btn-danger rounded-circle"><i

@@ -39,18 +39,9 @@ class DesaController extends Controller
      */
     public function store(Request $request)
     {
-        $user = new User();
-        $user->name = strtolower($request->nama_desa);
-        $user->email = strtolower(str_replace(' ', '.', $request->nama_desa . '@gmail.com'));
-        $user->password = bcrypt('desa123');
-        $user->role = 'desa';
-        $user->remember_token = Str::random(60);
-        $user->save();
-        $request->request->add(['user_id' => $user->id]);
         Desa::create([
             'nama_desa' => ucfirst($request->nama_desa),
             'kepala_desa' => $request->kepala_desa,
-            'user_id' => $request->user_id,
         ]);
         return redirect()->back();
     }
@@ -72,9 +63,9 @@ class DesaController extends Controller
      * @param  \App\Models\Desa  $desa
      * @return \Illuminate\Http\Response
      */
-    public function edit(Desa $desa)
+    public function edit($id)
     {
-        $data = Desa::all();
+        $data = Desa::FindOrFail($id);
         $active = 'desa';
         $pageTitle = 'Edit Desa';
         return view('desa.desa-edit', compact('data', 'active', 'pageTitle'));
@@ -87,9 +78,17 @@ class DesaController extends Controller
      * @param  \App\Models\Desa  $desa
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Desa $desa)
+    public function update(Request $request, $id)
     {
-        //
+        $request->validate([
+            'nama_desa'=>['required'],
+            'kepala_desa'=>['required'],
+        ]);
+
+        $data =  Desa::FindOrFail($id);
+        $data->update($request->all());
+
+        return redirect()->route('desa.index');
     }
 
     /**
@@ -101,13 +100,7 @@ class DesaController extends Controller
     public function destroy($id)
     {
         $data = Desa::FindOrFail($id);
-        if ($data->user != null) {
-            $data->delete();
-            $data->user->delete();
-            return redirect()->back();
-        } else {
-            $data->delete();
-            return redirect()->back();
-        }
+        $data->delete();
+        return redirect()->back();
     }
 }

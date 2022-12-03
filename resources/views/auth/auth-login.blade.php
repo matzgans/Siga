@@ -51,9 +51,9 @@
                         <div class="col-lg-4 col-md-6 d-flex flex-column align-items-center justify-content-center">
 
                             <div class="d-flex justify-content-center py-4">
+                                <img src="{{asset('foto_landing')}}/SIgafix.png" alt="" style="width:100px;">
                                 <a href="index.html" class="logo d-flex align-items-center w-auto">
-                                    <img src="{{ asset('assetsAdmin') }}/img/logo.png" alt="">
-                                    <span class="d-none d-lg-block">SIGA - Bone Bolango</span>
+                                    {{-- <span class="d-none d-lg-block">SIGA - Bone Bolango</span> --}}
                                 </a>
                             </div><!-- End Logo -->
 

@@ -5,7 +5,7 @@
     <meta charset="utf-8">
     <meta content="width=device-width, initial-scale=1.0" name="viewport">
 
-    <title>Arsha Bootstrap Template - Index</title>
+    <title>Siga | Bonebolango</title>
     <meta content="" name="description">
     <meta content="" name="keywords">
 
@@ -48,7 +48,7 @@
     <header id="header" class="fixed-top ">
         <div class="container d-flex align-items-center">
 
-            <h1 class="logo me-auto"><a href="/">SIGA</a></h1>
+            <a class="logo me-auto" href="/"><img src="{{asset('foto_landing')}}/SIgafix.png" alt="" style="height: 120px;"></a>
             <!-- Uncomment below if you prefer to use an image logo -->
             <!-- <a href="index.html" class="logo me-auto"><img src="assets/img/logo.png" alt="" class="img-fluid"></a>-->
 

@@ -4,7 +4,6 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
-use App\Models\{User, Pegawai};
 
 class Opd extends Model
 {
@@ -13,15 +12,5 @@ class Opd extends Model
     Protected $fillable = [
         'nama_istansi',
         'kepala_istansi',
-        'user_id'
     ];
-
-    public function pegawai()
-    {
-        return $this->hasOne(Pegawai::class);
-    }
-    public function user()
-    {
-        return $this->belongsTo(User::class);
-    }
 }

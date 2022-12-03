@@ -2,10 +2,10 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\{Hiv, Desa, Tahun};
+use App\Models\{Kmtbayi, Desa, Tahun};
 use Illuminate\Http\Request;
 
-class HivController extends Controller
+class KmtbayiController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -14,12 +14,12 @@ class HivController extends Controller
      */
     public function index()
     {
-        $active = 'hiv';
-        $pageTitle = 'Penderita Hiv';
+        $active = 'kmtbayi';
+        $pageTitle = 'Data Kematian Bayi';
         $desa = Desa::get();
         $tahun = Tahun::get();
-        $data = Hiv::orderBy('tahun_id', 'DESC')->get();
-        return view('bidang_kesehatan.hiv-index', compact('active', 'pageTitle', 'desa', 'tahun', 'data'));
+        $data = Kmtbayi::orderBy('tahun_id', 'DESC')->get();
+        return view('bidang_kesehatan.kmtbayi-index', compact('active', 'pageTitle', 'desa', 'tahun', 'data'));
     }
 
     /**
@@ -40,12 +40,16 @@ class HivController extends Controller
      */
     public function store(Request $request)
     {
-        $data = Hiv::where('desa_id', $request->desa_id)->first();
+        $request->validate([
+            
+        ]);
+
+        $data = Kmtbayi::where('desa_id', $request->desa_id)->first();
         if($data != null){
             if($data->tahun_id == $request->tahun_id){
                 return redirect()->back()->with('message', 'Desa Dengan Tahun Yang sama telah ada');
             }else{
-                Hiv::create([
+                Kmtbayi::create([
                     'desa_id'=>$request->desa_id,
                     'l'=>$request->l,
                     'p'=>$request->p,
@@ -56,7 +60,7 @@ class HivController extends Controller
                 return redirect()->back()->with('message', 'Data Berhasil Ditambahkan');
             }
         }else{
-            Hiv::create([
+            Kmtbayi::create([
                 'desa_id'=>$request->desa_id,
                 'l'=>$request->l,
                 'p'=>$request->p,
@@ -71,10 +75,10 @@ class HivController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  \App\Models\Hiv  $hiv
+     * @param  \App\Models\Kmtbayi  $kmtbayi
      * @return \Illuminate\Http\Response
      */
-    public function show(Hiv $hiv)
+    public function show(Kmtbayi $kmtbayi)
     {
         //
     }
@@ -82,43 +86,43 @@ class HivController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Models\Hiv  $hiv
+     * @param  \App\Models\Kmtbayi  $kmtbayi
      * @return \Illuminate\Http\Response
      */
     public function edit($id)
     {
-        $active = 'hiv';
-        $pageTitle = 'Edit Data Penderita Hiv';
+        $active = 'Kmtbayi';
+        $pageTitle = 'Edit Data Kematian Bayi';
         $desa = Desa::get();
         $tahun = Tahun::get();
-        $data = Hiv::FindOrFail($id);
-        return view('bidang_kesehatan.hiv-edit', compact('active', 'pageTitle', 'desa', 'tahun', 'data'));
+        $data = Kmtbayi::FindOrFail($id);
+        return view('bidang_kesehatan.kmtbayi-edit', compact('active', 'pageTitle', 'desa', 'tahun', 'data'));
     }
 
     /**
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\Hiv  $hiv
+     * @param  \App\Models\Kmtbayi  $kmtbayi
      * @return \Illuminate\Http\Response
      */
     public function update(Request $request, $id)
     {
-        $data = Hiv::FindOrFail($id);
+        $data = Kmtbayi::FindOrFail($id);
         $data->update($request->all());
-        return redirect()->route('hiv.index')->with('message', 'Berhasil Ubah Data');
+        return redirect()->route('kmtbayi.index')->with('message', 'Berhasil Ubah Data');
     }
 
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Models\Hiv  $hiv
+     * @param  \App\Models\Kmtbayi  $kmtbayi
      * @return \Illuminate\Http\Response
      */
     public function destroy($id)
     {
-        $data = Hiv::FindOrFail($id);
+        $data = Kmtbayi::FindOrFail($id);
         $data->delete();
-        return redirect()->back();
+        return redirect()->back()->with('message', 'Berhasil Hapus Data');
     }
 }

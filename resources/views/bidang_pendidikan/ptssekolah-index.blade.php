@@ -16,48 +16,48 @@
                     {{Session('message')}}
                 </div>
             @endif
-            <p class="card-title">Data Penyebab Kematian Ibu Hamil</p>
+            <p class="card-title">Data Angka Putus Sekolah</p>
             <table class="table table-hover" id="dataTable">
                 <thead>
                     <tr>
                         <th>No</th>
                         <th>Tahun</th>
                         <th>Desa</th>
-                        <th>Partus Lama</th>
-                        <th>Infeksi</th>
-                        <th>Hipertensi</th>
-                        <th>Pendarahan</th>
-                        <th>Penyebab Lainya</th>
+                        <th>L(SD)</th>
+                        <th>P(SD)</th>
+                        <th>L(SMP)</th>
+                        <th>P(SMP)</th>
+                        <th>L(SMA)</th>
+                        <th>P(SMA)</th>
                         <th>Keterangan</th>
                         <th>Sumber</th>
                         <th>Aksi</th>
                     </tr>
                 </thead>
                 <tbody>
-                    @forelse ($data as $value=>$item)
-                    <tr>
-                        <td>{{$value+1}}</td>
-                        <td>{{$item->tahun->nama_tahun}}</td>
-                        <td>{{$item->desa->nama_desa}}</td>
-                        <td>{{$item->jum_partuslama}} KH</td>
-                        <td>{{$item->jum_infeksi}} Orang</td>
-                        <td>{{$item->jum_hirpetensi}} Orang</td>
-                        <td>{{$item->jum_pendarahan}} Orang</td>
-                        <td>{{$item->jum_penyebablain}} Orang</td>
-                        <td>{{$item->ket}}</td>
-                        <td>{{$item->sumber}}</td>
-                        <td>
-                            <a href="{{ route('pkematian.destroy', $item->id) }}"
-                                class="btn btn-danger btn-sm rounded-circle"><i
-                                    class="ri ri-delete-bin-line"></i></a>
-                            <a href="{{ route('pkematian.edit', $item->id) }}"
-                                class="btn btn-warning btn-sm rounded-circle"><i
-                                    class="ri ri-person-bin-line"></i>edit</a>
-                        </td>
-                    </tr>
-                    @empty
-                        Data belum di input
-                    @endforelse
+                    @foreach ($data as $value=>$item)
+                        <tr>
+                            <td>{{$value+1}}</td>
+                            <td>{{$item->tahun->nama_tahun}}</td>
+                            <td>{{$item->desa->nama_desa}}</td>
+                            <td>{{$item->lsd}}</td>
+                            <td>{{$item->psd}}</td>
+                            <td>{{$item->lsmp}}</td>
+                            <td>{{$item->psmp}}</td>
+                            <td>{{$item->lsma}}</td>
+                            <td>{{$item->psma}}</td>
+                            <td>{{$item->ket}}</td>
+                            <td>{{$item->sumber}}</td>
+                            <td>
+                                <a href="{{ route('ptssekolah.destroy', $item->id) }}"
+                                    class="btn btn-danger btn-sm rounded-circle"><i
+                                        class="ri ri-delete-bin-line"></i></a>
+                                <a href="{{ route('ptssekolah.edit', $item->id) }}"
+                                    class="btn btn-warning btn-sm rounded-circle"><i
+                                        class="ri ri-person-bin-line"></i>edit</a>
+                            </td>
+                        </tr>
+                    @endforeach
                 </tbody>
             </table>
         </div>
@@ -69,14 +69,14 @@
         <div class="modal-dialog">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h5 class="modal-title" id="staticBackdropLabel">Tambah Data Penyebab Kematian Ibu Hamil</h5>
+                    <h5 class="modal-title" id="staticBackdropLabel">Tambah Data Angka Putus sekolah</h5>
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <div class="modal-body">
-                    <form action="{{ route('pkematian.store') }}" method="post" class="row" enctype="multipart/form-data">
+                    <form action="{{ route('ptssekolah.store') }}" method="post" class="row" enctype="multipart/form-data">
                         @csrf
                         
-                        <div class="col-md-6 col-12 mb-2">
+                        <div class="col-md-12 col-12 mb-2">
                             <label for="desa" class="form-label">Desa</label>
                             <select class="form-select" name="desa_id" id="desa_id" aria-label="Default select example">
                                 <option selected>Pilih Desa</option>
@@ -86,24 +86,28 @@
                             </select>
                         </div>
                         <div class="col-md-6 col-12 mb-2">
-                            <label for="jum_partuslama" class="form-label">Jumlah Partuslama</label>
-                            <input type="number" class="form-control" name="jum_partuslama" id="jum_partuslama">
+                            <label for="lsd" class="form-label">L(SD)</label>
+                            <input type="number" name="lsd" class="floatNumberField" value="0.00" placeholder="0.00" step="0.01" id="lsd" required />
                         </div>
                         <div class="col-md-6 col-12 mb-2">
-                            <label for="jum_infeksi" class="form-label">Jumlah Infeksi</label>
-                            <input type="number" class="form-control" name="jum_infeksi" id="jum_infeksi">
+                            <label for="psd" class="form-label">P(SD)</label>
+                            <input type="number" name="psd" class="floatNumberField" value="0.00" placeholder="0.00" step="0.01" id="psd" required />
                         </div>
                         <div class="col-md-6 col-12 mb-2">
-                            <label for="jum_hirpetensi" class="form-label">Jumlah Hipertensi</label>
-                            <input type="number" class="form-control" name="jum_hirpetensi" id="jum_hirpetensi">
+                            <label for="lsmp" class="form-label">L(SMP)</label>
+                            <input type="number" name="lsmp" class="floatNumberField" value="0.00" placeholder="0.00" step="0.01" id="lsmp" required />
                         </div>
                         <div class="col-md-6 col-12 mb-2">
-                            <label for="jum_pendarahan" class="form-label">Jumlah Pendarahan</label>
-                            <input type="number" class="form-control" name="jum_pendarahan" id="jum_pendarahan">
+                            <label for="psmp" class="form-label">P(SMP)</label>
+                            <input type="number" name="psmp" class="floatNumberField" value="0.00" placeholder="0.00" step="0.01" id="psmp" required />
                         </div>
                         <div class="col-md-6 col-12 mb-2">
-                            <label for="jum_penyebablain" class="form-label">Jumlah Penyebab Lain</label>
-                            <input type="number" class="form-control" name="jum_penyebablain" id="jum_penyebablain">
+                            <label for="lsma" class="form-label">L(SMA)</label>
+                            <input type="number" name="lsma" class="floatNumberField" value="0.00" placeholder="0.00" step="0.01" id="lsma" required />
+                        </div>
+                        <div class="col-md-6 col-12 mb-2">
+                            <label for="psma" class="form-label">P(SMA)</label>
+                            <input type="number" name="psma" class="floatNumberField" value="0.00" placeholder="0.00" step="0.01" id="psma" required />
                         </div>
                         <div class="col-md-6 col-12 mb-2">
                             <label for="ket" class="form-label">Keterangan</label>
@@ -131,13 +135,19 @@
             </div>
         </div>
     </div>
-
    
 @endsection
-@section('scripta')
+@section('scripts')
 <script>
+        $(document).ready(function () {
+            $(".floatNumberField").change(function() {
+                $(this).val(parseFloat($(this).val()).toFixed(2));
+            });
+        });
+
     $(document).ready(function() {
         $('#dataTable').DataTable();
     });
 </script>
+
 @endsection

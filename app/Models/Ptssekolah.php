@@ -6,20 +6,22 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use App\Models\{Desa, Tahun};
 
-class Pkematian extends Model
+class Ptssekolah extends Model
 {
     use HasFactory;
 
-    Protected $table = 'pkematians';
-    protected $fillable = [
+    Protected $table = 'ptssekolahs';
+
+    Protected $fillable = [
         'desa_id',
-        'jum_partuslama',
-        'jum_infeksi',
-        'jum_hirpetensi',
-        'jum_pendarahan',
-        'jum_penyebablain',
-        'sumber',
+        'lsd',
+        'psd',
+        'lsmp',
+        'psmp',
+        'lsma',
+        'psma',
         'ket',
+        'sumber',
         'tahun_id',
     ];
 
@@ -27,7 +29,6 @@ class Pkematian extends Model
     {
         return $this->belongsTo(Desa::class);
     }
-
     public function tahun()
     {
         return $this->belongsTo(Tahun::class);

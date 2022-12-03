@@ -4,7 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
-use App\Models\{User, Penduduk, Pkematian, Hiv};
+use App\Models\{Prespenduduk, Pkematian, Hiv, Kmtbayi, Partsekolah, Ptssekolah};
 
 
 class Desa extends Model
@@ -14,26 +14,35 @@ class Desa extends Model
     Protected $fillable = [
         'nama_desa',
         'kepala_desa',
-        'user_id'
     ];
-
-    public function user()
-    {
-        return $this->belongsTo(User::class);
-    }
-
-    public function penduduks()
-    {
-        return $this->hasMany(Penduduk::class);
-    }
 
     public function pkematian()
     {
-        return $this->hasOne(Pkematian::class);
+        return $this->hasMany(Pkematian::class);
     }
 
     public function hiv()
     {
-        return $this->hasOne(Hiv::class);
+        return $this->hasMany(Hiv::class);
+    }
+
+    public function kmtbayi()
+    {
+        return $this->hasMany(Kmtbayi::class);
+    }
+
+    public function prespenduduks()
+    {
+        return $this->hasMany(Prespenduduk::class);
+    }
+
+    public function partsekolahs()
+    {
+        return $this->hasMany(Partsekolah::class);
+    }
+
+    public function ptssekolahs()
+    {
+        return $this->hasMany(Ptssekolah::class);
     }
 }

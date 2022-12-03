@@ -52,7 +52,8 @@ class PkematianController extends Controller
                     'jum_hirpetensi'=>$request->jum_hirpetensi,
                     'jum_pendarahan'=>$request->jum_pendarahan,
                     'jum_penyebablain'=>$request->jum_penyebablain,
-                    'sumber'=>'Dinas Kesehatan',
+                    'sumber'=>ucfirst($request->sumber),
+                    'ket'=>ucfirst($request->ket),
                     'tahun_id'=>$request->tahun_id,
                 ]);
                 return redirect()->back();
@@ -65,7 +66,8 @@ class PkematianController extends Controller
                 'jum_hirpetensi'=>$request->jum_hirpetensi,
                 'jum_pendarahan'=>$request->jum_pendarahan,
                 'jum_penyebablain'=>$request->jum_penyebablain,
-                'sumber'=>'Dinas Kesehatan',
+                'sumber'=>ucfirst($request->sumber),
+                'ket'=>ucfirst($request->ket),
                 'tahun_id'=>$request->tahun_id,
             ]);
             return redirect()->back();

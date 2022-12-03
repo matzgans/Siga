@@ -3,7 +3,7 @@
 <div class="col-md-12 col-12">
     <div class="card">
         <div class="card-body">
-            <form action="{{ route('hiv.update',$data->id) }}" method="post" class="row" enctype="multipart/form-data">
+            <form action="{{ route('kmtbayi.update',$data->id) }}" method="post" class="row" enctype="multipart/form-data">
                 @csrf
                 <div class="col-md-6 col-12 mb-2">
                     <label for="desa" class="form-label">Desa</label>

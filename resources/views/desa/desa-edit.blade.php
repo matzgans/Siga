@@ -14,12 +14,12 @@
     <form action="{{route('desa.update',$data->id)}}" method="POST" class="row">
         @csrf
         <div class="col-md-6 col-12 mb-2">
-            <label for="nama">Nama</label>
-            <input type="text" name="nama" id="nama" >
+            <label for="nama_desa">Nama Desa</label>
+            <input type="text" name="nama_desa" id="nama_desa" value="{{$data->nama_desa}}" required>
         </div>
         <div class="col-md-6 col-12 mb-2">
             <label for="kepala_desa">Kepala Desa</label>
-            <input type="text" name="kepala_desa" id="kepala_desa" desa>
+            <input type="text" name="kepala_desa" id="kepala_desa" value="{{$data->kepala_desa}}" required>
         </div>
         <button type="submit" class="btn btn-warning">Update</button>
     </form>

@@ -4,7 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
-use App\Models\{Agama, Opd, Tahun, Klasifikasi_umur, Jabatan};
+use App\Models\{User};
 
 class Pegawai extends Model
 {
@@ -14,41 +14,13 @@ class Pegawai extends Model
     Protected $fillable = [
         'nik',
         'nama',
-        'tempat_lahir',
-        'tanggal_lahir',
-        'jk',
-        'umur',
-        'klasifikasi_umur_id',
-        'agama_id',
-        'opd_id',
-        'jabatan_id',
-        'tahun_id',
-        'foto',
-        'alamat',
+        'user_id',
     ];
 
-    public function jabatan()
+    public function user()
     {
-        return $this->belongsTo(Jabatan::class);
+        return $this->belongsTo(User::class);
     }
 
-    public function agama()
-    {
-        return $this->belongsTo(Agama::class);
-    }
-
-    public function opd()
-    {
-        return $this->belongsTo(Opd::class);
-    }
-
-    public function tahun()
-    {
-        return $this->belongsTo(Tahun::class);
-    }
-
-    public function Klasifikasi_umur()
-    {
-        return $this->belongsTo(Klasifikasi_umur::class);
-    }
+    
 }

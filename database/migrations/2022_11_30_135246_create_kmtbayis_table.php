@@ -13,10 +13,14 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('opds', function (Blueprint $table) {
+        Schema::create('kmtbayis', function (Blueprint $table) {
             $table->id();
-            $table->string('nama_istansi');
-            $table->string('kepala_istansi');
+            $table->foreignId('desa_id')->constrained('desas');
+            $table->integer('l');
+            $table->integer('p');
+            $table->string('sumber');
+            $table->string('ket');
+            $table->foreignId('tahun_id')->constrained('tahuns');
             $table->timestamps();
         });
     }
@@ -28,6 +32,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('opds');
+        Schema::dropIfExists('kmtbayis');
     }
 };

@@ -14,7 +14,6 @@
                                 <th>No</th>
                                 <th>Nama Istansi</th>
                                 <th>Kepala Istansi</th>
-                                <th>Email</th>
                                 <th>Aksi</th>
                             </tr>
                         </thead>
@@ -24,7 +23,6 @@
                                     <td>{{ $index + 1 }}</td>
                                     <td>{{ $item->nama_istansi }}</td>
                                     <td>{{ $item->kepala_istansi }}</td>
-                                    <td>{{ $item->user->email }}</td>
                                     <td>
                                         <a href="{{ route('opd.destroy', $item->id) }}" class="btn btn-danger">Hapus</a>
                                     </td>
@@ -58,11 +56,11 @@
                             @csrf
                             <div class="col-md-6 col-12 mb-2">
                                 <label for="nama">Nama Istansi</label>
-                                <input type="text" class="form-control" name="nama_istansi" id="nama_istansi">
+                                <input type="text" class="form-control" name="nama_istansi" id="nama_istansi" required>
                             </div>
                             <div class="col-md-6 col-12 mb-2">
                                 <label for="nama">Kepala Istansi</label>
-                                <input type="text" class="form-control" name="kepala_istansi" id="kepala_istansi">
+                                <input type="text" class="form-control" name="kepala_istansi" id="kepala_istansi" required>
                             </div>
                     </div>
                     <div class="modal-footer">

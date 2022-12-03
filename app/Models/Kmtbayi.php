@@ -5,22 +5,19 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use App\Models\{Desa, Tahun};
-
-class Pkematian extends Model
+class Kmtbayi extends Model
 {
     use HasFactory;
 
-    Protected $table = 'pkematians';
-    protected $fillable = [
+    Protected $table = 'kmtbayis';
+
+    Protected $fillable = [
         'desa_id',
-        'jum_partuslama',
-        'jum_infeksi',
-        'jum_hirpetensi',
-        'jum_pendarahan',
-        'jum_penyebablain',
-        'sumber',
-        'ket',
         'tahun_id',
+        'l',
+        'p',
+        'ket',
+        'sumber',
     ];
 
     public function desa()

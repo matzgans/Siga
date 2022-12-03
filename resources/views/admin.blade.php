@@ -289,6 +289,13 @@
             
             @if(auth()->user()->role == "admin")
             <span>Data Master</span>
+            
+                <li class="nav-item">
+                    <a class="nav-link {{ $active != 'pegawai' ? 'collapsed' : 'active' }}"
+                        href="{{ route('pegawai.index') }}">
+                        <i class="ri ri-user-4-line"></i><span>pegawai</span>
+                    </a>
+                </li>
                 <li class="nav-item">
                     <a class="nav-link {{ $active != 'desa' ? 'collapsed' : 'active' }}"
                         href="{{ route('desa.index') }}">
@@ -350,28 +357,49 @@
                         <i class="ri ri-user-4-line"></i><span>Penderita Hiv / Aids</span>
                     </a>
                 </li>
-            @elseif(auth()->user()->role == "desa")
+            @elseif(auth()->user()->role == "pegawai")
+                <span>Data Terpilah Bidang Kesehatan</span>
                 <li class="nav-item">
-                    <a class="nav-link {{ $active != 'penduduk' ? 'collapsed' : 'active' }}"
-                        href="{{ route('penduduk.index') }}">
-                        <i class="ri ri-user-4-line"></i><span>Penduduk</span>
+                    <a class="nav-link {{ $active != 'pkematian' ? 'collapsed' : 'active' }}"
+                        href="{{ route('pkematian.index') }}">
+                        <i class="ri ri-user-4-line"></i><span>Penyebab Kematian ibu Hamil</span>
                     </a>
                 </li>
-            @elseif(auth()->user()->role == "opd")
                 <li class="nav-item">
-                    <a class="nav-link {{ $active != 'pegawai' ? 'collapsed' : 'active' }}"
-                        href="{{ route('pegawai.index') }}">
-                        <i class="ri ri-user-4-line"></i><span>pegawai</span>
+                    <a class="nav-link {{ $active != 'hiv' ? 'collapsed' : 'active' }}"
+                        href="{{ route('hiv.index') }}">
+                        <i class="ri ri-user-4-line"></i><span>Penderita Hiv / Aids</span>
                     </a>
                 </li>
-                @if(auth()->user()->opd->nama_istansi == "Dinas Kesehatan")
-                    <li class="nav-item">
-                        <a class="nav-link {{ $active != 'pkematian' ? 'collapsed' : 'active' }}"
-                            href="{{ route('pkematian.index') }}">
-                            <i class="ri ri-user-4-line"></i><span>Penyebab Kematian</span>
-                        </a>
-                    </li>
-                @endif
+                <li class="nav-item">
+                    <a class="nav-link {{ $active != 'kmtbayi' ? 'collapsed' : 'active' }}"
+                        href="{{ route('kmtbayi.index') }}">
+                        <i class="ri ri-user-4-line"></i><span>Data Kematian Bayi</span>
+                    </a>
+                </li>
+                
+                <span>Data Terpilah Bidang Pendidikan</span>
+                <li class="nav-item">
+                    <a class="nav-link {{ $active != 'partisipasisekolah' ? 'collapsed' : 'active' }}"
+                        href="{{ route('partsekolah.index') }}">
+                        <i class="ri ri-user-4-line"></i><span>Data Partisipasi Sekolah</span>
+                    </a>
+                </li>
+
+                <li class="nav-item">
+                    <a class="nav-link {{ $active != 'ptssekolah' ? 'collapsed' : 'active' }}"
+                        href="{{ route('ptssekolah.index') }}">
+                        <i class="ri ri-user-4-line"></i><span>Data Putus Sekolah</span>
+                    </a>
+                </li>
+                
+                <span>IPG</span>
+                <li class="nav-item">
+                    <a class="nav-link {{ $active != 'prespenduduk' ? 'collapsed' : 'active' }}"
+                        href="{{ route('prespenduduk.index') }}">
+                        <i class="ri ri-user-4-line"></i><span>Jumlah Penduduk Menurut JK</span>
+                    </a>
+                </li>
             @endif
 
         </ul>

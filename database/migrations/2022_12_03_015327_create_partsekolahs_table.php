@@ -13,16 +13,19 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('pkematians', function (Blueprint $table) {
+        Schema::create('partsekolahs', function (Blueprint $table) {
             $table->id();
             $table->foreignId('desa_id')->constrained('desas');
-            $table->integer('jum_partuslama')->nullable();
-            $table->integer('jum_infeksi')->nullable();
-            $table->integer('jum_hirpetensi')->nullable();
-            $table->integer('jum_pendarahan')->nullable();
-            $table->integer('jum_penyebablain')->nullable();
-            $table->string('sumber')->nullable();
-            $table->string('ket')->nullable();
+            $table->decimal('l7');
+            $table->decimal('p7');
+            $table->decimal('l13');
+            $table->decimal('p13');
+            $table->decimal('l16');
+            $table->decimal('p16');
+            $table->decimal('l19');
+            $table->decimal('p19');
+            $table->string('ket');
+            $table->string('sumber');
             $table->foreignId('tahun_id')->constrained('tahuns');
             $table->timestamps();
         });
@@ -35,6 +38,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('pkematians');
+        Schema::dropIfExists('partsekolahs');
     }
 };

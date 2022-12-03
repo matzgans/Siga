@@ -39,20 +39,12 @@ class OpdController extends Controller
      */
     public function store(Request $request)
     {
-        $user = new User();
-        $user->name = $request->nama_istansi;
-        $user->email = strtolower(str_replace(' ', '.', $request->nama_istansi . '@gmail.com'));
-        $user->password = bcrypt('opd123');
-        $user->role = 'opd';
-        $user->remember_token = Str::random(60);
-        $user->save();
+        $request->validate([
+            'nama_istansi'=>['required','unique:opds'],
+            'kepala_istansi'=>['required','unique:opds'],
 
-        $request->request->add(['user_id' => $user->id]);
-        Opd::create([
-            'nama_istansi' => $request->nama_istansi,
-            'kepala_istansi' => $request->kepala_istansi,
-            'user_id' => $request->user_id,
         ]);
+        Opd::create($request->all());
         return redirect()->back();
     }
 

@@ -41,10 +41,10 @@
                             <td>{{$item->sumber}}</td>
                             <td>{{$item->ket}}</td>
                             <td>
-                                <a href="{{ route('hiv.destroy', $item->id) }}"
+                                <a href="{{ route('kmtbayi.destroy', $item->id) }}"
                                     class="btn btn-danger btn-sm rounded-circle"><i
                                         class="ri ri-delete-bin-line"></i></a>
-                                <a href="{{ route('hiv.edit', $item->id) }}"
+                                <a href="{{ route('kmtbayi.edit', $item->id) }}"
                                     class="btn btn-warning btn-sm rounded-circle"><i
                                         class="ri ri-person-bin-line"></i>edit</a>
                             </td>
@@ -62,11 +62,11 @@
         <div class="modal-dialog">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h5 class="modal-title" id="staticBackdropLabel">Tambah Data Penderita Hiv / Aids</h5>
+                    <h5 class="modal-title" id="staticBackdropLabel">Tambah Data Kematian Bayi </h5>
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <div class="modal-body">
-                    <form action="{{ route('hiv.store') }}" method="post" class="row" enctype="multipart/form-data">
+                    <form action="{{ route('kmtbayi.store') }}" method="post" class="row" enctype="multipart/form-data">
                         @csrf
                         
                         <div class="col-md-6 col-12 mb-2">
@@ -127,4 +127,4 @@
         $('#dataTable').DataTable();
     });
 </script>
-@endsection
+@endsection 

@@ -14,6 +14,10 @@ use App\Http\Controllers\{
     JabatanController,
     PkematianController,
     HivController,
+    KmtbayiController,
+    PrespendudukController,
+    PartsekolahController,
+    PtssekolahController,
 };
 use Illuminate\Support\Facades\Route;
 
@@ -45,6 +49,7 @@ Route::prefix('/')->group( function(){
 
 
 Route::group(['middleware' => ['auth', 'HakAkses:admin']], function () {
+    
     // desa
     Route::get('/desa/index', [DesaController::class, 'index'])->name('desa.index');
     Route::post('/desa/store', [DesaController::class, 'store'])->name('desa.store');
@@ -82,22 +87,6 @@ Route::group(['middleware' => ['auth', 'HakAkses:admin']], function () {
     Route::post('/jabatan/store', [JabatanController::class, 'store'])->name('jabatan.store');
     Route::get('/jabatan/destroy/{id}', [JabatanController::class, 'destroy'])->name('jabatan.destroy');
 
-});
-
-// desa
-Route::group(['middleware' => ['auth', 'HakAkses:desa']], function () {
-    Route::get('/penduduk/index', [PendudukController::class, 'index'])->name('penduduk.index');
-    Route::post('/penduduk/store', [PendudukController::class, 'store'])->name('penduduk.store');
-    Route::get('/penduduk/edit/{id}', [PendudukController::class, 'edit'])->name('penduduk.edit');
-    Route::get('/penduduk/destroy/{id}', [PendudukController::class, 'destroy'])->name('penduduk.destroy');
-    Route::post('/penduduk/update/{id}', [PendudukController::class, 'update'])->name('penduduk.update');
-    Route::get('/penduduk/show/{id}', [PendudukController::class, 'show'])->name('penduduk.show');
-    Route::get('/penduduk/pdf', [PendudukController::class, 'pdf'])->name('penduduk.pdf');
-});
-
-// opd
-Route::group(['middleware' => ['auth', 'HakAkses:opd,admin']], function () {
-    // pegawai
     Route::get('/pegawai/index', [PegawaiController::class, 'index'])->name('pegawai.index');
     Route::post('/pegawai/store', [PegawaiController::class, 'store'])->name('pegawai.store');
     Route::get('/pegawai/edit/{id}', [PegawaiController::class, 'edit'])->name('pegawai.edit');
@@ -106,6 +95,10 @@ Route::group(['middleware' => ['auth', 'HakAkses:opd,admin']], function () {
     Route::get('/pegawai/show/{id}', [PegawaiController::class, 'show'])->name('pegawai.show');
     Route::get('/pegawai/pdf', [PegawaiController::class, 'pdf'])->name('pegawai.pdf');
 
+});
+
+// opd
+Route::group(['middleware' => ['auth', 'HakAkses:pegawai']], function () {
     // Data Terpilah Bidang Kesehatan
     // 1. Kematia Ibu Hamil
     Route::get('/pkematian/index', [PkematianController::class, 'index'])->name('pkematian.index');
@@ -120,12 +113,41 @@ Route::group(['middleware' => ['auth', 'HakAkses:opd,admin']], function () {
     Route::post('/hiv/update/{id}', [HivController::class, 'update'])->name('hiv.update');
     Route::get('/hiv/edit/{id}', [HivController::class, 'edit'])->name('hiv.edit');
     Route::get('/hiv/destroy/{id}', [HivController::class, 'destroy'])->name('hiv.destroy');
+
+    // 3. kematian bayi
+    Route::get('/kmtbayi/index', [KmtbayiController::class, 'index'])->name('kmtbayi.index');
+    Route::post('/kmtbayi/store', [KmtbayiController::class, 'store'])->name('kmtbayi.store');
+    Route::post('/kmtbayi/update/{id}', [KmtbayiController::class, 'update'])->name('kmtbayi.update');
+    Route::get('/kmtbayi/edit/{id}', [KmtbayiController::class, 'edit'])->name('kmtbayi.edit');
+    Route::get('/kmtbayi/destroy/{id}', [KmtbayiController::class, 'destroy'])->name('kmtbayi.destroy');
+    //  Data Terpilah Bidang Pendidikan
+    // 1. Partisipasi sekolah
+    Route::get('/partsekolah/index', [PartsekolahController::class, 'index'])->name('partsekolah.index');
+    Route::post('/partsekolah/store', [PartsekolahController::class, 'store'])->name('partsekolah.store');
+    Route::post('/partsekolah/update/{id}', [PartsekolahController::class, 'update'])->name('partsekolah.update');
+    Route::get('/partsekolah/edit/{id}', [PartsekolahController::class, 'edit'])->name('partsekolah.edit');
+    Route::get('/partsekolah/destroy/{id}', [PartsekolahController::class, 'destroy'])->name('partsekolah.destroy');
+    
+    // 1. Angka Putus Sekolah
+    Route::get('/ptssekolah/index', [PtssekolahController::class, 'index'])->name('ptssekolah.index');
+    Route::post('/ptssekolah/store', [PtssekolahController::class, 'store'])->name('ptssekolah.store');
+    Route::post('/ptssekolah/update/{id}', [PtssekolahController::class, 'update'])->name('ptssekolah.update');
+    Route::get('/ptssekolah/edit/{id}', [PtssekolahController::class, 'edit'])->name('ptssekolah.edit');
+    Route::get('/ptssekolah/destroy/{id}', [PtssekolahController::class, 'destroy'])->name('ptssekolah.destroy');
+    
+    // Ipg
+    // 3. Jum Penduduk
+    Route::get('/prespenduduk/index', [PrespendudukController::class, 'index'])->name('prespenduduk.index');
+    Route::post('/prespenduduk/store', [PrespendudukController::class, 'store'])->name('prespenduduk.store');
+    Route::post('/prespenduduk/update/{id}', [PrespendudukController::class, 'update'])->name('prespenduduk.update');
+    Route::get('/prespenduduk/edit/{id}', [PrespendudukController::class, 'edit'])->name('prespenduduk.edit');
+    Route::get('/prespenduduk/destroy/{id}', [PrespendudukController::class, 'destroy'])->name('prespenduduk.destroy');
 });
 
-Route::group(['middleware' => ['auth', 'HakAkses:opd,desa,admin']], function () {
+Route::group(['middleware' => ['auth', 'HakAkses:pegawai,admin']], function(){
     Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard');
+
 });
-Route::get('/penduduks/index', [PendudukController::class, 'index'])->name('penduduks.index');
 
 
 

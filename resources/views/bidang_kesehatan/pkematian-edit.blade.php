@@ -29,6 +29,14 @@
                     <label for="jum_penyebablain" class="form-label">Jumlah Penyebab Lain</label>
                     <input type="number" class="form-control" name="jum_penyebablain" id="jum_penyebablain" value="{{$data->jum_penyebablain}}">
                 </div>
+                <div class="col-md-6 col-12 mb-2">
+                    <label for="ket" class="form-label">Keterangan</label>
+                    <input type="text" class="form-control" name="ket" id="ket" value="{{$data->ket}}">
+                </div>
+                <div class="col-md-6 col-12 mb-2">
+                    <label for="sumber" class="form-label">Sumber</label>
+                    <input type="text" class="form-control" name="sumber" id="sumber" value="{{$data->sumber}}">
+                </div>
                 <div class="col-md-12 col-12 mb-2">
                     <label for="tahun" class="form-label">Tahun</label>
                     <input type="number" class="form-control" id="tahun" value="{{$data->tahun->nama_tahun}}" readonly>
