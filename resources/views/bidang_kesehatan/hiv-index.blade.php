@@ -17,42 +17,44 @@
                 </div>
             @endif
             <p class="card-title">Data Hiv / Aids</p>
-            <table class="table table-hover" id="dataTable">
-                <thead>
-                    <tr>
-                        <th>No</th>
-                        <th>Tahun</th>
-                        <th>Desa</th>
-                        <th>Perempuan</th>
-                        <th>Laki - Laki </th>
-                        <th>Sumber</th>
-                        <th>Keterangan</th>
-                        <th>Aksi</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    @foreach ($data as $value=>$item)
+            <div class="overflow-auto">
+                <table class="table table-hover" id="dataTable">
+                    <thead>
                         <tr>
-                            <td>{{$value+1}}</td>
-                            <td>{{$item->tahun->nama_tahun}}</td>
-                            <td>{{$item->desa->nama_desa}}</td>
-                            <td>{{$item->p}}</td>
-                            <td>{{$item->l}}</td>
-                            <td>{{$item->sumber}}</td>
-                            <td>{{$item->ket}}</td>
-                            <td>
-                                <a href="{{ route('hiv.destroy', $item->id) }}"
-                                    class="btn btn-danger btn-sm rounded-circle"><i
-                                        class="ri ri-delete-bin-line"></i></a>
-                                <a href="{{ route('hiv.edit', $item->id) }}"
-                                    class="btn btn-warning btn-sm rounded-circle"><i
-                                        class="ri ri-person-bin-line"></i>edit</a>
-                            </td>
+                            <th>No</th>
+                            <th>Tahun</th>
+                            <th>Desa</th>
+                            <th>Perempuan</th>
+                            <th>Laki - Laki </th>
+                            <th>Sumber</th>
+                            <th>Keterangan</th>
+                            <th>Aksi</th>
                         </tr>
-                    @endforeach
-                    
-                </tbody>
-            </table>
+                    </thead>
+                    <tbody>
+                        @foreach ($data as $value=>$item)
+                            <tr>
+                                <td>{{$value+1}}</td>
+                                <td>{{$item->tahun->nama_tahun}}</td>
+                                <td>{{$item->desa->nama_desa}}</td>
+                                <td>{{$item->p}}</td>
+                                <td>{{$item->l}}</td>
+                                <td>{{$item->sumber}}</td>
+                                <td>{{$item->ket}}</td>
+                                <td>
+                                    <a href="{{ route('hiv.destroy', $item->id) }}"
+                                        class="btn btn-danger btn-sm rounded-circle"><i
+                                            class="ri ri-delete-bin-line"></i></a>
+                                    <a href="{{ route('hiv.edit', $item->id) }}"
+                                        class="btn btn-warning text-white btn-sm rounded-circle"><i
+                                            class="ri ri-edit-box-fill"></i></a>
+                                </td>
+                            </tr>
+                        @endforeach
+                        
+                    </tbody>
+                </table>
+            </div>
         </div>
     </div>
 </div>

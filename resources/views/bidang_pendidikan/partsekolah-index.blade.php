@@ -64,8 +64,8 @@
                                         class="btn btn-danger btn-sm rounded-circle"><i
                                             class="ri ri-delete-bin-line"></i></a>
                                     <a href="{{ route('partsekolah.edit', $item->id) }}"
-                                        class="btn btn-warning btn-sm rounded-circle"><i
-                                            class="ri ri-person-bin-line"></i>edit</a>
+                                        class="btn btn-warning text-white btn-sm rounded-circle"><i
+                                            class="ri ri-edit-box-fill"></i></a>
                                 </td>
                             </tr>
                         @endforeach
