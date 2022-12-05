@@ -16,36 +16,36 @@
                     {{Session('message')}}
                 </div>
             @endif
-            <p class="card-title">Data Hiv / Aids</p>
+            <p class="card-title">Data Jumlah Guru</p>
             <div class="overflow-auto">
                 <table class="table table-hover table-bordered" id="dataTable">
                     <thead>
                         <tr>
                             <th>No</th>
                             <th>Tahun</th>
-                            <th>Desa</th>
-                            <th>Perempuan</th>
                             <th>Laki - Laki </th>
+                            <th>Perempuan</th>
+                            <th>Jumlah</th>
                             <th>Sumber</th>
                             <th>Keterangan</th>
                             <th>Aksi</th>
                         </tr>
                     </thead>
                     <tbody>
-                        @foreach ($data as $value=>$item)
+                        @foreach($data as $value=>$item)
                             <tr>
                                 <td>{{$value+1}}</td>
                                 <td>{{$item->tahun->nama_tahun}}</td>
-                                <td>{{$item->desa->nama_desa}}</td>
-                                <td>{{$item->p}}</td>
-                                <td>{{$item->l}}</td>
+                                <td>{{$item->l}} Orang</td>
+                                <td>{{$item->p}} Orang</td>
+                                <td>{{$item->jum}} Orang</td>
                                 <td>{{$item->sumber}}</td>
                                 <td>{{$item->ket}}</td>
                                 <td>
-                                    <a href="{{ route('kmtbayi.destroy', $item->id) }}"
+                                    <a href="{{ route('jumguru.destroy', $item->id) }}"
                                         class="btn btn-danger btn-sm rounded-circle"><i
                                             class="ri ri-delete-bin-line"></i></a>
-                                    <a href="{{ route('kmtbayi.edit', $item->id) }}"
+                                    <a href="{{ route('jumguru.edit', $item->id) }}"
                                         class="btn btn-warning text-white btn-sm rounded-circle"><i
                                             class="ri ri-edit-box-fill"></i></a>
                                 </td>
@@ -64,22 +64,12 @@
         <div class="modal-dialog">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h5 class="modal-title" id="staticBackdropLabel">Tambah Data Kematian Bayi </h5>
+                    <h5 class="modal-title" id="staticBackdropLabel">Tambah Data Jumlah Guru</h5>
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <div class="modal-body">
-                    <form action="{{ route('kmtbayi.store') }}" method="post" class="row" enctype="multipart/form-data">
+                    <form action="{{ route('jumguru.store') }}" method="post" class="row" enctype="multipart/form-data">
                         @csrf
-                        
-                        <div class="col-md-6 col-12 mb-2">
-                            <label for="desa" class="form-label">Desa</label>
-                            <select class="form-select" name="desa_id" id="desa_id" aria-label="Default select example">
-                                <option selected>Pilih Desa</option>
-                                @foreach ($desa as $item)    
-                                    <option value="{{$item->id}}">{{$item->nama_desa}}</option>
-                                @endforeach
-                            </select>
-                        </div>
                         <div class="col-md-6 col-12 mb-2">
                             <label for="l" class="form-label">Jumlah Laki - Laki</label>
                             <input type="number" class="form-control" name="l" id="l">
@@ -92,9 +82,8 @@
                             <label for="sumber" class="form-label">Sumber</label>
                             <select class="form-select" name="sumber" id="sumber" aria-label="Default select example">
                                 <option selected>Sumber</option>
-                                <option Value="Dinas Kesahatan">Dinas Kesahatan</option>
-                                <option Value="Puskesmas">Puskesmas</option>
-                                <option value="Desa">Desa</option>
+                                <option Value="Dinas Kesahatan">Dinas Pendidikan</option>
+                                <option Value="Puskesmas">Bps</option>
                                 <option value="Data Lainya">Data Lainya</option>
                             </select>
                         </div>
@@ -107,7 +96,7 @@
                                 @endforeach
                             </select>
                         </div>
-                        <div class="col-md-6 col-12 mb-2">
+                        <div class="col-md-12 col-12 mb-2">
                             <label for="ket" class="form-label">Keterangan</label>
                             <textarea name="ket" class="form-control" id="ket"></textarea>
                         </div>
@@ -129,4 +118,4 @@
         $('#dataTable').DataTable();
     });
 </script>
-@endsection 
+@endsection

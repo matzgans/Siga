@@ -18,7 +18,7 @@
             @endif
             <p class="card-title">Data Angka Partisipasi Sekolah</p>
             <div class="overflow-auto">
-                <table class="table table-hover" id="dataTable">
+                <table class="table table-hover table-bordered" id="dataTable">
                     <thead>
                         <tr>
                             <th rowspan="2">No</th>

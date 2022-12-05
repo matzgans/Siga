@@ -18,7 +18,7 @@
             @endif
             <p class="card-title">Data Jumlah Penduduk menurut Jenis Kelamin</p>
             <div class="overflow-auto">
-                <table class="table table-hover dataTable" id="dataTable">
+                <table class="table table-hover table-bordered dataTable" id="dataTable">
                     <thead>
                         <tr>
                             <th rowspan="2">No</th>

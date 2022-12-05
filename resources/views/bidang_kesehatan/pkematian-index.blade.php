@@ -18,7 +18,7 @@
             @endif
             <p class="card-title">Data Penyebab Kematian Ibu Hamil</p>
             <div class="overflow-auto">
-                <table class="table table-hover table-sm dataTable" id="dataTable">
+                <table class="table table-hover table-bordered table-sm dataTable" id="dataTable">
                     <thead>
                         <tr>
                             <th>No</th>

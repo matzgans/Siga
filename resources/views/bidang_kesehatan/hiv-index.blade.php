@@ -18,7 +18,7 @@
             @endif
             <p class="card-title">Data Hiv / Aids</p>
             <div class="overflow-auto">
-                <table class="table table-hover" id="dataTable">
+                <table class="table table-hover table-bordered" id="dataTable">
                     <thead>
                         <tr>
                             <th>No</th>
