@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\{Desa, User, Opd, Tahun, Agama, Pekerjaan, Pkematian, Hiv, Ptssekolah};
+use App\Models\{Desa, Opd, Tahun, Agama, Pekerjaan, Pkematian, Hiv, Ptssekolah};
 
 class DashboardController extends Controller
 {
@@ -20,7 +20,32 @@ class DashboardController extends Controller
 
     public function landing()
     {
-        return view('landing.welcome');
+        // $data = Pkematian::all()
+        // foreach ($data as $item) {
+        //     $item = $item->
+        // };
+        // dd($data);
+        // highchart
+        $data = Pkematian::all();
+        $desa = [];
+        $jum = [];
+        
+        foreach ($data as $item) {
+            $desa []= $item->desa->nama_desa;
+            $jum [] = $item->jum_partuslama + $item->jum_infeksi + $item->jum_hirpetensi + $item->jum_pendarahan
+            + $item->jum_penyebablain;
+            
+        }
+
+        // piechart
+        $partus_lama = $data->sum('jum_partuslama');
+        $infeksi = $data->sum('jum_infeksi');
+        $hirpetensi = $data->sum('jum_hirpetensi');
+        $pendarahan = $data->sum('jum_pendarahan');
+        $penyelain = $data->sum('jum_penyebablain');
+
+        return view('landing.welcome', compact('desa', 'jum', 'partus_lama', 'infeksi', 'hirpetensi', 'pendarahan',
+            'penyelain'));
     }
 
     public function ipgPenduduk()

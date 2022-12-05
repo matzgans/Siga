@@ -314,6 +314,13 @@
                         <i class="bi bi-person-badge"></i><span>Pekerjaan</span>
                     </a>
                 </li>
+                
+                <li class="nav-item">
+                    <a class="nav-link {{ $active != 'bencana' ? 'collapsed' : 'active' }}"
+                        href="{{ route('bencana.index') }}">
+                        <i class="bi bi-person-badge"></i><span>Bencana</span>
+                    </a>
+                </li>
 
                 <li class="nav-item">
                     <a class="nav-link {{ $active != 'tahun' ? 'collapsed' : 'active' }}"
@@ -343,19 +350,6 @@
                     </a>
                 </li>
 
-                <span>Data Terpilah Bidang Kesehatan</span>
-                <li class="nav-item">
-                    <a class="nav-link {{ $active != 'pkematian' ? 'collapsed' : 'active' }}"
-                        href="{{ route('pkematian.index') }}">
-                        <i class="ri ri-user-4-line"></i><span>Penyebab Kematian ibu Hamil</span>
-                    </a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link {{ $active != 'hiv' ? 'collapsed' : 'active' }}"
-                        href="{{ route('hiv.index') }}">
-                        <i class="ri ri-user-4-line"></i><span>Penderita Hiv / Aids</span>
-                    </a>
-                </li>
             @elseif(auth()->user()->role == "pegawai")
                 <span>Data Terpilah Bidang Kesehatan</span>
                 <li class="nav-item">
@@ -389,6 +383,12 @@
                     <a class="nav-link {{ $active != 'ptssekolah' ? 'collapsed' : 'active' }}"
                         href="{{ route('ptssekolah.index') }}">
                         <i class="ri ri-user-4-line"></i><span>Data Putus Sekolah</span>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link {{ $active != 'jumguru' ? 'collapsed' : 'active' }}"
+                        href="{{ route('jumguru.index') }}">
+                        <i class="ri ri-user-4-line"></i><span>Data Jumlah Guru</span>
                     </a>
                 </li>
                 

@@ -50,10 +50,8 @@
                     <input type="text" class="form-control" class="form-control" name="sumber" id="sumber" value="{{$data->sumber}}" required>
                 </div>
                 <div class="col-md-12 col-12 mb-2">
-                    <div class="col-md-12 col-12 mb-2">
-                        <label for="tahun" class="form-label">Tahun</label>
-                        <input type="number" class="form-control" id="tahun" value="{{$data->tahun->nama_tahun}}" required readonly>
-                    </div>
+                    <label for="tahun" class="form-label">Tahun</label>
+                    <input type="number" class="form-control" id="tahun" value="{{$data->tahun->nama_tahun}}" required readonly>
                 </div>
                 <div class="col-md-12 col-12 mb-2">
                     <button type="submit" class="btn btn-success">Update</button>

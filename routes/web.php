@@ -1,7 +1,6 @@
 <?php
 
 use App\Http\Controllers\{
-    PendudukController,
     DesaController,
     AgamaController,
     OpdController,
@@ -18,6 +17,8 @@ use App\Http\Controllers\{
     PrespendudukController,
     PartsekolahController,
     PtssekolahController,
+    JumguruController, 
+    BencanaController,
 };
 use Illuminate\Support\Facades\Route;
 
@@ -66,6 +67,12 @@ Route::group(['middleware' => ['auth', 'HakAkses:admin']], function () {
     Route::get('/opd/index', [OpdController::class, 'index'])->name('opd.index');
     Route::post('/opd/store', [OpdController::class, 'store'])->name('opd.store');
     Route::get('/opd/destroy/{id}', [OpdController::class, 'destroy'])->name('opd.destroy');
+
+    Route::get('/bencana/index', [BencanaController::class, 'index'])->name('bencana.index');
+    Route::post('/bencana/store', [BencanaController::class, 'store'])->name('bencana.store');
+    Route::post('/bencana/update/{id}', [BencanaController::class, 'update'])->name('bencana.update');
+    Route::get('/bencana/edit/{id}', [BencanaController::class, 'edit'])->name('bencana.edit');
+    Route::get('/bencana/destroy/{id}', [BencanaController::class, 'destroy'])->name('bencana.destroy');
 
     // pekerjaan
     Route::get('/pekerjaan/index', [PekerjaanController::class, 'index'])->name('pekerjaan.index');
@@ -128,12 +135,19 @@ Route::group(['middleware' => ['auth', 'HakAkses:pegawai']], function () {
     Route::get('/partsekolah/edit/{id}', [PartsekolahController::class, 'edit'])->name('partsekolah.edit');
     Route::get('/partsekolah/destroy/{id}', [PartsekolahController::class, 'destroy'])->name('partsekolah.destroy');
     
-    // 1. Angka Putus Sekolah
+    // 2. Angka Putus Sekolah
     Route::get('/ptssekolah/index', [PtssekolahController::class, 'index'])->name('ptssekolah.index');
     Route::post('/ptssekolah/store', [PtssekolahController::class, 'store'])->name('ptssekolah.store');
     Route::post('/ptssekolah/update/{id}', [PtssekolahController::class, 'update'])->name('ptssekolah.update');
     Route::get('/ptssekolah/edit/{id}', [PtssekolahController::class, 'edit'])->name('ptssekolah.edit');
     Route::get('/ptssekolah/destroy/{id}', [PtssekolahController::class, 'destroy'])->name('ptssekolah.destroy');
+    
+    // 3. Jumlah Guru
+    Route::get('/jumguru/index', [JumguruController::class, 'index'])->name('jumguru.index');
+    Route::post('/jumguru/store', [JumguruController::class, 'store'])->name('jumguru.store');
+    Route::post('/jumguru/update/{id}', [JumguruController::class, 'update'])->name('jumguru.update');
+    Route::get('/jumguru/edit/{id}', [JumguruController::class, 'edit'])->name('jumguru.edit');
+    Route::get('/jumguru/destroy/{id}', [JumguruController::class, 'destroy'])->name('jumguru.destroy');
     
     // Ipg
     // 3. Jum Penduduk
