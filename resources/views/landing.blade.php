@@ -34,6 +34,9 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.2.0/css/bootstrap.min.css">
     <link rel="stylesheet" href="https://cdn.datatables.net/1.12.1/css/dataTables.bootstrap5.min.css">
 
+    
+    <script src="https://code.highcharts.com/highcharts.js"></script>
+
     <!-- =======================================================
   * Template Name: Arsha - v4.9.1
   * Template URL: https://bootstrapmade.com/arsha-free-bootstrap-html-template-corporate/
@@ -209,7 +212,7 @@
     <script src="https://code.jquery.com/jquery-3.5.1.js"></script>
     <script src="https://cdn.datatables.net/1.12.1/js/jquery.dataTables.min.js"></script>
     <script src="https://cdn.datatables.net/1.12.1/js/dataTables.bootstrap5.min.js"></script>
-    <script>
+    {{-- <script>
         var chartDom = document.getElementById('chart');
         var myChart = echarts.init(chartDom);
         var option;
@@ -267,7 +270,7 @@
         };
 
         option && myChart.setOption(option);
-    </script>
+    </script> --}}
 
     <script>
         $(document).ready(function() {

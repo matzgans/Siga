@@ -261,7 +261,8 @@
                                             <div class="col-lg-6 col-md-12 align-self-center">
                                                 <div class="card">
                                                     <div class="card-body">
-                                                        <div id="chart" style="height:250px;"></div>
+                                                        <div id="container" class="container"></div>
+                                                       
                                                     </div>
                                                 </div>
                                             </div>
@@ -270,7 +271,7 @@
                                                     <div class="col-12">
                                                         <div class="card">
                                                             <div class="card-body">
-                                                                <div id="chart" style="height: 150px"></div>
+                                                                <div id="piechart" class="piechart"></div>
                                                             </div>
                                                         </div>
                                                     </div>
@@ -782,4 +783,317 @@
         </section><!-- End Contact Section -->
 
     </main><!-- End #main -->
+    <script>
+        Highcharts.chart('container', {
+            chart: {
+                type: 'column'
+            },
+            title: {
+                text: 'Data Kematian Ibu Hamil'
+            },
+            subtitle: {
+                text: 'Source: Bps.id'
+            },
+            xAxis: {
+                categories: {!!json_encode($desa)!!},
+                crosshair: true
+            },
+            yAxis: {
+                min: 0,
+                title: {
+                    text: 'Jumlah (Orang)'
+                }
+            },
+            tooltip: {
+                headerFormat: '<span style="font-size:10px">{point.key}</span><table>',
+                // pointFormat: '<tr><td style="color:{series.color};padding:0">{series.name}: </td>' +
+                //     '<td style="padding:0"><b>{point.y:.1f} mm</b></td></tr>',
+                footerFormat: '</table>',
+                shared: true,
+                useHTML: true
+            },
+            plotOptions: {
+                column: {
+                    pointPadding: 0.2,
+                    borderWidth: 0
+                }
+            },
+            series: [{
+                name: 'Orang',
+                data: {!!json_encode($jum)!!}
+
+            }, 
+
+            ]
+        });
+
+        Highcharts.chart('piechart', {
+            chart: {
+                type: 'pie'
+            },
+            title: {
+                text: 'Penyebab Kematian Ibu Hamil'
+            },
+            subtitle: {
+                text: 'Click the slices to view versions. Source: <a href="http://statcounter.com" target="_blank">statcounter.com</a>'
+            },
+
+            accessibility: {
+                announceNewData: {
+                    enabled: true
+                },
+                point: {
+                    valueSuffix: '%'
+                }
+            },
+
+            plotOptions: {
+                series: {
+                    dataLabels: {
+                        enabled: true,
+                        // format: '{point.name}: {point.y:.1f}%'
+                    }
+                }
+            },
+
+            tooltip: {
+                headerFormat: '<span style="font-size:11px">{series.name}</span><br>',
+                // pointFormat: '<span style="color:{point.color}">{point.name}</span>: <b>{point.y:.2f}%</b> of total<br/>'
+            },
+
+            series: [
+                {
+                    name: "Jumlah",
+                    colorByPoint: true,
+                    data: [
+                        {
+                            name: "Partus Lama",
+                            y: {{$partus_lama}},
+                        },
+                        {
+                            name: "infeksi",
+                            y: {{$infeksi}},
+                        },
+                        {
+                            name: "hirpetensi",
+                            y: {{$hirpetensi}},
+                        },
+                        {
+                            name: "pendarahan",
+                            y: {{$pendarahan}},
+                        },
+                        {
+                            name: "penyebab lain",
+                            y: {{$penyelain}},
+                        }
+                    ]
+                }
+            ],
+            // drilldown: {
+            //     series: [
+            //         {
+            //             name: "Chrome",
+            //             id: "Chrome",
+            //             data: [
+            //                 [
+            //                     "v97.0",
+            //                     36.89
+            //                 ],
+            //                 [
+            //                     "v96.0",
+            //                     18.16
+            //                 ],
+            //                 [
+            //                     "v95.0",
+            //                     0.54
+            //                 ],
+            //                 [
+            //                     "v94.0",
+            //                     0.7
+            //                 ],
+            //                 [
+            //                     "v93.0",
+            //                     0.8
+            //                 ],
+            //                 [
+            //                     "v92.0",
+            //                     0.41
+            //                 ],
+            //                 [
+            //                     "v91.0",
+            //                     0.31
+            //                 ],
+            //                 [
+            //                     "v90.0",
+            //                     0.13
+            //                 ],
+            //                 [
+            //                     "v89.0",
+            //                     0.14
+            //                 ],
+            //                 [
+            //                     "v88.0",
+            //                     0.1
+            //                 ],
+            //                 [
+            //                     "v87.0",
+            //                     0.35
+            //                 ],
+            //                 [
+            //                     "v86.0",
+            //                     0.17
+            //                 ],
+            //                 [
+            //                     "v85.0",
+            //                     0.18
+            //                 ],
+            //                 [
+            //                     "v84.0",
+            //                     0.17
+            //                 ],
+            //                 [
+            //                     "v83.0",
+            //                     0.21
+            //                 ],
+            //                 [
+            //                     "v81.0",
+            //                     0.1
+            //                 ],
+            //                 [
+            //                     "v80.0",
+            //                     0.16
+            //                 ],
+            //                 [
+            //                     "v79.0",
+            //                     0.43
+            //                 ],
+            //                 [
+            //                     "v78.0",
+            //                     0.11
+            //                 ],
+            //                 [
+            //                     "v76.0",
+            //                     0.16
+            //                 ],
+            //                 [
+            //                     "v75.0",
+            //                     0.15
+            //                 ],
+            //                 [
+            //                     "v72.0",
+            //                     0.14
+            //                 ],
+            //                 [
+            //                     "v70.0",
+            //                     0.11
+            //                 ],
+            //                 [
+            //                     "v69.0",
+            //                     0.13
+            //                 ],
+            //                 [
+            //                     "v56.0",
+            //                     0.12
+            //                 ],
+            //                 [
+            //                     "v49.0",
+            //                     0.17
+            //                 ]
+            //             ]
+            //         },
+            //         {
+            //             name: "Safari",
+            //             id: "Safari",
+            //             data: [
+            //                 [
+            //                     "v15.3",
+            //                     0.1
+            //                 ],
+            //                 [
+            //                     "v15.2",
+            //                     2.01
+            //                 ],
+            //                 [
+            //                     "v15.1",
+            //                     2.29
+            //                 ],
+            //                 [
+            //                     "v15.0",
+            //                     0.49
+            //                 ],
+            //                 [
+            //                     "v14.1",
+            //                     2.48
+            //                 ],
+            //                 [
+            //                     "v14.0",
+            //                     0.64
+            //                 ],
+            //                 [
+            //                     "v13.1",
+            //                     1.17
+            //                 ],
+            //                 [
+            //                     "v13.0",
+            //                     0.13
+            //                 ],
+            //                 [
+            //                     "v12.1",
+            //                     0.16
+            //                 ]
+            //             ]
+            //         },
+            //         {
+            //             name: "Edge",
+            //             id: "Edge",
+            //             data: [
+            //                 [
+            //                     "v97",
+            //                     6.62
+            //                 ],
+            //                 [
+            //                     "v96",
+            //                     2.55
+            //                 ],
+            //                 [
+            //                     "v95",
+            //                     0.15
+            //                 ]
+            //             ]
+            //         },
+            //         {
+            //             name: "Firefox",
+            //             id: "Firefox",
+            //             data: [
+            //                 [
+            //                     "v96.0",
+            //                     4.17
+            //                 ],
+            //                 [
+            //                     "v95.0",
+            //                     3.33
+            //                 ],
+            //                 [
+            //                     "v94.0",
+            //                     0.11
+            //                 ],
+            //                 [
+            //                     "v91.0",
+            //                     0.23
+            //                 ],
+            //                 [
+            //                     "v78.0",
+            //                     0.16
+            //                 ],
+            //                 [
+            //                     "v52.0",
+            //                     0.15
+            //                 ]
+            //             ]
+            //         }
+            //     ]
+            // }
+        });
+    </script>
 @endsection
+
