@@ -78,24 +78,18 @@
                             <li><a href="{{ route('bhukum') }}">Bidang Hukum Dan Sosial Budaya</a></li>
                         </ul>
                     </li>
-                    <li class="dropdown"><a href="#"><span>Kekerasan</span> <i class="bi bi-chevron-down"></i></a>
-                        <ul>
-                            <li class="dropdown"><a href="#">Kekerasan Terhadap <i
-                                        class="bi bi-chevron-down"></i></a>
-                                <ul>
-                                    <li><a href="#">Perempuan</a></li>
-                                    <li><a href="#">Anak</a></li>
-                                </ul>
-                            </li>
-                            <li><a href="#">Data Lokasi Kekerasan</a></li>
-                            <li><a href="#">Data Status Kekerasan</a></li>
-                        </ul>
-                    </li>
                     <li class="dropdown w-50"><a href="#"><span>SDA Lingkukan</span> <i
                                 class="bi bi-chevron-down"></i></a>
                         <ul>
                             <li><a href="#">Data Bencana Lingkungan Terhadap Gender</a></li>
                             <li><a href="#">Data Bencana Lingkungan Terhadap Anak</a></li>
+                        </ul>
+                    </li>
+                    <li class="dropdown"><a href="#"><span>Kekerasan</span> <i class="bi bi-chevron-down"></i></a>
+                        <ul>
+                            <li><a href="#">Kekerasan Terhadap Perempuan dan Anak</a></li>
+                            <li><a href="#">Data Lokasi Kekerasan</a></li>
+                            <li><a href="#">Data Status Kekerasan</a></li>
                         </ul>
                     </li>
                 </ul>

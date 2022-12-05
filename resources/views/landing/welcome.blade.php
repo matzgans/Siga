@@ -223,9 +223,22 @@
 
                 <div class="section-title">
                     <h2>Index Pembangunan Gender</h2>
-                    <p>Magnam dolores commodi suscipit. Necessitatibus eius consequatur ex aliquid fuga eum quidem. Sit
-                        sint consectetur velit. Quisquam quos quisquam cupiditate. Et nemo qui impedit suscipit alias
-                        ea. Quia fugiat sit in iste officiis commodi quidem hic quas.</p>
+                    <p>Istilah Gender digunakan untuk menjelaskan perbedaan peran perempuan dan laki-laki yang bersifat
+                        bawaan sebagai ciptaan Tuhan. Gender adalah pembedaan peran, kedudukan, tanggung jawab, dan
+                        pembagian kerja antara laki-laki dan perempuan yang ditetapkan oleh masyarakat berdasarkan sifat
+                        perempuan dan laki-laki yang dianggap pantas menurut norma, adat istiadat, kepercayaan atau
+                        kebiasaan masyarakat.
+
+                        Gender tidak sama dengan kodrat. Kodrat adalah sesuatu yang ditetapkan oleh Tuhan YME, sehingga
+                        manusia tidak mampu untuk merubah atau menolak. Sementara itu, kodrat bersifat universal, misalnya
+                        melahirkan, menstruasi dan menyusui adalah kodrat bagi perempuan, sementara mempunyai sperma adalah
+                        kodrat bagi laki-laki.
+
+                        Ketidakadilan gender merupakan kondisi tidak adil akibat dari sistem dan struktur sosial, sehingga
+                        perempuan maupun laki-laki menjadi korban dari pada sistem tersebut. Laki-laki dan perempuan berbeda
+                        hanya karena kodrat antara laki-laki dan perempuan berbeda. Keadilan gender akan dapat terjadi jika
+                        tercipta suatu kondisi di mana porsi dan siklus sosial perempuan dan laki-laki setara, serasi,
+                        seimbang dan harmonis.</p>
                 </div>
 
                 <div class="row">
@@ -234,62 +247,175 @@
                             <ul class="nav nav-tabs" id="myTab" role="tablist">
                                 <li class="nav-item" role="presentation">
                                     <button class="nav-link active" id="home-tab" data-bs-toggle="tab"
-                                        data-bs-target="#home" type="button" role="tab" aria-controls="home"
-                                        aria-selected="true">Presentase Penduduk</button>
+                                        data-bs-target="#ipg" type="button" role="tab" aria-controls="home"
+                                        aria-selected="true">IPG</button>
                                 </li>
                                 <li class="nav-item" role="presentation">
-                                    <button class="nav-link" id="profile-tab" data-bs-toggle="tab" data-bs-target="#profile"
-                                        type="button" role="tab" aria-controls="profile" aria-selected="false">Jenis
-                                        Kelamin</button>
-                                </li>
-                                <li class="nav-item" role="presentation">
-                                    <button class="nav-link" id="contact-tab" data-bs-toggle="tab" data-bs-target="#contact"
-                                        type="button" role="tab" aria-controls="contact"
-                                        aria-selected="false">Kelompok Umur</button>
+                                    <button class="nav-link" id="profile-tab" data-bs-toggle="tab"
+                                        data-bs-target="#dataTerpilah" type="button" role="tab" aria-controls="profile"
+                                        aria-selected="false">Data Terpilah</button>
                                 </li>
                                 <li class="nav-item" role="presentation">
                                     <button class="nav-link" id="contact-tab" data-bs-toggle="tab"
-                                        data-bs-target="#contact" type="button" role="tab" aria-controls="contact"
-                                        aria-selected="false">Pendidikan Terakhir</button>
+                                        data-bs-target="#kekerasan" type="button" role="tab" aria-controls="contact"
+                                        aria-selected="false">Kekerasan</button>
+                                </li>
+                                <li class="nav-item" role="presentation">
+                                    <button class="nav-link" id="contact-tab" data-bs-toggle="tab"
+                                        data-bs-target="#sdaLingkungan" type="button" role="tab"
+                                        aria-controls="contact" aria-selected="false">SDA Lingkungan</button>
                                 </li>
                             </ul>
                             <div class="card-body">
                                 <div class="tab-content" id="myTabContent">
-                                    <div class="tab-pane fade show active" id="home" role="tabpanel"
+                                    <div class="tab-pane fade show active" id="ipg" role="tabpanel"
                                         aria-labelledby="home-tab">
-                                        <div class="row g-2">
-                                            <div class="col-lg-6 col-md-12 align-self-center">
-                                                <div class="card">
-                                                    <div class="card-body">
-                                                        <div id="container" class="container"></div>
-                                                       
-                                                    </div>
-                                                </div>
+                                        <nav>
+                                            <div class="nav nav-tabs" id="nav-tab" role="tablist">
+                                                <button class="nav-link active" id="nav-home-tab" data-bs-toggle="tab"
+                                                    data-bs-target="#presentasePenduduk" type="button" role="tab"
+                                                    aria-controls="nav-home" aria-selected="true">Presentase
+                                                    Penduduk</button>
+                                                <button class="nav-link" id="nav-profile-tab" data-bs-toggle="tab"
+                                                    data-bs-target="#jenisKelamin" type="button" role="tab"
+                                                    aria-controls="nav-profile" aria-selected="false">Jenis
+                                                    Kelamin</button>
+                                                <button class="nav-link" id="nav-contact-tab" data-bs-toggle="tab"
+                                                    data-bs-target="#kelompokUmur" type="button" role="tab"
+                                                    aria-controls="nav-contact" aria-selected="false">Kelompok
+                                                    Umur</button>
+                                                <button class="nav-link" id="nav-contact-tab" data-bs-toggle="tab"
+                                                    data-bs-target="#pendidikanTerakhir" type="button" role="tab"
+                                                    aria-controls="nav-contact" aria-selected="false">Pendidikan
+                                                    Terakhir</button>
                                             </div>
-                                            <div class="col-lg-6 col-md-12">
-                                                <div class="row g-2">
-                                                    <div class="col-12">
-                                                        <div class="card">
-                                                            <div class="card-body">
-                                                                <div id="piechart" class="piechart"></div>
-                                                            </div>
-                                                        </div>
+                                        </nav>
+                                        <div class="tab-content" id="nav-tabContent">
+                                            <div class="tab-pane fade show active" id="presentasePenduduk"
+                                                role="tabpanel" aria-labelledby="nav-home-tab">
+                                                Presentase Penduduk
+                                            </div>
+                                            <div class="tab-pane fade" id="jenisKelamin" role="tabpanel"
+                                                aria-labelledby="nav-profile-tab">...</div>
+                                            <div class="tab-pane fade" id="kelompokUmur" role="tabpanel"
+                                                aria-labelledby="nav-contact-tab">...</div>
+                                            <div class="tab-pane fade" id="pendidikanTerakhir" role="tabpanel"
+                                                aria-labelledby="nav-contact-tab">...</div>
+                                        </div>
+                                    </div>
+                                    <div class="tab-pane fade" id="dataTerpilah" role="tabpanel"
+                                        aria-labelledby="profile-tab">
+                                        <nav>
+                                            <div class="nav nav-tabs" id="nav-tab" role="tablist">
+                                                <button class="nav-link active" id="nav-home-tab" data-bs-toggle="tab"
+                                                    data-bs-target="#bidangKesehatan" type="button" role="tab"
+                                                    aria-controls="nav-home" aria-selected="true">Bidang
+                                                    Kesehatan</button>
+                                                <button class="nav-link" id="nav-profile-tab" data-bs-toggle="tab"
+                                                    data-bs-target="#bidangPendidikan" type="button" role="tab"
+                                                    aria-controls="nav-profile" aria-selected="false">Bidang
+                                                    Pendidikan</button>
+                                                <button class="nav-link" id="nav-contact-tab" data-bs-toggle="tab"
+                                                    data-bs-target="#bidangSDALingkungan" type="button" role="tab"
+                                                    aria-controls="nav-contact" aria-selected="false">Bidang SDA
+                                                    Lingkungan</button>
+                                                <button class="nav-link" id="nav-contact-tab" data-bs-toggle="tab"
+                                                    data-bs-target="#bidangEkonomi" type="button" role="tab"
+                                                    aria-controls="nav-contact" aria-selected="false">Bidang
+                                                    Ekonomi</button>
+                                                <button class="nav-link" id="nav-contact-tab" data-bs-toggle="tab"
+                                                    data-bs-target="#bidangPolitik" type="button" role="tab"
+                                                    aria-controls="nav-contact" aria-selected="false">Bidang
+                                                    Politik</button>
+                                                <button class="nav-link" id="nav-contact-tab" data-bs-toggle="tab"
+                                                    data-bs-target="#bidangHukum" type="button" role="tab"
+                                                    aria-controls="nav-contact" aria-selected="false">Bidang
+                                                    Hukum</button>
+                                            </div>
+                                        </nav>
+                                        <div class="tab-content" id="nav-tabContent">
+                                            <div class="tab-pane fade show active" id="bidangKesehatan" role="tabpanel"
+                                                aria-labelledby="nav-home-tab">
+                                                <h3 class="text-center mt-3">Data Kematian Ibu Hamil</h3>
+                                                <hr class="mx-5">
+                                                <div class="row">
+                                                    <div class="col">
+                                                        <div id="container"></div>
                                                     </div>
-                                                    <div class="col-12">
-                                                        <div class="card">
-                                                            <div class="card-body">
-                                                                <div id="chart" style="height: 150px"></div>
-                                                            </div>
-                                                        </div>
+                                                    <div class="col">
+                                                        <div id="piechart"></div>
                                                     </div>
                                                 </div>
+                                                <div class="row mx-5 mb-3">
+                                                    <div class="col">
+                                                        <div id="logaritmaAxis"></div>
+                                                    </div>
+                                                </div>
+                                                <h3 class="text-center mt-3">Data Kematian Bayi</h3>
+                                                <hr class="mx-5">
+                                            </div>
+                                            <div class="tab-pane fade" id="bidangPendidikan" role="tabpanel"
+                                                aria-labelledby="nav-profile-tab">Bidang Pendidikan</div>
+                                            <div class="tab-pane fade" id="bidangSDALingkungan" role="tabpanel"
+                                                aria-labelledby="nav-contact-tab">Bidang SDA Lingkungan</div>
+                                            <div class="tab-pane fade" id="bidangEkonomi" role="tabpanel"
+                                                aria-labelledby="nav-contact-tab">Bidang Ekonomi</div>
+                                            <div class="tab-pane fade" id="bidangPolitik" role="tabpanel"
+                                                aria-labelledby="nav-contact-tab">Bidang Politik</div>
+                                            <div class="tab-pane fade" id="bidangHukum" role="tabpanel"
+                                                aria-labelledby="nav-contact-tab">Bidang Hukum</div>
+                                        </div>
+                                    </div>
+                                    <div class="tab-pane fade" id="kekerasan" role="tabpanel"
+                                        aria-labelledby="contact-tab">
+                                        <nav>
+                                            <div class="nav nav-tabs" id="nav-tab" role="tablist">
+                                                <button class="nav-link active" id="nav-home-tab" data-bs-toggle="tab"
+                                                    data-bs-target="#kekerasanTerhadap" type="button" role="tab"
+                                                    aria-controls="nav-home" aria-selected="true">Kekerasan
+                                                    Terhadap</button>
+                                                <button class="nav-link" id="nav-profile-tab" data-bs-toggle="tab"
+                                                    data-bs-target="#lokasiKekerasan" type="button" role="tab"
+                                                    aria-controls="nav-profile" aria-selected="false">Lokasi
+                                                    Kekerasan</button>
+                                                <button class="nav-link" id="nav-contact-tab" data-bs-toggle="tab"
+                                                    data-bs-target="#statusKekerasan" type="button" role="tab"
+                                                    aria-controls="nav-contact" aria-selected="false">Status
+                                                    Kekerasan</button>
+                                            </div>
+                                        </nav>
+                                        <div class="tab-content" id="nav-tabContent">
+                                            <div class="tab-pane fade show active" id="kekerasanTerhadap" role="tabpanel"
+                                                aria-labelledby="nav-home-tab">Kekerasan Terhadap</div>
+                                            <div class="tab-pane fade" id="lokasiKekerasan" role="tabpanel"
+                                                aria-labelledby="nav-profile-tab">Lokasi Kekerasan</div>
+                                            <div class="tab-pane fade" id="statusKekerasan" role="tabpanel"
+                                                aria-labelledby="nav-contact-tab">Status Kekerasan</div>
+                                        </div>
+                                    </div>
+                                    <div class="tab-pane fade" id="sdaLingkungan" role="tabpanel"
+                                        aria-labelledby="contact-tab">
+                                        <nav>
+                                            <div class="nav nav-tabs" id="nav-tab" role="tablist">
+                                                <button class="nav-link active" id="nav-home-tab" data-bs-toggle="tab"
+                                                    data-bs-target="#dbltGender" type="button" role="tab"
+                                                    aria-controls="nav-home" aria-selected="true">Data Bencana Lingkungan
+                                                    Terhadap Gender</button>
+                                                <button class="nav-link" id="nav-profile-tab" data-bs-toggle="tab"
+                                                    data-bs-target="#dbltAnak" type="button" role="tab"
+                                                    aria-controls="nav-profile" aria-selected="false">Data Bencana
+                                                    Lingkungan Terhadap Anak</button>
+                                            </div>
+                                        </nav>
+                                        <div class="tab-content" id="nav-tabContent">
+                                            <div class="tab-pane fade show active" id="dbltGender" role="tabpanel"
+                                                aria-labelledby="nav-home-tab">Data Bencana Lingkungan Terhadap Gender
+                                            </div>
+                                            <div class="tab-pane fade" id="dbltAnak" role="tabpanel"
+                                                aria-labelledby="nav-profile-tab">Data Bencana Lingkungan Terhadap Anak
                                             </div>
                                         </div>
                                     </div>
-                                    <div class="tab-pane fade" id="profile" role="tabpanel"
-                                        aria-labelledby="profile-tab">...</div>
-                                    <div class="tab-pane fade" id="contact" role="tabpanel"
-                                        aria-labelledby="contact-tab">...</div>
                                 </div>
                             </div>
                         </div>
@@ -299,167 +425,6 @@
 
             </div>
         </section><!-- End Services Section -->
-
-        <!-- ======= Cta Section ======= -->
-        {{-- <section id="cta" class="cta">
-            <div class="container" data-aos="zoom-in">
-
-                <div class="row">
-                    <div class="col-lg-9 text-center text-lg-start">
-                        <h3>Call To Action</h3>
-                        <p> Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla
-                            pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt
-                            mollit anim id est laborum.</p>
-                    </div>
-                    <div class="col-lg-3 cta-btn-container text-center">
-                        <a class="cta-btn align-middle" href="#">Call To Action</a>
-                    </div>
-                </div>
-
-            </div>
-        </section><!-- End Cta Section -->
-
-        <!-- ======= Portfolio Section ======= -->
-        <section id="portfolio" class="portfolio">
-            <div class="container" data-aos="fade-up">
-
-                <div class="section-title">
-                    <h2>Portfolio</h2>
-                    <p>Magnam dolores commodi suscipit. Necessitatibus eius consequatur ex aliquid fuga eum quidem. Sit
-                        sint consectetur velit. Quisquam quos quisquam cupiditate. Et nemo qui impedit suscipit alias
-                        ea. Quia fugiat sit in iste officiis commodi quidem hic quas.</p>
-                </div>
-
-                <ul id="portfolio-flters" class="d-flex justify-content-center" data-aos="fade-up" data-aos-delay="100">
-                    <li data-filter="*" class="filter-active">All</li>
-                    <li data-filter=".filter-app">App</li>
-                    <li data-filter=".filter-card">Card</li>
-                    <li data-filter=".filter-web">Web</li>
-                </ul>
-
-                <div class="row portfolio-container" data-aos="fade-up" data-aos-delay="200">
-
-                    <div class="col-lg-4 col-md-6 portfolio-item filter-app">
-                        <div class="portfolio-img"><img src="assets/img/portfolio/portfolio-1.jpg" class="img-fluid"
-                                alt=""></div>
-                        <div class="portfolio-info">
-                            <h4>App 1</h4>
-                            <p>App</p>
-                            <a href="assets/img/portfolio/portfolio-1.jpg" data-gallery="portfolioGallery"
-                                class="portfolio-lightbox preview-link" title="App 1"><i class="bx bx-plus"></i></a>
-                            <a href="portfolio-details.html" class="details-link" title="More Details"><i
-                                    class="bx bx-link"></i></a>
-                        </div>
-                    </div>
-
-                    <div class="col-lg-4 col-md-6 portfolio-item filter-web">
-                        <div class="portfolio-img"><img src="assets/img/portfolio/portfolio-2.jpg" class="img-fluid"
-                                alt=""></div>
-                        <div class="portfolio-info">
-                            <h4>Web 3</h4>
-                            <p>Web</p>
-                            <a href="assets/img/portfolio/portfolio-2.jpg" data-gallery="portfolioGallery"
-                                class="portfolio-lightbox preview-link" title="Web 3"><i class="bx bx-plus"></i></a>
-                            <a href="portfolio-details.html" class="details-link" title="More Details"><i
-                                    class="bx bx-link"></i></a>
-                        </div>
-                    </div>
-
-                    <div class="col-lg-4 col-md-6 portfolio-item filter-app">
-                        <div class="portfolio-img"><img src="assets/img/portfolio/portfolio-3.jpg" class="img-fluid"
-                                alt=""></div>
-                        <div class="portfolio-info">
-                            <h4>App 2</h4>
-                            <p>App</p>
-                            <a href="assets/img/portfolio/portfolio-3.jpg" data-gallery="portfolioGallery"
-                                class="portfolio-lightbox preview-link" title="App 2"><i class="bx bx-plus"></i></a>
-                            <a href="portfolio-details.html" class="details-link" title="More Details"><i
-                                    class="bx bx-link"></i></a>
-                        </div>
-                    </div>
-
-                    <div class="col-lg-4 col-md-6 portfolio-item filter-card">
-                        <div class="portfolio-img"><img src="assets/img/portfolio/portfolio-4.jpg" class="img-fluid"
-                                alt=""></div>
-                        <div class="portfolio-info">
-                            <h4>Card 2</h4>
-                            <p>Card</p>
-                            <a href="assets/img/portfolio/portfolio-4.jpg" data-gallery="portfolioGallery"
-                                class="portfolio-lightbox preview-link" title="Card 2"><i class="bx bx-plus"></i></a>
-                            <a href="portfolio-details.html" class="details-link" title="More Details"><i
-                                    class="bx bx-link"></i></a>
-                        </div>
-                    </div>
-
-                    <div class="col-lg-4 col-md-6 portfolio-item filter-web">
-                        <div class="portfolio-img"><img src="assets/img/portfolio/portfolio-5.jpg" class="img-fluid"
-                                alt=""></div>
-                        <div class="portfolio-info">
-                            <h4>Web 2</h4>
-                            <p>Web</p>
-                            <a href="assets/img/portfolio/portfolio-5.jpg" data-gallery="portfolioGallery"
-                                class="portfolio-lightbox preview-link" title="Web 2"><i class="bx bx-plus"></i></a>
-                            <a href="portfolio-details.html" class="details-link" title="More Details"><i
-                                    class="bx bx-link"></i></a>
-                        </div>
-                    </div>
-
-                    <div class="col-lg-4 col-md-6 portfolio-item filter-app">
-                        <div class="portfolio-img"><img src="assets/img/portfolio/portfolio-6.jpg" class="img-fluid"
-                                alt=""></div>
-                        <div class="portfolio-info">
-                            <h4>App 3</h4>
-                            <p>App</p>
-                            <a href="assets/img/portfolio/portfolio-6.jpg" data-gallery="portfolioGallery"
-                                class="portfolio-lightbox preview-link" title="App 3"><i class="bx bx-plus"></i></a>
-                            <a href="portfolio-details.html" class="details-link" title="More Details"><i
-                                    class="bx bx-link"></i></a>
-                        </div>
-                    </div>
-
-                    <div class="col-lg-4 col-md-6 portfolio-item filter-card">
-                        <div class="portfolio-img"><img src="assets/img/portfolio/portfolio-7.jpg" class="img-fluid"
-                                alt=""></div>
-                        <div class="portfolio-info">
-                            <h4>Card 1</h4>
-                            <p>Card</p>
-                            <a href="assets/img/portfolio/portfolio-7.jpg" data-gallery="portfolioGallery"
-                                class="portfolio-lightbox preview-link" title="Card 1"><i class="bx bx-plus"></i></a>
-                            <a href="portfolio-details.html" class="details-link" title="More Details"><i
-                                    class="bx bx-link"></i></a>
-                        </div>
-                    </div>
-
-                    <div class="col-lg-4 col-md-6 portfolio-item filter-card">
-                        <div class="portfolio-img"><img src="assets/img/portfolio/portfolio-8.jpg" class="img-fluid"
-                                alt=""></div>
-                        <div class="portfolio-info">
-                            <h4>Card 3</h4>
-                            <p>Card</p>
-                            <a href="assets/img/portfolio/portfolio-8.jpg" data-gallery="portfolioGallery"
-                                class="portfolio-lightbox preview-link" title="Card 3"><i class="bx bx-plus"></i></a>
-                            <a href="portfolio-details.html" class="details-link" title="More Details"><i
-                                    class="bx bx-link"></i></a>
-                        </div>
-                    </div>
-
-                    <div class="col-lg-4 col-md-6 portfolio-item filter-web">
-                        <div class="portfolio-img"><img src="assets/img/portfolio/portfolio-9.jpg" class="img-fluid"
-                                alt=""></div>
-                        <div class="portfolio-info">
-                            <h4>Web 3</h4>
-                            <p>Web</p>
-                            <a href="assets/img/portfolio/portfolio-9.jpg" data-gallery="portfolioGallery"
-                                class="portfolio-lightbox preview-link" title="Web 3"><i class="bx bx-plus"></i></a>
-                            <a href="portfolio-details.html" class="details-link" title="More Details"><i
-                                    class="bx bx-link"></i></a>
-                        </div>
-                    </div>
-
-                </div>
-
-            </div>
-        </section><!-- End Portfolio Section --> --}}
 
         <!-- ======= Team Section ======= -->
         <section id="team" class="team section-bg">
@@ -551,163 +516,6 @@
             </div>
         </section><!-- End Team Section -->
 
-        <!-- ======= Pricing Section ======= -->
-        {{-- <section id="pricing" class="pricing">
-            <div class="container" data-aos="fade-up">
-
-                <div class="section-title">
-                    <h2>Pricing</h2>
-                    <p>Magnam dolores commodi suscipit. Necessitatibus eius consequatur ex aliquid fuga eum quidem. Sit
-                        sint consectetur velit. Quisquam quos quisquam cupiditate. Et nemo qui impedit suscipit alias
-                        ea. Quia fugiat sit in iste officiis commodi quidem hic quas.</p>
-                </div>
-
-                <div class="row">
-
-                    <div class="col-lg-4" data-aos="fade-up" data-aos-delay="100">
-                        <div class="box">
-                            <h3>Free Plan</h3>
-                            <h4><sup>$</sup>0<span>per month</span></h4>
-                            <ul>
-                                <li><i class="bx bx-check"></i> Quam adipiscing vitae proin</li>
-                                <li><i class="bx bx-check"></i> Nec feugiat nisl pretium</li>
-                                <li><i class="bx bx-check"></i> Nulla at volutpat diam uteera</li>
-                                <li class="na"><i class="bx bx-x"></i> <span>Pharetra massa massa ultricies</span>
-                                </li>
-                                <li class="na"><i class="bx bx-x"></i> <span>Massa ultricies mi quis
-                                        hendrerit</span></li>
-                            </ul>
-                            <a href="#" class="buy-btn">Get Started</a>
-                        </div>
-                    </div>
-
-                    <div class="col-lg-4 mt-4 mt-lg-0" data-aos="fade-up" data-aos-delay="200">
-                        <div class="box featured">
-                            <h3>Business Plan</h3>
-                            <h4><sup>$</sup>29<span>per month</span></h4>
-                            <ul>
-                                <li><i class="bx bx-check"></i> Quam adipiscing vitae proin</li>
-                                <li><i class="bx bx-check"></i> Nec feugiat nisl pretium</li>
-                                <li><i class="bx bx-check"></i> Nulla at volutpat diam uteera</li>
-                                <li><i class="bx bx-check"></i> Pharetra massa massa ultricies</li>
-                                <li><i class="bx bx-check"></i> Massa ultricies mi quis hendrerit</li>
-                            </ul>
-                            <a href="#" class="buy-btn">Get Started</a>
-                        </div>
-                    </div>
-
-                    <div class="col-lg-4 mt-4 mt-lg-0" data-aos="fade-up" data-aos-delay="300">
-                        <div class="box">
-                            <h3>Developer Plan</h3>
-                            <h4><sup>$</sup>49<span>per month</span></h4>
-                            <ul>
-                                <li><i class="bx bx-check"></i> Quam adipiscing vitae proin</li>
-                                <li><i class="bx bx-check"></i> Nec feugiat nisl pretium</li>
-                                <li><i class="bx bx-check"></i> Nulla at volutpat diam uteera</li>
-                                <li><i class="bx bx-check"></i> Pharetra massa massa ultricies</li>
-                                <li><i class="bx bx-check"></i> Massa ultricies mi quis hendrerit</li>
-                            </ul>
-                            <a href="#" class="buy-btn">Get Started</a>
-                        </div>
-                    </div>
-
-                </div>
-
-            </div>
-        </section><!-- End Pricing Section --> --}}
-
-        <!-- ======= Frequently Asked Questions Section ======= -->
-        {{-- <section id="faq" class="faq section-bg">
-            <div class="container" data-aos="fade-up">
-
-                <div class="section-title">
-                    <h2>Frequently Asked Questions</h2>
-                    <p>Magnam dolores commodi suscipit. Necessitatibus eius consequatur ex aliquid fuga eum quidem. Sit
-                        sint consectetur velit. Quisquam quos quisquam cupiditate. Et nemo qui impedit suscipit alias
-                        ea. Quia fugiat sit in iste officiis commodi quidem hic quas.</p>
-                </div>
-
-                <div class="faq-list">
-                    <ul>
-                        <li data-aos="fade-up" data-aos-delay="100">
-                            <i class="bx bx-help-circle icon-help"></i> <a data-bs-toggle="collapse" class="collapse"
-                                data-bs-target="#faq-list-1">Non consectetur a erat nam at lectus urna duis? <i
-                                    class="bx bx-chevron-down icon-show"></i><i
-                                    class="bx bx-chevron-up icon-close"></i></a>
-                            <div id="faq-list-1" class="collapse show" data-bs-parent=".faq-list">
-                                <p>
-                                    Feugiat pretium nibh ipsum consequat. Tempus iaculis urna id volutpat lacus laoreet
-                                    non curabitur gravida. Venenatis lectus magna fringilla urna porttitor rhoncus dolor
-                                    purus non.
-                                </p>
-                            </div>
-                        </li>
-
-                        <li data-aos="fade-up" data-aos-delay="200">
-                            <i class="bx bx-help-circle icon-help"></i> <a data-bs-toggle="collapse"
-                                data-bs-target="#faq-list-2" class="collapsed">Feugiat scelerisque varius morbi enim
-                                nunc? <i class="bx bx-chevron-down icon-show"></i><i
-                                    class="bx bx-chevron-up icon-close"></i></a>
-                            <div id="faq-list-2" class="collapse" data-bs-parent=".faq-list">
-                                <p>
-                                    Dolor sit amet consectetur adipiscing elit pellentesque habitant morbi. Id interdum
-                                    velit laoreet id donec ultrices. Fringilla phasellus faucibus scelerisque eleifend
-                                    donec pretium. Est pellentesque elit ullamcorper dignissim. Mauris ultrices eros in
-                                    cursus turpis massa tincidunt dui.
-                                </p>
-                            </div>
-                        </li>
-
-                        <li data-aos="fade-up" data-aos-delay="300">
-                            <i class="bx bx-help-circle icon-help"></i> <a data-bs-toggle="collapse"
-                                data-bs-target="#faq-list-3" class="collapsed">Dolor sit amet consectetur adipiscing
-                                elit? <i class="bx bx-chevron-down icon-show"></i><i
-                                    class="bx bx-chevron-up icon-close"></i></a>
-                            <div id="faq-list-3" class="collapse" data-bs-parent=".faq-list">
-                                <p>
-                                    Eleifend mi in nulla posuere sollicitudin aliquam ultrices sagittis orci. Faucibus
-                                    pulvinar elementum integer enim. Sem nulla pharetra diam sit amet nisl suscipit.
-                                    Rutrum tellus pellentesque eu tincidunt. Lectus urna duis convallis convallis
-                                    tellus. Urna molestie at elementum eu facilisis sed odio morbi quis
-                                </p>
-                            </div>
-                        </li>
-
-                        <li data-aos="fade-up" data-aos-delay="400">
-                            <i class="bx bx-help-circle icon-help"></i> <a data-bs-toggle="collapse"
-                                data-bs-target="#faq-list-4" class="collapsed">Tempus quam pellentesque nec nam
-                                aliquam sem et tortor consequat? <i class="bx bx-chevron-down icon-show"></i><i
-                                    class="bx bx-chevron-up icon-close"></i></a>
-                            <div id="faq-list-4" class="collapse" data-bs-parent=".faq-list">
-                                <p>
-                                    Molestie a iaculis at erat pellentesque adipiscing commodo. Dignissim suspendisse in
-                                    est ante in. Nunc vel risus commodo viverra maecenas accumsan. Sit amet nisl
-                                    suscipit adipiscing bibendum est. Purus gravida quis blandit turpis cursus in.
-                                </p>
-                            </div>
-                        </li>
-
-                        <li data-aos="fade-up" data-aos-delay="500">
-                            <i class="bx bx-help-circle icon-help"></i> <a data-bs-toggle="collapse"
-                                data-bs-target="#faq-list-5" class="collapsed">Tortor vitae purus faucibus ornare.
-                                Varius vel pharetra vel turpis nunc eget lorem dolor? <i
-                                    class="bx bx-chevron-down icon-show"></i><i
-                                    class="bx bx-chevron-up icon-close"></i></a>
-                            <div id="faq-list-5" class="collapse" data-bs-parent=".faq-list">
-                                <p>
-                                    Laoreet sit amet cursus sit amet dictum sit amet justo. Mauris vitae ultricies leo
-                                    integer malesuada nunc vel. Tincidunt eget nullam non nisi est sit amet. Turpis nunc
-                                    eget lorem dolor sed. Ut venenatis tellus in metus vulputate eu scelerisque.
-                                </p>
-                            </div>
-                        </li>
-
-                    </ul>
-                </div>
-
-            </div>
-        </section><!-- End Frequently Asked Questions Section --> --}}
-
         <!-- ======= Contact Section ======= -->
         <section id="contact" class="contact">
             <div class="container" data-aos="fade-up">
@@ -795,7 +603,7 @@
                 text: 'Source: Bps.id'
             },
             xAxis: {
-                categories: {!!json_encode($desa)!!},
+                categories: {!! json_encode($desa) !!},
                 crosshair: true
             },
             yAxis: {
@@ -819,10 +627,10 @@
                 }
             },
             series: [{
-                name: 'Orang',
-                data: {!!json_encode($jum)!!}
+                    name: 'Orang',
+                    data: {!! json_encode($jum) !!}
 
-            }, 
+                },
 
             ]
         });
@@ -833,9 +641,6 @@
             },
             title: {
                 text: 'Penyebab Kematian Ibu Hamil'
-            },
-            subtitle: {
-                text: 'Click the slices to view versions. Source: <a href="http://statcounter.com" target="_blank">statcounter.com</a>'
             },
 
             accessibility: {
@@ -857,38 +662,35 @@
             },
 
             tooltip: {
-                headerFormat: '<span style="font-size:11px">{series.name}</span><br>',
+                headerFormat: '<span style="font-size:11px">{series.data.name}</span><br>',
                 // pointFormat: '<span style="color:{point.color}">{point.name}</span>: <b>{point.y:.2f}%</b> of total<br/>'
             },
 
-            series: [
-                {
-                    name: "Jumlah",
-                    colorByPoint: true,
-                    data: [
-                        {
-                            name: "Partus Lama",
-                            y: {{$partus_lama}},
-                        },
-                        {
-                            name: "infeksi",
-                            y: {{$infeksi}},
-                        },
-                        {
-                            name: "hirpetensi",
-                            y: {{$hirpetensi}},
-                        },
-                        {
-                            name: "pendarahan",
-                            y: {{$pendarahan}},
-                        },
-                        {
-                            name: "penyebab lain",
-                            y: {{$penyelain}},
-                        }
-                    ]
-                }
-            ],
+            series: [{
+                name: 'Jumlah',
+                colorByPoint: true,
+                data: [{
+                        name: "Partus Lama",
+                        y: {{ $partus_lama }},
+                    },
+                    {
+                        name: "infeksi",
+                        y: {{ $infeksi }},
+                    },
+                    {
+                        name: "hirpetensi",
+                        y: {{ $hirpetensi }},
+                    },
+                    {
+                        name: "pendarahan",
+                        y: {{ $pendarahan }},
+                    },
+                    {
+                        name: "penyebab lain",
+                        y: {{ $penyelain }},
+                    }
+                ]
+            }],
             // drilldown: {
             //     series: [
             //         {
@@ -1094,6 +896,434 @@
             //     ]
             // }
         });
+
+        Highcharts.chart('logaritmaAxis', {
+
+            title: {
+                text: 'Kenaikan Kematian Ibu Hamil'
+            },
+
+            yAxis: {
+                title: {
+                    text: 'Jumlah Kematian'
+                }
+            },
+
+            xAxis: {
+                title: {
+                    text: 'Tahun'
+                },
+                type: 'datetime',
+                accessibility: {
+                    rangeDescription: 'Range: 2022 to 2024'
+                }
+            },
+
+            legend: {
+                layout: 'horizontal',
+                align: 'center',
+                verticalAlign: 'top',
+            },
+
+            plotOptions: {
+                series: {
+                    label: {
+                        connectorAllowed: false
+                    },
+                    pointStart: Date.UTC(2022, 0, 1),
+                    pointInterval: 8760 * 3600 * 1000,
+                }
+            },
+
+            series: [{
+                name: 'Kematian Ibu Hamil',
+                data: {!! json_encode($jumKematian) !!}
+            }],
+
+            responsive: {
+                rules: [{
+                    condition: {
+                        maxWidth: 500
+                    },
+                    chartOptions: {
+                        legend: {
+                            layout: 'horizontal',
+                            align: 'center',
+                            verticalAlign: 'bottom'
+                        }
+                    }
+                }]
+            }
+
+        });
+
+        // JenisKelamin
+        Highcharts.chart('barJenkel', {
+            chart: {
+                type: 'column'
+            },
+            title: {
+                text: 'Data Kematian Ibu Hamil'
+            },
+            subtitle: {
+                text: 'Source: Bps.id'
+            },
+            xAxis: {
+                categories: {!! json_encode($desa) !!},
+                crosshair: true
+            },
+            yAxis: {
+                min: 0,
+                title: {
+                    text: 'Jumlah (Orang)'
+                }
+            },
+            tooltip: {
+                headerFormat: '<span style="font-size:10px">{point.key}</span><table>',
+                // pointFormat: '<tr><td style="color:{series.color};padding:0">{series.name}: </td>' +
+                //     '<td style="padding:0"><b>{point.y:.1f} mm</b></td></tr>',
+                footerFormat: '</table>',
+                shared: true,
+                useHTML: true
+            },
+            plotOptions: {
+                column: {
+                    pointPadding: 0.2,
+                    borderWidth: 0
+                }
+            },
+            series: [{
+                    name: 'Orang',
+                    data: {!! json_encode($jum) !!}
+
+                },
+
+            ]
+        });
+
+        Highcharts.chart('piechartJenkel', {
+            chart: {
+                type: 'pie'
+            },
+            title: {
+                text: 'Penyebab Kematian Ibu Hamil'
+            },
+            subtitle: {
+                text: 'Click the slices to view versions. Source: <a href="http://statcounter.com" target="_blank">statcounter.com</a>'
+            },
+
+            accessibility: {
+                announceNewData: {
+                    enabled: true
+                },
+                point: {
+                    valueSuffix: '%'
+                }
+            },
+
+            plotOptions: {
+                series: {
+                    dataLabels: {
+                        enabled: true,
+                        // format: '{point.name}: {point.y:.1f}%'
+                    }
+                }
+            },
+
+            tooltip: {
+                headerFormat: '<span style="font-size:11px">{series.name}</span><br>',
+                // pointFormat: '<span style="color:{point.color}">{point.name}</span>: <b>{point.y:.2f}%</b> of total<br/>'
+            },
+
+            series: [{
+                name: "Jumlah",
+                colorByPoint: true,
+                data: [{
+                        name: "Partus Lama",
+                        y: {{ $partus_lama }},
+                    },
+                    {
+                        name: "infeksi",
+                        y: {{ $infeksi }},
+                    },
+                    {
+                        name: "hirpetensi",
+                        y: {{ $hirpetensi }},
+                    },
+                    {
+                        name: "pendarahan",
+                        y: {{ $pendarahan }},
+                    },
+                    {
+                        name: "penyebab lain",
+                        y: {{ $penyelain }},
+                    }
+                ]
+            }],
+            // drilldown: {
+            //     series: [
+            //         {
+            //             name: "Chrome",
+            //             id: "Chrome",
+            //             data: [
+            //                 [
+            //                     "v97.0",
+            //                     36.89
+            //                 ],
+            //                 [
+            //                     "v96.0",
+            //                     18.16
+            //                 ],
+            //                 [
+            //                     "v95.0",
+            //                     0.54
+            //                 ],
+            //                 [
+            //                     "v94.0",
+            //                     0.7
+            //                 ],
+            //                 [
+            //                     "v93.0",
+            //                     0.8
+            //                 ],
+            //                 [
+            //                     "v92.0",
+            //                     0.41
+            //                 ],
+            //                 [
+            //                     "v91.0",
+            //                     0.31
+            //                 ],
+            //                 [
+            //                     "v90.0",
+            //                     0.13
+            //                 ],
+            //                 [
+            //                     "v89.0",
+            //                     0.14
+            //                 ],
+            //                 [
+            //                     "v88.0",
+            //                     0.1
+            //                 ],
+            //                 [
+            //                     "v87.0",
+            //                     0.35
+            //                 ],
+            //                 [
+            //                     "v86.0",
+            //                     0.17
+            //                 ],
+            //                 [
+            //                     "v85.0",
+            //                     0.18
+            //                 ],
+            //                 [
+            //                     "v84.0",
+            //                     0.17
+            //                 ],
+            //                 [
+            //                     "v83.0",
+            //                     0.21
+            //                 ],
+            //                 [
+            //                     "v81.0",
+            //                     0.1
+            //                 ],
+            //                 [
+            //                     "v80.0",
+            //                     0.16
+            //                 ],
+            //                 [
+            //                     "v79.0",
+            //                     0.43
+            //                 ],
+            //                 [
+            //                     "v78.0",
+            //                     0.11
+            //                 ],
+            //                 [
+            //                     "v76.0",
+            //                     0.16
+            //                 ],
+            //                 [
+            //                     "v75.0",
+            //                     0.15
+            //                 ],
+            //                 [
+            //                     "v72.0",
+            //                     0.14
+            //                 ],
+            //                 [
+            //                     "v70.0",
+            //                     0.11
+            //                 ],
+            //                 [
+            //                     "v69.0",
+            //                     0.13
+            //                 ],
+            //                 [
+            //                     "v56.0",
+            //                     0.12
+            //                 ],
+            //                 [
+            //                     "v49.0",
+            //                     0.17
+            //                 ]
+            //             ]
+            //         },
+            //         {
+            //             name: "Safari",
+            //             id: "Safari",
+            //             data: [
+            //                 [
+            //                     "v15.3",
+            //                     0.1
+            //                 ],
+            //                 [
+            //                     "v15.2",
+            //                     2.01
+            //                 ],
+            //                 [
+            //                     "v15.1",
+            //                     2.29
+            //                 ],
+            //                 [
+            //                     "v15.0",
+            //                     0.49
+            //                 ],
+            //                 [
+            //                     "v14.1",
+            //                     2.48
+            //                 ],
+            //                 [
+            //                     "v14.0",
+            //                     0.64
+            //                 ],
+            //                 [
+            //                     "v13.1",
+            //                     1.17
+            //                 ],
+            //                 [
+            //                     "v13.0",
+            //                     0.13
+            //                 ],
+            //                 [
+            //                     "v12.1",
+            //                     0.16
+            //                 ]
+            //             ]
+            //         },
+            //         {
+            //             name: "Edge",
+            //             id: "Edge",
+            //             data: [
+            //                 [
+            //                     "v97",
+            //                     6.62
+            //                 ],
+            //                 [
+            //                     "v96",
+            //                     2.55
+            //                 ],
+            //                 [
+            //                     "v95",
+            //                     0.15
+            //                 ]
+            //             ]
+            //         },
+            //         {
+            //             name: "Firefox",
+            //             id: "Firefox",
+            //             data: [
+            //                 [
+            //                     "v96.0",
+            //                     4.17
+            //                 ],
+            //                 [
+            //                     "v95.0",
+            //                     3.33
+            //                 ],
+            //                 [
+            //                     "v94.0",
+            //                     0.11
+            //                 ],
+            //                 [
+            //                     "v91.0",
+            //                     0.23
+            //                 ],
+            //                 [
+            //                     "v78.0",
+            //                     0.16
+            //                 ],
+            //                 [
+            //                     "v52.0",
+            //                     0.15
+            //                 ]
+            //             ]
+            //         }
+            //     ]
+            // }
+        });
+
+        Highcharts.chart('logaritmaAxisJenkel', {
+
+            title: {
+                text: 'Kenaikan Kematian Ibu Hamil'
+            },
+
+            yAxis: {
+                title: {
+                    text: 'Jumlah Kematian'
+                }
+            },
+
+            xAxis: {
+                title: {
+                    text: 'Tahun'
+                },
+                type: 'datetime',
+                accessibility: {
+                    rangeDescription: 'Range: 2022 to 2024'
+                }
+            },
+
+            legend: {
+                layout: 'vertical',
+                align: 'right',
+                verticalAlign: 'middle',
+            },
+
+            plotOptions: {
+                series: {
+                    label: {
+                        connectorAllowed: false
+                    },
+                    pointStart: Date.UTC(2022, 0, 1),
+                    pointInterval: 8760 * 3600 * 1000,
+                }
+            },
+
+            series: [{
+                name: 'Kematian Ibu Hamil',
+                data: {!! json_encode($jumKematian) !!}
+            }],
+
+            responsive: {
+                rules: [{
+                    condition: {
+                        maxWidth: 500
+                    },
+                    chartOptions: {
+                        legend: {
+                            layout: 'horizontal',
+                            align: 'center',
+                            verticalAlign: 'bottom'
+                        }
+                    }
+                }]
+            }
+
+        });
     </script>
 @endsection
-

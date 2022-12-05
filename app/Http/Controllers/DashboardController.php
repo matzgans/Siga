@@ -27,14 +27,27 @@ class DashboardController extends Controller
         // dd($data);
         // highchart
         $data = Pkematian::all();
+        $dataKematian = Pkematian::groupBy('tahun_id')->selectRaw(
+            'sum(jum_partuslama) as partusLama,
+            sum(jum_infeksi) as infeksi,
+            sum(jum_hirpetensi) as hirpetensi,
+            sum(jum_pendarahan) as pendarahan,
+            sum(jum_penyebablain) as penyelain'
+            )->get();
+        // dd($dataKematian);
         $desa = [];
         $jum = [];
+        $jumKematian = [];
         
         foreach ($data as $item) {
             $desa []= $item->desa->nama_desa;
             $jum [] = $item->jum_partuslama + $item->jum_infeksi + $item->jum_hirpetensi + $item->jum_pendarahan
             + $item->jum_penyebablain;
             
+        }
+        foreach ($dataKematian as $itemk) {
+            $jumKematian [] = $itemk->partusLama + $itemk->infeksi + $itemk->hirpetensi + $itemk->pendarahan
+            + $itemk->penyelain;
         }
 
         // piechart
@@ -44,8 +57,10 @@ class DashboardController extends Controller
         $pendarahan = $data->sum('jum_pendarahan');
         $penyelain = $data->sum('jum_penyebablain');
 
+        // logaritmChart
+
         return view('landing.welcome', compact('desa', 'jum', 'partus_lama', 'infeksi', 'hirpetensi', 'pendarahan',
-            'penyelain'));
+            'penyelain', 'jumKematian'));
     }
 
     public function ipgPenduduk()
