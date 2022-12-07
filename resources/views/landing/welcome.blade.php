@@ -353,6 +353,34 @@
                                                 </div>
                                                 <h3 class="text-center mt-3">Data Kematian Bayi</h3>
                                                 <hr class="mx-5">
+                                                <div class="row">
+                                                    <div class="col">
+                                                        <div id="barchart_kmtbayi"></div>
+                                                    </div>
+                                                    <div class="col">
+                                                        <div id="piechart_kmtbayi"></div>
+                                                    </div>
+                                                </div>
+                                                <div class="row mx-5 mb-3">
+                                                    <div class="col">
+                                                        <div id="logaritma_kmtbayi"></div>
+                                                    </div>
+                                                </div>
+                                                <h3 class="text-center mt-3">Data HIV</h3>
+                                                <hr class="mx-5">
+                                                <div class="row">
+                                                    <div class="col">
+                                                        <div id="barchart_hiv"></div>
+                                                    </div>
+                                                    <div class="col">
+                                                        <div id="piechart_hiv"></div>
+                                                    </div>
+                                                </div>
+                                                <div class="row mx-5 mb-3">
+                                                    <div class="col">
+                                                        <div id="logaritma_hiv"></div>
+                                                    </div>
+                                                </div>
                                             </div>
                                             <div class="tab-pane fade" id="bidangPendidikan" role="tabpanel"
                                                 aria-labelledby="nav-profile-tab">Bidang Pendidikan</div>
@@ -589,7 +617,6 @@
 
             </div>
         </section><!-- End Contact Section -->
-
     </main><!-- End #main -->
     <script>
         Highcharts.chart('container', {
@@ -614,8 +641,8 @@
             },
             tooltip: {
                 headerFormat: '<span style="font-size:10px">{point.key}</span><table>',
-                // pointFormat: '<tr><td style="color:{series.color};padding:0">{series.name}: </td>' +
-                //     '<td style="padding:0"><b>{point.y:.1f} mm</b></td></tr>',
+                pointFormat: '<tr><td style="color:{series.color};padding:0">{series.name}: </td>' +
+                    '<td style="padding:0"><b>{point.y} Orang</b></td></tr>',
                 footerFormat: '</table>',
                 shared: true,
                 useHTML: true
@@ -671,230 +698,26 @@
                 colorByPoint: true,
                 data: [{
                         name: "Partus Lama",
-                        y: {{ $partus_lama }},
+                        y: {{ $piechartKmtIbu->partusLama }},
                     },
                     {
                         name: "infeksi",
-                        y: {{ $infeksi }},
+                        y: {{ $piechartKmtIbu->infeksi }},
                     },
                     {
                         name: "hirpetensi",
-                        y: {{ $hirpetensi }},
+                        y: {{ $piechartKmtIbu->hirpetensi }},
                     },
                     {
                         name: "pendarahan",
-                        y: {{ $pendarahan }},
+                        y: {{ $piechartKmtIbu->pendarahan }},
                     },
                     {
                         name: "penyebab lain",
-                        y: {{ $penyelain }},
+                        y: {{ $piechartKmtIbu->penyelain }},
                     }
                 ]
             }],
-            // drilldown: {
-            //     series: [
-            //         {
-            //             name: "Chrome",
-            //             id: "Chrome",
-            //             data: [
-            //                 [
-            //                     "v97.0",
-            //                     36.89
-            //                 ],
-            //                 [
-            //                     "v96.0",
-            //                     18.16
-            //                 ],
-            //                 [
-            //                     "v95.0",
-            //                     0.54
-            //                 ],
-            //                 [
-            //                     "v94.0",
-            //                     0.7
-            //                 ],
-            //                 [
-            //                     "v93.0",
-            //                     0.8
-            //                 ],
-            //                 [
-            //                     "v92.0",
-            //                     0.41
-            //                 ],
-            //                 [
-            //                     "v91.0",
-            //                     0.31
-            //                 ],
-            //                 [
-            //                     "v90.0",
-            //                     0.13
-            //                 ],
-            //                 [
-            //                     "v89.0",
-            //                     0.14
-            //                 ],
-            //                 [
-            //                     "v88.0",
-            //                     0.1
-            //                 ],
-            //                 [
-            //                     "v87.0",
-            //                     0.35
-            //                 ],
-            //                 [
-            //                     "v86.0",
-            //                     0.17
-            //                 ],
-            //                 [
-            //                     "v85.0",
-            //                     0.18
-            //                 ],
-            //                 [
-            //                     "v84.0",
-            //                     0.17
-            //                 ],
-            //                 [
-            //                     "v83.0",
-            //                     0.21
-            //                 ],
-            //                 [
-            //                     "v81.0",
-            //                     0.1
-            //                 ],
-            //                 [
-            //                     "v80.0",
-            //                     0.16
-            //                 ],
-            //                 [
-            //                     "v79.0",
-            //                     0.43
-            //                 ],
-            //                 [
-            //                     "v78.0",
-            //                     0.11
-            //                 ],
-            //                 [
-            //                     "v76.0",
-            //                     0.16
-            //                 ],
-            //                 [
-            //                     "v75.0",
-            //                     0.15
-            //                 ],
-            //                 [
-            //                     "v72.0",
-            //                     0.14
-            //                 ],
-            //                 [
-            //                     "v70.0",
-            //                     0.11
-            //                 ],
-            //                 [
-            //                     "v69.0",
-            //                     0.13
-            //                 ],
-            //                 [
-            //                     "v56.0",
-            //                     0.12
-            //                 ],
-            //                 [
-            //                     "v49.0",
-            //                     0.17
-            //                 ]
-            //             ]
-            //         },
-            //         {
-            //             name: "Safari",
-            //             id: "Safari",
-            //             data: [
-            //                 [
-            //                     "v15.3",
-            //                     0.1
-            //                 ],
-            //                 [
-            //                     "v15.2",
-            //                     2.01
-            //                 ],
-            //                 [
-            //                     "v15.1",
-            //                     2.29
-            //                 ],
-            //                 [
-            //                     "v15.0",
-            //                     0.49
-            //                 ],
-            //                 [
-            //                     "v14.1",
-            //                     2.48
-            //                 ],
-            //                 [
-            //                     "v14.0",
-            //                     0.64
-            //                 ],
-            //                 [
-            //                     "v13.1",
-            //                     1.17
-            //                 ],
-            //                 [
-            //                     "v13.0",
-            //                     0.13
-            //                 ],
-            //                 [
-            //                     "v12.1",
-            //                     0.16
-            //                 ]
-            //             ]
-            //         },
-            //         {
-            //             name: "Edge",
-            //             id: "Edge",
-            //             data: [
-            //                 [
-            //                     "v97",
-            //                     6.62
-            //                 ],
-            //                 [
-            //                     "v96",
-            //                     2.55
-            //                 ],
-            //                 [
-            //                     "v95",
-            //                     0.15
-            //                 ]
-            //             ]
-            //         },
-            //         {
-            //             name: "Firefox",
-            //             id: "Firefox",
-            //             data: [
-            //                 [
-            //                     "v96.0",
-            //                     4.17
-            //                 ],
-            //                 [
-            //                     "v95.0",
-            //                     3.33
-            //                 ],
-            //                 [
-            //                     "v94.0",
-            //                     0.11
-            //                 ],
-            //                 [
-            //                     "v91.0",
-            //                     0.23
-            //                 ],
-            //                 [
-            //                     "v78.0",
-            //                     0.16
-            //                 ],
-            //                 [
-            //                     "v52.0",
-            //                     0.15
-            //                 ]
-            //             ]
-            //         }
-            //     ]
-            // }
         });
 
         Highcharts.chart('logaritmaAxis', {
@@ -915,7 +738,7 @@
                 },
                 type: 'datetime',
                 accessibility: {
-                    rangeDescription: 'Range: 2022 to 2024'
+                    rangeDescription: 'Range: 2021 to 2023'
                 }
             },
 
@@ -930,7 +753,7 @@
                     label: {
                         connectorAllowed: false
                     },
-                    pointStart: Date.UTC(2022, 0, 1),
+                    pointStart: Date.UTC(2021, 0, 1),
                     pointInterval: 8760 * 3600 * 1000,
                 }
             },
@@ -957,19 +780,19 @@
 
         });
 
-        // JenisKelamin
-        Highcharts.chart('barJenkel', {
+        // kmtBayi
+        Highcharts.chart('barchart_kmtbayi', {
             chart: {
                 type: 'column'
             },
             title: {
-                text: 'Data Kematian Ibu Hamil'
+                text: 'Data Kematian Bayi'
             },
             subtitle: {
                 text: 'Source: Bps.id'
             },
             xAxis: {
-                categories: {!! json_encode($desa) !!},
+                categories: {!! json_encode($desaKmtbayi) !!},
                 crosshair: true
             },
             yAxis: {
@@ -994,19 +817,19 @@
             },
             series: [{
                     name: 'Orang',
-                    data: {!! json_encode($jum) !!}
+                    data: {!! json_encode($jumKmtbayi) !!}
 
                 },
 
             ]
         });
 
-        Highcharts.chart('piechartJenkel', {
+        Highcharts.chart('piechart_kmtbayi', {
             chart: {
                 type: 'pie'
             },
             title: {
-                text: 'Penyebab Kematian Ibu Hamil'
+                text: 'Penyebab Kematian Bayi'
             },
             subtitle: {
                 text: 'Click the slices to view versions. Source: <a href="http://statcounter.com" target="_blank">statcounter.com</a>'
@@ -1039,24 +862,12 @@
                 name: "Jumlah",
                 colorByPoint: true,
                 data: [{
-                        name: "Partus Lama",
-                        y: {{ $partus_lama }},
+                        name: "Laki - Laki",
+                        y: {{ $piechartKmtBayi->co }},
                     },
                     {
-                        name: "infeksi",
-                        y: {{ $infeksi }},
-                    },
-                    {
-                        name: "hirpetensi",
-                        y: {{ $hirpetensi }},
-                    },
-                    {
-                        name: "pendarahan",
-                        y: {{ $pendarahan }},
-                    },
-                    {
-                        name: "penyebab lain",
-                        y: {{ $penyelain }},
+                        name: "Perempuan",
+                        y: {{ $piechartKmtBayi->ce }},
                     }
                 ]
             }],
@@ -1266,10 +1077,10 @@
             // }
         });
 
-        Highcharts.chart('logaritmaAxisJenkel', {
+        Highcharts.chart('logaritma_kmtbayi', {
 
             title: {
-                text: 'Kenaikan Kematian Ibu Hamil'
+                text: 'Kenaikan Kematian Bayi'
             },
 
             yAxis: {
@@ -1284,7 +1095,7 @@
                 },
                 type: 'datetime',
                 accessibility: {
-                    rangeDescription: 'Range: 2022 to 2024'
+                    rangeDescription: 'Range: 2021 to 2023'
                 }
             },
 
@@ -1299,14 +1110,167 @@
                     label: {
                         connectorAllowed: false
                     },
-                    pointStart: Date.UTC(2022, 0, 1),
+                    pointStart: Date.UTC(2021, 0, 1),
                     pointInterval: 8760 * 3600 * 1000,
                 }
             },
 
             series: [{
-                name: 'Kematian Ibu Hamil',
-                data: {!! json_encode($jumKematian) !!}
+                name: 'Kematian Bayi',
+                data: {!! json_encode($logjumKmtbayi) !!}
+            }],
+
+            responsive: {
+                rules: [{
+                    condition: {
+                        maxWidth: 500
+                    },
+                    chartOptions: {
+                        legend: {
+                            layout: 'horizontal',
+                            align: 'center',
+                            verticalAlign: 'bottom'
+                        }
+                    }
+                }]
+            }
+
+        });
+
+        // hiv
+        Highcharts.chart('barchart_hiv', {
+            chart: {
+                type: 'column'
+            },
+            title: {
+                text: 'Data HIV'
+            },
+            subtitle: {
+                text: 'Source: Bps.id'
+            },
+            xAxis: {
+                categories: {!! json_encode($desaHiv) !!},
+                crosshair: true
+            },
+            yAxis: {
+                min: 0,
+                title: {
+                    text: 'Jumlah (Orang)'
+                }
+            },
+            tooltip: {
+                headerFormat: '<span style="font-size:10px">{point.key}</span><table>',
+                // pointFormat: '<tr><td style="color:{series.color};padding:0">{series.name}: </td>' +
+                //     '<td style="padding:0"><b>{point.y:.1f} mm</b></td></tr>',
+                footerFormat: '</table>',
+                shared: true,
+                useHTML: true
+            },
+            plotOptions: {
+                column: {
+                    pointPadding: 0.2,
+                    borderWidth: 0
+                }
+            },
+            series: [{
+                    name: 'Orang',
+                    data: {!! json_encode($jumHiv) !!}
+
+                },
+
+            ]
+        });
+
+        Highcharts.chart('piechart_hiv', {
+            chart: {
+                type: 'pie'
+            },
+            title: {
+                text: 'Penyebab  HIV'
+            },
+            subtitle: {
+                text: 'Click the slices to view versions. Source: <a href="http://statcounter.com" target="_blank">statcounter.com</a>'
+            },
+
+            accessibility: {
+                announceNewData: {
+                    enabled: true
+                },
+                point: {
+                    valueSuffix: '%'
+                }
+            },
+
+            plotOptions: {
+                series: {
+                    dataLabels: {
+                        enabled: true,
+                        // format: '{point.name}: {point.y:.1f}%'
+                    }
+                }
+            },
+
+            tooltip: {
+                headerFormat: '<span style="font-size:11px">{series.name}</span><br>',
+                // pointFormat: '<span style="color:{point.color}">{point.name}</span>: <b>{point.y:.2f}%</b> of total<br/>'
+            },
+
+            series: [{
+                name: "Jumlah",
+                colorByPoint: true,
+                data: [{
+                        name: "Laki - Laki",
+                        y: {{ $piechartHiv->co }},
+                    },
+                    {
+                        name: "Perempuan",
+                        y: {{ $piechartHiv->ce }},
+                    }
+                ]
+            }]
+        });
+
+        Highcharts.chart('logaritma_hiv', {
+
+            title: {
+                text: 'Kenaikan Hiv'
+            },
+
+            yAxis: {
+                title: {
+                    text: 'Jumlah Terpapar'
+                }
+            },
+
+            xAxis: {
+                title: {
+                    text: 'Tahun'
+                },
+                type: 'datetime',
+                accessibility: {
+                    rangeDescription: 'Range: 2021 to 2023'
+                }
+            },
+
+            legend: {
+                layout: 'vertical',
+                align: 'right',
+                verticalAlign: 'middle',
+            },
+
+            plotOptions: {
+                series: {
+                    label: {
+                        connectorAllowed: false
+                    },
+                    pointStart: Date.UTC(2021, 0, 1),
+                    pointInterval: 8760 * 3600 * 1000,
+                }
+            },
+
+            series: [{
+                name: 'Terpapar Hiv',
+                data: {!! json_encode($logjumHiv) !!}
             }],
 
             responsive: {
