@@ -29,9 +29,9 @@ class Tahun extends Model
         return $this->hasOne(Hiv::class);
     }
 
-    public function kmtbayi()
+    public function kmtbayis()
     {
-        return $this->hasOne(Kmtbayi::class);
+        return $this->hasMany(Kmtbayi::class);
     }
 
     public function prespenduduks()
