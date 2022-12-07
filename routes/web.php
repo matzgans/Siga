@@ -21,7 +21,8 @@ use App\Http\Controllers\{
     BencanaController,
     TahananController,
     BsdaController,
-    KlasprespendController
+    KlasprespendController,
+    PrespendidikanController
 };
 use Illuminate\Support\Facades\Route;
 
@@ -173,6 +174,12 @@ Route::group(['middleware' => ['auth', 'HakAkses:pegawai']], function () {
     Route::post('/klasprespend/update/{id}', [KlasprespendController::class, 'update'])->name('klasprespend.update');
     Route::get('/klasprespend/edit/{id}', [KlasprespendController::class, 'edit'])->name('klasprespend.edit');
     Route::get('/klasprespend/destroy/{id}', [KlasprespendController::class, 'destroy'])->name('klasprespend.destroy');
+    // 3. Klasifikasi Presetanse Peendidikan
+    Route::get('/prespendidikan/index', [PrespendidikanController::class, 'index'])->name('prespendidikan.index');
+    Route::post('/prespendidikan/store', [PrespendidikanController::class, 'store'])->name('prespendidikan.store');
+    Route::post('/prespendidikan/update/{id}', [PrespendidikanController::class, 'update'])->name('prespendidikan.update');
+    Route::get('/prespendidikan/edit/{id}', [PrespendidikanController::class, 'edit'])->name('prespendidikan.edit');
+    Route::get('/prespendidikan/destroy/{id}', [PrespendidikanController::class, 'destroy'])->name('prespendidikan.destroy');
     
     // BSDA / LINGKUNGAN
     // 1. Korban Bencana

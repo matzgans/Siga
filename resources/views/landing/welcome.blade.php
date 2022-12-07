@@ -738,7 +738,7 @@
                 },
                 type: 'datetime',
                 accessibility: {
-                    rangeDescription: 'Range: 2021 to 2023'
+                    rangeDescription: 'Range: 2022 to 2024'
                 }
             },
 
@@ -753,7 +753,7 @@
                     label: {
                         connectorAllowed: false
                     },
-                    pointStart: Date.UTC(2021, 0, 1),
+                    pointStart: Date.UTC(2022, 0, 1),
                     pointInterval: 8760 * 3600 * 1000,
                 }
             },
@@ -863,11 +863,11 @@
                 colorByPoint: true,
                 data: [{
                         name: "Laki - Laki",
-                        y: {{ $piechartKmtBayi->co }},
+                        y: {{ ($piechartKmtBayi->co == null)?'0':$piechartKmtBayi->co}},
                     },
                     {
                         name: "Perempuan",
-                        y: {{ $piechartKmtBayi->ce }},
+                        y: {{ ($piechartKmtBayi->ce == null)?'0':$piechartKmtBayi->ce }},
                     }
                 ]
             }],
@@ -1095,7 +1095,7 @@
                 },
                 type: 'datetime',
                 accessibility: {
-                    rangeDescription: 'Range: 2021 to 2023'
+                    rangeDescription: 'Range: 2022 to 2024'
                 }
             },
 
@@ -1110,7 +1110,7 @@
                     label: {
                         connectorAllowed: false
                     },
-                    pointStart: Date.UTC(2021, 0, 1),
+                    pointStart: Date.UTC(2022, 0, 1),
                     pointInterval: 8760 * 3600 * 1000,
                 }
             },
@@ -1220,11 +1220,11 @@
                 colorByPoint: true,
                 data: [{
                         name: "Laki - Laki",
-                        y: {{ $piechartHiv->co }},
+                        y: {{ ($piechartHiv->co == null)?'0':$piechartHiv->co }},
                     },
                     {
                         name: "Perempuan",
-                        y: {{ $piechartHiv->ce }},
+                        y: {{ ($piechartHiv->co == null)?'0':$piechartHiv->co }},
                     }
                 ]
             }]
@@ -1248,7 +1248,7 @@
                 },
                 type: 'datetime',
                 accessibility: {
-                    rangeDescription: 'Range: 2021 to 2023'
+                    rangeDescription: 'Range: 2022 to 2024'
                 }
             },
 
@@ -1263,7 +1263,7 @@
                     label: {
                         connectorAllowed: false
                     },
-                    pointStart: Date.UTC(2021, 0, 1),
+                    pointStart: Date.UTC(2024, 0, 1),
                     pointInterval: 8760 * 3600 * 1000,
                 }
             },
