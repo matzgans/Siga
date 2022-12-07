@@ -19,7 +19,7 @@
                 </div>
                 <div class="col-md-6 col-12 mb-2">
                     <label for="lsmp" class="form-label">L(SMP)</label>
-                    <input type="number" class="form-control" name="lsmp" class="floatNumberField" value="{{$data->lsmp}}0" placeholder="0.00" step="0.01" id="l13" required />
+                    <input type="number" class="form-control" name="lsmp" class="floatNumberField" value="{{$data->lsmp}}" placeholder="0.00" step="0.01" id="l13" required />
                 </div>
                 <div class="col-md-6 col-12 mb-2">
                     <label for="psmp" class="form-label">P(SMP)</label>

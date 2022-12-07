@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\{Desa, Opd, Tahun, Agama, Pekerjaan, Pkematian, Hiv, Ptssekolah, Kmtbayi};
+use App\Models\{Desa, Opd, Tahun, Agama, Pekerjaan, Pkematian, Hiv, Ptssekolah, Kmtbayi, Partsekolah};
 
 class DashboardController extends Controller
 {
@@ -40,7 +40,7 @@ class DashboardController extends Controller
         $dataDesa = Pkematian::groupBy('desa_id')
             ->select('desa_id')
             ->selectRaw(
-             'sum(jum_partuslama) as partusLama,
+                'sum(jum_partuslama) as partusLama,
             sum(jum_infeksi) as infeksi,
             sum(jum_hirpetensi) as hirpetensi,
             sum(jum_pendarahan) as pendarahan,
@@ -79,10 +79,8 @@ class DashboardController extends Controller
             sum(jum_hirpetensi) as hirpetensi,
             sum(jum_pendarahan) as pendarahan,
             sum(jum_penyebablain) as penyelain',
-            )
-            ->get();
+        )->get();
         foreach ($dataKmtIbu as $piechartKmtIbu) {
-            
         }
         // KEMATIAN_BAYI
         // BARCHART
@@ -105,18 +103,16 @@ class DashboardController extends Controller
         // PIECHART BAYI
         $dataKmtBayi = Kmtbayi::selectRaw(
             'sum(l) as co,
-            sum(p) as ce'
-            )
-            ->get();
+            sum(p) as ce',
+        )->get();
         foreach ($dataKmtBayi as $piechartKmtBayi) {
-            
         }
 
-         // LOGARITM_KMT_BAYI
-         $logdataKmtbayi = Kmtbayi::groupBy('tahun_id')
+        // LOGARITM_KMT_BAYI
+        $logdataKmtbayi = Kmtbayi::groupBy('tahun_id')
             ->selectRaw(
                 'sum(l) as co,
-                sum(p) as ce'
+                sum(p) as ce',
             )
             ->get();
         // dd($dataKematian);
@@ -147,18 +143,16 @@ class DashboardController extends Controller
         // Piechart
         $dataHiv = Hiv::selectRaw(
             'sum(l) as co,
-            sum(p) as ce'
-            )
-            ->get();
+            sum(p) as ce',
+        )->get();
         foreach ($dataHiv as $piechartHiv) {
-            
         }
 
         // Logaritm
         $logdataHiv = Hiv::groupBy('tahun_id')
             ->selectRaw(
                 'sum(l) as co,
-                sum(p) as ce'
+                sum(p) as ce',
             )
             ->get();
         // dd($dataKematian);
@@ -167,21 +161,137 @@ class DashboardController extends Controller
         foreach ($logdataHiv as $itemk) {
             $logjumHiv[] = $itemk->co + $itemk->ce;
         }
+
+        // BIDANG PENDIDIKAN
+        // Barchart PartSekolah
+        $dataDesaPartsekolah = Partsekolah::groupBy('desa_id')
+            ->select('desa_id')
+            ->selectRaw(
+                'sum(l7) as l7,
+            sum(p7) as p7,
+            sum(l13) as l13,
+            sum(p13) as p13,
+            sum(l16) as l16,
+            sum(p16) as p16,
+            sum(l19) as l19,
+            sum(p19) as p19',
+            )
+            ->get();
+
+        $desaPartsekolah = [];
+        $jumPartsekolah = [];
+        foreach ($dataDesaPartsekolah as $item) {
+            $desaPartsekolah[] = $item->desa->nama_desa;
+            $jumPartsekolah[] = $item->l7 + $item->p7 + $item->l13 + $item->p13 + $item->l16 + $item->p16 + $item->l19 + $item->p19;
+        }
+        // dd($jumPartsekolah);
+
+        // Piechart Partsekolah
+        $dataPartsekolah = Partsekolah::selectRaw(
+            'sum(l7) as l7,
+            sum(p7) as p7,
+            sum(l13) as l13,
+            sum(p13) as p13,
+            sum(l16) as l16,
+            sum(p16) as p16,
+            sum(l19) as l19,
+            sum(p19) as p19',
+        )->get();
+        foreach ($dataPartsekolah as $piechartPartsekolah) {
+        }
+        // dd($piechartPartsekolah);
+        // Logchart Partsekolah
+        $logdataPartsekolah = Partsekolah::groupBy('tahun_id')
+            ->selectRaw(
+                'sum(l7) as l7,
+            sum(p7) as p7,
+            sum(l13) as l13,
+            sum(p13) as p13,
+            sum(l16) as l16,
+            sum(p16) as p16,
+            sum(l19) as l19,
+            sum(p19) as p19',
+            )
+            ->get();
+        $logjumPartsekolah = [];
+
+        foreach ($logdataPartsekolah as $itemk) {
+            $logjumPartsekolah[] = $itemk->l7 + $itemk->p7 + $itemk->l13 + $itemk->p13 + $itemk->l16 + $itemk->p16 + $itemk->l19 + $itemk->p19;
+        }
+
+        // Barchart Ptssekolah
+        $dataDesaPtssekolah = Ptssekolah::groupBy('desa_id')
+            ->select('desa_id')
+            ->selectRaw(
+                'sum(lsd) as lsd,
+            sum(psd) as psd,
+            sum(lsmp) as lsmp,
+            sum(psmp) as psmp,
+            sum(lsma) as lsma,
+            sum(psma) as psma',
+            )
+            ->get();
+
+        $desaPtssekolah = [];
+        $jumPtssekolah = [];
+        foreach ($dataDesaPtssekolah as $item) {
+            $desaPtssekolah[] = $item->desa->nama_desa;
+            $jumPtssekolah[] = $item->lsd + $item->psd + $item->lsmp + $item->psmp + $item->lsma + $item->psma;
+        }
+        // dd($jumPtssekolah);
+
+        // Piechart Ptssekolah
+        $dataPtssekolah = Ptssekolah::selectRaw(
+            'sum(lsd) as lsd,
+            sum(psd) as psd,
+            sum(lsmp) as lsmp,
+            sum(psmp) as psmp,
+            sum(lsma) as lsma,
+            sum(psma) as psma',
+        )->get();
+        foreach ($dataPtssekolah as $piechartPtssekolah) {
+        }
+
+        // Logchart Ptssekolah
+        $logdataPtssekolah = Ptssekolah::groupBy('tahun_id')
+            ->selectRaw(
+                'sum(lsd) as lsd,
+            sum(psd) as psd,
+            sum(lsmp) as lsmp,
+            sum(psmp) as psmp,
+            sum(lsma) as lsma,
+            sum(psma) as psma',
+            )
+            ->get();
+        $logjumPtssekolah = [];
+
+        foreach ($logdataPtssekolah as $itemk) {
+            $logjumPtssekolah[] = $itemk->lsd + $itemk->psd + $itemk->lsmp + $itemk->psmp + $itemk->lsma + $itemk->psma;
+        }
+        // dd($logjumPtssekolah);
         
         return view('landing.welcome', compact(
-            'desa', 
-            'jum', 
-            'piechartKmtIbu',
-            'piechartKmtBayi',
-            'piechartHiv',
-            'jumKematian', 
-            'desaKmtbayi',
-            'jumKmtbayi',
-            'desaHiv',
-            'jumHiv',
-           'logjumKmtbayi',
-           'logjumHiv'
-        ));
+        'desa', 
+        'jum', 
+        'piechartKmtIbu', 
+        'piechartKmtBayi', 
+        'piechartHiv', 
+        'piechartPartsekolah', 
+        'piechartPtssekolah', 
+        'jumKematian', 
+        'desaKmtbayi', 
+        'jumKmtbayi', 
+        'desaHiv', 
+        'desaPartsekolah', 
+        'desaPtssekolah', 
+        'jumHiv', 
+        'jumPartsekolah', 
+        'jumPtssekolah', 
+        'logjumKmtbayi', 
+        'logjumHiv', 
+        'logjumPartsekolah',
+        'logjumPtssekolah',
+    ));
     }
 
     public function ipgPenduduk()
