@@ -25,6 +25,7 @@ class DashboardController extends Controller
         //     $item = $item->
         // };
         // dd($data);
+
         // highchart
         $data = Pkematian::all();
         $dataKematian = Pkematian::groupBy('tahun_id')->selectRaw(

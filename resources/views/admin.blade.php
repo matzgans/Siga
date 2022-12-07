@@ -323,6 +323,13 @@
                 </li>
 
                 <li class="nav-item">
+                    <a class="nav-link {{ $active != 'tahanan' ? 'collapsed' : 'active' }}"
+                        href="{{ route('tahanan.index') }}">
+                        <i class="bi bi-person-badge"></i><span>Tahanan</span>
+                    </a>
+                </li>
+
+                <li class="nav-item">
                     <a class="nav-link {{ $active != 'tahun' ? 'collapsed' : 'active' }}"
                         href="{{ route('tahun.index') }}">
                         <i class="bi bi-calendar"></i><span>Tahun</span>
@@ -392,7 +399,21 @@
                     </a>
                 </li>
                 
+                <span>Data Terpilah Bidang Sda / Lingkungan</span>
+                <li class="nav-item">
+                    <a class="nav-link {{ $active != 'bsda' ? 'collapsed' : 'active' }}"
+                        href="{{ route('bsda.index') }}">
+                        <i class="ri ri-user-4-line"></i><span>Data Korban Bencana</span>
+                    </a>
+                </li>
+
                 <span>IPG</span>
+                <li class="nav-item">
+                    <a class="nav-link {{ $active != 'klasprespend' ? 'collapsed' : 'active' }}"
+                        href="{{ route('klasprespend.index') }}">
+                        <i class="ri ri-user-4-line"></i><span>Klasifikasi Presentasi Penduduk</span>
+                    </a>
+                </li>
                 <li class="nav-item">
                     <a class="nav-link {{ $active != 'prespenduduk' ? 'collapsed' : 'active' }}"
                         href="{{ route('prespenduduk.index') }}">

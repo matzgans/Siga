@@ -19,6 +19,9 @@ use App\Http\Controllers\{
     PtssekolahController,
     JumguruController, 
     BencanaController,
+    TahananController,
+    BsdaController,
+    KlasprespendController
 };
 use Illuminate\Support\Facades\Route;
 
@@ -68,11 +71,19 @@ Route::group(['middleware' => ['auth', 'HakAkses:admin']], function () {
     Route::post('/opd/store', [OpdController::class, 'store'])->name('opd.store');
     Route::get('/opd/destroy/{id}', [OpdController::class, 'destroy'])->name('opd.destroy');
 
+    // bencana
     Route::get('/bencana/index', [BencanaController::class, 'index'])->name('bencana.index');
     Route::post('/bencana/store', [BencanaController::class, 'store'])->name('bencana.store');
     Route::post('/bencana/update/{id}', [BencanaController::class, 'update'])->name('bencana.update');
     Route::get('/bencana/edit/{id}', [BencanaController::class, 'edit'])->name('bencana.edit');
     Route::get('/bencana/destroy/{id}', [BencanaController::class, 'destroy'])->name('bencana.destroy');
+
+    // tahanan
+    Route::get('/tahanan/index', [TahananController::class, 'index'])->name('tahanan.index');
+    Route::post('/tahanan/store', [TahananController::class, 'store'])->name('tahanan.store');
+    Route::post('/tahanan/update/{id}', [TahananController::class, 'update'])->name('tahanan.update');
+    Route::get('/tahanan/edit/{id}', [TahananController::class, 'edit'])->name('tahanan.edit');
+    Route::get('/tahanan/destroy/{id}', [TahananController::class, 'destroy'])->name('tahanan.destroy');
 
     // pekerjaan
     Route::get('/pekerjaan/index', [PekerjaanController::class, 'index'])->name('pekerjaan.index');
@@ -150,12 +161,26 @@ Route::group(['middleware' => ['auth', 'HakAkses:pegawai']], function () {
     Route::get('/jumguru/destroy/{id}', [JumguruController::class, 'destroy'])->name('jumguru.destroy');
     
     // Ipg
-    // 3. Jum Penduduk
+    // 1. Jum Penduduk
     Route::get('/prespenduduk/index', [PrespendudukController::class, 'index'])->name('prespenduduk.index');
     Route::post('/prespenduduk/store', [PrespendudukController::class, 'store'])->name('prespenduduk.store');
     Route::post('/prespenduduk/update/{id}', [PrespendudukController::class, 'update'])->name('prespenduduk.update');
     Route::get('/prespenduduk/edit/{id}', [PrespendudukController::class, 'edit'])->name('prespenduduk.edit');
     Route::get('/prespenduduk/destroy/{id}', [PrespendudukController::class, 'destroy'])->name('prespenduduk.destroy');
+    // 2. Klasifikasi Presetanse Penduduk
+    Route::get('/klasprespend/index', [KlasprespendController::class, 'index'])->name('klasprespend.index');
+    Route::post('/klasprespend/store', [KlasprespendController::class, 'store'])->name('klasprespend.store');
+    Route::post('/klasprespend/update/{id}', [KlasprespendController::class, 'update'])->name('klasprespend.update');
+    Route::get('/klasprespend/edit/{id}', [KlasprespendController::class, 'edit'])->name('klasprespend.edit');
+    Route::get('/klasprespend/destroy/{id}', [KlasprespendController::class, 'destroy'])->name('klasprespend.destroy');
+    
+    // BSDA / LINGKUNGAN
+    // 1. Korban Bencana
+    Route::get('/bsda/index', [BsdaController::class, 'index'])->name('bsda.index');
+    Route::post('/bsda/store', [BsdaController::class, 'store'])->name('bsda.store');
+    Route::post('/bsda/update/{id}', [BsdaController::class, 'update'])->name('bsda.update');
+    Route::get('/bsda/edit/{id}', [BsdaController::class, 'edit'])->name('bsda.edit');
+    Route::get('/bsda/destroy/{id}', [BsdaController::class, 'destroy'])->name('bsda.destroy');
 });
 
 Route::group(['middleware' => ['auth', 'HakAkses:pegawai,admin']], function(){
