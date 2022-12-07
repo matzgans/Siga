@@ -1251,11 +1251,11 @@
                 colorByPoint: true,
                 data: [{
                         name: "Laki - Laki",
-                        y: {{ $piechartHiv->co }},
+                        y: {{ ($piechartHiv->co == null)?'0':$piechartHiv->co }},
                     },
                     {
                         name: "Perempuan",
-                        y: {{ $piechartHiv->ce }},
+                        y: {{ ($piechartHiv->co == null)?'0':$piechartHiv->co }},
                     }
                 ]
             }]

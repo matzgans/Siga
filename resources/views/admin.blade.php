@@ -420,6 +420,12 @@
                         <i class="ri ri-user-4-line"></i><span>Jumlah Penduduk Menurut JK</span>
                     </a>
                 </li>
+                <li class="nav-item">
+                    <a class="nav-link {{ $active != 'prespendidikanterakhir' ? 'collapsed' : 'active' }}"
+                        href="{{ route('prespendidikan.index') }}">
+                        <i class="ri ri-user-4-line"></i><span>Presentase Pendidikan Terakhir</span>
+                    </a>
+                </li>
             @endif
 
         </ul>
