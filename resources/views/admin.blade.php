@@ -387,7 +387,7 @@
                 </li>
 
                 <li class="nav-item">
-                    <a class="nav-link {{ $active != 'ptssekolah' ? 'collapsed' : 'active' }}"
+                    <a class="nav-link {{ $active != 'putussekolah' ? 'collapsed' : 'active' }}"
                         href="{{ route('ptssekolah.index') }}">
                         <i class="ri ri-user-4-line"></i><span>Data Putus Sekolah</span>
                     </a>
@@ -404,6 +404,30 @@
                     <a class="nav-link {{ $active != 'bsda' ? 'collapsed' : 'active' }}"
                         href="{{ route('bsda.index') }}">
                         <i class="ri ri-user-4-line"></i><span>Data Korban Bencana</span>
+                    </a>
+                </li>
+
+                <span>Data Terpilah Bidang Ekonomi / Ketenaga Kerjaan</span>
+                <li class="nav-item">
+                    <a class="nav-link {{ $active != 'aktkerja' ? 'collapsed' : 'active' }}"
+                        href="{{ route('aktkerja.index') }}">
+                        <i class="ri ri-user-4-line"></i><span>Angkatan Kerja Berdasarkan Bidang Pendidikan</span>
+                    </a>
+                </li>
+                
+                <span>Data Terpilah Bidang Politik</span>
+                <li class="nav-item">
+                    <a class="nav-link {{ $active != 'jumkades' ? 'collapsed' : 'active' }}"
+                        href="{{ route('jumkades.index') }}">
+                        <i class="ri ri-user-4-line"></i><span>Jumlah Angkatan Kerja Menurut Jenis Kelamin</span>
+                    </a>
+                </li>
+
+                <span>Data Terpilah Bidang Hukum / Sosial Budaya</span>
+                <li class="nav-item">
+                    <a class="nav-link {{ $active != 'penghunilapas' ? 'collapsed' : 'active' }}"
+                        href="{{ route('plapas.index') }}">
+                        <i class="ri ri-user-4-line"></i><span>penghuni Lapas</span>
                     </a>
                 </li>
 

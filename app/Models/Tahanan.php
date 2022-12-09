@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use App\Models\Plapa;
 
 class Tahanan extends Model
 {
@@ -14,4 +15,9 @@ class Tahanan extends Model
     Protected $fillable = [
         'jenis_tahanan'
     ];
+
+    public function plapas()
+    {
+        return $this->hasMany(Plapa::class);
+    }
 }

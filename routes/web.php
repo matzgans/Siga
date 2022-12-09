@@ -22,7 +22,10 @@ use App\Http\Controllers\{
     TahananController,
     BsdaController,
     KlasprespendController,
-    PrespendidikanController
+    PrespendidikanController,
+    AktkerjaController,
+    JumkadesController,
+    PlapaController
 };
 use Illuminate\Support\Facades\Route;
 
@@ -188,6 +191,30 @@ Route::group(['middleware' => ['auth', 'HakAkses:pegawai']], function () {
     Route::post('/bsda/update/{id}', [BsdaController::class, 'update'])->name('bsda.update');
     Route::get('/bsda/edit/{id}', [BsdaController::class, 'edit'])->name('bsda.edit');
     Route::get('/bsda/destroy/{id}', [BsdaController::class, 'destroy'])->name('bsda.destroy');
+
+    // Data Terpilah Bodang Ekonomi / Ketenaga kerjaan
+    // 1. Jum Penduduk
+    Route::get('/aktkerja/index', [AktkerjaController::class, 'index'])->name('aktkerja.index');
+    Route::post('/aktkerja/store', [AktkerjaController::class, 'store'])->name('aktkerja.store');
+    Route::post('/aktkerja/update/{id}', [AktkerjaController::class, 'update'])->name('aktkerja.update');
+    Route::get('/aktkerja/edit/{id}', [AktkerjaController::class, 'edit'])->name('aktkerja.edit');
+    Route::get('/aktkerja/destroy/{id}', [AktkerjaController::class, 'destroy'])->name('aktkerja.destroy');
+    
+    // Data Terpilah Bodang Politik
+    // 1. Jum Kades
+    Route::get('/jumkades/index', [JumkadesController::class, 'index'])->name('jumkades.index');
+    Route::post('/jumkades/store', [JumkadesController::class, 'store'])->name('jumkades.store');
+    Route::post('/jumkades/update/{id}', [JumkadesController::class, 'update'])->name('jumkades.update');
+    Route::get('/jumkades/edit/{id}', [JumkadesController::class, 'edit'])->name('jumkades.edit');
+    Route::get('/jumkades/destroy/{id}', [JumkadesController::class, 'destroy'])->name('jumkades.destroy');
+    
+    // Data Terpilah Bidang Hukum / Sosial Budaya
+    // 1. Jum Penguni lapas
+    Route::get('/plapas/index', [PlapaController::class, 'index'])->name('plapas.index');
+    Route::post('/plapas/store', [PlapaController::class, 'store'])->name('plapas.store');
+    Route::post('/plapas/update/{id}', [PlapaController::class, 'update'])->name('plapas.update');
+    Route::get('/plapas/edit/{id}', [PlapaController::class, 'edit'])->name('plapas.edit');
+    Route::get('/plapas/destroy/{id}', [PlapaController::class, 'destroy'])->name('plapas.destroy');
 });
 
 Route::group(['middleware' => ['auth', 'HakAkses:pegawai,admin']], function(){

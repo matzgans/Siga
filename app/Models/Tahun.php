@@ -5,7 +5,9 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use App\Models\{Pkematian, Hiv, Kmtbayi, Prespenduduk, Partsekolah, Ptssekolah, 
-                Jumguru, Bsda, Klasprespend, Prespendidikan};
+                Jumguru, Bsda, Klasprespend, Prespendidikan, Aktkerja,
+                Jumkades, Plapa
+            };
 
 class Tahun extends Model
 {
@@ -68,5 +70,20 @@ class Tahun extends Model
     public function prespendidikans()
     {
         return $this->hasMany(Prespendidikan::class);
+    }
+
+    public function aktkerjas()
+    {
+        return $this->hasMany(Aktkerja::class);
+    }
+
+    public function jumkades()
+    {
+        return $this->hasMany(Jumkades::class);
+    }
+
+    public function plapas()
+    {
+        return $this->hasMany(Plapa::class);
     }
 }
