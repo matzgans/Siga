@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\{Desa, Opd, Tahun, Agama, Pekerjaan, Pkematian, Hiv, Ptssekolah, Kmtbayi, Partsekolah};
+use App\Models\{Desa, Opd, Tahun, Agama, Pekerjaan, Pkematian, Hiv, Ptssekolah, Kmtbayi, Partsekolah, Jumguru};
 
 class DashboardController extends Controller
 {
@@ -270,6 +270,43 @@ class DashboardController extends Controller
         }
         // dd($logjumPtssekolah);
         
+         // Barchart Data Guru
+         $dataDesaJumguru = Jumguru::groupBy('tahun_id')
+            ->select('tahun_id')
+            ->selectRaw(
+                'sum(jum) as jum',
+            )
+            ->get();
+
+        $desaJumguru = [];
+        $jumJumguru = [];
+        foreach ($dataDesaJumguru as $item) {
+            $desaJumguru[] = $item->tahun->nama_tahun;
+            $jumJumguru[] = $item->jum;
+        }
+        // dd($jumJumguru);
+        
+        // Piechart Data Guru
+        $dataJumguru = Jumguru::selectRaw(
+            'sum(l) as l,
+            sum(p) as p',
+        )->get();
+        foreach ($dataJumguru as $piechartJumguru) {
+        }
+
+        // Logchart Data Guru
+        $logdataJumguru = Jumguru::groupBy('tahun_id')
+            ->selectRaw(
+                'sum(l) as l,
+            sum(p) as p',
+            )
+            ->get();
+        $logjumJumguru = [];
+
+        foreach ($logdataJumguru as $itemk) {
+            $logjumJumguru[] = $itemk->l + $itemk->p;
+        }
+        
         return view('landing.welcome', compact(
         'desa', 
         'jum', 
@@ -277,20 +314,24 @@ class DashboardController extends Controller
         'piechartKmtBayi', 
         'piechartHiv', 
         'piechartPartsekolah', 
-        'piechartPtssekolah', 
+        'piechartPtssekolah',
+        'piechartJumguru', 
         'jumKematian', 
         'desaKmtbayi', 
         'jumKmtbayi', 
         'desaHiv', 
         'desaPartsekolah', 
         'desaPtssekolah', 
+        'desaJumguru', 
         'jumHiv', 
         'jumPartsekolah', 
         'jumPtssekolah', 
+        'jumJumguru', 
         'logjumKmtbayi', 
         'logjumHiv', 
         'logjumPartsekolah',
         'logjumPtssekolah',
+        'logjumJumguru',
     ));
     }
 

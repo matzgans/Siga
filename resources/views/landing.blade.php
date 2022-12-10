@@ -50,9 +50,8 @@
     <!-- ======= Header ======= -->
     <header id="header" class="fixed-top ">
         <div class="container d-flex align-items-center">
-
-            <a class="logo me-auto" href="/"><img src="{{ asset('foto_landing') }}/SIgafix.png" alt=""
-                    style="width: 120px;"></a>
+            
+            <a class=" me-auto" href="/"><img src="{{ asset('foto_landing') }}/SIgafix.png" alt="" width="100px"></a>
             <!-- Uncomment below if you prefer to use an image logo -->
             <!-- <a href="index.html" class="logo me-auto"><img src="assets/img/logo.png" alt="" class="img-fluid"></a>-->
 
