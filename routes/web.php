@@ -25,7 +25,10 @@ use App\Http\Controllers\{
     PrespendidikanController,
     AktkerjaController,
     JumkadesController,
-    PlapaController
+    PlapaController,
+    DisabilitasController,
+    JumkekerasanController,
+    JumkerlokController
 };
 use Illuminate\Support\Facades\Route;
 
@@ -215,6 +218,27 @@ Route::group(['middleware' => ['auth', 'HakAkses:pegawai']], function () {
     Route::post('/plapas/update/{id}', [PlapaController::class, 'update'])->name('plapas.update');
     Route::get('/plapas/edit/{id}', [PlapaController::class, 'edit'])->name('plapas.edit');
     Route::get('/plapas/destroy/{id}', [PlapaController::class, 'destroy'])->name('plapas.destroy');
+   
+    // 2. Disabilitas
+    Route::get('/disabilitas/index', [DisabilitasController::class, 'index'])->name('disabilitas.index');
+    Route::post('/disabilitas/store', [DisabilitasController::class, 'store'])->name('disabilitas.store');
+    Route::post('/disabilitas/update/{id}', [DisabilitasController::class, 'update'])->name('disabilitas.update');
+    Route::get('/disabilitas/edit/{id}', [DisabilitasController::class, 'edit'])->name('disabilitas.edit');
+    Route::get('/disabilitas/destroy/{id}', [DisabilitasController::class, 'destroy'])->name('disabilitas.destroy');
+
+    // Kekerasan
+    // 1. Jum kekerasan terhadap perempuan dan anak
+    Route::get('/jumkekerasan/index', [JumkekerasanController::class, 'index'])->name('jumkekerasan.index');
+    Route::post('/jumkekerasan/store', [JumkekerasanController::class, 'store'])->name('jumkekerasan.store');
+    Route::post('/jumkekerasan/update/{id}', [JumkekerasanController::class, 'update'])->name('jumkekerasan.update');
+    Route::get('/jumkekerasan/edit/{id}', [JumkekerasanController::class, 'edit'])->name('jumkekerasan.edit');
+    Route::get('/jumkekerasan/destroy/{id}', [JumkekerasanController::class, 'destroy'])->name('jumkekerasan.destroy');
+    // 2. Jum kekerasan terhadap perempuan dan anak menurut pendidika dan lokasi
+    Route::get('/jumkerlok/index', [JumkerlokController::class, 'index'])->name('jumkerlok.index');
+    Route::post('/jumkerlok/store', [JumkerlokController::class, 'store'])->name('jumkerlok.store');
+    Route::post('/jumkerlok/update/{id}', [JumkerlokController::class, 'update'])->name('jumkerlok.update');
+    Route::get('/jumkerlok/edit/{id}', [JumkerlokController::class, 'edit'])->name('jumkerlok.edit');
+    Route::get('/jumkerlok/destroy/{id}', [JumkerlokController::class, 'destroy'])->name('jumkerlok.destroy');
 });
 
 Route::group(['middleware' => ['auth', 'HakAkses:pegawai,admin']], function(){

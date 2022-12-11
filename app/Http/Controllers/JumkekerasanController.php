@@ -2,10 +2,10 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\{Aktkerja, Tahun, Desa};
+use App\Models\{Jumkekerasan, Tahun, Desa, Jumguru};
 use Illuminate\Http\Request;
 
-class AktkerjaController extends Controller
+class JumkekerasanController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -14,12 +14,12 @@ class AktkerjaController extends Controller
      */
     public function index()
     {
-        $active = 'aktkerja';
-        $pageTitle = 'Ankatan Kerja Bidang Pendidikan';
+        $active = 'jumkekerasan';
+        $pageTitle = 'Jumlah kekerasan terhadap perempuan dan anak';
+        $data = Jumkekerasan::get();
         $tahun = Tahun::get();
         $desa = Desa::get();
-        $data = Aktkerja::all();
-        return view('bidang_ekonomi.aktkerja-index', compact('active','pageTitle','tahun','desa','tahun', 'data'));
+        return view('kekerasan.jumkekerasan-index', compact('active', 'pageTitle', 'data', 'tahun', 'desa'));
     }
 
     /**
@@ -40,16 +40,30 @@ class AktkerjaController extends Controller
      */
     public function store(Request $request)
     {
-        $data = Aktkerja::where('desa_id', $request->desa_id)->first();
+        $data = Jumkekerasan::where('desa_id', $request->desa_id)->first();
         if($data != null){
             if($data->tahun_id == $request->tahun_id){
                 return redirect()->back()->with('message', 'Desa Dengan Tahun Yang sama telah ada');
             }else{
-                Aktkerja::create($request->all());
+                Jumkekerasan::create([
+                    'desa_id'=>$request->desa_id,
+                    'l'=>$request->l,
+                    'p'=>$request->p,
+                    'tahun_id'=>$request->tahun_id,
+                    'sumber'=>$request->sumber,
+                    'ket'=>$request->ket,
+                ]);
                 return redirect()->back()->with('message', 'Data Berhasil Ditambahkan');
             }
         }else{
-            Aktkerja::create($request->all());
+            Jumkekerasan::create([
+                'desa_id'=>$request->desa_id,
+                'l'=>$request->l,
+                'p'=>$request->p,
+                'tahun_id'=>$request->tahun_id,
+                'sumber'=>$request->sumber,
+                'ket'=>$request->ket,
+            ]);
             return redirect()->back()->with('message', 'Data Berhasil Ditambahkan');
         }
     }
@@ -57,10 +71,10 @@ class AktkerjaController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  \App\Models\Aktkerja  $aktkerja
+     * @param  \App\Models\Jumkekerasan  $jumkekerasan
      * @return \Illuminate\Http\Response
      */
-    public function show(Aktkerja $aktkerja)
+    public function show(Jumkekerasan $jumkekerasan)
     {
         //
     }
@@ -68,42 +82,42 @@ class AktkerjaController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Models\Aktkerja  $aktkerja
+     * @param  \App\Models\Jumkekerasan  $jumkekerasan
      * @return \Illuminate\Http\Response
      */
     public function edit($id)
     {
-        $active = 'aktkerjaedit';
-        $pageTitle = 'Ankatan Kerja Bidang Pendidikan Edit';
-        $data = Aktkerja::FindOrFail($id);
-        $tahun = Tahun::get();
+        $active = 'jumkekerasanedit';
+        $pageTitle = 'Edit Jumlah kekerasan terhadap perempuan dan anak';
         $desa = Desa::get();
-        return view('bidang_ekonomi.aktkerja-edit', compact('active', 'pageTitle', 'data', 'desa', 'tahun'));
+        $tahun = Tahun::get();
+        $data = Jumkekerasan::FindOrFail($id);
+        return view('kekerasan.jumkekerasan-edit', compact('active', 'pageTitle', 'desa', 'tahun', 'data'));
     }
 
     /**
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\Aktkerja  $aktkerja
+     * @param  \App\Models\Jumkekerasan  $jumkekerasan
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request,$id)
     {
-        $data = Aktkerja::FindOrFail($id);
+        $data = Jumkekerasan::FindOrFail($id);
         $data->update($request->all());
-        return redirect()->route('aktkerja.index')->with('message', 'Berhasil Ubah Data');
+        return redirect()->route('jumkekerasan.index')->with('message', 'Berhasil Ubah Data');
     }
 
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Models\Aktkerja  $aktkerja
+     * @param  \App\Models\Jumkekerasan  $jumkekerasan
      * @return \Illuminate\Http\Response
      */
     public function destroy($id)
     {
-        $data = Aktkerja::FindOrFail($id);
+        $data = Jumkekerasan::FindOrFail($id);
         $data->delete();
         return redirect()->back()->with('message', 'Berhasil Hapus Data');
     }

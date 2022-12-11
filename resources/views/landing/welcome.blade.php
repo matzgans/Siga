@@ -416,9 +416,55 @@
                                                 </div>
                                             </div>
                                             <div class="tab-pane fade" id="bidangSDALingkungan" role="tabpanel"
-                                                aria-labelledby="nav-contact-tab">Bidang SDA Lingkungan</div>
+                                                aria-labelledby="nav-contact-tab">
+                                                <h3 class="text-center mt-3">Data Korban Bencana</h3>
+                                                <hr class="mx-5">
+                                                <div class="row">
+                                                    <div class="col">
+                                                        <div id="barchart_korbencana"></div>
+                                                    </div>
+                                                    <div class="col">
+                                                        <div id="piechart_korbencana"></div>
+                                                    </div>
+                                                </div>
+                                                <div class="row mx-5 mb-3">
+                                                    <div class="col">
+                                                        <div id="logaritma_korbencana"></div>
+                                                    </div>
+                                                </div>
+                                                <h3 class="text-center mt-3">Data Putus Sekolah</h3>
+                                                <hr class="mx-5">
+                                                <div class="row">
+                                                    <div class="col">
+                                                        <div id="barchart_ptsSekolah"></div>
+                                                    </div>
+                                                    <div class="col">
+                                                        <div id="piechart_ptsSekolah"></div>
+                                                    </div>
+                                                </div>
+                                                <div class="row mx-5 mb-3">
+                                                    <div class="col">
+                                                        <div id="logaritma_ptsSekolah"></div>
+                                                    </div>
+                                                </div></div>
                                             <div class="tab-pane fade" id="bidangEkonomi" role="tabpanel"
-                                                aria-labelledby="nav-contact-tab">Bidang Ekonomi</div>
+                                                aria-labelledby="nav-contact-tab">
+                                                <h3 class="text-center mt-3">Data Angkatan Kerja</h3>
+                                                <hr class="mx-5">
+                                                <div class="row">
+                                                    <div class="col">
+                                                        <div id="barchart_aktkerja"></div>
+                                                    </div>
+                                                    <div class="col">
+                                                        <div id="piechart_aktkerja"></div>
+                                                    </div>
+                                                </div>
+                                                <div class="row mx-5 mb-3">
+                                                    <div class="col">
+                                                        <div id="logaritma_aktkerja"></div>
+                                                    </div>
+                                                </div>
+                                            </div>
                                             <div class="tab-pane fade" id="bidangPolitik" role="tabpanel"
                                                 aria-labelledby="nav-contact-tab">Bidang Politik</div>
                                             <div class="tab-pane fade" id="bidangHukum" role="tabpanel"
@@ -1669,6 +1715,364 @@
             series: [{
                 name: 'Persentase Putus Sekolah',
                 data: {!! json_encode($logjumPtssekolah) !!}
+            }],
+
+            responsive: {
+                rules: [{
+                    condition: {
+                        maxWidth: 500
+                    },
+                    chartOptions: {
+                        legend: {
+                            layout: 'horizontal',
+                            align: 'center',
+                            verticalAlign: 'bottom'
+                        }
+                    }
+                }]
+            }
+
+        });
+
+        // Data terpilah Bidang  SDA
+        // Korban Bencana
+        Highcharts.chart('barchart_korbencana', {
+            chart: {
+                type: 'column'
+            },
+            title: {
+                text: 'Data Korban Bencana'
+            },
+            subtitle: {
+                text: 'Source: Bps.id'
+            },
+            xAxis: {
+                categories: {!! json_encode($jenis_bencana) !!},
+                crosshair: true
+            },
+            yAxis: {
+                min: 0,
+                title: {
+                    text: 'Persentase'
+                }
+            },
+            tooltip: {
+                headerFormat: '<span style="font-size:10px">{point.key}</span><table>',
+                pointFormat: '<tr><td style="color:{series.color};padding:0">{series.name}: </td>' +
+                    '<td style="padding:0"><b>{point.y} Orang</b></td></tr>',
+                footerFormat: '</table>',
+                shared: true,
+                useHTML: true
+            },
+            plotOptions: {
+                column: {
+                    pointPadding: 0.2,
+                    borderWidth: 0
+                }
+            },
+            series: [{
+                    name: 'Orang',
+                    data: {!! json_encode($jum_bencana) !!}
+
+                },
+
+            ]
+        });
+
+        Highcharts.chart('piechart_korbencana', {
+            chart: {
+                type: 'pie'
+            },
+            title: {
+                text: 'Data Korban Bencana'
+            },
+            subtitle: {
+                text: 'Click the slices to view versions. Source: <a href="http://statcounter.com" target="_blank">statcounter.com</a>'
+            },
+
+            accessibility: {
+                announceNewData: {
+                    enabled: true
+                },
+                point: {
+                    valueSuffix: '%'
+                }
+            },
+
+            plotOptions: {
+                series: {
+                    dataLabels: {
+                        enabled: true,
+                        // format: '{point.name}: {point.y:.1f}%'
+                    }
+                }
+            },
+
+            tooltip: {
+                headerFormat: '<span style="font-size:11px">{series.name}</span><br>',
+                pointFormat: '<span style="color:{point.color}">{point.name}</span>: <b>{point.y} Orang</b> of total<br/>'
+            },
+
+            series: [{
+                name: "Korban",
+                colorByPoint: true,
+                data: [{
+                        name: "Dewasa(Laki -Laki)",
+                        y: {{ ($piechartkorbencana->ldes == null)?'0':$piechartkorbencana->ldes }},
+                    },
+                    {
+                        name: "Dewasa(Perempuan)",
+                        y: {{ ($piechartkorbencana->pdes == null)?'0':$piechartkorbencana->pdes }},
+                    },
+                    {
+                        name: "Anak - Anak(Laki - Laki)",
+                        y: {{ ($piechartkorbencana->lan == null)?'0':$piechartkorbencana->lan }},
+                    },
+                    {
+                        name: "Anak - Anak(Perempuan)",
+                        y: {{ ($piechartkorbencana->pan == null)?'0':$piechartkorbencana->pan }},
+                    },
+                ]
+            }]
+        });
+
+        Highcharts.chart('logaritma_korbencana', {
+
+            title: {
+                text: 'Kenaikan Korban Bencana'
+            },
+
+            yAxis: {
+                title: {
+                    text: 'Total Kenaikan'
+                }
+            },
+
+            xAxis: {
+                title: {
+                    text: 'Tahun'
+                },
+                type: 'datetime',
+                accessibility: {
+                    rangeDescription: 'Range: 2022 to 2025'
+                }
+            },
+
+            tooltip: {
+                headerFormat: '<span style="font-size:10px">{point.key}</span><table>',
+                pointFormat: '<tr><td style="color:{series.color};padding:0">{series.name}: </td>' +
+                    '<td style="padding:0"><b>{point.y} %</b></td></tr>',
+                footerFormat: '</table>',
+                shared: true,
+                useHTML: true
+            },
+
+            legend: {
+                layout: 'vertical',
+                align: 'right',
+                verticalAlign: 'middle',
+            },
+
+            plotOptions: {
+                series: {
+                    label: {
+                        connectorAllowed: false
+                    },
+                    pointStart: Date.UTC(2022, 0, 1),
+                    pointInterval: 8760 * 3600 * 1000,
+                }
+            },
+
+            series: [{
+                name: 'Total Korban Bencana',
+                data: {!! json_encode($logjumKorbencana) !!}
+            }],
+
+            responsive: {
+                rules: [{
+                    condition: {
+                        maxWidth: 500
+                    },
+                    chartOptions: {
+                        legend: {
+                            layout: 'horizontal',
+                            align: 'center',
+                            verticalAlign: 'bottom'
+                        }
+                    }
+                }]
+            }
+
+        });
+
+        // Data terpilah Bidang  Ekonomi
+        // aktkerja
+        Highcharts.chart('barchart_aktkerja', {
+            chart: {
+                type: 'column'
+            },
+            title: {
+                text: 'Data Angkatan Kerja'
+            },
+            subtitle: {
+                text: 'Source: Bps.id'
+            },
+            xAxis: {
+                categories: {!! json_encode($desa_aktkerja) !!},
+                crosshair: true
+            },
+            yAxis: {
+                min: 0,
+                title: {
+                    text: 'Total'
+                }
+            },
+            tooltip: {
+                headerFormat: '<span style="font-size:10px">{point.key}</span><table>',
+                pointFormat: '<tr><td style="color:{series.color};padding:0">{series.name}: </td>' +
+                    '<td style="padding:0"><b>{point.y} Orang</b></td></tr>',
+                footerFormat: '</table>',
+                shared: true,
+                useHTML: true
+            },
+            plotOptions: {
+                column: {
+                    pointPadding: 0.2,
+                    borderWidth: 0
+                }
+            },
+            series: [{
+                    name: 'Orang',
+                    data: {!! json_encode($jum_aktkerja) !!}
+
+                },
+
+            ]
+        });
+
+        Highcharts.chart('piechart_aktkerja', {
+            chart: {
+                type: 'pie'
+            },
+            title: {
+                text: 'Data Angkatan Kerja'
+            },
+            subtitle: {
+                text: 'Click the slices to view versions. Source: <a href="http://statcounter.com" target="_blank">statcounter.com</a>'
+            },
+
+            accessibility: {
+                announceNewData: {
+                    enabled: true
+                },
+                point: {
+                    valueSuffix: '%'
+                }
+            },
+
+            plotOptions: {
+                series: {
+                    dataLabels: {
+                        enabled: true,
+                        // format: '{point.name}: {point.y:.1f}%'
+                    }
+                }
+            },
+
+            tooltip: {
+                headerFormat: '<span style="font-size:11px">{series.name}</span><br>',
+                pointFormat: '<span style="color:{point.color}">{point.name}</span>: <b>{point.y} Orang</b> of total<br/>'
+            },
+
+            series: [{
+                name: "Korban",
+                colorByPoint: true,
+                data: [{
+                        name: "SD(Laki -Laki)",
+                        y: {{ ($piechart_aktkerja->lsd == null)?'0':$piechart_aktkerja->psd }},
+                    },
+                    {
+                        name: "SD(Perempuan)",
+                        y: {{ ($piechart_aktkerja->psd == null)?'0':$piechart_aktkerja->psd }},
+                    },
+                    {
+                        name: "SMP(Laki - Laki)",
+                        y: {{ ($piechart_aktkerja->lsmp == null)?'0':$piechart_aktkerja->lsmp }},
+                    },
+                    {
+                        name: "SMP(Perempuan)",
+                        y: {{ ($piechart_aktkerja->psmp == null)?'0':$piechart_aktkerja->psmp }},
+                    },
+                    {
+                        name: "SMA(Laki - Laki)",
+                        y: {{ ($piechart_aktkerja->lsma == null)?'0':$piechart_aktkerja->lsma }},
+                    },
+                    {
+                        name: "SMA(Perempuan)",
+                        y: {{ ($piechart_aktkerja->psma == null)?'0':$piechart_aktkerja->psma }},
+                    },
+                    {
+                        name: "Perguruan Tinggi(Laki - Laki)",
+                        y: {{ ($piechart_aktkerja->lpt == null)?'0':$piechart_aktkerja->lpt }},
+                    },
+                    {
+                        name: "Perguruan Tinggi(Perempuan)",
+                        y: {{ ($piechart_aktkerja->ppt == null)?'0':$piechart_aktkerja->ppt }},
+                    },
+                ]
+            }]
+        });
+
+        Highcharts.chart('logaritma_aktkerja', {
+
+            title: {
+                text: 'Kenaikan Ankatan Kerja'
+            },
+
+            yAxis: {
+                title: {
+                    text: 'Total Kenaikan'
+                }
+            },
+
+            xAxis: {
+                title: {
+                    text: 'Tahun'
+                },
+                type: 'datetime',
+                accessibility: {
+                    rangeDescription: 'Range: 2022 to 2025'
+                }
+            },
+
+            tooltip: {
+                headerFormat: '<span style="font-size:10px">{point.key}</span><table>',
+                pointFormat: '<tr><td style="color:{series.color};padding:0">{series.name}: </td>' +
+                    '<td style="padding:0"><b>{point.y} %</b></td></tr>',
+                footerFormat: '</table>',
+                shared: true,
+                useHTML: true
+            },
+
+            legend: {
+                layout: 'vertical',
+                align: 'right',
+                verticalAlign: 'middle',
+            },
+
+            plotOptions: {
+                series: {
+                    label: {
+                        connectorAllowed: false
+                    },
+                    pointStart: Date.UTC(2022, 0, 1),
+                    pointInterval: 8760 * 3600 * 1000,
+                }
+            },
+
+            series: [{
+                name: 'Total Korban Bencana',
+                data: {!! json_encode($logjumAktkerja) !!}
             }],
 
             responsive: {

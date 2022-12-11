@@ -5,7 +5,8 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use App\Models\{Prespenduduk, Pkematian, Hiv, Kmtbayi, Partsekolah,
-     Ptssekolah, Klasprespend, Prespendidikan, Aktkerja};
+     Ptssekolah, Klasprespend, Prespendidikan, Aktkerja, Disabilitas, Jumkekerasan,
+    Jumkerlok};
 
 
 class Desa extends Model
@@ -60,5 +61,20 @@ class Desa extends Model
     public function aktkerjas()
     {
         return $this->hasMany(Aktkerja::class);
+    }
+
+    public function disabilitas()
+    {
+        return $this->hasMany(Disabilitas::class);
+    }
+
+    public function jumkekerasans()
+    {
+        return $this->hasMany(Jumkekerasan::class);
+    }
+
+    public function jumkerloks()
+    {
+        return $this->belongsTo(Jumkerlok::class);
     }
 }

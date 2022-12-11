@@ -1,10 +1,11 @@
 <?php
 
 namespace App\Http\Controllers;
-use App\Models\{Bsda, Bencana, Tahun};
+
+use App\Models\{Desa, Tahun, Disabilitas};
 use Illuminate\Http\Request;
 
-class BsdaController extends Controller
+class DisabilitasController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -13,12 +14,12 @@ class BsdaController extends Controller
      */
     public function index()
     {
-        $data = Bsda::all();
+        $active = 'disabilitas';
+        $pageTitle = 'Disabilitas';
+        $data = Disabilitas::get();
         $tahun = Tahun::get();
-        $bencana = Bencana::get();
-        $active = 'bsda';
-        $pageTitle = 'bidang sumber daya alam / Lingkungan';
-        return view('bidang_sda.bsda-index', compact('data', 'active', 'pageTitle', 'bencana', 'tahun'));
+        $desa = Desa::get();
+        return view('bidang_hukum.disabilitas-index', compact('active', 'pageTitle', 'data', 'tahun', 'desa'));
     }
 
     /**
@@ -39,16 +40,16 @@ class BsdaController extends Controller
      */
     public function store(Request $request)
     {
-        $data = Bsda::where('bencana_id', $request->bencana_id)->first();
+        $data = Disabilitas::where('desa_id', $request->desa_id)->first();
         if($data != null){
             if($data->tahun_id == $request->tahun_id){
                 return redirect()->back()->with('message', 'Desa Dengan Tahun Yang sama telah ada');
             }else{
-                Bsda::create($request->all());
+                Disabilitas::create($request->all());
                 return redirect()->back()->with('message', 'Data Berhasil Ditambahkan');
             }
         }else{
-            Bsda::create($request->all());
+            Disabilitas::create($request->all());
             return redirect()->back()->with('message', 'Data Berhasil Ditambahkan');
         }
     }
@@ -56,10 +57,10 @@ class BsdaController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  \App\Models\Bsda  $bsda
+     * @param  \App\Models\Disabilitas  $disabilitas
      * @return \Illuminate\Http\Response
      */
-    public function show(Bsda $bsda)
+    public function show(Disabilitas $disabilitas)
     {
         //
     }
@@ -67,43 +68,43 @@ class BsdaController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Models\Bsda  $bsda
+     * @param  \App\Models\Disabilitas  $disabilitas
      * @return \Illuminate\Http\Response
      */
     public function edit($id)
     {
-        $data = Bsda::FindOrFail($id);
+        $active = 'disabilitas';
+        $pageTitle = 'Disabilitas Edit';
+        $data = Disabilitas::FindOrFail($id);
         $tahun = Tahun::get();
-        $bencana = Bencana::get();
-        $active = 'bsdaedit';
-        $pageTitle = 'bidang sumber daya alam / Lingkungan edit';
-        return view('bidang_sda.bsda-edit', compact('data', 'active', 'pageTitle', 'bencana', 'tahun'));
+        $desa = Desa::get();
+        return view('bidang_hukum.disabilitas-edit', compact('active', 'pageTitle', 'data', 'tahun', 'desa'));
     }
 
     /**
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\Bsda  $bsda
+     * @param  \App\Models\Disabilitas  $disabilitas
      * @return \Illuminate\Http\Response
      */
     public function update(Request $request, $id)
     {
-        $data = Bsda::FindOrFail($id);
+        $data = Disabilitas::FindOrFail($id);
         $data->update($request->all());
-        return redirect()->route('bsda.index')->with('message', 'Berhasil Ubah Data');
+        return redirect()->route('disabilitas.index')->with('message', 'Berhasil Ubah Data');
     }
 
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Models\Bsda  $bsda
+     * @param  \App\Models\Disabilitas  $disabilitas
      * @return \Illuminate\Http\Response
      */
     public function destroy($id)
     {
-        $data = Bsda::FindOrFail($id);
+        $data = Disabilitas::FindOrFail($id);
         $data->delete();
-        return redirect()->back()->with('berhasil menghapus data');
+        return redirect()->back()->with('message', 'Berhasil Hapus Data');
     }
 }

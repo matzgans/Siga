@@ -427,7 +427,27 @@
                 <li class="nav-item">
                     <a class="nav-link {{ $active != 'penghunilapas' ? 'collapsed' : 'active' }}"
                         href="{{ route('plapas.index') }}">
-                        <i class="ri ri-user-4-line"></i><span>penghuni Lapas</span>
+                        <i class="ri ri-user-4-line"></i><span>Penghuni Lapas</span>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link {{ $active != 'disabilitas' ? 'collapsed' : 'active' }}"
+                        href="{{ route('disabilitas.index') }}">
+                        <i class="ri ri-user-4-line"></i><span>Disabilitas</span>
+                    </a>
+                </li>
+
+                <span>Kekerasan</span>
+                <li class="nav-item">
+                    <a class="nav-link {{ $active != 'jumkekerasan' ? 'collapsed' : 'active' }}"
+                        href="{{ route('jumkekerasan.index') }}">
+                        <i class="ri ri-user-4-line"></i><span>Jumlah Kekerasan terhdap Perempuan dan Anak</span>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link {{ $active != 'jumkerlok' ? 'collapsed' : 'active' }}"
+                        href="{{ route('jumkerlok.index') }}">
+                        <i class="ri ri-user-4-line"></i><span>Jumlah Kekerasan terhdap Perempuan dan Anak Menurut Jenis Kelamin</span>
                     </a>
                 </li>
 
