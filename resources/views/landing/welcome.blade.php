@@ -414,6 +414,21 @@
                                                         <div id="logaritma_ptsSekolah"></div>
                                                     </div>
                                                 </div>
+                                                <h3 class="text-center mt-3">Data Guru</h3>
+                                                <hr class="mx-5">
+                                                <div class="row">
+                                                    <div class="col">
+                                                        <div id="barchart_dataGuru"></div>
+                                                    </div>
+                                                    <div class="col">
+                                                        <div id="piechart_dataGuru"></div>
+                                                    </div>
+                                                </div>
+                                                <div class="row mx-5 mb-3">
+                                                    <div class="col">
+                                                        <div id="logaritma_dataGuru"></div>
+                                                    </div>
+                                                </div>
                                             </div>
                                             <div class="tab-pane fade" id="bidangSDALingkungan" role="tabpanel"
                                                 aria-labelledby="nav-contact-tab">
@@ -733,10 +748,9 @@
                 }
             },
             series: [{
-                    name: 'Orang',
-                    data: {!! json_encode($jum) !!}
-                }
-            ]
+                name: 'Orang',
+                data: {!! json_encode($jum) !!}
+            }]
         });
 
         Highcharts.chart('piechart', {
@@ -940,11 +954,11 @@
                 colorByPoint: true,
                 data: [{
                         name: "Laki - Laki",
-                        y: {{ ($piechartKmtBayi->co == null)?'0':$piechartKmtBayi->co }},
+                        y: {{ $piechartKmtBayi->co == null ? '0' : $piechartKmtBayi->co }},
                     },
                     {
                         name: "Perempuan",
-                        y: {{ ($piechartKmtBayi->ce == null)?'0':$piechartKmtBayi->ce }},
+                        y: {{ $piechartKmtBayi->ce == null ? '0' : $piechartKmtBayi->ce }},
                     }
                 ]
             }],
@@ -1297,11 +1311,11 @@
                 colorByPoint: true,
                 data: [{
                         name: "Laki - Laki",
-                        y: {{ ($piechartHiv->co == null)?'0':$piechartHiv->co }},
+                        y: {{ $piechartHiv->co == null ? '0' : $piechartHiv->co }},
                     },
                     {
                         name: "Perempuan",
-                        y: {{ ($piechartHiv->co == null)?'0':$piechartHiv->co }},
+                        y: {{ $piechartHiv->co == null ? '0' : $piechartHiv->co }},
                     }
                 ]
             }]
@@ -1453,35 +1467,35 @@
                 colorByPoint: true,
                 data: [{
                         name: "Laki - Laki (7 Tahun)",
-                        y: {{ ($piechartPartsekolah->l7 == null)?'0':$piechartPartsekolah->l7 }},
+                        y: {{ $piechartPartsekolah->l7 == null ? '0' : $piechartPartsekolah->l7 }},
                     },
                     {
                         name: "Perempuan (7 Tahun)",
-                        y: {{ ($piechartPartsekolah->p7 == null)?'0':$piechartPartsekolah->p7 }},
+                        y: {{ $piechartPartsekolah->p7 == null ? '0' : $piechartPartsekolah->p7 }},
                     },
                     {
                         name: "Laki - Laki (13 Tahun)",
-                        y: {{ ($piechartPartsekolah->l13 == null)?'0':$piechartPartsekolah->l13 }},
+                        y: {{ $piechartPartsekolah->l13 == null ? '0' : $piechartPartsekolah->l13 }},
                     },
                     {
                         name: "Perempuan (13 Tahun)",
-                        y: {{ ($piechartPartsekolah->p13 == null)?'0':$piechartPartsekolah->p13 }},
+                        y: {{ $piechartPartsekolah->p13 == null ? '0' : $piechartPartsekolah->p13 }},
                     },
                     {
                         name: "Laki - Laki (16 Tahun)",
-                        y: {{ ($piechartPartsekolah->l16 == null)?'0':$piechartPartsekolah->l16 }},
+                        y: {{ $piechartPartsekolah->l16 == null ? '0' : $piechartPartsekolah->l16 }},
                     },
                     {
                         name: "Perempuan (16 Tahun)",
-                        y: {{ ($piechartPartsekolah->p16 == null)?'0':$piechartPartsekolah->p16 }},
+                        y: {{ $piechartPartsekolah->p16 == null ? '0' : $piechartPartsekolah->p16 }},
                     },
                     {
                         name: "Laki - Laki (19 Tahun)",
-                        y: {{ ($piechartPartsekolah->l19 == null)?'0':$piechartPartsekolah->l19 }},
+                        y: {{ $piechartPartsekolah->l19 == null ? '0' : $piechartPartsekolah->l19 }},
                     },
                     {
                         name: "Perempuan (19 Tahun)",
-                        y: {{ ($piechartPartsekolah->p19 == null)?'0':$piechartPartsekolah->p19 }},
+                        y: {{ $piechartPartsekolah->p19 == null ? '0' : $piechartPartsekolah->p19 }},
                     },
                 ]
             }]
@@ -1639,27 +1653,27 @@
                 colorByPoint: true,
                 data: [{
                         name: "Laki - Laki (SD)",
-                        y: {{ ($piechartPtssekolah->lsd == null)?'0':$piechartPtssekolah->lsd }},
+                        y: {{ $piechartPtssekolah->lsd == null ? '0' : $piechartPtssekolah->lsd }},
                     },
                     {
                         name: "Perempuan (SD)",
-                        y: {{ ($piechartPtssekolah->psd == null)?'0':$piechartPtssekolah->psd }},
+                        y: {{ $piechartPtssekolah->psd == null ? '0' : $piechartPtssekolah->psd }},
                     },
                     {
                         name: "Laki - Laki (SMP)",
-                        y: {{ ($piechartPtssekolah->lsmp == null)?'0':$piechartPtssekolah->lsmp }},
+                        y: {{ $piechartPtssekolah->lsmp == null ? '0' : $piechartPtssekolah->lsmp }},
                     },
                     {
                         name: "Perempuan (SMP)",
-                        y: {{ ($piechartPtssekolah->psmp == null)?'0':$piechartPtssekolah->psmp }},
+                        y: {{ $piechartPtssekolah->psmp == null ? '0' : $piechartPtssekolah->psmp }},
                     },
                     {
                         name: "Laki - Laki (SMA)",
-                        y: {{ ($piechartPtssekolah->lsma == null)?'0':$piechartPtssekolah->lsma }},
+                        y: {{ $piechartPtssekolah->lsma == null ? '0' : $piechartPtssekolah->lsma }},
                     },
                     {
                         name: "Perempuan (SMA)",
-                        y: {{ ($piechartPtssekolah->psma == null)?'0':$piechartPtssekolah->psma }},
+                        y: {{ $piechartPtssekolah->psma == null ? '0' : $piechartPtssekolah->psma }},
                     },
                 ]
             }]

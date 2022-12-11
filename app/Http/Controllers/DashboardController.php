@@ -2,8 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\{Desa, Opd, Tahun, Agama, Pekerjaan, Pkematian, Hiv, Ptssekolah,
-     Kmtbayi, Partsekolah, Bsda, Aktkerja};
+use App\Models\{Desa, Opd, Tahun, Agama, Pekerjaan, Pkematian, Hiv, Ptssekolah, Kmtbayi, Partsekolah};
 
 class DashboardController extends Controller
 {
@@ -270,105 +269,6 @@ class DashboardController extends Controller
             $logjumPtssekolah[] = $itemk->lsd + $itemk->psd + $itemk->lsmp + $itemk->psmp + $itemk->lsma + $itemk->psma;
         }
         // dd($logjumPtssekolah);
-
-        // Bidang SDA
-        // barchart korban bencana
-        $dataBencana = Bsda::groupBy('bencana_id')
-        ->select('bencana_id')
-        ->selectRaw(
-            'sum(lan) as lan,
-            sum(pan) as pan,
-            sum(ldes) as ldes,
-            sum(pdes) as pdes',
-        )
-        ->get();
-
-        $jenis_bencana = [];
-        $jum_bencana = [];
-        foreach ($dataBencana as $item) {
-            $jenis_bencana[] = $item->bencana->nama_bencana;
-            $jum_bencana[] = $item->lan + $item->pan + $item->ldes + $item->pdes;
-        }
-        // piechart korban bencana
-        $bencana_jk = Bsda::selectRaw(
-            'sum(lan) as lan,
-            sum(pan) as pan,
-            sum(ldes) as ldes,
-            sum(pdes) as pdes',
-        )->get();
-        foreach ($bencana_jk as $piechartkorbencana) {
-        }
-        // Logchart Korban Bencana
-        $logdataKorbencana = Bsda::groupBy('tahun_id')
-        ->selectRaw(
-            'sum(lan) as lan,
-            sum(pan) as pan,
-            sum(ldes) as ldes,
-            sum(pdes) as pdes',
-        )
-        ->get();
-        $logjumKorbencana = [];
-        
-        foreach ($logdataKorbencana as $itemk) {
-            $logjumKorbencana[] = $itemk->ldes + $itemk->pdes + $itemk->lan + $itemk->pan;
-        }
-
-        // Bidang SDA
-        // barchart aktkerja
-        $dataAktkerja = Aktkerja::groupBy('desa_id')
-        ->select('desa_id')
-        ->selectRaw(
-            'sum(lsd) as lsd,
-            sum(psd) as psd,
-            sum(lsmp) as lsmp,
-            sum(psmp) as psmp,
-            sum(lsma) as lsma,
-            sum(psma) as psma,
-            sum(lpt) as lpt,
-            sum(ppt) as ppt',
-        )
-        ->get();
-
-        $desa_aktkerja = [];
-        $jum_aktkerja = [];
-        foreach ($dataAktkerja as $item) {
-            $desa_aktkerja[] = $item->desa->nama_desa;
-            $jum_aktkerja[] = $item->lsd + $item->psd + $item->lsmp + $item->psmp + $item->lsma + $item->psma
-            + $item->lpt + $item->ppt;
-        }
-         // piechart Angkatan Kerja
-         $aktkerja_jk = Aktkerja::selectRaw(
-            'sum(lsd) as lsd,
-            sum(psd) as psd,
-            sum(lsmp) as lsmp,
-            sum(psmp) as psmp,
-            sum(lsma) as lsma,
-            sum(psma) as psma,
-            sum(lpt) as lpt,
-            sum(ppt) as ppt',
-        )->get();
-        foreach ($aktkerja_jk as $piechart_aktkerja) {
-        }
-        // Logchart Angkatan Kerja
-        $logdataAktkerja = Aktkerja::groupBy('tahun_id')
-        ->selectRaw(
-            'sum(lsd) as lsd,
-            sum(psd) as psd,
-            sum(lsmp) as lsmp,
-            sum(psmp) as psmp,
-            sum(lsma) as lsma,
-            sum(psma) as psma,
-            sum(lpt) as lpt,
-            sum(ppt) as ppt',
-        )
-        ->get();
-        $logjumAktkerja = [];
-        
-        foreach ($logdataAktkerja as $itemk) {
-            $logjumAktkerja[] = $item->lsd + $item->psd + $item->lsmp + $item->psmp + $item->lsma + $item->psma
-            + $item->lpt + $item->ppt;
-        }
-       
         
         return view('landing.welcome', compact(
         'desa', 
@@ -378,27 +278,18 @@ class DashboardController extends Controller
         'piechartHiv', 
         'piechartPartsekolah', 
         'piechartPtssekolah', 
-        'piechartkorbencana',
-        'piechart_aktkerja', 
         'jumKematian', 
         'desaKmtbayi', 
         'desaHiv', 
         'desaPartsekolah', 
         'desaPtssekolah', 
-        'desa_aktkerja',
-        'jenis_bencana',
-        'jumKmtbayi', 
         'jumHiv', 
         'jumPartsekolah', 
         'jumPtssekolah', 
-        'jum_bencana',
-        'jum_aktkerja',
         'logjumKmtbayi', 
         'logjumHiv', 
         'logjumPartsekolah',
         'logjumPtssekolah',
-        'logjumKorbencana',
-        'logjumAktkerja'
     ));
     }
 
