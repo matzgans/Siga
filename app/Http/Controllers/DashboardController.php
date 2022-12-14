@@ -2,7 +2,8 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\{Desa, Opd, Tahun, Agama, Pekerjaan, Pkematian, Hiv, Ptssekolah, Kmtbayi, Partsekolah};
+use App\Models\{Desa, Opd, Tahun, Agama, Pekerjaan, Pkematian, Hiv, Ptssekolah,
+     Kmtbayi, Partsekolah, Bsda, Aktkerja, Ipha, Jumguru, Jumkekerasan, Klasprespend, Prespenduduk};
 
 class DashboardController extends Controller
 {
@@ -15,7 +16,29 @@ class DashboardController extends Controller
         $tahun = Tahun::count();
         $agama = Agama::count();
         $pageTitle = 'Dashboard';
-        return view('dashboard.dashboard-index', compact('active', 'desa', 'opd', 'pekerjaan', 'tahun', 'agama', 'pageTitle'));
+        // Penduduk menurt jk
+        $pendudukLaki = Klasprespend::sum('l'); 
+        $pendudukPerempuan = Klasprespend::sum('p');
+        // kematian Ibu hamil
+        $dataKmtIbu = Pkematian::selectRaw(
+            'sum(jum_partuslama) as partusLama,
+        sum(jum_infeksi) as infeksi,
+        sum(jum_hirpetensi) as hirpetensi,
+        sum(jum_pendarahan) as pendarahan,  
+        sum(jum_penyebablain) as penyelain',
+        )->get();
+        foreach ($dataKmtIbu as $itemk) {
+            $jumKematianIbu = $itemk->partusLama + $itemk->infeksi + $itemk->hirpetensi + $itemk->pendarahan + $itemk->penyelain;
+        }
+        // Data Klaster
+        $dataKlaster = Ipha::sum('bobot');
+        // Data Kererasan 
+        $jumKerL = Jumkekerasan::sum('l');
+        $jumKerP = Jumkekerasan::sum('p');
+        
+        return view('dashboard.dashboard-index', compact('pendudukLaki','pendudukPerempuan',
+        'active', 'desa', 'opd', 'pekerjaan', 'tahun', 'agama', 'pageTitle', 'jumKematianIbu', 'dataKlaster',
+        'jumKerL','jumKerP'));
     }
 
     public function landing()
@@ -41,10 +64,10 @@ class DashboardController extends Controller
             ->select('desa_id')
             ->selectRaw(
                 'sum(jum_partuslama) as partusLama,
-            sum(jum_infeksi) as infeksi,
-            sum(jum_hirpetensi) as hirpetensi,
-            sum(jum_pendarahan) as pendarahan,
-            sum(jum_penyebablain) as penyelain',
+                sum(jum_infeksi) as infeksi,
+                sum(jum_hirpetensi) as hirpetensi,
+                sum(jum_pendarahan) as pendarahan,
+                sum(jum_penyebablain) as penyelain',
             )
             ->get();
 
@@ -269,6 +292,142 @@ class DashboardController extends Controller
             $logjumPtssekolah[] = $itemk->lsd + $itemk->psd + $itemk->lsmp + $itemk->psmp + $itemk->lsma + $itemk->psma;
         }
         // dd($logjumPtssekolah);
+
+        // Bidang SDA
+        // barchart korban bencana
+        $dataBencana = Bsda::groupBy('bencana_id')
+        ->select('bencana_id')
+        ->selectRaw(
+            'sum(lan) as lan,
+            sum(pan) as pan,
+            sum(ldes) as ldes,
+            sum(pdes) as pdes',
+        )
+        ->get();
+
+        $jenis_bencana = [];
+        $jum_bencana = [];
+        foreach ($dataBencana as $item) {
+            $jenis_bencana[] = $item->bencana->nama_bencana;
+            $jum_bencana[] = $item->lan + $item->pan + $item->ldes + $item->pdes;
+        }
+        // piechart korban bencana
+        $bencana_jk = Bsda::selectRaw(
+            'sum(lan) as lan,
+            sum(pan) as pan,
+            sum(ldes) as ldes,
+            sum(pdes) as pdes',
+        )->get();
+        foreach ($bencana_jk as $piechartkorbencana) {
+        }
+        // Logchart Korban Bencana
+        $logdataKorbencana = Bsda::groupBy('tahun_id')
+        ->selectRaw(
+            'sum(lan) as lan,
+            sum(pan) as pan,
+            sum(ldes) as ldes,
+            sum(pdes) as pdes',
+        )
+        ->get();
+        $logjumKorbencana = [];
+        
+        foreach ($logdataKorbencana as $itemk) {
+            $logjumKorbencana[] = $itemk->ldes + $itemk->pdes + $itemk->lan + $itemk->pan;
+        }
+
+        // Bidang SDA
+        // barchart aktkerja
+        $dataAktkerja = Aktkerja::groupBy('desa_id')
+        ->select('desa_id')
+        ->selectRaw(
+            'sum(lsd) as lsd,
+            sum(psd) as psd,
+            sum(lsmp) as lsmp,
+            sum(psmp) as psmp,
+            sum(lsma) as lsma,
+            sum(psma) as psma,
+            sum(lpt) as lpt,
+            sum(ppt) as ppt',
+        )
+        ->get();
+
+        $desa_aktkerja = [];
+        $jum_aktkerja = [];
+        foreach ($dataAktkerja as $item) {
+            $desa_aktkerja[] = $item->desa->nama_desa;
+            $jum_aktkerja[] = $item->lsd + $item->psd + $item->lsmp + $item->psmp + $item->lsma + $item->psma
+            + $item->lpt + $item->ppt;
+        }
+         // piechart Angkatan Kerja
+         $aktkerja_jk = Aktkerja::selectRaw(
+            'sum(lsd) as lsd,
+            sum(psd) as psd,
+            sum(lsmp) as lsmp,
+            sum(psmp) as psmp,
+            sum(lsma) as lsma,
+            sum(psma) as psma,
+            sum(lpt) as lpt,
+            sum(ppt) as ppt',
+        )->get();
+        foreach ($aktkerja_jk as $piechart_aktkerja) {
+        }
+        // Logchart Angkatan Kerja
+        $logdataAktkerja = Aktkerja::groupBy('tahun_id')
+        ->selectRaw(
+            'sum(lsd) as lsd,
+            sum(psd) as psd,
+            sum(lsmp) as lsmp,
+            sum(psmp) as psmp,
+            sum(lsma) as lsma,
+            sum(psma) as psma,
+            sum(lpt) as lpt,
+            sum(ppt) as ppt',
+        )
+        ->get();
+        $logjumAktkerja = [];
+        
+        foreach ($logdataAktkerja as $itemk) {
+            $logjumAktkerja[] = $item->lsd + $item->psd + $item->lsmp + $item->psmp + $item->lsma + $item->psma
+            + $item->lpt + $item->ppt;
+        }
+       
+        
+         // Barchart Data Guru
+         $dataDesaJumguru = Jumguru::groupBy('tahun_id')
+            ->select('tahun_id')
+            ->selectRaw(
+                'sum(jum) as jum',
+            )
+            ->get();
+
+        $desaJumguru = [];
+        $jumJumguru = [];
+        foreach ($dataDesaJumguru as $item) {
+            $desaJumguru[] = $item->tahun->nama_tahun;
+            $jumJumguru[] = $item->jum;
+        }
+        // dd($jumJumguru);
+        
+        // Piechart Data Guru
+        $dataJumguru = Jumguru::selectRaw(
+            'sum(l) as l,
+            sum(p) as p',
+        )->get();
+        foreach ($dataJumguru as $piechartJumguru) {
+        }
+
+        // Logchart Data Guru
+        $logdataJumguru = Jumguru::groupBy('tahun_id')
+            ->selectRaw(
+                'sum(l) as l,
+            sum(p) as p',
+            )
+            ->get();
+        $logjumJumguru = [];
+
+        foreach ($logdataJumguru as $itemk) {
+            $logjumJumguru[] = $itemk->l + $itemk->p;
+        }
         
         return view('landing.welcome', compact(
         'desa', 
@@ -278,18 +437,27 @@ class DashboardController extends Controller
         'piechartHiv', 
         'piechartPartsekolah', 
         'piechartPtssekolah', 
+        'piechartkorbencana',
+        'piechart_aktkerja', 
         'jumKematian', 
         'desaKmtbayi', 
         'desaHiv', 
         'desaPartsekolah', 
         'desaPtssekolah', 
+        'desa_aktkerja',
+        'jenis_bencana',
+        'jumKmtbayi', 
         'jumHiv', 
         'jumPartsekolah', 
         'jumPtssekolah', 
+        'jum_bencana',
+        'jum_aktkerja',
         'logjumKmtbayi', 
         'logjumHiv', 
         'logjumPartsekolah',
         'logjumPtssekolah',
+        'logjumKorbencana',
+        'logjumAktkerja'
     ));
     }
 

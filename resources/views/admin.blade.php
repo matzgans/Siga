@@ -221,8 +221,8 @@
 
                     <ul class="dropdown-menu dropdown-menu-end dropdown-menu-arrow profile">
                         <li class="dropdown-header">
-                            <h6>Kevin Anderson</h6>
-                            <span>Web Designer</span>
+                            <h6>{{auth()->user()->name}}</h6>
+                            <span>{{auth()->user()->role}}</span>
                         </li>
                         <li>
                             <hr class="dropdown-divider">
@@ -358,6 +358,34 @@
                 </li>
 
             @elseif(auth()->user()->role == "pegawai")
+                <span>IPG</span>
+                <li class="nav-item">
+                    <a class="nav-link {{ $active != 'klasprespend' ? 'collapsed' : 'active' }}"
+                        href="{{ route('klasprespend.index') }}">
+                        <i class="ri ri-user-4-line"></i><span>Klasifikasi Presentasi Penduduk</span>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link {{ $active != 'prespenduduk' ? 'collapsed' : 'active' }}"
+                        href="{{ route('prespenduduk.index') }}">
+                        <i class="ri ri-user-4-line"></i><span>Jumlah Penduduk Menurut JK</span>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link {{ $active != 'prespendidikanterakhir' ? 'collapsed' : 'active' }}"
+                        href="{{ route('prespendidikan.index') }}">
+                        <i class="ri ri-user-4-line"></i><span>Presentase Pendidikan Terakhir</span>
+                    </a>
+                </li>
+
+                <span>IPHA</span>
+                <li class="nav-item">
+                    <a class="nav-link {{ $active != 'ipha' ? 'collapsed' : 'active' }}"
+                        href="{{ route('ipha.index') }}">
+                        <i class="ri ri-user-4-line"></i><span>Index Pemenuhan Hak Anak</span>
+                    </a>
+                </li>
+                
                 <span>Data Terpilah Bidang Kesehatan</span>
                 <li class="nav-item">
                     <a class="nav-link {{ $active != 'pkematian' ? 'collapsed' : 'active' }}"
@@ -419,9 +447,22 @@
                 <li class="nav-item">
                     <a class="nav-link {{ $active != 'jumkades' ? 'collapsed' : 'active' }}"
                         href="{{ route('jumkades.index') }}">
-                        <i class="ri ri-user-4-line"></i><span>Jumlah Angkatan Kerja Menurut Jenis Kelamin</span>
+                        <i class="ri ri-user-4-line"></i><span>Jumlah Kepala Desa</span>
                     </a>
                 </li>
+                <li class="nav-item">
+                    <a class="nav-link {{ $active != 'pns' ? 'collapsed' : 'active' }}"
+                        href="{{ route('pns.index') }}">
+                        <i class="ri ri-user-4-line"></i><span>PNS Menurut Golongan / Jenis Kelamin</span>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link {{ $active != 'dprd' ? 'collapsed' : 'active' }}"
+                        href="{{ route('dprd.index') }}">
+                        <i class="ri ri-user-4-line"></i><span>DPRD Menurut Komisi / Jenis Kelamin</span>
+                    </a>
+                </li>
+               
 
                 <span>Data Terpilah Bidang Hukum / Sosial Budaya</span>
                 <li class="nav-item">
@@ -448,26 +489,6 @@
                     <a class="nav-link {{ $active != 'jumkerlok' ? 'collapsed' : 'active' }}"
                         href="{{ route('jumkerlok.index') }}">
                         <i class="ri ri-user-4-line"></i><span>Jumlah Kekerasan terhdap Perempuan dan Anak Menurut Jenis Kelamin</span>
-                    </a>
-                </li>
-
-                <span>IPG</span>
-                <li class="nav-item">
-                    <a class="nav-link {{ $active != 'klasprespend' ? 'collapsed' : 'active' }}"
-                        href="{{ route('klasprespend.index') }}">
-                        <i class="ri ri-user-4-line"></i><span>Klasifikasi Presentasi Penduduk</span>
-                    </a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link {{ $active != 'prespenduduk' ? 'collapsed' : 'active' }}"
-                        href="{{ route('prespenduduk.index') }}">
-                        <i class="ri ri-user-4-line"></i><span>Jumlah Penduduk Menurut JK</span>
-                    </a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link {{ $active != 'prespendidikanterakhir' ? 'collapsed' : 'active' }}"
-                        href="{{ route('prespendidikan.index') }}">
-                        <i class="ri ri-user-4-line"></i><span>Presentase Pendidikan Terakhir</span>
                     </a>
                 </li>
             @endif

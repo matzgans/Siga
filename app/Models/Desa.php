@@ -5,8 +5,9 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use App\Models\{Prespenduduk, Pkematian, Hiv, Kmtbayi, Partsekolah,
-     Ptssekolah, Klasprespend, Prespendidikan, Aktkerja, Disabilitas, Jumkekerasan,
-    Jumkerlok};
+            Ptssekolah, Klasprespend, Prespendidikan, Aktkerja, Disabilitas, Jumkekerasan,
+            Jumkerlok
+    };
 
 
 class Desa extends Model
@@ -75,6 +76,6 @@ class Desa extends Model
 
     public function jumkerloks()
     {
-        return $this->belongsTo(Jumkerlok::class);
+        return $this->hasMany(Jumkerlok::class);
     }
 }

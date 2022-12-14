@@ -698,5 +698,123 @@
         </div><!-- End News & Updates --> --}}
 
     </div><!-- End Right side columns -->
+@else
+<div class="col-lg-12">
+    <div class="row">
+
+        <!-- Sales Card -->
+        <div class="col-xxl-4 col-md-4">
+            <div class="card info-card sales-card">
+
+                <div class="card-body">
+                    <h5 class="card-title">Jumlah Penduduk Laki - Laki</h5>
+
+                    <div class="d-flex align-items-center">
+                        <div class="card-icon rounded-circle d-flex align-items-center justify-content-center">
+                            <i class="bi bi-house-door"></i>
+                        </div>
+                        <div class="ps-3">
+                            <h6>{{ $pendudukLaki }}</h6><span>Orang</span>
+
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div><!-- End Sales Card -->
+        <div class="col-xxl-4 col-md-4">
+            <div class="card info-card sales-card">
+
+                <div class="card-body">
+                    <h5 class="card-title">Jumlah Penduduk Perempuan</h5>
+
+                    <div class="d-flex align-items-center">
+                        <div class="card-icon rounded-circle d-flex align-items-center justify-content-center">
+                            <i class="bi bi-house-door"></i>
+                        </div>
+                        <div class="ps-3">
+                            <h6>{{ $pendudukPerempuan }}</h6><span>Orang</span>
+
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div><!-- End Sales Card -->
+        <div class="col-xxl-4 col-md-4">
+            <div class="card info-card sales-card">
+
+                <div class="card-body">
+                    <h5 class="card-title">Jumlah Kematian Ibu Hamil</h5>
+
+                    <div class="d-flex align-items-center">
+                        <div class="card-icon rounded-circle d-flex align-items-center justify-content-center">
+                            <i class="bi bi-house-door"></i>
+                        </div>
+                        <div class="ps-3">
+                            <h6>{{ $jumKematianIbu }}</h6><span>Ibu</span>
+
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div><!-- End Sales Card -->
+        <div class="col-xxl-4 col-md-4">
+            <div class="card info-card sales-card">
+
+                <div class="card-body">
+                    <h5 class="card-title">Index Pemenuhan Hak Anak</h5>
+
+                    <div class="d-flex align-items-center">
+                        <div class="card-icon rounded-circle d-flex align-items-center justify-content-center">
+                            <i class="bi bi-house-door"></i>
+                        </div>
+                        <div class="ps-3">
+                            Total Bobot<h6>{{ $dataKlaster }}</h6>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div><!-- End Sales Card -->
+
+        <!-- Revenue Card -->
+        <div class="col-xxl-4 col-md-4">
+            <div class="card info-card revenue-card">
+                <div class="card-body">
+                    <h5 class="card-title">Korban Kekerasan Laki - Laki</h5>
+
+                    <div class="d-flex align-items-center">
+                        <div class="card-icon rounded-circle d-flex align-items-center justify-content-center">
+                            <i class="ri ri-building-line"></i>
+                        </div>
+                        <div class="ps-3">
+                            <h6>{{ $jumKerL }}</h6>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div><!-- End Revenue Card -->  
+        <div class="col-xxl-4 col-md-4">
+            <div class="card info-card revenue-card">
+                <div class="card-body">
+                    <h5 class="card-title">Korban Kekerasan Perempuan</h5>
+
+                    <div class="d-flex align-items-center">
+                        <div class="card-icon rounded-circle d-flex align-items-center justify-content-center">
+                            <i class="ri ri-building-line"></i>
+                        </div>
+                        <div class="ps-3">
+                            <h6>{{ $jumKerP }}</h6>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div><!-- End Revenue Card -->  
+    </div>
+</div><!-- End Left side columns -->
 @endif
 @endsection

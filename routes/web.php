@@ -28,7 +28,10 @@ use App\Http\Controllers\{
     PlapaController,
     DisabilitasController,
     JumkekerasanController,
-    JumkerlokController
+    JumkerlokController,
+    PnsController,
+    DprdController,
+    IphaController
 };
 use Illuminate\Support\Facades\Route;
 
@@ -187,6 +190,13 @@ Route::group(['middleware' => ['auth', 'HakAkses:pegawai']], function () {
     Route::get('/prespendidikan/edit/{id}', [PrespendidikanController::class, 'edit'])->name('prespendidikan.edit');
     Route::get('/prespendidikan/destroy/{id}', [PrespendidikanController::class, 'destroy'])->name('prespendidikan.destroy');
     
+    // IPHA
+    // 1. IPHA
+    Route::get('/ipha/index', [IphaController::class, 'index'])->name('ipha.index');
+    Route::post('/ipha/store', [IphaController::class, 'store'])->name('ipha.store');
+    Route::post('/ipha/update/{id}', [IphaController::class, 'update'])->name('ipha.update');
+    Route::get('/ipha/edit/{id}', [IphaController::class, 'edit'])->name('ipha.edit');
+    Route::get('/ipha/destroy/{id}', [IphaController::class, 'destroy'])->name('ipha.destroy');
     // BSDA / LINGKUNGAN
     // 1. Korban Bencana
     Route::get('/bsda/index', [BsdaController::class, 'index'])->name('bsda.index');
@@ -210,6 +220,18 @@ Route::group(['middleware' => ['auth', 'HakAkses:pegawai']], function () {
     Route::post('/jumkades/update/{id}', [JumkadesController::class, 'update'])->name('jumkades.update');
     Route::get('/jumkades/edit/{id}', [JumkadesController::class, 'edit'])->name('jumkades.edit');
     Route::get('/jumkades/destroy/{id}', [JumkadesController::class, 'destroy'])->name('jumkades.destroy');
+    // 2. Pns
+    Route::get('/pns/index', [PnsController::class, 'index'])->name('pns.index');
+    Route::post('/pns/store', [PnsController::class, 'store'])->name('pns.store');
+    Route::post('/pns/update/{id}', [PnsController::class, 'update'])->name('pns.update');
+    Route::get('/pns/edit/{id}', [PnsController::class, 'edit'])->name('pns.edit');
+    Route::get('/pns/destroy/{id}', [PnsController::class, 'destroy'])->name('pns.destroy');
+    // 3. Dprd
+    Route::get('/dprd/index', [DprdController::class, 'index'])->name('dprd.index');
+    Route::post('/dprd/store', [DprdController::class, 'store'])->name('dprd.store');
+    Route::post('/dprd/update/{id}', [DprdController::class, 'update'])->name('dprd.update');
+    Route::get('/dprd/edit/{id}', [DprdController::class, 'edit'])->name('dprd.edit');
+    Route::get('/dprd/destroy/{id}', [DprdController::class, 'destroy'])->name('dprd.destroy');
     
     // Data Terpilah Bidang Hukum / Sosial Budaya
     // 1. Jum Penguni lapas

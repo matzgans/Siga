@@ -6,7 +6,8 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use App\Models\{Pkematian, Hiv, Kmtbayi, Prespenduduk, Partsekolah, Ptssekolah, 
                 Jumguru, Bsda, Klasprespend, Prespendidikan, Aktkerja,
-                Jumkades, Plapa, Disabilitas, Jumkekerasan, Jumkerlok
+                Jumkades, Plapa, Disabilitas, Jumkekerasan, Jumkerlok,
+                Pns, Dprd, Ipha
             };
 
 class Tahun extends Model
@@ -99,6 +100,21 @@ class Tahun extends Model
 
     public function jumkerloks()
     {
-        return $this->belongsTo(Jumkerlok::class);
+        return $this->hasMany(Jumkerlok::class);
+    }
+
+    public function pns()
+    {
+        return $this->hasMany(Pns::class);
+    }
+
+    public function dprds()
+    {
+        return $this->hasMany(Dprd::class);
+    }
+
+    public function iphas()
+    {
+        return $this->hasMany(Iphas::class);
     }
 }
