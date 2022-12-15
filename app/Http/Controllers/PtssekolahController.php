@@ -14,7 +14,7 @@ class PtssekolahController extends Controller
      */
     public function index()
     {
-        $active = 'putussekolah';
+        $active = 'ptssekolah';
         $pageTitle = 'angka putus sekolah';
         $data = Ptssekolah::all();
         $tahun = Tahun::all();

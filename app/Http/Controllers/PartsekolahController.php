@@ -14,7 +14,7 @@ class PartsekolahController extends Controller
      */
     public function index()
     {
-        $active = "partisipasisekolah";
+        $active = "partsekolah";
         $pageTitle = "angka partisipasi sekolah";
         $tahun = Tahun::all();
         $desa = Desa::all();

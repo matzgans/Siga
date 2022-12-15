@@ -359,7 +359,7 @@
                     </a>
                 </li>
             @elseif(auth()->user()->role == 'pegawai')
-                <li class="nav-item"> <a class="nav-link {{ $active != 'klasprespend' ? 'collapsed' : 'active' }}"
+                <li class="nav-item"> <a class="nav-link {{ ($active == 'klasprespend' || $active == 'prespenduduk' || $active == 'prespendidikan') ? 'active' : 'collapsed' }}"
                         data-bs-target="#ipg-nav" data-bs-toggle="collapse" href="#"> <i
                             class="fa-solid fa-chart-line"></i></i><span>IPG</span><i
                             class="bi bi-chevron-down ms-auto"></i> </a>
@@ -398,7 +398,7 @@
                     </a>
                 </li> --}}
 
-                <li class="nav-item"> <a class="nav-link {{ $active != 'ipha' ? 'collapsed' : 'active' }}"
+                <li class="nav-item"> <a class="nav-link {{ ($active == 'ipha') ? 'active' : 'collapsed' }}"
                         data-bs-target="#ipha-nav" data-bs-toggle="collapse" href="#"> <i
                             class="fa-solid fa-hands-holding-child"></i><span>IPHA</span><i
                             class="bi bi-chevron-down ms-auto"></i> </a>
@@ -417,7 +417,7 @@
                 </li> --}}
                 <li class="nav-heading">Data Terpilah</li>
 
-                <li class="nav-item"> <a class="nav-link {{ $active != 'klasprespend' ? 'collapsed' : 'active' }}"
+                <li class="nav-item"> <a class="nav-link {{ ($active == 'pkematian' || $active == 'hiv' || $active == 'kmtbayi') ? 'active' : 'collapsed' }}"
                         data-bs-target="#kesehatan-nav" data-bs-toggle="collapse" href="#"> <i
                             class="fa-solid fa-staff-snake"></i><span>Bidang Kesehatan</span><i
                             class="bi bi-chevron-down ms-auto"></i> </a>
@@ -453,7 +453,7 @@
                     </a>
                 </li> --}}
 
-                <li class="nav-item"> <a class="nav-link {{ $active != 'klasprespend' ? 'collapsed' : 'active' }}"
+                <li class="nav-item"> <a class="nav-link {{ ($active == 'partsekolah' || $active == 'ptssekolah' || $active == 'jumguru') ? 'active' : 'collapsed' }}"
                         data-bs-target="#pendidikan-nav" data-bs-toggle="collapse" href="#"> <i
                             class="fa-solid fa-graduation-cap"></i><span>Bidang Pendidikan</span><i
                             class="bi bi-chevron-down ms-auto"></i> </a>
@@ -490,7 +490,7 @@
                     </a>
                 </li> --}}
 
-                <li class="nav-item"> <a class="nav-link {{ $active != 'klasprespend' ? 'collapsed' : 'active' }}"
+                <li class="nav-item"> <a class="nav-link {{ ($active == 'bsda') ? 'active' : 'collapsed' }}"
                         data-bs-target="#bsda-nav" data-bs-toggle="collapse" href="#"> <i
                             class="fa-brands fa-envira"></i><span>Bidang SDA Lingkungan</span><i
                             class="bi bi-chevron-down ms-auto"></i> </a>
@@ -508,7 +508,7 @@
                     </a>
                 </li> --}}
 
-                <li class="nav-item"> <a class="nav-link {{ $active != 'klasprespend' ? 'collapsed' : 'active' }}"
+                <li class="nav-item"> <a class="nav-link {{ ($active == 'aktkerja') ? 'active' : 'collapsed' }}"
                         data-bs-target="#ekonomi-nav" data-bs-toggle="collapse" href="#"> <i
                             class="fa-solid fa-scale-balanced"></i><span>Bidang Ekonomi & Ketenaga Kerjaan</span><i
                             class="bi bi-chevron-down ms-auto"></i> </a>
@@ -526,8 +526,9 @@
                     </a>
                 </li> --}}
 
-                <li class="nav-item"> <a class="nav-link {{ $active != 'klasprespend' ? 'collapsed' : 'active' }}"
-                        data-bs-target="#politik-nav" data-bs-toggle="collapse" href="#"> <i class="fa-solid fa-landmark"></i><span>Bidang Politik</span><i
+                <li class="nav-item"> <a class="nav-link {{ ($active == 'jumkades' || $active == 'pns' || $active == 'dprd') ? 'active' : 'collapsed' }}"
+                        data-bs-target="#politik-nav" data-bs-toggle="collapse" href="#"> <i
+                            class="fa-solid fa-landmark"></i><span>Bidang Politik</span><i
                             class="bi bi-chevron-down ms-auto"></i> </a>
                     <ul id="politik-nav" class="nav-content collapse " data-bs-parent="#sidebar-nav">
                         <li> <a href="{{ route('jumkades.index') }}"> <i class="bi bi-circle"></i><span>Jumlah Kepala
@@ -561,20 +562,20 @@
                     </a>
                 </li> --}}
 
-                <li class="nav-item"> <a class="nav-link {{ $active != 'klasprespend' ? 'collapsed' : 'active' }}"
-                    data-bs-target="#politik-nav" data-bs-toggle="collapse" href="#"> <i class="fa-solid fa-landmark"></i><span>Bidang Hukum / Sosial Budaya</span><i
-                        class="bi bi-chevron-down ms-auto"></i> </a>
-                <ul id="politik-nav" class="nav-content collapse " data-bs-parent="#sidebar-nav">
-                    <li> <a href="{{ route('jumkades.index') }}"> <i class="bi bi-circle"></i><span>Penghuni Lapas</span> </a>
-                    </li>
-                    <li> <a href="{{ route('pns.index') }}"> <i class="bi bi-circle"></i><span>Disabilitas</span> </a>
-                    </li>
-                    <li> <a href="{{ route('dprd.index') }}"> <i class="bi bi-circle"></i><span>DPRD Menurut
-                                komisi / Jenis Kelamin</span> </a>
-                    </li>
-                </ul>
-            </li>
-                <span>Data Terpilah Bidang Hukum / Sosial Budaya</span>
+                <li class="nav-item"> <a class="nav-link {{ ($active == 'plapas' || $active == 'disabilitas') ? 'active' : 'collapsed' }}"
+                        data-bs-target="#hukum-nav" data-bs-toggle="collapse" href="#"> <i
+                            class="fa-solid fa-gavel"></i><span>Bidang Hukum / Sosial Budaya</span><i
+                            class="bi bi-chevron-down ms-auto"></i> </a>
+                    <ul id="hukum-nav" class="nav-content collapse " data-bs-parent="#sidebar-nav">
+                        <li> <a href="{{ route('plapas.index') }}"> <i class="bi bi-circle"></i><span>Penghuni
+                                    Lapas</span> </a>
+                        </li>
+                        <li> <a href="{{ route('disabilitas.index') }}"> <i
+                                    class="bi bi-circle"></i><span>Disabilitas</span> </a>
+                        </li>
+                    </ul>
+                </li>
+                {{-- <span>Data Terpilah Bidang Hukum / Sosial Budaya</span>
                 <li class="nav-item">
                     <a class="nav-link {{ $active != 'penghunilapas' ? 'collapsed' : 'active' }}"
                         href="{{ route('plapas.index') }}">
@@ -586,9 +587,19 @@
                         href="{{ route('disabilitas.index') }}">
                         <i class="ri ri-user-4-line"></i><span>Disabilitas</span>
                     </a>
-                </li>
-
-                <span>Kekerasan</span>
+                </li> --}}
+                <li class="nav-item"> <a class="nav-link {{ ($active == 'jumkekerasan' || $active == 'jumkerlok') ? 'active' : 'collapsed' }}"
+                    data-bs-target="#kekerasan-nav" data-bs-toggle="collapse" href="#"> <i class="fa-solid fa-hand-fist"></i><span>Kekerasan</span><i
+                        class="bi bi-chevron-down ms-auto"></i> </a>
+                <ul id="kekerasan-nav" class="nav-content collapse " data-bs-parent="#sidebar-nav">
+                    <li> <a href="{{ route('jumkekerasan.index') }}"> <i class="bi bi-circle"></i><span>Jumlah Kekerasan Terhadap Perempuan dan Anak</span> </a>
+                    </li>
+                    <li> <a href="{{ route('jumkerlok.index') }}"> <i
+                                class="bi bi-circle"></i><span>Jumlah Kekerasan Terhadap Perempuan dan Anak Menurut Jenis Kelamin</span> </a>
+                    </li>
+                </ul>
+            </li>
+                {{-- <span>Kekerasan</span>
                 <li class="nav-item">
                     <a class="nav-link {{ $active != 'jumkekerasan' ? 'collapsed' : 'active' }}"
                         href="{{ route('jumkekerasan.index') }}">
@@ -601,7 +612,7 @@
                         <i class="ri ri-user-4-line"></i><span>Jumlah Kekerasan terhdap Perempuan dan Anak Menurut
                             Jenis Kelamin</span>
                     </a>
-                </li>
+                </li> --}}
             @endif
 
         </ul>

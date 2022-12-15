@@ -14,7 +14,7 @@ class PlapaController extends Controller
      */
     public function index()
     {
-        $active = 'penghunilapas';
+        $active = 'plapas';
         $pageTitle = 'Penghuni Lapas';
         $data = Plapa::get();
         $tahun = Tahun::get();

@@ -14,7 +14,7 @@ class PrespendidikanController extends Controller
      */
     public function index()
     {
-        $active = 'prespendidikanterakhir';
+        $active = 'prespendidikan';
         $pageTitle = 'Presentase Pendidikan Terakhir';
         $data = Prespendidikan::all();
         $tahun = Tahun::get();
