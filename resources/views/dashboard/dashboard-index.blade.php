@@ -711,7 +711,7 @@
 
                     <div class="d-flex align-items-center">
                         <div class="card-icon rounded-circle d-flex align-items-center justify-content-center">
-                            <i class="bi bi-house-door"></i>
+                            <i class="fa-solid fa-person"></i>
                         </div>
                         <div class="ps-3">
                             <h6>{{ $pendudukLaki }}</h6><span>Orang</span>
@@ -730,7 +730,7 @@
 
                     <div class="d-flex align-items-center">
                         <div class="card-icon rounded-circle d-flex align-items-center justify-content-center">
-                            <i class="bi bi-house-door"></i>
+                            <i class="fa-solid fa-person-dress"></i>
                         </div>
                         <div class="ps-3">
                             <h6>{{ $pendudukPerempuan }}</h6><span>Orang</span>
@@ -749,7 +749,7 @@
 
                     <div class="d-flex align-items-center">
                         <div class="card-icon rounded-circle d-flex align-items-center justify-content-center">
-                            <i class="bi bi-house-door"></i>
+                            <i class="fa-solid fa-person-pregnant"></i>
                         </div>
                         <div class="ps-3">
                             <h6>{{ $jumKematianIbu }}</h6><span>Ibu</span>
@@ -768,7 +768,7 @@
 
                     <div class="d-flex align-items-center">
                         <div class="card-icon rounded-circle d-flex align-items-center justify-content-center">
-                            <i class="bi bi-house-door"></i>
+                            <i class="fa-solid fa-hands-holding-child"></i>
                         </div>
                         <div class="ps-3">
                             Total Bobot<h6>{{ $dataKlaster }}</h6>
@@ -781,13 +781,13 @@
 
         <!-- Revenue Card -->
         <div class="col-xxl-4 col-md-4">
-            <div class="card info-card revenue-card">
+            <div class="card info-card customers-card">
                 <div class="card-body">
                     <h5 class="card-title">Korban Kekerasan Laki - Laki</h5>
 
                     <div class="d-flex align-items-center">
                         <div class="card-icon rounded-circle d-flex align-items-center justify-content-center">
-                            <i class="ri ri-building-line"></i>
+                            <i class="fa-solid fa-person-burst"></i>
                         </div>
                         <div class="ps-3">
                             <h6>{{ $jumKerL }}</h6>
@@ -798,13 +798,13 @@
             </div>
         </div><!-- End Revenue Card -->  
         <div class="col-xxl-4 col-md-4">
-            <div class="card info-card revenue-card">
+            <div class="card info-card customers-card">
                 <div class="card-body">
                     <h5 class="card-title">Korban Kekerasan Perempuan</h5>
 
                     <div class="d-flex align-items-center">
                         <div class="card-icon rounded-circle d-flex align-items-center justify-content-center">
-                            <i class="ri ri-building-line"></i>
+                            <i class="fa-solid fa-person-dress-burst"></i>
                         </div>
                         <div class="ps-3">
                             <h6>{{ $jumKerP }}</h6>

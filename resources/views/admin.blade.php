@@ -34,8 +34,9 @@
     {{-- DataTable CSS --}}
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.2.0/css/bootstrap.min.css">
     <link rel="stylesheet" href="https://cdn.datatables.net/1.12.1/css/dataTables.bootstrap5.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/all.min.css">
 
-   
+
 
     <!-- =======================================================
   * Template Name: NiceAdmin - v2.4.1
@@ -216,13 +217,13 @@
                         data-bs-toggle="dropdown">
                         <img src="{{ asset('assetsAdmin') }}/img/profile-img.jpg" alt="Profile"
                             class="rounded-circle">
-                        <span class="d-none d-md-block dropdown-toggle ps-2">{{auth()->user()->name}}</span>
+                        <span class="d-none d-md-block dropdown-toggle ps-2">{{ auth()->user()->name }}</span>
                     </a><!-- End Profile Iamge Icon -->
 
                     <ul class="dropdown-menu dropdown-menu-end dropdown-menu-arrow profile">
                         <li class="dropdown-header">
-                            <h6>{{auth()->user()->name}}</h6>
-                            <span>{{auth()->user()->role}}</span>
+                            <h6>{{ auth()->user()->name }}</h6>
+                            <span>{{ auth()->user()->role }}</span>
                         </li>
                         <li>
                             <hr class="dropdown-divider">
@@ -285,10 +286,10 @@
                     <span>Dashboard</span>
                 </a>
             </li><!-- End Dashboard Nav -->
-            
-            @if(auth()->user()->role == "admin")
-            <span>Data Master</span>
-            
+
+            @if (auth()->user()->role == 'admin')
+                <span>Data Master</span>
+
                 <li class="nav-item">
                     <a class="nav-link {{ $active != 'pegawai' ? 'collapsed' : 'active' }}"
                         href="{{ route('pegawai.index') }}">
@@ -303,7 +304,8 @@
                 </li>
 
                 <li class="nav-item">
-                    <a class="nav-link {{ $active != 'opd' ? 'collapsed' : 'active' }}" href="{{ route('opd.index') }}">
+                    <a class="nav-link {{ $active != 'opd' ? 'collapsed' : 'active' }}"
+                        href="{{ route('opd.index') }}">
                         <i class="ri ri-building-line"></i><span>OPD</span>
                     </a>
                 </li>
@@ -314,7 +316,7 @@
                         <i class="bi bi-person-badge"></i><span>Pekerjaan</span>
                     </a>
                 </li>
-                
+
                 <li class="nav-item">
                     <a class="nav-link {{ $active != 'bencana' ? 'collapsed' : 'active' }}"
                         href="{{ route('bencana.index') }}">
@@ -356,9 +358,27 @@
                         <i class="ri ri-user-2-fill"></i><span>Jabatan</span>
                     </a>
                 </li>
-
-            @elseif(auth()->user()->role == "pegawai")
-                <span>IPG</span>
+            @elseif(auth()->user()->role == 'pegawai')
+                <li class="nav-item"> <a class="nav-link {{ $active != 'klasprespend' ? 'collapsed' : 'active' }}"
+                        data-bs-target="#ipg-nav" data-bs-toggle="collapse" href="#"> <i
+                            class="fa-solid fa-chart-line"></i></i><span>IPG</span><i
+                            class="bi bi-chevron-down ms-auto"></i> </a>
+                    <ul id="ipg-nav" class="nav-content collapse " data-bs-parent="#sidebar-nav">
+                        <li> <a href="{{ route('klasprespend.index') }}"> <i
+                                    class="bi bi-circle"></i><span>Klasifikasi
+                                    Persentase Penduduk</span> </a>
+                        </li>
+                        <li> <a href="{{ route('prespenduduk.index') }}"> <i class="bi bi-circle"></i><span>Jumlah
+                                    Penduduk
+                                    Menurut Jenis Kelamin</span>
+                            </a></li>
+                        <li> <a href="{{ route('prespendidikan.index') }}"> <i
+                                    class="bi bi-circle"></i><span>Persentase Pendidikan
+                                    Terakhir</span> </a>
+                        </li>
+                    </ul>
+                </li>
+                {{-- <span>IPG</span>
                 <li class="nav-item">
                     <a class="nav-link {{ $active != 'klasprespend' ? 'collapsed' : 'active' }}"
                         href="{{ route('klasprespend.index') }}">
@@ -376,17 +396,44 @@
                         href="{{ route('prespendidikan.index') }}">
                         <i class="ri ri-user-4-line"></i><span>Presentase Pendidikan Terakhir</span>
                     </a>
-                </li>
+                </li> --}}
 
-                <span>IPHA</span>
+                <li class="nav-item"> <a class="nav-link {{ $active != 'ipha' ? 'collapsed' : 'active' }}"
+                        data-bs-target="#ipha-nav" data-bs-toggle="collapse" href="#"> <i
+                            class="fa-solid fa-hands-holding-child"></i><span>IPHA</span><i
+                            class="bi bi-chevron-down ms-auto"></i> </a>
+                    <ul id="ipha-nav" class="nav-content collapse " data-bs-parent="#sidebar-nav">
+                        <li> <a href="{{ route('ipha.index') }}"> <i class="bi bi-circle"></i><span>Pemenuhan Hak
+                                    Anak</span> </a>
+                        </li>
+                    </ul>
+                </li>
+                {{-- <span>IPHA</span>
                 <li class="nav-item">
                     <a class="nav-link {{ $active != 'ipha' ? 'collapsed' : 'active' }}"
                         href="{{ route('ipha.index') }}">
                         <i class="ri ri-user-4-line"></i><span>Index Pemenuhan Hak Anak</span>
                     </a>
+                </li> --}}
+                <li class="nav-heading">Data Terpilah</li>
+
+                <li class="nav-item"> <a class="nav-link {{ $active != 'klasprespend' ? 'collapsed' : 'active' }}"
+                        data-bs-target="#kesehatan-nav" data-bs-toggle="collapse" href="#"> <i
+                            class="fa-solid fa-staff-snake"></i><span>Bidang Kesehatan</span><i
+                            class="bi bi-chevron-down ms-auto"></i> </a>
+                    <ul id="kesehatan-nav" class="nav-content collapse " data-bs-parent="#sidebar-nav">
+                        <li> <a href="{{ route('pkematian.index') }}"> <i class="bi bi-circle"></i><span>Penyebab
+                                    Kematian Ibu Hamil</span> </a>
+                        </li>
+                        <li> <a href="{{ route('hiv.index') }}"> <i class="bi bi-circle"></i><span>Penderita
+                                    HIV/AIDS</span> </a>
+                        </li>
+                        <li> <a href="{{ route('kmtbayi.index') }}"> <i class="bi bi-circle"></i><span>Kematian
+                                    Bayi</span> </a>
+                        </li>
+                    </ul>
                 </li>
-                
-                <span>Data Terpilah Bidang Kesehatan</span>
+                {{-- <span>Data Terpilah Bidang Kesehatan</span>
                 <li class="nav-item">
                     <a class="nav-link {{ $active != 'pkematian' ? 'collapsed' : 'active' }}"
                         href="{{ route('pkematian.index') }}">
@@ -404,9 +451,25 @@
                         href="{{ route('kmtbayi.index') }}">
                         <i class="ri ri-user-4-line"></i><span>Data Kematian Bayi</span>
                     </a>
+                </li> --}}
+
+                <li class="nav-item"> <a class="nav-link {{ $active != 'klasprespend' ? 'collapsed' : 'active' }}"
+                        data-bs-target="#pendidikan-nav" data-bs-toggle="collapse" href="#"> <i
+                            class="fa-solid fa-graduation-cap"></i><span>Bidang Pendidikan</span><i
+                            class="bi bi-chevron-down ms-auto"></i> </a>
+                    <ul id="pendidikan-nav" class="nav-content collapse " data-bs-parent="#sidebar-nav">
+                        <li> <a href="{{ route('partsekolah.index') }}"> <i class="bi bi-circle"></i><span>Data
+                                    Partisipasi Sekolah</span> </a>
+                        </li>
+                        <li> <a href="{{ route('ptssekolah.index') }}"> <i class="bi bi-circle"></i><span>Data Putus
+                                    Sekolah</span> </a>
+                        </li>
+                        <li> <a href="{{ route('jumguru.index') }}"> <i class="bi bi-circle"></i><span>Data Jumlah
+                                    Guru</span> </a>
+                        </li>
+                    </ul>
                 </li>
-                
-                <span>Data Terpilah Bidang Pendidikan</span>
+                {{-- <span>Data Terpilah Bidang Pendidikan</span>
                 <li class="nav-item">
                     <a class="nav-link {{ $active != 'partisipasisekolah' ? 'collapsed' : 'active' }}"
                         href="{{ route('partsekolah.index') }}">
@@ -425,25 +488,60 @@
                         href="{{ route('jumguru.index') }}">
                         <i class="ri ri-user-4-line"></i><span>Data Jumlah Guru</span>
                     </a>
+                </li> --}}
+
+                <li class="nav-item"> <a class="nav-link {{ $active != 'klasprespend' ? 'collapsed' : 'active' }}"
+                        data-bs-target="#bsda-nav" data-bs-toggle="collapse" href="#"> <i
+                            class="fa-brands fa-envira"></i><span>Bidang SDA Lingkungan</span><i
+                            class="bi bi-chevron-down ms-auto"></i> </a>
+                    <ul id="bsda-nav" class="nav-content collapse " data-bs-parent="#sidebar-nav">
+                        <li> <a href="{{ route('bsda.index') }}"> <i class="bi bi-circle"></i><span>Data
+                                    Korban Bencana</span> </a>
+                        </li>
+                    </ul>
                 </li>
-                
-                <span>Data Terpilah Bidang Sda / Lingkungan</span>
+                {{-- <span>Data Terpilah Bidang Sda / Lingkungan</span>
                 <li class="nav-item">
                     <a class="nav-link {{ $active != 'bsda' ? 'collapsed' : 'active' }}"
                         href="{{ route('bsda.index') }}">
                         <i class="ri ri-user-4-line"></i><span>Data Korban Bencana</span>
                     </a>
-                </li>
+                </li> --}}
 
-                <span>Data Terpilah Bidang Ekonomi / Ketenaga Kerjaan</span>
+                <li class="nav-item"> <a class="nav-link {{ $active != 'klasprespend' ? 'collapsed' : 'active' }}"
+                        data-bs-target="#ekonomi-nav" data-bs-toggle="collapse" href="#"> <i
+                            class="fa-solid fa-scale-balanced"></i><span>Bidang Ekonomi & Ketenaga Kerjaan</span><i
+                            class="bi bi-chevron-down ms-auto"></i> </a>
+                    <ul id="ekonomi-nav" class="nav-content collapse " data-bs-parent="#sidebar-nav">
+                        <li> <a href="{{ route('aktkerja.index') }}"> <i class="bi bi-circle"></i><span>Angkatan
+                                    Kerja Berdasarkan Bidang Pendidikan</span> </a>
+                        </li>
+                    </ul>
+                </li>
+                {{-- <span>Data Terpilah Bidang Ekonomi / Ketenaga Kerjaan</span>
                 <li class="nav-item">
                     <a class="nav-link {{ $active != 'aktkerja' ? 'collapsed' : 'active' }}"
                         href="{{ route('aktkerja.index') }}">
                         <i class="ri ri-user-4-line"></i><span>Angkatan Kerja Berdasarkan Bidang Pendidikan</span>
                     </a>
+                </li> --}}
+
+                <li class="nav-item"> <a class="nav-link {{ $active != 'klasprespend' ? 'collapsed' : 'active' }}"
+                        data-bs-target="#politik-nav" data-bs-toggle="collapse" href="#"> <i class="fa-solid fa-landmark"></i><span>Bidang Politik</span><i
+                            class="bi bi-chevron-down ms-auto"></i> </a>
+                    <ul id="politik-nav" class="nav-content collapse " data-bs-parent="#sidebar-nav">
+                        <li> <a href="{{ route('jumkades.index') }}"> <i class="bi bi-circle"></i><span>Jumlah Kepala
+                                    Desa</span> </a>
+                        </li>
+                        <li> <a href="{{ route('pns.index') }}"> <i class="bi bi-circle"></i><span>PNS Menurut
+                                    Golongan / Jenis Kelamin</span> </a>
+                        </li>
+                        <li> <a href="{{ route('dprd.index') }}"> <i class="bi bi-circle"></i><span>DPRD Menurut
+                                    komisi / Jenis Kelamin</span> </a>
+                        </li>
+                    </ul>
                 </li>
-                
-                <span>Data Terpilah Bidang Politik</span>
+                {{-- <span>Data Terpilah Bidang Politik</span>
                 <li class="nav-item">
                     <a class="nav-link {{ $active != 'jumkades' ? 'collapsed' : 'active' }}"
                         href="{{ route('jumkades.index') }}">
@@ -461,9 +559,21 @@
                         href="{{ route('dprd.index') }}">
                         <i class="ri ri-user-4-line"></i><span>DPRD Menurut Komisi / Jenis Kelamin</span>
                     </a>
-                </li>
-               
+                </li> --}}
 
+                <li class="nav-item"> <a class="nav-link {{ $active != 'klasprespend' ? 'collapsed' : 'active' }}"
+                    data-bs-target="#politik-nav" data-bs-toggle="collapse" href="#"> <i class="fa-solid fa-landmark"></i><span>Bidang Hukum / Sosial Budaya</span><i
+                        class="bi bi-chevron-down ms-auto"></i> </a>
+                <ul id="politik-nav" class="nav-content collapse " data-bs-parent="#sidebar-nav">
+                    <li> <a href="{{ route('jumkades.index') }}"> <i class="bi bi-circle"></i><span>Penghuni Lapas</span> </a>
+                    </li>
+                    <li> <a href="{{ route('pns.index') }}"> <i class="bi bi-circle"></i><span>Disabilitas</span> </a>
+                    </li>
+                    <li> <a href="{{ route('dprd.index') }}"> <i class="bi bi-circle"></i><span>DPRD Menurut
+                                komisi / Jenis Kelamin</span> </a>
+                    </li>
+                </ul>
+            </li>
                 <span>Data Terpilah Bidang Hukum / Sosial Budaya</span>
                 <li class="nav-item">
                     <a class="nav-link {{ $active != 'penghunilapas' ? 'collapsed' : 'active' }}"
@@ -488,7 +598,8 @@
                 <li class="nav-item">
                     <a class="nav-link {{ $active != 'jumkerlok' ? 'collapsed' : 'active' }}"
                         href="{{ route('jumkerlok.index') }}">
-                        <i class="ri ri-user-4-line"></i><span>Jumlah Kekerasan terhdap Perempuan dan Anak Menurut Jenis Kelamin</span>
+                        <i class="ri ri-user-4-line"></i><span>Jumlah Kekerasan terhdap Perempuan dan Anak Menurut
+                            Jenis Kelamin</span>
                     </a>
                 </li>
             @endif
@@ -546,19 +657,19 @@
 
     <!-- Template Main JS File -->
     <script src="{{ asset('assetsAdmin') }}/js/main.js"></script>
-     {{-- DataTable JS --}}
-     <script src="https://code.jquery.com/jquery-3.5.1.js"></script>
-     <script src="https://cdn.datatables.net/1.12.1/js/jquery.dataTables.min.js"></script>
-     <script src="https://cdn.datatables.net/1.12.1/js/dataTables.bootstrap5.min.js"></script>
+    {{-- DataTable JS --}}
+    <script src="https://code.jquery.com/jquery-3.5.1.js"></script>
+    <script src="https://cdn.datatables.net/1.12.1/js/jquery.dataTables.min.js"></script>
+    <script src="https://cdn.datatables.net/1.12.1/js/dataTables.bootstrap5.min.js"></script>
 
-     <script>
+    <script>
         $(document).ready(function() {
             $('.dataTable').DataTable({
                 responsive: true
             });
         });
     </script>
-@yield('scripts')
+    @yield('scripts')
 
 </body>
 

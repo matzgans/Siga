@@ -100,7 +100,7 @@ class DprdController extends Controller
      * @param  \App\Models\Dprd  $dprd
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy($id)    
     {
         $data = Dprd::FindOrFail($id);
         $data->delete();
