@@ -293,7 +293,54 @@
                                         <div class="tab-content" id="nav-tabContent">
                                             <div class="tab-pane fade show active" id="presentasePenduduk"
                                                 role="tabpanel" aria-labelledby="nav-home-tab">
-                                                Presentase Penduduk
+                                                <div class="tab-pane fade show active" id="bidangKesehatan"
+                                                    role="tabpanel" aria-labelledby="nav-home-tab">
+                                                    <h3 class="text-center mt-3">Data Presentase Penduduk</h3>
+                                                    <hr class="mx-5">
+                                                    <div class="row">
+                                                        <div class="col">
+                                                            <div id="barchart_klasprespend"></div>
+                                                        </div>
+                                                        <div class="col">
+                                                            <div id="piechart_klasprespend"></div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="row mx-5 mb-3">
+                                                        <div class="col">
+                                                            <div id="logaritma_klasprespend"></div>
+                                                        </div>
+                                                    </div>
+                                                    <h3 class="text-center mt-3">Data Kematian Bayi</h3>
+                                                    <hr class="mx-5">
+                                                    <div class="row">
+                                                        <div class="col">
+                                                            <div id="barchart_kmtbayi"></div>
+                                                        </div>
+                                                        <div class="col">
+                                                            <div id="piechart_kmtbayi"></div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="row mx-5 mb-3">
+                                                        <div class="col">
+                                                            <div id="logaritma_kmtbayi"></div>
+                                                        </div>
+                                                    </div>
+                                                    <h3 class="text-center mt-3">Data HIV</h3>
+                                                    <hr class="mx-5">
+                                                    <div class="row">
+                                                        <div class="col">
+                                                            <div id="barchart_hiv"></div>
+                                                        </div>
+                                                        <div class="col">
+                                                            <div id="piechart_hiv"></div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="row mx-5 mb-3">
+                                                        <div class="col">
+                                                            <div id="logaritma_hiv"></div>
+                                                        </div>
+                                                    </div>
+                                                </div>
                                             </div>
                                             <div class="tab-pane fade" id="jenisKelamin" role="tabpanel"
                                                 aria-labelledby="nav-profile-tab">...</div>
@@ -334,7 +381,7 @@
                                             </div>
                                         </nav>
                                         <div class="tab-content" id="nav-tabContent">
-                                            <div class="tab-pane fade show active" id="bidangKesehatan" role="tabpanel"
+                                            <div class="tab-pane fade active show" id="bidangKesehatan" role="tabpanel"
                                                 aria-labelledby="nav-home-tab">
                                                 <h3 class="text-center mt-3">Data Kematian Ibu Hamil</h3>
                                                 <hr class="mx-5">
@@ -461,7 +508,8 @@
                                                     <div class="col">
                                                         <div id="logaritma_ptsSekolah"></div>
                                                     </div>
-                                                </div></div>
+                                                </div>
+                                            </div>
                                             <div class="tab-pane fade" id="bidangEkonomi" role="tabpanel"
                                                 aria-labelledby="nav-contact-tab">
                                                 <h3 class="text-center mt-3">Data Angkatan Kerja</h3>
@@ -710,6 +758,159 @@
             </div>
         </section><!-- End Contact Section -->
     </main><!-- End #main -->
+
+    {{-- IPG --}}
+    <script>
+        // Barchart_Klasprespend
+        Highcharts.chart('barchart_klasprespend', {
+            chart: {
+                type: 'column'
+            },
+            title: {
+                text: 'Data Presentase Penduduk'
+            },
+            subtitle: {
+                text: 'Source: Bps.id'
+            },
+            xAxis: {
+                categories: {!! json_encode($desaKlasprespenduduk) !!},
+                crosshair: true
+            },
+            yAxis: {
+                min: 0,
+                title: {
+                    text: 'Jumlah (Orang)'
+                }
+            },
+            tooltip: {
+                headerFormat: '<span style="font-size:10px">{point.key}</span><table>',
+                pointFormat: '<tr><td style="color:{series.color};padding:0">{series.name}: </td>' +
+                    '<td style="padding:0"><b>{point.y} Orang</b></td></tr>',
+                footerFormat: '</table>',
+                shared: true,
+                useHTML: true
+            },
+            plotOptions: {
+                column: {
+                    pointPadding: 0.2,
+                    borderWidth: 0
+                }
+            },
+            series: [{
+                name: 'Orang',
+                data: {!! json_encode($jumKlasprespenduduk) !!}
+            }]
+        });
+
+        // Piechart_Klasprespend
+        Highcharts.chart('piechart_klasprespend', {
+            chart: {
+                type: 'pie'
+            },
+            title: {
+                text: 'Klasifikasi Presentase Penduduk'
+            },
+
+            accessibility: {
+                announceNewData: {
+                    enabled: true
+                },
+                point: {
+                    valueSuffix: '%'
+                }
+            },
+
+            plotOptions: {
+                series: {
+                    dataLabels: {
+                        enabled: true,
+                        // format: '{point.name}: {point.y:.1f}%'
+                    }
+                }
+            },
+
+            tooltip: {
+                headerFormat: '<span style="font-size:11px">{series.data.name}</span><br>',
+                // pointFormat: '<span style="color:{point.color}">{point.name}</span>: <b>{point.y:.2f}%</b> of total<br/>'
+            },
+
+            series: [{
+                name: 'Jumlah',
+                colorByPoint: true,
+                data: [{
+                        name: "Laki - laki",
+                        y: {{ $piechartKlasprespend->co }},
+                    },
+                    {
+                        name: "Perempuan",
+                        y: {{ $piechartKlasprespend->ce }},
+                    }
+                ]
+            }],
+        });
+
+        // Log_Klasprespend
+        Highcharts.chart('logaritma_klasprespend', {
+
+            title: {
+                text: 'Kenaikan Presentase Penduduk'
+            },
+
+            yAxis: {
+                title: {
+                    text: 'Jumlah Penduduk'
+                }
+            },
+
+            xAxis: {
+                title: {
+                    text: 'Tahun'
+                },
+                type: 'datetime',
+                accessibility: {
+                    rangeDescription: 'Range: 2022 to 2025'
+                }
+            },
+
+            legend: {
+                layout: 'horizontal',
+                align: 'center',
+                verticalAlign: 'top',
+            },
+
+            plotOptions: {
+                series: {
+                    label: {
+                        connectorAllowed: false
+                    },
+                    pointStart: Date.UTC(2022, 0, 1),
+                    pointInterval: 8760 * 3600 * 1000,
+                }
+            },
+
+            series: [{
+                name: 'Presentase Penduduk',
+                data: {!! json_encode($logjumKlasprespend) !!}
+            }],
+
+            responsive: {
+                rules: [{
+                    condition: {
+                        maxWidth: 500
+                    },
+                    chartOptions: {
+                        legend: {
+                            layout: 'horizontal',
+                            align: 'center',
+                            verticalAlign: 'bottom'
+                        }
+                    }
+                }]
+            }
+
+        });
+    </script>
+
 
     {{-- BIDANG KESEHATAN --}}
     <script>
@@ -961,211 +1162,7 @@
                         y: {{ $piechartKmtBayi->ce == null ? '0' : $piechartKmtBayi->ce }},
                     }
                 ]
-            }],
-            // drilldown: {
-            //     series: [
-            //         {
-            //             name: "Chrome",
-            //             id: "Chrome",
-            //             data: [
-            //                 [
-            //                     "v97.0",
-            //                     36.89
-            //                 ],
-            //                 [
-            //                     "v96.0",
-            //                     18.16
-            //                 ],
-            //                 [
-            //                     "v95.0",
-            //                     0.54
-            //                 ],
-            //                 [
-            //                     "v94.0",
-            //                     0.7
-            //                 ],
-            //                 [
-            //                     "v93.0",
-            //                     0.8
-            //                 ],
-            //                 [
-            //                     "v92.0",
-            //                     0.41
-            //                 ],
-            //                 [
-            //                     "v91.0",
-            //                     0.31
-            //                 ],
-            //                 [
-            //                     "v90.0",
-            //                     0.13
-            //                 ],
-            //                 [
-            //                     "v89.0",
-            //                     0.14
-            //                 ],
-            //                 [
-            //                     "v88.0",
-            //                     0.1
-            //                 ],
-            //                 [
-            //                     "v87.0",
-            //                     0.35
-            //                 ],
-            //                 [
-            //                     "v86.0",
-            //                     0.17
-            //                 ],
-            //                 [
-            //                     "v85.0",
-            //                     0.18
-            //                 ],
-            //                 [
-            //                     "v84.0",
-            //                     0.17
-            //                 ],
-            //                 [
-            //                     "v83.0",
-            //                     0.21
-            //                 ],
-            //                 [
-            //                     "v81.0",
-            //                     0.1
-            //                 ],
-            //                 [
-            //                     "v80.0",
-            //                     0.16
-            //                 ],
-            //                 [
-            //                     "v79.0",
-            //                     0.43
-            //                 ],
-            //                 [
-            //                     "v78.0",
-            //                     0.11
-            //                 ],
-            //                 [
-            //                     "v76.0",
-            //                     0.16
-            //                 ],
-            //                 [
-            //                     "v75.0",
-            //                     0.15
-            //                 ],
-            //                 [
-            //                     "v72.0",
-            //                     0.14
-            //                 ],
-            //                 [
-            //                     "v70.0",
-            //                     0.11
-            //                 ],
-            //                 [
-            //                     "v69.0",
-            //                     0.13
-            //                 ],
-            //                 [
-            //                     "v56.0",
-            //                     0.12
-            //                 ],
-            //                 [
-            //                     "v49.0",
-            //                     0.17
-            //                 ]
-            //             ]
-            //         },
-            //         {
-            //             name: "Safari",
-            //             id: "Safari",
-            //             data: [
-            //                 [
-            //                     "v15.3",
-            //                     0.1
-            //                 ],
-            //                 [
-            //                     "v15.2",
-            //                     2.01
-            //                 ],
-            //                 [
-            //                     "v15.1",
-            //                     2.29
-            //                 ],
-            //                 [
-            //                     "v15.0",
-            //                     0.49
-            //                 ],
-            //                 [
-            //                     "v14.1",
-            //                     2.48
-            //                 ],
-            //                 [
-            //                     "v14.0",
-            //                     0.64
-            //                 ],
-            //                 [
-            //                     "v13.1",
-            //                     1.17
-            //                 ],
-            //                 [
-            //                     "v13.0",
-            //                     0.13
-            //                 ],
-            //                 [
-            //                     "v12.1",
-            //                     0.16
-            //                 ]
-            //             ]
-            //         },
-            //         {
-            //             name: "Edge",
-            //             id: "Edge",
-            //             data: [
-            //                 [
-            //                     "v97",
-            //                     6.62
-            //                 ],
-            //                 [
-            //                     "v96",
-            //                     2.55
-            //                 ],
-            //                 [
-            //                     "v95",
-            //                     0.15
-            //                 ]
-            //             ]
-            //         },
-            //         {
-            //             name: "Firefox",
-            //             id: "Firefox",
-            //             data: [
-            //                 [
-            //                     "v96.0",
-            //                     4.17
-            //                 ],
-            //                 [
-            //                     "v95.0",
-            //                     3.33
-            //                 ],
-            //                 [
-            //                     "v94.0",
-            //                     0.11
-            //                 ],
-            //                 [
-            //                     "v91.0",
-            //                     0.23
-            //                 ],
-            //                 [
-            //                     "v78.0",
-            //                     0.16
-            //                 ],
-            //                 [
-            //                     "v52.0",
-            //                     0.15
-            //                 ]
-            //             ]
-            //         }
-            //     ]
-            // }
+            }]
         });
 
         Highcharts.chart('logaritma_kmtbayi', {
@@ -1832,19 +1829,19 @@
                 colorByPoint: true,
                 data: [{
                         name: "Dewasa(Laki -Laki)",
-                        y: {{ ($piechartkorbencana->ldes == null)?'0':$piechartkorbencana->ldes }},
+                        y: {{ $piechartkorbencana->ldes == null ? '0' : $piechartkorbencana->ldes }},
                     },
                     {
                         name: "Dewasa(Perempuan)",
-                        y: {{ ($piechartkorbencana->pdes == null)?'0':$piechartkorbencana->pdes }},
+                        y: {{ $piechartkorbencana->pdes == null ? '0' : $piechartkorbencana->pdes }},
                     },
                     {
                         name: "Anak - Anak(Laki - Laki)",
-                        y: {{ ($piechartkorbencana->lan == null)?'0':$piechartkorbencana->lan }},
+                        y: {{ $piechartkorbencana->lan == null ? '0' : $piechartkorbencana->lan }},
                     },
                     {
                         name: "Anak - Anak(Perempuan)",
-                        y: {{ ($piechartkorbencana->pan == null)?'0':$piechartkorbencana->pan }},
+                        y: {{ $piechartkorbencana->pan == null ? '0' : $piechartkorbencana->pan }},
                     },
                 ]
             }]
@@ -2003,35 +2000,35 @@
                 colorByPoint: true,
                 data: [{
                         name: "SD(Laki -Laki)",
-                        y: {{ ($piechart_aktkerja->lsd == null)?'0':$piechart_aktkerja->psd }},
+                        y: {{ $piechart_aktkerja->lsd == null ? '0' : $piechart_aktkerja->psd }},
                     },
                     {
                         name: "SD(Perempuan)",
-                        y: {{ ($piechart_aktkerja->psd == null)?'0':$piechart_aktkerja->psd }},
+                        y: {{ $piechart_aktkerja->psd == null ? '0' : $piechart_aktkerja->psd }},
                     },
                     {
                         name: "SMP(Laki - Laki)",
-                        y: {{ ($piechart_aktkerja->lsmp == null)?'0':$piechart_aktkerja->lsmp }},
+                        y: {{ $piechart_aktkerja->lsmp == null ? '0' : $piechart_aktkerja->lsmp }},
                     },
                     {
                         name: "SMP(Perempuan)",
-                        y: {{ ($piechart_aktkerja->psmp == null)?'0':$piechart_aktkerja->psmp }},
+                        y: {{ $piechart_aktkerja->psmp == null ? '0' : $piechart_aktkerja->psmp }},
                     },
                     {
                         name: "SMA(Laki - Laki)",
-                        y: {{ ($piechart_aktkerja->lsma == null)?'0':$piechart_aktkerja->lsma }},
+                        y: {{ $piechart_aktkerja->lsma == null ? '0' : $piechart_aktkerja->lsma }},
                     },
                     {
                         name: "SMA(Perempuan)",
-                        y: {{ ($piechart_aktkerja->psma == null)?'0':$piechart_aktkerja->psma }},
+                        y: {{ $piechart_aktkerja->psma == null ? '0' : $piechart_aktkerja->psma }},
                     },
                     {
                         name: "Perguruan Tinggi(Laki - Laki)",
-                        y: {{ ($piechart_aktkerja->lpt == null)?'0':$piechart_aktkerja->lpt }},
+                        y: {{ $piechart_aktkerja->lpt == null ? '0' : $piechart_aktkerja->lpt }},
                     },
                     {
                         name: "Perguruan Tinggi(Perempuan)",
-                        y: {{ ($piechart_aktkerja->ppt == null)?'0':$piechart_aktkerja->ppt }},
+                        y: {{ $piechart_aktkerja->ppt == null ? '0' : $piechart_aktkerja->ppt }},
                     },
                 ]
             }]

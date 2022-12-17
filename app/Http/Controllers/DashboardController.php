@@ -59,6 +59,50 @@ class DashboardController extends Controller
         //     sum(jum_penyebablain) as penyelain'
         // )->get()
 
+
+        // IPG
+        // BARCHART_PRES_PENDUDUK
+        $dataDesaKlasprespenduduk = Klasprespend::groupBy('desa_id')
+            ->select('desa_id')
+            ->selectRaw(
+                'sum(l) as l,
+                sum(p) as p',
+            )
+            ->get();
+
+        $desaKlasprespenduduk = [];
+        $jumKlasprespenduduk = [];
+        foreach ($dataDesaKlasprespenduduk as $item) {
+            $desaKlasprespenduduk[] = $item->desa->nama_desa;
+            $jumKlasprespenduduk[] = $item->l + $item->p;
+        }
+        // dd($jumKlasprespenduduk);
+        
+        // PIECHART_PRES_PENDUDUK
+        $dataKlasprespend = Klasprespend::selectRaw(
+            'sum(l) as co,
+            sum(p) as ce',
+        )->get();
+        foreach ($dataKlasprespend as $piechartKlasprespend) {
+        }
+
+        // LOG_PRES_PENDUDUK
+        $logdataKlasprespend = Klasprespend::groupBy('tahun_id')
+            ->selectRaw(
+                'sum(l) as co,
+                sum(p) as ce',
+            )
+            ->get();
+        // dd($dataKematian);
+        $logjumKlasprespend = [];
+
+        foreach ($logdataKlasprespend as $itemk) {
+            $logjumKlasprespend[] = $itemk->co + $itemk->ce;
+        }
+        
+        
+        
+
         // BARCHART_KEMATIAN_IBU;
         $dataDesa = Pkematian::groupBy('desa_id')
             ->select('desa_id')
@@ -430,8 +474,11 @@ class DashboardController extends Controller
         }
         
         return view('landing.welcome', compact(
+        'desaKlasprespenduduk',
+        'jumKlasprespenduduk',
         'desa', 
         'jum', 
+        'piechartKlasprespend',
         'piechartKmtIbu', 
         'piechartKmtBayi', 
         'piechartHiv', 
@@ -452,6 +499,7 @@ class DashboardController extends Controller
         'jumPtssekolah', 
         'jum_bencana',
         'jum_aktkerja',
+        'logjumKlasprespend', 
         'logjumKmtbayi', 
         'logjumHiv', 
         'logjumPartsekolah',
