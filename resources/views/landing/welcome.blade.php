@@ -343,46 +343,46 @@
                                                 </div>
                                             </div>
                                             <div class="tab-pane fade" id="jenisKelamin" role="tabpanel"
-                                                aria-labelledby="nav-profile-tab">...</div>
+                                                aria-labelledby="nav-profile-tab">Jenis Kelamin</div>
                                             <div class="tab-pane fade" id="kelompokUmur" role="tabpanel"
-                                                aria-labelledby="nav-contact-tab">...</div>
+                                                aria-labelledby="nav-contact-tab">Kelompok Umur</div>
                                             <div class="tab-pane fade" id="pendidikanTerakhir" role="tabpanel"
-                                                aria-labelledby="nav-contact-tab">...</div>
+                                                aria-labelledby="nav-contact-tab">Pendidikan Terakhir</div>
                                         </div>
                                     </div>
                                     <div class="tab-pane fade" id="dataTerpilah" role="tabpanel"
                                         aria-labelledby="profile-tab">
                                         <nav>
                                             <div class="nav nav-tabs" id="nav-tab" role="tablist">
-                                                <button class="nav-link active" id="nav-home-tab" data-bs-toggle="tab"
-                                                    data-bs-target="#bidangKesehatan" type="button" role="tab"
-                                                    aria-controls="nav-home" aria-selected="true">Bidang
+                                                <button class="nav-link active" id="nav-kesehatan" data-bs-toggle="tab"
+                                                    data-bs-target="#kesehatan" type="button" role="tab"
+                                                    aria-controls="nav-kesehatan" aria-selected="true">Bidang
                                                     Kesehatan</button>
-                                                <button class="nav-link" id="nav-profile-tab" data-bs-toggle="tab"
-                                                    data-bs-target="#bidangPendidikan" type="button" role="tab"
-                                                    aria-controls="nav-profile" aria-selected="false">Bidang
+                                                <button class="nav-link" id="nav-pendidikan" data-bs-toggle="tab"
+                                                    data-bs-target="#pendidikan" type="button" role="tab"
+                                                    aria-controls="nav-pendidikan" aria-selected="false">Bidang
                                                     Pendidikan</button>
-                                                <button class="nav-link" id="nav-contact-tab" data-bs-toggle="tab"
-                                                    data-bs-target="#bidangSDALingkungan" type="button" role="tab"
+                                                <button class="nav-link" id="nav-sda" data-bs-toggle="tab"
+                                                    data-bs-target="#sda" type="button" role="tab"
                                                     aria-controls="nav-contact" aria-selected="false">Bidang SDA
                                                     Lingkungan</button>
-                                                <button class="nav-link" id="nav-contact-tab" data-bs-toggle="tab"
-                                                    data-bs-target="#bidangEkonomi" type="button" role="tab"
+                                                <button class="nav-link" id="nav-ekonomi" data-bs-toggle="tab"
+                                                    data-bs-target="#ekonomi" type="button" role="tab"
                                                     aria-controls="nav-contact" aria-selected="false">Bidang
                                                     Ekonomi</button>
-                                                <button class="nav-link" id="nav-contact-tab" data-bs-toggle="tab"
-                                                    data-bs-target="#bidangPolitik" type="button" role="tab"
+                                                <button class="nav-link" id="nav-politik" data-bs-toggle="tab"
+                                                    data-bs-target="#politik" type="button" role="tab"
                                                     aria-controls="nav-contact" aria-selected="false">Bidang
                                                     Politik</button>
-                                                <button class="nav-link" id="nav-contact-tab" data-bs-toggle="tab"
-                                                    data-bs-target="#bidangHukum" type="button" role="tab"
+                                                <button class="nav-link" id="nav-hukum" data-bs-toggle="tab"
+                                                    data-bs-target="#hukum" type="button" role="tab"
                                                     aria-controls="nav-contact" aria-selected="false">Bidang
                                                     Hukum</button>
                                             </div>
                                         </nav>
                                         <div class="tab-content" id="nav-tabContent">
-                                            <div class="tab-pane fade active show" id="bidangKesehatan" role="tabpanel"
-                                                aria-labelledby="nav-home-tab">
+                                            <div class="tab-pane fade show active" id="kesehatan" role="tabpanel"
+                                                aria-labelledby="nav-kesehatan">
                                                 <h3 class="text-center mt-3">Data Kematian Ibu Hamil</h3>
                                                 <hr class="mx-5">
                                                 <div class="row">
@@ -429,8 +429,8 @@
                                                     </div>
                                                 </div>
                                             </div>
-                                            <div class="tab-pane fade" id="bidangPendidikan" role="tabpanel"
-                                                aria-labelledby="nav-profile-tab">
+                                            <div class="tab-pane fade" id="pendidikan" role="tabpanel"
+                                                aria-labelledby="nav-pendidikan">
                                                 <h3 class="text-center mt-3">Data Partisipasi Sekolah</h3>
                                                 <hr class="mx-5">
                                                 <div class="row">
@@ -477,7 +477,7 @@
                                                     </div>
                                                 </div>
                                             </div>
-                                            <div class="tab-pane fade" id="bidangSDALingkungan" role="tabpanel"
+                                            <div class="tab-pane fade" id="sda" role="tabpanel"
                                                 aria-labelledby="nav-contact-tab">
                                                 <h3 class="text-center mt-3">Data Korban Bencana</h3>
                                                 <hr class="mx-5">
@@ -510,7 +510,7 @@
                                                     </div>
                                                 </div>
                                             </div>
-                                            <div class="tab-pane fade" id="bidangEkonomi" role="tabpanel"
+                                            <div class="tab-pane fade" id="ekonomi" role="tabpanel"
                                                 aria-labelledby="nav-contact-tab">
                                                 <h3 class="text-center mt-3">Data Angkatan Kerja</h3>
                                                 <hr class="mx-5">
@@ -528,9 +528,9 @@
                                                     </div>
                                                 </div>
                                             </div>
-                                            <div class="tab-pane fade" id="bidangPolitik" role="tabpanel"
+                                            <div class="tab-pane fade" id="politik" role="tabpanel"
                                                 aria-labelledby="nav-contact-tab">Bidang Politik</div>
-                                            <div class="tab-pane fade" id="bidangHukum" role="tabpanel"
+                                            <div class="tab-pane fade" id="hukum" role="tabpanel"
                                                 aria-labelledby="nav-contact-tab">Bidang Hukum</div>
                                         </div>
                                     </div>
