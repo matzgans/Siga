@@ -542,15 +542,16 @@ class DashboardController extends Controller
     public function bkesehatan()
     {
         $data = Pkematian::all();
+        $dataKmtbayi = Kmtbayi::all();
         $hiv = Hiv::orderBy('created_at', 'ASC')->get();
         $title = 'Data Terpilah Bidang Kesehatan';
         $subtitle = 'Data Kematian merupakan data dari jumlah kematian ibu, ditampilkan secara lengkap dan terupdate';
-        return view('landing.terpilah-kes', compact('title', 'subtitle', 'data', 'hiv'));
+        return view('landing.terpilah-kes', compact('title', 'subtitle', 'data', 'hiv', 'dataKmtbayi'));
     }
 
     public function bpendidikan()
     {
-        $data = Ptssekolah::all();
+        $data = Prespenduduk::all();
         $ptsSekolah = Ptssekolah::orderBy('created_at', 'ASC')->get();
         $title = 'Data Terpilah Bidang Pendidikan';
         $subtitle = 'Data Kematian merupakan data dari jumlah kematian ibu, ditampilkan secara lengkap dan terupdate';

@@ -96,32 +96,19 @@
                                         <th>No</th>
                                         <th>Tahun</th>
                                         <th>Desa</th>
-                                        <th>Jumlah kematian</th>
-                                        <th>Partus Lama</th>
-                                        <th>Infeksi</th>
-                                        <th>Hipertensi</th>
-                                        <th>Pendarahan</th>
-                                        <th>Penyebab Lainya</th>
+                                        <th>Laki-laki</th>
+                                        <th>Perempuan</th>
                                         <th>Sumber</th>
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    @forelse ($data as $value=>$item)
+                                    @forelse ($dataKmtbayi as $value=>$item)
                                         <tr>
                                             <td>{{ $value + 1 }}</td>
                                             <td>{{ $item->tahun->nama_tahun }}</td>
                                             <td>{{ $item->desa->nama_desa }}</td>
-                                            <td>{{ $item->jum_partuslama +
-                                                $item->jum_infeksi +
-                                                $item->jum_hirpetensi +
-                                                $item->jum_pendarahan +
-                                                $item->jum_penyebablain }}
-                                                Orang</td>
-                                            <td>{{ $item->jum_partuslama }} KH</td>
-                                            <td>{{ $item->jum_infeksi }} Orang</td>
-                                            <td>{{ $item->jum_hirpetensi }} Orang</td>
-                                            <td>{{ $item->jum_pendarahan }} Orang</td>
-                                            <td>{{ $item->jum_penyebablain }} Orang</td>
+                                            <td>{{ $item->l }} Orang</td>
+                                            <td>{{ $item->p }} Orang</td>
                                             <td>{{ $item->sumber }}</td>
                                         </tr>
                                     @empty
