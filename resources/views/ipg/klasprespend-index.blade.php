@@ -12,7 +12,7 @@
     <div class="card">
         <div class="card-body">
             @if(Session('message'))
-                <div class="alert alert-danger" role="alert">
+                <div class="alert alert-success" role="alert">
                     {{Session('message')}}
                 </div>
             @endif

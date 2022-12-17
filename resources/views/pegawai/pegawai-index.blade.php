@@ -11,12 +11,12 @@
     </a>
     <div class="card">
         <div class="card-body" style="overflow-y: auto">
+            <p class="card-title">Data Pegawai</p>
             @if(Session('message'))
-                <div class="alert alert-danger" role="alert">
+                <div class="alert alert-success" role="alert">
                     {{Session('message')}}
                 </div>
             @endif
-            <p class="card-title">Data Hiv / Aids</p>
             <table class="table table-sm table-hover dataTable" id="dataTable">
                 <thead>
                     <tr>
@@ -37,8 +37,7 @@
                                     class="btn btn-danger btn-sm rounded-circle"><i
                                         class="ri ri-delete-bin-line"></i></a>
                                 <a href="{{ route('pegawai.edit', $item->id) }}"
-                                    class="btn btn-warning btn-sm rounded-circle"><i
-                                        class="ri ri-person-bin-line"></i>edit</a>
+                                    class="btn btn-warning btn-sm rounded-circle text-white"><i class="ri ri-edit-box-line"></i></a>
                             </td>
                         </tr>
                     @endforeach

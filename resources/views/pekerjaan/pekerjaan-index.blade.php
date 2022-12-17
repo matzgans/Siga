@@ -3,6 +3,12 @@
     <div class="col-12">
         <div class="card">
             <div class="card-body" style="overflow-y:auto">
+                <p class="card-title">Data Pekerjaan</p>
+                @if (Session('message'))
+                    <div class="alert alert-success" role="alert">
+                        {{ Session('message') }}
+                    </div>
+                @endif
                 <button type="button" class="btn btn-sm mb-3 btn-primary" data-bs-toggle="modal"
                     data-bs-target="#staticBackdrop">
                     <i class="bi bi-plus-lg"></i> Tambah Pekerjaan

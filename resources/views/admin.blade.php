@@ -52,7 +52,7 @@
     <header id="header" class="header fixed-top d-flex align-items-center">
 
         <div class="d-flex align-items-center justify-content-between">
-            <a href="index.html" class="logo d-flex align-items-center">
+            <a href="{{route('dashboard')}}" class="d-flex align-items-center">
                 <img src="{{ asset('foto_landing') }}/SIgafix.png" alt="" style="width: 90px;">
             </a>
             <i class="bi bi-list toggle-sidebar-btn"></i>
@@ -288,46 +288,46 @@
             </li><!-- End Dashboard Nav -->
 
             @if (auth()->user()->role == 'admin')
-                <span>Data Master</span>
+            <li class="nav-heading">Data Terpilah</li>
 
                 <li class="nav-item">
                     <a class="nav-link {{ $active != 'pegawai' ? 'collapsed' : 'active' }}"
                         href="{{ route('pegawai.index') }}">
-                        <i class="ri ri-user-4-line"></i><span>pegawai</span>
+                        <i class="fa-solid fa-user-tie"></i><span>Pegawai</span>
                     </a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link {{ $active != 'desa' ? 'collapsed' : 'active' }}"
                         href="{{ route('desa.index') }}">
-                        <i class="ri ri-home-4-line"></i><span>Desa</span>
+                        <i class="fa-solid fa-house"></i><span>Desa</span>
                     </a>
                 </li>
 
                 <li class="nav-item">
                     <a class="nav-link {{ $active != 'opd' ? 'collapsed' : 'active' }}"
                         href="{{ route('opd.index') }}">
-                        <i class="ri ri-building-line"></i><span>OPD</span>
+                        <i class="fa-solid fa-building"></i><span>OPD</span>
                     </a>
                 </li>
 
                 <li class="nav-item">
                     <a class="nav-link {{ $active != 'pekerjaan' ? 'collapsed' : 'active' }}"
                         href="{{ route('pekerjaan.index') }}">
-                        <i class="bi bi-person-badge"></i><span>Pekerjaan</span>
+                        <i class="fa-solid fa-briefcase"></i><span>Pekerjaan</span>
                     </a>
                 </li>
 
                 <li class="nav-item">
                     <a class="nav-link {{ $active != 'bencana' ? 'collapsed' : 'active' }}"
                         href="{{ route('bencana.index') }}">
-                        <i class="bi bi-person-badge"></i><span>Bencana</span>
+                        <i class="fa-solid fa-house-crack"></i><span>Bencana</span>
                     </a>
                 </li>
 
                 <li class="nav-item">
                     <a class="nav-link {{ $active != 'tahanan' ? 'collapsed' : 'active' }}"
                         href="{{ route('tahanan.index') }}">
-                        <i class="bi bi-person-badge"></i><span>Tahanan</span>
+                        <i class="fa-solid fa-handcuffs"></i><span>Tahanan</span>
                     </a>
                 </li>
 
@@ -341,21 +341,21 @@
                 <li class="nav-item">
                     <a class="nav-link {{ $active != 'agama' ? 'collapsed' : 'active' }}"
                         href="{{ route('agama.index') }}">
-                        <i class="ri ri-user-2-fill"></i><span>Agama</span>
+                        <i class="fa-solid fa-person-praying"></i><span>Agama</span>
                     </a>
                 </li>
 
                 <li class="nav-item">
                     <a class="nav-link {{ $active != 'klasifikasi_umur' ? 'collapsed' : 'active' }}"
                         href="{{ route('klasifikasiumur.index') }}">
-                        <i class="ri ri-user-2-fill"></i><span>Klasifikasi Umur</span>
+                        <i class="fa-solid fa-people-group"></i><span>Klasifikasi Umur</span>
                     </a>
                 </li>
 
                 <li class="nav-item">
                     <a class="nav-link {{ $active != 'jabatan' ? 'collapsed' : 'active' }}"
                         href="{{ route('jabatan.index') }}">
-                        <i class="ri ri-user-2-fill"></i><span>Jabatan</span>
+                        <i class="fa-solid fa-sitemap"></i><span>Jabatan</span>
                     </a>
                 </li>
             @elseif(auth()->user()->role == 'pegawai')

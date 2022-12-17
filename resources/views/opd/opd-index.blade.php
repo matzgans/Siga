@@ -3,6 +3,12 @@
     <div class="col-12">
         <div class="card">
             <div class="card-body" style="overflow-y: auto">
+                <p class="card-title">Data OPD</p>
+                @if (Session('message'))
+                    <div class="alert alert-success" role="alert">
+                        {{ Session('message') }}
+                    </div>
+                @endif
                 <button type="button" class="btn btn-sm btn-primary mb-3" data-bs-toggle="modal"
                     data-bs-target="#staticBackdrop">
                     <i class="bi bi-plus-lg"></i> Data Opd
@@ -36,7 +42,7 @@
         <script>
             $(document).ready(function() {
                 $('#dataTable').DataTable({
-                    resposive:true
+                    resposive: true
                 });
             });
         </script>
@@ -60,7 +66,8 @@
                             </div>
                             <div class="col-md-6 col-12 mb-2">
                                 <label for="nama">Kepala Istansi</label>
-                                <input type="text" class="form-control" name="kepala_istansi" id="kepala_istansi" required>
+                                <input type="text" class="form-control" name="kepala_istansi" id="kepala_istansi"
+                                    required>
                             </div>
                     </div>
                     <div class="modal-footer">
