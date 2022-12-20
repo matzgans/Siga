@@ -4,6 +4,11 @@ namespace App\Http\Controllers;
 
 use App\Models\{Klasprespend, Desa, Tahun};
 use Illuminate\Http\Request;
+use RealRashid\SweetAlert\Facades\Alert;
+use Rap2hpoutre\FastExcel\FastExcel;
+use OpenSpout\Common\Entity\Style\Color;
+use OpenSpout\Common\Entity\Style\Style;
+
 
 class KlasprespendController extends Controller
 {
@@ -27,9 +32,24 @@ class KlasprespendController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
+    public function cetak()
     {
-        //
+        $penduduk = klasprespend::get();
+        $header_style = (new Style())
+        ->setFontBold()
+        ->setFontSize(15);
+            
+    
+        return (new FastExcel(klasprespend::all()))->headerStyle($header_style)->download('file.xlsx', function ($klasprespend) {
+            return [
+                'Tahun' => $klasprespend->tahun->nama_tahun,
+                'Desa' => $klasprespend->desa->nama_desa,
+                'Laki - Laki' => $klasprespend->l,
+                'Perempuan' => $klasprespend->p,
+                'keterangan' => $klasprespend->ket,
+                'sumber' => $klasprespend->sumber,
+            ];
+        });
     }
 
     /**
@@ -105,6 +125,7 @@ class KlasprespendController extends Controller
     {
         $data = Klasprespend::FindOrFail($id);
         $data->delete();
+        
         return redirect()->back()->with('message', 'Berhasil Hapus Data');
     }
 }

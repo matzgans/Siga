@@ -6,9 +6,6 @@
         data-bs-target="#staticBackdrop">
         <i class="bi bi-plus-lg"></i> Tambah Data pegawai
     </button>
-    <a type="button" href="" class="btn btn-sm mb-3 btn-primary" >
-        <i class="bi bi-plus-lg"></i> cetak
-    </a>
     <div class="card">
         <div class="card-body" style="overflow-y: auto">
             <p class="card-title">Data Pegawai</p>

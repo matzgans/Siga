@@ -47,7 +47,7 @@
 </head>
 
 <body>
-
+    @include('sweetalert::alert')
     <!-- ======= Header ======= -->
     <header id="header" class="header fixed-top d-flex align-items-center">
 
@@ -288,7 +288,14 @@
             </li><!-- End Dashboard Nav -->
 
             @if (auth()->user()->role == 'admin')
-            <li class="nav-heading">Data Terpilah</li>
+            <li class="nav-heading">Settings</li>
+            <li class="nav-item">
+                <a class="nav-link {{ $active != 'pengaturan' ? 'collapsed' : 'active' }}"
+                    href="{{ route('pengaturan.index') }}">
+                    <i class="fa-solid fa-user-tie"></i><span>Pengaturan Website</span>
+                </a>
+            </li>
+            <li class="nav-heading">Data Master</li>
 
                 <li class="nav-item">
                     <a class="nav-link {{ $active != 'pegawai' ? 'collapsed' : 'active' }}"
@@ -642,14 +649,14 @@
     <!-- ======= Footer ======= -->
     <footer id="footer" class="footer">
         <div class="copyright">
-            &copy; Copyright <strong><span>NiceAdmin</span></strong>. All Rights Reserved
+            &copy; Copyright <strong><span>Akatsuki</span></strong>. All Rights Reserved
         </div>
         <div class="credits">
             <!-- All the links in the footer should remain intact. -->
             <!-- You can delete the links only if you purchased the pro version. -->
             <!-- Licensing information: https://bootstrapmade.com/license/ -->
             <!-- Purchase the pro version with working PHP/AJAX contact form: https://bootstrapmade.com/nice-admin-bootstrap-admin-html-template/ -->
-            Designed by <a href="https://bootstrapmade.com/">BootstrapMade</a>
+            Designed by <a href="https://bootstrapmade.com/">Tim Akatsuki</a>
         </div>
     </footer><!-- End Footer -->
 

@@ -8,4 +8,12 @@ use Illuminate\Database\Eloquent\Model;
 class Pengaturan extends Model
 {
     use HasFactory;
+    protected $table = 'pengaturans';
+    protected $fillable = [
+        'title',
+        'sub_title',
+        'about',
+        'deskripsi',
+        'contack',
+    ];
 }

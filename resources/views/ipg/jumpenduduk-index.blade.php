@@ -6,7 +6,7 @@
         data-bs-target="#staticBackdrop">
         <i class="bi bi-plus-lg"></i> Tambah Data
     </button>
-    <a type="button" href="" class="btn btn-sm mb-3 btn-primary" >
+    <a type="button" href="{{ route('prespenduduk.cetak') }}" class="btn btn-sm mb-3 btn-primary" >
         <i class="bi bi-plus-lg"></i> cetak
     </a>
     <div class="card">
@@ -47,7 +47,7 @@
                         </tr>
                     </thead>
                     <tbody>
-                        @forelse ($data as $value=>$item)
+                        @foreach ($data as $value=>$item)
                             <tr>
                                 <td>{{$value+1}}</td>
                                 <td>{{$item->tahun->nama_tahun}}</td>
@@ -73,9 +73,7 @@
                                             class="ri ri-edit-box-fill"></i></a>
                                 </td>
                             </tr>
-                        @empty
-                            <span>Data belum diimput</span>
-                        @endforelse
+                        @endforeach
                     </tbody>
                 </table>
             </div>

@@ -31,7 +31,8 @@ use App\Http\Controllers\{
     JumkerlokController,
     PnsController,
     DprdController,
-    IphaController
+    IphaController,
+    PengaturanController
 };
 use Illuminate\Support\Facades\Route;
 
@@ -70,6 +71,12 @@ Route::group(['middleware' => ['auth', 'HakAkses:admin']], function () {
     Route::get('/desa/edit/{id}', [DesaController::class, 'edit'])->name('desa.edit');
     Route::post('/desa/update/{id}', [DesaController::class, 'update'])->name('desa.update');
     Route::get('/desa/destroy/{id}', [DesaController::class, 'destroy'])->name('desa.destroy');
+    // desa
+    Route::get('/pengaturan/index', [PengaturanController::class, 'index'])->name('pengaturan.index');
+    Route::post('/pengaturan/store', [PengaturanController::class, 'store'])->name('pengaturan.store');
+    Route::get('/pengaturan/edit/{id}', [PengaturanController::class, 'edit'])->name('pengaturan.edit');
+    Route::post('/pengaturan/update/{id}', [PengaturanController::class, 'update'])->name('pengaturan.update');
+    Route::get('/pengaturan/destroy/{id}', [PengaturanController::class, 'destroy'])->name('pengaturan.destroy');
 
     // Agama
     Route::get('/agama/index', [AgamaController::class, 'index'])->name('agama.index');
@@ -174,12 +181,14 @@ Route::group(['middleware' => ['auth', 'HakAkses:pegawai']], function () {
     // 1. Jum Penduduk
     Route::get('/prespenduduk/index', [PrespendudukController::class, 'index'])->name('prespenduduk.index');
     Route::post('/prespenduduk/store', [PrespendudukController::class, 'store'])->name('prespenduduk.store');
+    Route::get('/prespenduduk/cetak', [PrespendudukController::class, 'cetak'])->name('prespenduduk.cetak');
     Route::post('/prespenduduk/update/{id}', [PrespendudukController::class, 'update'])->name('prespenduduk.update');
     Route::get('/prespenduduk/edit/{id}', [PrespendudukController::class, 'edit'])->name('prespenduduk.edit');
     Route::get('/prespenduduk/destroy/{id}', [PrespendudukController::class, 'destroy'])->name('prespenduduk.destroy');
     // 2. Klasifikasi Presetanse Penduduk
     Route::get('/klasprespend/index', [KlasprespendController::class, 'index'])->name('klasprespend.index');
     Route::post('/klasprespend/store', [KlasprespendController::class, 'store'])->name('klasprespend.store');
+    Route::get('/klasprespend/cetak', [KlasprespendController::class, 'cetak'])->name('klasprespend.cetak');
     Route::post('/klasprespend/update/{id}', [KlasprespendController::class, 'update'])->name('klasprespend.update');
     Route::get('/klasprespend/edit/{id}', [KlasprespendController::class, 'edit'])->name('klasprespend.edit');
     Route::get('/klasprespend/destroy/{id}', [KlasprespendController::class, 'destroy'])->name('klasprespend.destroy');

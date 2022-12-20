@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\{Prespenduduk, Desa, Tahun};
 use Illuminate\Http\Request;
+use Rap2hpoutre\FastExcel\FastExcel;
 
 class PrespendudukController extends Controller
 {
@@ -27,9 +28,15 @@ class PrespendudukController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
+    public function cetak()
     {
-        //
+        $penduduk = Prespenduduk::get();
+        return (new FastExcel(Prespenduduk::all()))->download('file.xlsx', function ($user) {
+            return [
+                'Email' => $user->desa->nama_desa,
+                'First Name' => $user->p0,
+            ];
+        });
     }
 
     /**

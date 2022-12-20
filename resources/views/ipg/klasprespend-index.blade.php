@@ -6,7 +6,7 @@
         data-bs-target="#staticBackdrop">
         <i class="bi bi-plus-lg"></i> Tambah Data
     </button>
-    <a type="button" href="" class="btn btn-sm mb-3 btn-primary" >
+    <a type="button" href="{{route('klasprespend.cetak')}}" class="btn btn-sm mb-3 btn-primary" >
         <i class="bi bi-plus-lg"></i> cetak
     </a>
     <div class="card">

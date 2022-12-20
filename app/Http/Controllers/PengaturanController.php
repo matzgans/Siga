@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Pengaturan;
+use RealRashid\SweetAlert\Facades\Alert;
 use Illuminate\Http\Request;
 
 class PengaturanController extends Controller
@@ -14,7 +15,11 @@ class PengaturanController extends Controller
      */
     public function index()
     {
-        //
+        $active = 'pengaturan';
+        $pageTitle = 'Pengaturan';
+        $data = Pengaturan::select('*')->first();
+        $jum = Pengaturan::count();
+        return view('pengaturan.pengaturan-index', compact('active', 'pageTitle','data', 'jum'));
     }
 
     /**
@@ -35,7 +40,9 @@ class PengaturanController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        Pengaturan::create($request->all());
+        Alert::success('Berhasil Menambah Data');
+        return redirect()->back();
     }
 
     /**
@@ -67,9 +74,12 @@ class PengaturanController extends Controller
      * @param  \App\Models\Pengaturan  $pengaturan
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Pengaturan $pengaturan)
+    public function update(Request $request,$id)
     {
-        //
+        $data = Pengaturan::FindOrFail($id);
+        $data->update($request->all());
+        Alert::success('Berhasil Mengubah Data');
+        return redirect()->back();
     }
 
     /**
