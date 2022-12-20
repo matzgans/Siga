@@ -3,7 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\{Desa, Opd, Tahun, Agama, Pekerjaan, Pkematian, Hiv, Ptssekolah,
-     Kmtbayi, Partsekolah, Bsda, Aktkerja, Ipha, Jumguru, Jumkekerasan, Klasprespend, Prespenduduk};
+     Kmtbayi, Partsekolah, Bsda, Aktkerja, Ipha, Jumguru, Jumkekerasan, Klasprespend, Prespenduduk, Jumkades, Plapa, Disabilitas};
 
 class DashboardController extends Controller
 {
@@ -472,6 +472,120 @@ class DashboardController extends Controller
         foreach ($logdataJumguru as $itemk) {
             $logjumJumguru[] = $itemk->l + $itemk->p;
         }
+
+        // BIDANG POLITIK
+        // Barchart JumKades
+        $dataDesaJumkades = Jumkades::groupBy('tahun_id')
+            ->select('tahun_id')
+            ->selectRaw(
+                'sum(l) as l,
+                sum(p) as p',
+            )
+            ->get();
+
+        $desaJumkades = [];
+        $jumJumkades = [];
+        foreach ($dataDesaJumkades as $item) {
+            $desaJumkades[] = $item->tahun->nama_tahun;
+            $jumJumkades[] = $item->l + $item->p;
+        }
+
+        // Piechart Jumkades
+        $dataJumkades = Jumkades::selectRaw(
+            'sum(l) as l,
+            sum(p) as p',
+        )->get();
+        foreach ($dataJumkades as $piechartJumkades) {
+        }
+
+        // LogJumkades
+        $logdataJumkades = Jumkades::groupBy('tahun_id')
+            ->selectRaw(
+                'sum(l) as l,
+            sum(p) as p',
+            )
+            ->get();
+        $logjumJumkades = [];
+
+        foreach ($logdataJumkades as $itemk) {
+            $logjumJumkades[] = $itemk->l + $itemk->p;
+        }
+
+        // BIDANG HUKUM
+        // Barchart plapas
+        $dataDesaPlapas = Plapa::groupBy('tahun_id')
+            ->select('tahun_id')
+            ->selectRaw(
+                'sum(l) as l,
+                sum(p) as p',
+            )
+            ->get();
+
+        $desaPlapas = [];
+        $jumPlapas = [];
+        foreach ($dataDesaPlapas as $item) {
+            $desaPlapas[] = $item->tahun->nama_tahun;
+            $jumPlapas[] = $item->l + $item->p;
+        }
+
+        // Piechart Plapas
+        $dataPlapas = Plapa::selectRaw(
+            'sum(l) as l,
+            sum(p) as p',
+        )->get();
+        foreach ($dataPlapas as $piechartPlapas) {
+        }
+
+        // LogPlapas
+        $logdataPlapas = Plapa::groupBy('tahun_id')
+            ->selectRaw(
+                'sum(l) as l,
+            sum(p) as p',
+            )
+            ->get();
+        $logjumPlapas = [];
+
+        foreach ($logdataPlapas as $itemk) {
+            $logjumPlapas[] = $itemk->l + $itemk->p;
+        }
+
+         // Barchart Disabilitas
+         $dataDesaDisabilitas = Disabilitas::groupBy('tahun_id')
+            ->select('tahun_id')
+            ->selectRaw(
+                'sum(l) as l,
+                sum(p) as p',
+            )
+            ->get();
+
+        $desaDisabilitas = [];
+        $jumDisabilitas = [];
+        foreach ($dataDesaDisabilitas as $item) {
+            $desaDisabilitas[] = $item->tahun->nama_tahun;
+            $jumDisabilitas[] = $item->l + $item->p;
+        }
+
+        // Piechart Disabilitas
+        $dataDisabilitas = Disabilitas::selectRaw(
+            'sum(l) as l,
+            sum(p) as p',
+        )->get();
+        foreach ($dataDisabilitas as $piechartDisabilitas) {
+        }
+
+        // LogDisabilitas
+        $logdataDisabilitas = Disabilitas::groupBy('tahun_id')
+            ->selectRaw(
+                'sum(l) as l,
+            sum(p) as p',
+            )
+            ->get();
+        $logjumDisabilitas = [];
+
+        foreach ($logdataDisabilitas as $itemk) {
+            $logjumDisabilitas[] = $itemk->l + $itemk->p;
+        }
+        
         
         return view('landing.welcome', compact(
         'desaKlasprespenduduk',
@@ -484,28 +598,44 @@ class DashboardController extends Controller
         'piechartHiv', 
         'piechartPartsekolah', 
         'piechartPtssekolah', 
+        'piechartJumguru', 
         'piechartkorbencana',
         'piechart_aktkerja', 
+        'piechartJumkades', 
+        'piechartPlapas', 
+        'piechartDisabilitas', 
         'jumKematian', 
         'desaKmtbayi', 
         'desaHiv', 
         'desaPartsekolah', 
         'desaPtssekolah', 
+        'desaJumguru', 
         'desa_aktkerja',
+        'desaJumkades',
+        'desaPlapas',
+        'desaDisabilitas',
         'jenis_bencana',
         'jumKmtbayi', 
         'jumHiv', 
         'jumPartsekolah', 
         'jumPtssekolah', 
+        'jumJumguru', 
         'jum_bencana',
         'jum_aktkerja',
+        'jumJumkades',
+        'jumPlapas',
+        'jumDisabilitas',
         'logjumKlasprespend', 
         'logjumKmtbayi', 
         'logjumHiv', 
         'logjumPartsekolah',
         'logjumPtssekolah',
+        'logjumJumguru',
         'logjumKorbencana',
-        'logjumAktkerja'
+        'logjumAktkerja',
+        'logjumJumkades',
+        'logjumPlapas',
+        'logjumDisabilitas'
     ));
     }
 

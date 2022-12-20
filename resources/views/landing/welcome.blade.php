@@ -311,36 +311,6 @@
                                                             <div id="logaritma_klasprespend"></div>
                                                         </div>
                                                     </div>
-                                                    <h3 class="text-center mt-3">Data Kematian Bayi</h3>
-                                                    <hr class="mx-5">
-                                                    <div class="row">
-                                                        <div class="col">
-                                                            <div id="barchart_kmtbayi"></div>
-                                                        </div>
-                                                        <div class="col">
-                                                            <div id="piechart_kmtbayi"></div>
-                                                        </div>
-                                                    </div>
-                                                    <div class="row mx-5 mb-3">
-                                                        <div class="col">
-                                                            <div id="logaritma_kmtbayi"></div>
-                                                        </div>
-                                                    </div>
-                                                    <h3 class="text-center mt-3">Data HIV</h3>
-                                                    <hr class="mx-5">
-                                                    <div class="row">
-                                                        <div class="col">
-                                                            <div id="barchart_hiv"></div>
-                                                        </div>
-                                                        <div class="col">
-                                                            <div id="piechart_hiv"></div>
-                                                        </div>
-                                                    </div>
-                                                    <div class="row mx-5 mb-3">
-                                                        <div class="col">
-                                                            <div id="logaritma_hiv"></div>
-                                                        </div>
-                                                    </div>
                                                 </div>
                                             </div>
                                             <div class="tab-pane fade" id="jenisKelamin" role="tabpanel"
@@ -530,9 +500,56 @@
                                                 </div>
                                             </div>
                                             <div class="tab-pane fade" id="politik" role="tabpanel"
-                                                aria-labelledby="nav-contact-tab">Bidang Politik</div>
+                                                aria-labelledby="nav-contact-tab">
+                                                <h3 class="text-center mt-3">Data Jumlah Kepala Desa</h3>
+                                                <hr class="mx-5">
+                                                <div class="row">
+                                                    <div class="col">
+                                                        <div id="barchart_jumkades"></div>
+                                                    </div>
+                                                    <div class="col">
+                                                        <div id="piechart_jumkades"></div>
+                                                    </div>
+                                                </div>
+                                                <div class="row mx-5 mb-3">
+                                                    <div class="col">
+                                                        <div id="logaritma_jumkades"></div>
+                                                    </div>
+                                                </div>
+                                            </div>
                                             <div class="tab-pane fade" id="hukum" role="tabpanel"
-                                                aria-labelledby="nav-contact-tab">Bidang Hukum</div>
+                                                aria-labelledby="nav-contact-tab">
+                                                <h3 class="text-center mt-3">Data Penghuni Lapas</h3>
+                                                <hr class="mx-5">
+                                                <div class="row">
+                                                    <div class="col">
+                                                        <div id="barchart_plapas"></div>
+                                                    </div>
+                                                    <div class="col">
+                                                        <div id="piechart_plapas"></div>
+                                                    </div>
+                                                </div>
+                                                <div class="row mx-5 mb-3">
+                                                    <div class="col">
+                                                        <div id="logaritma_plapas"></div>
+                                                    </div>
+                                                </div>
+                                                <h3 class="text-center mt-3">Data Disabilitas</h3>
+                                                <hr class="mx-5">
+                                                <div class="row">
+                                                    <div class="col">
+                                                        <div id="barchart_disabilitas"></div>
+                                                    </div>
+                                                    <div class="col">
+                                                        <div id="piechart_disabilitas"></div>
+                                                    </div>
+                                                </div>
+                                                <div class="row mx-5 mb-3">
+                                                    <div class="col">
+                                                        <div id="logaritma_disabilitas"></div>
+                                                    </div>
+                                                </div>
+                                            </div>
                                         </div>
                                     </div>
                                     <div class="tab-pane fade" id="kekerasan" role="tabpanel"
@@ -1746,7 +1763,171 @@
 
         });
 
-        // Data terpilah Bidang  SDA
+        // Data Guru
+        Highcharts.chart('barchart_dataGuru', {
+            chart: {
+                type: 'column'
+            },
+            title: {
+                text: 'Data Guru'
+            },
+            subtitle: {
+                text: 'Source: Bps.id'
+            },
+            xAxis: {
+                categories: {!! json_encode($desaJumguru) !!},
+                crosshair: true
+            },
+            yAxis: {
+                min: 0,
+                title: {
+                    text: 'Persentase'
+                }
+            },
+            tooltip: {
+                headerFormat: '<span style="font-size:10px">{point.key}</span><table>',
+                pointFormat: '<tr><td style="color:{series.color};padding:0">{series.name}: </td>' +
+                    '<td style="padding:0"><b>{point.y} %</b></td></tr>',
+                footerFormat: '</table>',
+                shared: true,
+                useHTML: true
+            },
+            plotOptions: {
+                column: {
+                    pointPadding: 0.2,
+                    borderWidth: 0
+                }
+            },
+            series: [{
+                    name: 'Persentase',
+                    data: {!! json_encode($jumJumguru) !!}
+
+                },
+
+            ]
+        });
+
+        Highcharts.chart('piechart_dataGuru', {
+            chart: {
+                type: 'pie'
+            },
+            title: {
+                text: 'Data Terpilah Guru'
+            },
+            subtitle: {
+                text: 'Click the slices to view versions. Source: <a href="http://statcounter.com" target="_blank">statcounter.com</a>'
+            },
+
+            accessibility: {
+                announceNewData: {
+                    enabled: true
+                },
+                point: {
+                    valueSuffix: '%'
+                }
+            },
+
+            plotOptions: {
+                series: {
+                    dataLabels: {
+                        enabled: true,
+                        // format: '{point.name}: {point.y:.1f}%'
+                    }
+                }
+            },
+
+            tooltip: {
+                headerFormat: '<span style="font-size:11px">{series.name}</span><br>',
+                pointFormat: '<span style="color:{point.color}">{point.name}</span>: <b>{point.y}</b> Orang<br/>'
+            },
+
+            series: [{
+                name: "Persentase",
+                colorByPoint: true,
+                data: [{
+                        name: "Laki - Laki",
+                        y: {{ $piechartJumguru->l == null ? '0' : $piechartJumguru->l }},
+                    },
+                    {
+                        name: "Perempuan",
+                        y: {{ $piechartJumguru->p == null ? '0' : $piechartJumguru->p }},
+                    }
+                ]
+            }]
+        });
+
+        Highcharts.chart('logaritma_dataGuru', {
+
+            title: {
+                text: 'Kenaikan Data Guru'
+            },
+
+            yAxis: {
+                title: {
+                    text: 'Persentase Kenaikan'
+                }
+            },
+
+            xAxis: {
+                title: {
+                    text: 'Tahun'
+                },
+                type: 'datetime',
+                accessibility: {
+                    rangeDescription: 'Range: 2022 to 2025'
+                }
+            },
+
+            tooltip: {
+                headerFormat: '<span style="font-size:10px">{point.key}</span><table>',
+                pointFormat: '<tr><td style="color:{series.color};padding:0">{series.name}: </td>' +
+                    '<td style="padding:0"><b>{point.y}</b> Orang</td></tr>',
+                footerFormat: '</table>',
+                shared: true,
+                useHTML: true
+            },
+
+            legend: {
+                layout: 'vertical',
+                align: 'right',
+                verticalAlign: 'middle',
+            },
+
+            plotOptions: {
+                series: {
+                    label: {
+                        connectorAllowed: false
+                    },
+                    pointStart: Date.UTC(2022, 0, 1),
+                    pointInterval: 8760 * 3600 * 1000,
+                }
+            },
+
+            series: [{
+                name: 'Persentase Putus Sekolah',
+                data: {!! json_encode($logjumJumguru) !!}
+            }],
+
+            responsive: {
+                rules: [{
+                    condition: {
+                        maxWidth: 500
+                    },
+                    chartOptions: {
+                        legend: {
+                            layout: 'horizontal',
+                            align: 'center',
+                            verticalAlign: 'bottom'
+                        }
+                    }
+                }]
+            }
+
+        });
+    </script>
+
+    {{-- BIDANG SDA --}}
+    <script>
         // Korban Bencana
         Highcharts.chart('barchart_korbencana', {
             chart: {
@@ -1916,8 +2097,10 @@
             }
 
         });
+    </script>
 
-        // Data terpilah Bidang  Ekonomi
+    {{-- BIDANG EKONOMI --}}
+    <script>
         // aktkerja
         Highcharts.chart('barchart_aktkerja', {
             chart: {
@@ -2038,7 +2221,7 @@
         Highcharts.chart('logaritma_aktkerja', {
 
             title: {
-                text: 'Kenaikan Ankatan Kerja'
+                text: 'Kenaikan Angkatan Kerja'
             },
 
             yAxis: {
@@ -2083,8 +2266,499 @@
             },
 
             series: [{
-                name: 'Total Korban Bencana',
+                name: 'Total Angkatan Kerja',
                 data: {!! json_encode($logjumAktkerja) !!}
+            }],
+
+            responsive: {
+                rules: [{
+                    condition: {
+                        maxWidth: 500
+                    },
+                    chartOptions: {
+                        legend: {
+                            layout: 'horizontal',
+                            align: 'center',
+                            verticalAlign: 'bottom'
+                        }
+                    }
+                }]
+            }
+
+        });
+    </script>
+
+    {{-- BIDANG POLITIK --}}
+    <script>
+        Highcharts.chart('barchart_jumkades', {
+            chart: {
+                type: 'column'
+            },
+            title: {
+                text: 'Data Jumlah Kepala Desa'
+            },
+            subtitle: {
+                text: 'Source: Bps.id'
+            },
+            xAxis: {
+                categories: {!! json_encode($desaJumkades) !!},
+                crosshair: true
+            },
+            yAxis: {
+                min: 0,
+                title: {
+                    text: 'Total'
+                }
+            },
+            tooltip: {
+                headerFormat: '<span style="font-size:10px">{point.key}</span><table>',
+                pointFormat: '<tr><td style="color:{series.color};padding:0">{series.name}: </td>' +
+                    '<td style="padding:0"><b>{point.y} Orang</b></td></tr>',
+                footerFormat: '</table>',
+                shared: true,
+                useHTML: true
+            },
+            plotOptions: {
+                column: {
+                    pointPadding: 0.2,
+                    borderWidth: 0
+                }
+            },
+            series: [{
+                    name: 'Orang',
+                    data: {!! json_encode($jumJumkades) !!}
+
+                },
+
+            ]
+        });
+
+        Highcharts.chart('piechart_jumkades', {
+            chart: {
+                type: 'pie'
+            },
+            title: {
+                text: 'Data Terpilah Kepala Desa'
+            },
+            subtitle: {
+                text: 'Click the slices to view versions. Source: <a href="http://statcounter.com" target="_blank">statcounter.com</a>'
+            },
+
+            accessibility: {
+                announceNewData: {
+                    enabled: true
+                },
+                point: {
+                    valueSuffix: '%'
+                }
+            },
+
+            plotOptions: {
+                series: {
+                    dataLabels: {
+                        enabled: true,
+                        // format: '{point.name}: {point.y:.1f}%'
+                    }
+                }
+            },
+
+            tooltip: {
+                headerFormat: '<span style="font-size:11px">{series.name}</span><br>',
+                pointFormat: '<span style="color:{point.color}">{point.name}</span>: <b>{point.y} Orang</b> of total<br/>'
+            },
+
+            series: [{
+                name: "Orang",
+                colorByPoint: true,
+                data: [{
+                        name: "Laki-laki",
+                        y: {{ $piechartJumkades->l == null ? '0' : $piechartJumkades->l }},
+                    },
+                    {
+                        name: "Perempuan)",
+                        y: {{ $piechartJumkades->p == null ? '0' : $piechartJumkades->p }},
+                    }
+                ]
+            }]
+        });
+
+        Highcharts.chart('logaritma_jumkades', {
+
+            title: {
+                text: 'Kenaikan Jumlah Kepala Desa'
+            },
+
+            yAxis: {
+                title: {
+                    text: 'Total Kenaikan'
+                }
+            },
+
+            xAxis: {
+                title: {
+                    text: 'Tahun'
+                },
+                type: 'datetime',
+                accessibility: {
+                    rangeDescription: 'Range: 2022 to 2025'
+                }
+            },
+
+            tooltip: {
+                headerFormat: '<span style="font-size:10px">{point.key}</span><table>',
+                pointFormat: '<tr><td style="color:{series.color};padding:0">{series.name}: </td>' +
+                    '<td style="padding:0"><b>{point.y} Orang</b></td></tr>',
+                footerFormat: '</table>',
+                shared: true,
+                useHTML: true
+            },
+
+            legend: {
+                layout: 'vertical',
+                align: 'right',
+                verticalAlign: 'middle',
+            },
+
+            plotOptions: {
+                series: {
+                    label: {
+                        connectorAllowed: false
+                    },
+                    pointStart: Date.UTC(2022, 0, 1),
+                    pointInterval: 8760 * 3600 * 1000,
+                }
+            },
+
+            series: [{
+                name: 'Total Kepala Desa',
+                data: {!! json_encode($logjumJumkades) !!}
+            }],
+
+            responsive: {
+                rules: [{
+                    condition: {
+                        maxWidth: 500
+                    },
+                    chartOptions: {
+                        legend: {
+                            layout: 'horizontal',
+                            align: 'center',
+                            verticalAlign: 'bottom'
+                        }
+                    }
+                }]
+            }
+
+        });
+    </script>
+
+    {{-- BIDANG HUKUM --}}
+    <script>
+        // Penghuni Lapas
+        Highcharts.chart('barchart_plapas', {
+            chart: {
+                type: 'column'
+            },
+            title: {
+                text: 'Data Jumlah Penghuni Lapas'
+            },
+            subtitle: {
+                text: 'Source: Bps.id'
+            },
+            xAxis: {
+                categories: {!! json_encode($desaPlapas) !!},
+                crosshair: true
+            },
+            yAxis: {
+                min: 0,
+                title: {
+                    text: 'Total'
+                }
+            },
+            tooltip: {
+                headerFormat: '<span style="font-size:10px">{point.key}</span><table>',
+                pointFormat: '<tr><td style="color:{series.color};padding:0">{series.name}: </td>' +
+                    '<td style="padding:0"><b>{point.y} Orang</b></td></tr>',
+                footerFormat: '</table>',
+                shared: true,
+                useHTML: true
+            },
+            plotOptions: {
+                column: {
+                    pointPadding: 0.2,
+                    borderWidth: 0
+                }
+            },
+            series: [{
+                    name: 'Orang',
+                    data: {!! json_encode($jumPlapas) !!}
+
+                },
+
+            ]
+        });
+
+        Highcharts.chart('piechart_plapas', {
+            chart: {
+                type: 'pie'
+            },
+            title: {
+                text: 'Data Terpilah Penghuni Lapas'
+            },
+            subtitle: {
+                text: 'Click the slices to view versions. Source: <a href="http://statcounter.com" target="_blank">statcounter.com</a>'
+            },
+
+            accessibility: {
+                announceNewData: {
+                    enabled: true
+                },
+                point: {
+                    valueSuffix: '%'
+                }
+            },
+
+            plotOptions: {
+                series: {
+                    dataLabels: {
+                        enabled: true,
+                        // format: '{point.name}: {point.y:.1f}%'
+                    }
+                }
+            },
+
+            tooltip: {
+                headerFormat: '<span style="font-size:11px">{series.name}</span><br>',
+                pointFormat: '<span style="color:{point.color}">{point.name}</span>: <b>{point.y} Orang</b> of total<br/>'
+            },
+
+            series: [{
+                name: "Orang",
+                colorByPoint: true,
+                data: [{
+                        name: "Laki-laki",
+                        y: {{ $piechartPlapas->l == null ? '0' : $piechartPlapas->l }},
+                    },
+                    {
+                        name: "Perempuan)",
+                        y: {{ $piechartPlapas->p == null ? '0' : $piechartPlapas->p }},
+                    }
+                ]
+            }]
+        });
+
+        Highcharts.chart('logaritma_plapas', {
+
+            title: {
+                text: 'Kenaikan Jumlah Penghuni Lapas'
+            },
+
+            yAxis: {
+                title: {
+                    text: 'Total Kenaikan'
+                }
+            },
+
+            xAxis: {
+                title: {
+                    text: 'Tahun'
+                },
+                type: 'datetime',
+                accessibility: {
+                    rangeDescription: 'Range: 2022 to 2025'
+                }
+            },
+
+            tooltip: {
+                headerFormat: '<span style="font-size:10px">{point.key}</span><table>',
+                pointFormat: '<tr><td style="color:{series.color};padding:0">{series.name}: </td>' +
+                    '<td style="padding:0"><b>{point.y} Orang</b></td></tr>',
+                footerFormat: '</table>',
+                shared: true,
+                useHTML: true
+            },
+
+            legend: {
+                layout: 'vertical',
+                align: 'right',
+                verticalAlign: 'middle',
+            },
+
+            plotOptions: {
+                series: {
+                    label: {
+                        connectorAllowed: false
+                    },
+                    pointStart: Date.UTC(2022, 0, 1),
+                    pointInterval: 8760 * 3600 * 1000,
+                }
+            },
+
+            series: [{
+                name: 'Total Penghuni Lapas',
+                data: {!! json_encode($logjumPlapas) !!}
+            }],
+
+            responsive: {
+                rules: [{
+                    condition: {
+                        maxWidth: 500
+                    },
+                    chartOptions: {
+                        legend: {
+                            layout: 'horizontal',
+                            align: 'center',
+                            verticalAlign: 'bottom'
+                        }
+                    }
+                }]
+            }
+
+        });
+
+        // Disabilitas
+        Highcharts.chart('barchart_disabilitas', {
+            chart: {
+                type: 'column'
+            },
+            title: {
+                text: 'Data Jumlah Disabilitas'
+            },
+            subtitle: {
+                text: 'Source: Bps.id'
+            },
+            xAxis: {
+                categories: {!! json_encode($desaDisabilitas) !!},
+                crosshair: true
+            },
+            yAxis: {
+                min: 0,
+                title: {
+                    text: 'Total'
+                }
+            },
+            tooltip: {
+                headerFormat: '<span style="font-size:10px">{point.key}</span><table>',
+                pointFormat: '<tr><td style="color:{series.color};padding:0">{series.name}: </td>' +
+                    '<td style="padding:0"><b>{point.y} Orang</b></td></tr>',
+                footerFormat: '</table>',
+                shared: true,
+                useHTML: true
+            },
+            plotOptions: {
+                column: {
+                    pointPadding: 0.2,
+                    borderWidth: 0
+                }
+            },
+            series: [{
+                    name: 'Orang',
+                    data: {!! json_encode($jumDisabilitas) !!}
+
+                },
+
+            ]
+        });
+
+        Highcharts.chart('piechart_disabilitas', {
+            chart: {
+                type: 'pie'
+            },
+            title: {
+                text: 'Data Terpilah Disabilitas'
+            },
+            subtitle: {
+                text: 'Click the slices to view versions. Source: <a href="http://statcounter.com" target="_blank">statcounter.com</a>'
+            },
+
+            accessibility: {
+                announceNewData: {
+                    enabled: true
+                },
+                point: {
+                    valueSuffix: '%'
+                }
+            },
+
+            plotOptions: {
+                series: {
+                    dataLabels: {
+                        enabled: true,
+                        // format: '{point.name}: {point.y:.1f}%'
+                    }
+                }
+            },
+
+            tooltip: {
+                headerFormat: '<span style="font-size:11px">{series.name}</span><br>',
+                pointFormat: '<span style="color:{point.color}">{point.name}</span>: <b>{point.y} Orang</b> of total<br/>'
+            },
+
+            series: [{
+                name: "Orang",
+                colorByPoint: true,
+                data: [{
+                        name: "Laki-laki",
+                        y: {{ $piechartDisabilitas->l == null ? '0' : $piechartDisabilitas->l }},
+                    },
+                    {
+                        name: "Perempuan)",
+                        y: {{ $piechartDisabilitas->p == null ? '0' : $piechartDisabilitas->p }},
+                    }
+                ]
+            }]
+        });
+
+        Highcharts.chart('logaritma_disabilitas', {
+
+            title: {
+                text: 'Kenaikan Jumlah Disabilitas'
+            },
+
+            yAxis: {
+                title: {
+                    text: 'Total Kenaikan'
+                }
+            },
+
+            xAxis: {
+                title: {
+                    text: 'Tahun'
+                },
+                type: 'datetime',
+                accessibility: {
+                    rangeDescription: 'Range: 2022 to 2025'
+                }
+            },
+
+            tooltip: {
+                headerFormat: '<span style="font-size:10px">{point.key}</span><table>',
+                pointFormat: '<tr><td style="color:{series.color};padding:0">{series.name}: </td>' +
+                    '<td style="padding:0"><b>{point.y} Orang</b></td></tr>',
+                footerFormat: '</table>',
+                shared: true,
+                useHTML: true
+            },
+
+            legend: {
+                layout: 'vertical',
+                align: 'right',
+                verticalAlign: 'middle',
+            },
+
+            plotOptions: {
+                series: {
+                    label: {
+                        connectorAllowed: false
+                    },
+                    pointStart: Date.UTC(2022, 0, 1),
+                    pointInterval: 8760 * 3600 * 1000,
+                }
+            },
+
+            series: [{
+                name: 'Total Disabilitas',
+                data: {!! json_encode($logjumDisabilitas) !!}
             }],
 
             responsive: {
