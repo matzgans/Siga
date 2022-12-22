@@ -3,7 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\{Desa, Opd, Tahun, Agama, Pekerjaan, Pkematian, Hiv, Ptssekolah,
-     Kmtbayi, Partsekolah, Bsda, Aktkerja, Ipha, Jumguru, Jumkekerasan, Klasprespend, Prespenduduk, Jumkades, Plapa, Disabilitas};
+     Kmtbayi, Partsekolah, Bsda, Aktkerja, Ipha, Jumguru, Jumkekerasan, Klasprespend, Prespenduduk, Jumkades, Plapa, Disabilitas, Pns, Dprd};
 
 class DashboardController extends Controller
 {
@@ -663,7 +663,6 @@ class DashboardController extends Controller
     public function ipgPendidikan()
     {
         $data = Ptssekolah::all();
-        $ptsSekolah = Ptssekolah::orderBy('created_at', 'ASC')->get();
         $title = 'Data Pendidikan Terakhir';
         $subtitle = 'Data dajdajd daidhadnada dadiahdiad adihadahr ahairhairhriara  arahriahrai arairiayriy';
         return view('landing.landing-ipg-pendidikan', compact('title', 'subtitle', 'data', 'ptsSekolah'));
@@ -673,7 +672,7 @@ class DashboardController extends Controller
     {
         $data = Pkematian::all();
         $dataKmtbayi = Kmtbayi::all();
-        $hiv = Hiv::orderBy('created_at', 'ASC')->get();
+        $hiv = Hiv::all();
         $title = 'Data Terpilah Bidang Kesehatan';
         $subtitle = 'Data Kematian merupakan data dari jumlah kematian ibu, ditampilkan secara lengkap dan terupdate';
         return view('landing.terpilah-kes', compact('title', 'subtitle', 'data', 'hiv', 'dataKmtbayi'));
@@ -681,44 +680,43 @@ class DashboardController extends Controller
 
     public function bpendidikan()
     {
-        $data = Prespenduduk::all();
-        $ptsSekolah = Ptssekolah::orderBy('created_at', 'ASC')->get();
+        $data = Partsekolah::all();
+        $ptsSekolah = Ptssekolah::all();
+        $jumGuru = Jumguru::all();
         $title = 'Data Terpilah Bidang Pendidikan';
         $subtitle = 'Data Kematian merupakan data dari jumlah kematian ibu, ditampilkan secara lengkap dan terupdate';
-        return view('landing.terpilah-pend', compact('title', 'subtitle', 'data', 'ptsSekolah'));
+        return view('landing.terpilah-pend', compact('title', 'subtitle', 'data', 'ptsSekolah', 'jumGuru'));
     }
 
     public function bsda()
     {
-        $data = Pkematian::all();
-        $hiv = Hiv::orderBy('created_at', 'ASC')->get();
+        $data = Bsda::all();
         $title = 'Data Terpilah Bidang Sumber Daya Alam Dan Lingkungan';
         $subtitle = 'Data Kematian merupakan data dari jumlah kematian ibu, ditampilkan secara lengkap dan terupdate';
-        return view('landing.terpilah-sda', compact('title', 'subtitle', 'data', 'hiv'));
+        return view('landing.terpilah-sda', compact('title', 'subtitle', 'data'));
     }
 
     public function bekonomi()
     {
-        $data = Pkematian::all();
-        $hiv = Hiv::orderBy('created_at', 'ASC')->get();
+        $data = Aktkerja::all();
         $title = 'Data Terpilah Bidang Ekonomi Dan Ketenaga Kerjaan';
         $subtitle = 'Data Kematian merupakan data dari jumlah kematian ibu, ditampilkan secara lengkap dan terupdate';
-        return view('landing.terpilah-ekonomi', compact('title', 'subtitle', 'data', 'hiv'));
+        return view('landing.terpilah-ekonomi', compact('title', 'subtitle', 'data'));
     }
 
     public function bpolitik()
     {
-        $data = Pkematian::all();
-        $hiv = Hiv::orderBy('created_at', 'ASC')->get();
+        $data = Jumkades::all();
+        $pns = Pns::all();
+        $dprd = Dprd::all();
         $title = 'Data Terpilah Bidang Politik Dan Pengambilan Keputusan';
         $subtitle = 'Data Kematian merupakan data dari jumlah kematian ibu, ditampilkan secara lengkap dan terupdate';
-        return view('landing.terpilah-politik', compact('title', 'subtitle', 'data', 'hiv'));
+        return view('landing.terpilah-politik', compact('title', 'subtitle', 'data','pns','dprd'));
     }
 
     public function bhukum()
     {
         $data = Pkematian::all();
-        $hiv = Hiv::orderBy('created_at', 'ASC')->get();
         $title = 'Data Terpilah Bidang Hukum Dan Sosial Budaya';
         $subtitle = 'Data Kematian merupakan data dari jumlah kematian ibu, ditampilkan secara lengkap dan terupdate';
         return view('landing.terpilah-hukum', compact('title', 'subtitle', 'data'));

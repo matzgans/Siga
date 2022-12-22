@@ -26,6 +26,7 @@
     <link href="{{ asset('assets') }}/vendor/glightbox/css/glightbox.min.css" rel="stylesheet">
     <link href="{{ asset('assets') }}/vendor/remixicon/remixicon.css" rel="stylesheet">
     <link href="{{ asset('assets') }}/vendor/swiper/swiper-bundle.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/all.min.css" integrity="sha512-MV7K8+y+gLIBoVD59lQIYicR65iaqukzvf/nwasF0nqhPay5w/9lJmVM2hMDcnK1OnMGCdVK+iQrJ7lzPJQd1w==" crossorigin="anonymous" referrerpolicy="no-referrer" />
 
     <!-- Template Main CSS File -->
     <link href="{{ asset('assets') }}/css/style.css" rel="stylesheet">
@@ -36,6 +37,7 @@
 
     
     <script src="https://code.highcharts.com/highcharts.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/js/all.min.js" integrity="sha512-rpLlll167T5LJHwp0waJCh3ZRf7pO6IT1+LZOhAyP6phAirwchClbTZV3iqL3BMrVxIYRbzGTpli4rfxsCK6Vw==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
 
     <!-- =======================================================
   * Template Name: Arsha - v4.9.1
@@ -58,37 +60,38 @@
             <nav id="navbar" class="navbar">
                 <ul>
                     <li><a class="nav-link scrollto active" href="/">Home</a></li>
-                    <li class="dropdown"><a href="#"><span>IPG</span> <i class="bi bi-chevron-down"></i></a>
+                    <li><a class="nav-link scrollto" href="/">IPHA</a></li>
+                    <li class="dropdown"><a href="#" class="nav-link"><span>IPG</span> <i class="bi bi-chevron-down"></i></a>
                         <ul>
-                            <li><a href="{{ route('ipg-penduduk') }}">Persentase penduduk</a></li>
-                            <li><a href="{{ route('ipg-jenkel') }}">Jenis Kelamin</a></li>
-                            <li><a href="{{ route('ipg-umur') }}">Kelompok Umur</a></li>
-                            <li><a href="{{ route('ipg-pendidikan') }}">Pendidikan Terakhir</a></li>
+                            <li><a href="{{ route('ipg-penduduk') }}" class="nav-link">Persentase penduduk</a></li>
+                            <li><a href="{{ route('ipg-jenkel') }}" class="nav-link">Jenis Kelamin</a></li>
+                            <li><a href="{{ route('ipg-umur') }}" class="nav-link">Kelompok Umur</a></li>
+                            <li><a href="{{ route('ipg-pendidikan') }}" class="nav-link">Pendidikan Terakhir</a></li>
                         </ul>
                     </li>
-                    <li class="dropdown"><a href="#"><span>Data Terpilah</span><i
+                    <li class="dropdown"><a href="#" class="nav-link"><span>Data Terpilah</span><i
                                 class="bi bi-chevron-down"></i></a>
                         <ul>
-                            <li><a href="{{ route('bkesehatan') }}">Bidang Kesehatan</a></li>
-                            <li><a href="{{ route('bpendidikan') }}">Bidang Pendidikan</a></li>
-                            <li><a href="{{ route('bsda') }}">Bidang SDA / Lingkungan</a></li>
-                            <li><a href="{{ route('bekonomi') }}">Bidang Ekonomi / Ketenagaan Kerja</a></li>
-                            <li><a href="{{ route('bpolitik') }}">Bidang Politik Dan Pengambilan Keputusan</a></li>
-                            <li><a href="{{ route('bhukum') }}">Bidang Hukum Dan Sosial Budaya</a></li>
+                            <li><a href="{{ route('bkesehatan') }}" class="nav-link">Bidang Kesehatan</a></li>
+                            <li><a href="{{ route('bpendidikan') }}" class="nav-link">Bidang Pendidikan</a></li>
+                            <li><a href="{{ route('bsda') }}" class="nav-link">Bidang SDA / Lingkungan</a></li>
+                            <li><a href="{{ route('bekonomi') }}" class="nav-link">Bidang Ekonomi / Ketenagaan Kerja</a></li>
+                            <li><a href="{{ route('bpolitik') }}" class="nav-link">Bidang Politik Dan Pengambilan Keputusan</a></li>
+                            <li><a href="{{ route('bhukum') }}" class="nav-link">Bidang Hukum Dan Sosial Budaya</a></li>
                         </ul>
                     </li>
-                    <li class="dropdown w-50"><a href="#"><span>SDA Lingkukan</span> <i
+                    <li class="dropdown w-50"><a href="#" class="nav-link"><span>SDA Lingkukan</span> <i
                                 class="bi bi-chevron-down"></i></a>
                         <ul>
-                            <li><a href="#">Data Bencana Lingkungan Terhadap Gender</a></li>
-                            <li><a href="#">Data Bencana Lingkungan Terhadap Anak</a></li>
+                            <li><a href="#" class="nav-link">Data Bencana Lingkungan Terhadap Gender</a></li>
+                            <li><a href="#" class="nav-link">Data Bencana Lingkungan Terhadap Anak</a></li>
                         </ul>
                     </li>
-                    <li class="dropdown"><a href="#"><span>Kekerasan</span> <i class="bi bi-chevron-down"></i></a>
-                        <ul>
-                            <li><a href="#">Kekerasan Terhadap Perempuan dan Anak</a></li>
-                            <li><a href="#">Data Lokasi Kekerasan</a></li>
-                            <li><a href="#">Data Status Kekerasan</a></li>
+                    <li class="dropdown"><a href="#" class="nav-link"><span>Kekerasan</span> <i class="bi bi-chevron-down"></i></a>
+                        <ul class="dropdown-menu dropdown-menu-start">
+                            <li><a href="#" class="nav-link">Kekerasan Terhadap Perempuan dan Anak</a></li>
+                            <li><a href="#" class="nav-link">Data Lokasi Kekerasan</a></li>
+                            <li><a href="#" class="nav-link">Data Status Kekerasan</a></li>
                         </ul>
                     </li>
                 </ul>
@@ -104,7 +107,7 @@
     <!-- ======= Footer ======= -->
     <footer id="footer">
 
-        <div class="footer-newsletter">
+        {{-- <div class="footer-newsletter">
             <div class="container">
                 <div class="row justify-content-center">
                     <div class="col-lg-6">
@@ -116,7 +119,7 @@
                     </div>
                 </div>
             </div>
-        </div>
+        </div> --}}
 
         <div class="footer-top">
             <div class="container">

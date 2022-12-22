@@ -11,11 +11,6 @@
                     <p class="text-white">Data terpilah Gender dan Anak di Bone Bolango berfungsi untuk memotret tingkat
                         keberhasilan pembangunan pemberdayaan perempuan, perlindungan perempuan dan anak melalui
                         strategi Pengarusutamaan Gender (PUG) dan Pengarusutamaan Hak Anak (PUHA).</p>
-                    <div class="d-flex justify-content-center justify-content-lg-start">
-                        <a href="#about" class="btn-get-started scrollto">Data Analisis</a>
-                        <a href="https://www.youtube.com/watch?v=jDDaplaOz7Q" class="glightbox btn-watch-video"><i
-                                class="bi bi-play-circle"></i><span>Watch Video</span></a>
-                    </div>
                 </div>
                 <div class="col-lg-6 order-1 order-lg-2 hero-img" data-aos="zoom-in" data-aos-delay="200">
                     <img src="assets/img/ibu_anak.png" class="img-fluid animated" width="450px" alt="">
@@ -38,24 +33,24 @@
                     </div>
 
                     <div class="col-lg-2 col-md-4 col-6 d-flex align-items-center justify-content-center">
-                        <img src="assets/img/clients/client-1.png" class="img-fluid" alt="">
+                        <img src="{{asset('logo')}}/Kemen PPPA.png" class="img-fluid" alt="">
                     </div>
 
                     <div class="col-lg-2 col-md-4 col-6 d-flex align-items-center justify-content-center">
-                        <img src="assets/img/clients/client-2.png" class="img-fluid" alt="">
+                        <img src="{{asset('logo')}}/BPS.png" class="img-fluid" alt="">
                     </div>
 
 
                     <div class="col-lg-2 col-md-4 col-6 d-flex align-items-center justify-content-center">
-                        <img src="assets/img/clients/client-4.png" class="img-fluid" alt="">
+                        <img src="{{asset('logo')}}/Kemenkes.png" class="img-fluid" alt="">
                     </div>
 
                     <div class="col-lg-2 col-md-4 col-6 d-flex align-items-center justify-content-center">
-                        <img src="assets/img/clients/client-5.png" class="img-fluid" alt="">
+                        <img src="{{asset('logo')}}/Logo Acara Hari Ibu.png" class="img-fluid" alt="">
                     </div>
 
                     <div class="col-lg-2 col-md-4 col-6 d-flex align-items-center justify-content-center">
-                        <img src="assets/img/clients/client-6.png" class="img-fluid" alt="">
+                        <img src="{{asset('logo')}}/Siga.png" class="img-fluid" alt="">
                     </div>
 
                 </div>
@@ -68,7 +63,7 @@
             <div class="container" data-aos="fade-up">
 
                 <div class="section-title">
-                    <h2>About Us</h2>
+                    <h2>Tentang SIGA</h2>
                 </div>
 
                 <div class="row content">
@@ -617,7 +612,7 @@
             <div class="container" data-aos="fade-up">
 
                 <div class="section-title">
-                    <h2>Team</h2>
+                    <h2>Pegawai</h2>
                     <p>Magnam dolores commodi suscipit. Necessitatibus eius consequatur ex aliquid fuga eum quidem. Sit
                         sint consectetur velit. Quisquam quos quisquam cupiditate. Et nemo qui impedit suscipit alias
                         ea. Quia fugiat sit in iste officiis commodi quidem hic quas.</p>

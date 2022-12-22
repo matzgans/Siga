@@ -27,17 +27,7 @@
                     <li class="nav-item" role="presentation">
                         <button class="nav-link active" id="pills-kematianIbu-tab" data-bs-toggle="pill"
                             data-bs-target="#pills-kematianIbu" type="button" role="tab"
-                            aria-controls="pills-kematianIbu" aria-selected="true">Kematian Ibu Hamil</button>
-                    </li>
-                    <li class="nav-item" role="presentation">
-                        <button class="nav-link" id="pills-kematianBayi-tab" data-bs-toggle="pill"
-                            data-bs-target="#pills-kematianBayi" type="button" role="tab"
-                            aria-controls="pills-kematianBayi" aria-selected="false">Kematian Bayi</button>
-                    </li>
-                    <li class="nav-item" role="presentation">
-                        <button class="nav-link" id="pills-penderitaHiv-tab" data-bs-toggle="pill"
-                            data-bs-target="#pills-penderitaHiv" type="button" role="tab"
-                            aria-controls="pills-penderitaHiv" aria-selected="false">Penderita HIV/AIDS</button>
+                            aria-controls="pills-kematianIbu" aria-selected="true">Data Korban Bencana</button>
                     </li>
                 </ul>
             </div>
@@ -45,20 +35,23 @@
                 <div class="tab-content" id="pills-tabContent">
                     <div class="tab-pane fade show active" id="pills-kematianIbu" role="tabpanel"
                         aria-labelledby="pills-kematianIbu-tab">
-                        <h5 class="card-title">Penyebab Kematian Ibu Hamil</h5>
-                        <table class="table table-hover table-bordered dataTable" id="dataTable">
-                            <thead class="text-light" style="background-color:#37517E;">
+                        <h5 class="">Data Korban Bencana</h5>
+                        <table class="table table-hover table-bordered dataTable w-100" id="dataTable">
+                            <thead class="text-light" style="background-color:#37517E; height:100px">
+                                <tr class="text-center">
+                                    <th class="text-center align-middle" rowspan="2">No</th>
+                                    <th class="text-center align-middle" rowspan="2">Tahun</th>
+                                    <th class="text-center align-middle" rowspan="2">Jenis Bencana</th>
+                                    <th class="text-center align-middle" colspan="2">Dewasa</th>
+                                    <th class="text-center align-middle" colspan="2">Anak - anak</th>
+                                    <th class="text-center align-middle" rowspan="2">Sumber</th>
+                                    <th class="text-center align-middle" rowspan="2">Keterangan</th>
+                                </tr>
                                 <tr>
-                                    <th>No</th>
-                                    <th>Tahun</th>
-                                    <th>Desa</th>
-                                    <th>Jumlah kematian</th>
-                                    <th>Partus Lama</th>
-                                    <th>Infeksi</th>
-                                    <th>Hipertensi</th>
-                                    <th>Pendarahan</th>
-                                    <th>Penyebab Lainya</th>
-                                    <th>Sumber</th>
+                                    <th class="text-center align-middle">Laki - laki</th>
+                                    <th class="text-center align-middle">Perempuan</th>
+                                    <th class="text-center align-middle">Laki - laki</th>
+                                    <th class="text-center align-middle">Perempuan</th>
                                 </tr>
                             </thead>
                             <tbody>
@@ -66,94 +59,11 @@
                                     <tr>
                                         <td>{{ $value + 1 }}</td>
                                         <td>{{ $item->tahun->nama_tahun }}</td>
-                                        <td>{{ $item->desa->nama_desa }}</td>
-                                        <td>{{ $item->jum_partuslama +
-                                            $item->jum_infeksi +
-                                            $item->jum_hirpetensi +
-                                            $item->jum_pendarahan +
-                                            $item->jum_penyebablain }}
-                                            Orang</td>
-                                        <td>{{ $item->jum_partuslama }} KH</td>
-                                        <td>{{ $item->jum_infeksi }} Orang</td>
-                                        <td>{{ $item->jum_hirpetensi }} Orang</td>
-                                        <td>{{ $item->jum_pendarahan }} Orang</td>
-                                        <td>{{ $item->jum_penyebablain }} Orang</td>
-                                        <td>{{ $item->sumber }}</td>
-                                    </tr>
-                                @empty
-                                    Data belum di input
-                                @endforelse
-                            </tbody>
-
-                        </table>
-                    </div>
-                    <div class="tab-pane fade" id="pills-kematianBayi" role="tabpanel"
-                        aria-labelledby="pills-kematianBayi-tab">
-                        <h5 class="card-title">Penyebab Kematian Bayi</h5>
-                        <table class="table table-hover table-bordered dataTable" id="dataTable">
-                            <thead class="text-light" style="background-color:#37517E;">
-                                <tr>
-                                    <th>No</th>
-                                    <th>Tahun</th>
-                                    <th>Desa</th>
-                                    <th>Jumlah kematian</th>
-                                    <th>Partus Lama</th>
-                                    <th>Infeksi</th>
-                                    <th>Hipertensi</th>
-                                    <th>Pendarahan</th>
-                                    <th>Penyebab Lainya</th>
-                                    <th>Sumber</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                @forelse ($data as $value=>$item)
-                                    <tr>
-                                        <td>{{ $value + 1 }}</td>
-                                        <td>{{ $item->tahun->nama_tahun }}</td>
-                                        <td>{{ $item->desa->nama_desa }}</td>
-                                        <td>{{ $item->jum_partuslama +
-                                            $item->jum_infeksi +
-                                            $item->jum_hirpetensi +
-                                            $item->jum_pendarahan +
-                                            $item->jum_penyebablain }}
-                                            Orang</td>
-                                        <td>{{ $item->jum_partuslama }} KH</td>
-                                        <td>{{ $item->jum_infeksi }} Orang</td>
-                                        <td>{{ $item->jum_hirpetensi }} Orang</td>
-                                        <td>{{ $item->jum_pendarahan }} Orang</td>
-                                        <td>{{ $item->jum_penyebablain }} Orang</td>
-                                        <td>{{ $item->sumber }}</td>
-                                    </tr>
-                                @empty
-                                    Data belum di input
-                                @endforelse
-                            </tbody>
-
-                        </table>
-                    </div>
-                    <div class="tab-pane fade" id="pills-penderitaHiv" role="tabpanel"
-                        aria-labelledby="pills-penderitaHiv-tab">
-                        <h5 class="card-title">Penderita HIV/AIDS</h5>
-                        <table class="table table-hover table-bordered dataTable" id="dataTable">
-                            <thead class="text-light" style="background-color:#37517E;">
-                                <tr>
-                                    <th>No</th>
-                                    <th>Tahun</th>
-                                    <th>Desa</th>
-                                    <th>Laki - Laki</th>
-                                    <th>Perempuan</th>
-                                    <th>Sumber</th>
-                                    <th>Keterangan</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                @forelse ($hiv as $value=>$item)
-                                    <tr>
-                                        <td>{{ $value + 1 }}</td>
-                                        <td>{{ $item->tahun->nama_tahun }}</td>
-                                        <td>{{ $item->desa->nama_desa }}</td>
-                                        <td>{{ $item->p }} orang</td>
-                                        <td>{{ $item->l }} orang</td>
+                                        <td>{{ $item->bencana->nama_bencana }}</td>
+                                        <td>{{ $item->ldes }} Orang</td>
+                                        <td>{{ $item->pdes }} Orang</td>
+                                        <td>{{ $item->lan }} Orang</td>
+                                        <td>{{ $item->pan }} Orang</td>
                                         <td>{{ $item->sumber }}</td>
                                         <td>{{ $item->ket }}</td>
                                     </tr>
