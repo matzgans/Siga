@@ -5,17 +5,8 @@
         <button type="button" class="btn btn-sm mb-3 btn-primary" data-bs-toggle="modal" data-bs-target="#staticBackdrop">
             <i class="bi bi-plus-lg"></i> Tambah Data
         </button>
-        <a type="button" href="" class="btn btn-sm mb-3 btn-primary">
-            <i class="bi bi-plus-lg"></i> cetak
-        </a>
         <div class="card">
             <div class="card-body">
-                <p class="card-title">Data Tahanan</p>
-                @if (Session('message'))
-                    <div class="alert alert-success" role="alert">
-                        {{ Session('message') }}
-                    </div>
-                @endif
                 <div class="overflow-auto">
                     <table class="table table-hover table-bordered" id="dataTable">
                         <thead>
@@ -31,8 +22,8 @@
                                     <td>{{ $value + 1 }}</td>
                                     <td>{{ $item->jenis_tahanan }}</td>
                                     <td>
-                                        <a href="{{ route('tahanan.destroy', $item->id) }}"
-                                            class="btn btn-danger btn-sm rounded-circle"><i
+                                        <a href="#"
+                                            class="delete btn btn-danger text-white btn-sm rounded-circle" data-id="{{$item->id}}" data-name="{{$item->jenis_tahanan}}"><i
                                                 class="ri ri-delete-bin-line"></i></a>
                                         <a href="{{ route('tahanan.edit', $item->id) }}"
                                             class="btn btn-warning text-white btn-sm rounded-circle"><i
@@ -77,6 +68,27 @@
     <script>
         $(document).ready(function() {
             $('#dataTable').DataTable();
+        });
+        $('.delete').click( function(){
+            var delete_nama = $(this).attr('data-name');
+            var delete_id = $(this).attr('data-id');
+            swal({
+            title: "Are you sure?",
+            text: "Kamu akan menghapus data dengan nama "+delete_nama+"",
+            icon: "warning",
+            buttons: true,
+            dangerMode: true,
+            })
+            .then((willDelete) => {
+            if (willDelete) {
+                window.location="/tahanan/destroy/"+delete_id+""
+                swal("Data Berhasil Dihapus", {
+                icon: "success",
+                });
+            } else {
+                swal("Your imaginary file is safe!");
+            }
+            });
         });
     </script>
 @endsection

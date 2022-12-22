@@ -31,8 +31,8 @@
                                     <td>{{ $item->nama_desa }}</td>
                                     <td>{{ $item->kepala_desa }}</td>
                                     <td>
-                                        <a href="{{ route('desa.destroy', $item->id) }}"
-                                            class="btn btn-sm btn-danger rounded-circle"><i
+                                        <a href="#"
+                                            class="delete btn btn-danger text-white btn-sm rounded-circle" data-id="{{$item->id}}" data-name="{{$item->nama}}"><i
                                                 class="ri ri-delete-bin-line"></i></a>
                                         <a href="{{ route('desa.edit', $item->id) }}"
                                             class="btn btn-sm btn-warning rounded-circle"><i
@@ -74,11 +74,11 @@
                         @csrf
                         <div class="col-md-6 col-12 mb-2">
                             <label for="nama">Nama Desa</label>
-                            <input type="text" class="form-control" name="nama_desa" id="nama_desa">
+                            <input type="text" class="form-control" name="nama_desa" id="nama_desa" required>
                         </div>
                         <div class="col-md-6 col-12 mb-2">
                             <label for="kepala_desa">Kepala Desa</label>
-                            <input type="text" class="form-control" name="kepala_desa" id="kepala_desa">
+                            <input type="text" class="form-control" name="kepala_desa" id="kepala_desa" required>
                         </div>
                 </div>
                 <div class="modal-footer">
@@ -89,4 +89,33 @@
             </div>
         </div>
     </div>
+@endsection
+@section('scripts')
+<script>
+    $(document).ready(function() {
+        $('#dataTable').DataTable();
+    });
+
+    $('.delete').click( function(){
+        var delete_nama = $(this).attr('data-name');
+        var delete_id = $(this).attr('data-id');
+        swal({
+        title: "Are you sure?",
+        text: "Kamu akan menghapus data dengan nama "+delete_nama+"",
+        icon: "warning",
+        buttons: true,
+        dangerMode: true,
+        })
+        .then((willDelete) => {
+        if (willDelete) {
+            window.location="/desa/destroy/"+delete_id+""
+            swal("Data Berhasil Dihapus", {
+            icon: "success",
+            });
+        } else {
+            swal("Your imaginary file is safe!");
+        }
+        });
+    });
+</script>
 @endsection

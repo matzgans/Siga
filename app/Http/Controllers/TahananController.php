@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Tahanan;
 use Illuminate\Http\Request;
+use RealRashid\SweetAlert\Facades\Alert;
 
 class TahananController extends Controller
 {
@@ -39,7 +40,8 @@ class TahananController extends Controller
     public function store(Request $request)
     {
         Tahanan::create($request->all());
-        return redirect()->back()->with('message', 'Berhasil Tambah Data');
+        Alert::success('Berhasil Tambah Data');
+        return redirect()->back();
     }
 
     /**
@@ -78,7 +80,8 @@ class TahananController extends Controller
     {
         $data = Tahanan::FindOrFail($id);
         $data->update($request->all());
-        return redirect()->route('tahanan.index')->with('message', 'Data Berhasil Diubah');
+        Alert::success('Berhasil Ubah Data');
+        return redirect()->route('tahanan.index');
 
     }
 
@@ -92,6 +95,6 @@ class TahananController extends Controller
     {
         $data = Tahanan::FindOrFail($id);
         $data->delete();
-        return redirect()->back()->with('message','Data Berhasil Diubah');
+        return redirect()->back();
     }
 }

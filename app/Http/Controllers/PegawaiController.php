@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\{Pegawai, User};
 use Illuminate\Support\Str;
 use Illuminate\Http\Request;
+use RealRashid\SweetAlert\Facades\Alert;
 
 class PegawaiController extends Controller
 {
@@ -57,6 +58,8 @@ class PegawaiController extends Controller
             'nama'=>$request->nama,
         ]);
 
+        Alert::success('Berhasil');
+
         return redirect()->back();
     }
 
@@ -79,6 +82,7 @@ class PegawaiController extends Controller
      */
     public function edit($id)
     {
+
     }
 
     /**
@@ -103,6 +107,7 @@ class PegawaiController extends Controller
     {
         $data = Pegawai::FindOrFail($id);
         $data->delete();
+        $data->user->delete();
         return redirect()->back();        
     }
 }

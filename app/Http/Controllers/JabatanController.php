@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Jabatan;
 use Illuminate\Http\Request;
+use RealRashid\SweetAlert\Facades\Alert;
 
 class JabatanController extends Controller
 {
@@ -41,6 +42,7 @@ class JabatanController extends Controller
         Jabatan::create([
             'status_jabatan'=>$request->status_jabatan,
         ]);
+        Alert::success('Berhasil');
         return redirect()->back();
     }
 
@@ -61,9 +63,12 @@ class JabatanController extends Controller
      * @param  \App\Models\Jabatan  $jabatan
      * @return \Illuminate\Http\Response
      */
-    public function edit(Jabatan $jabatan)
+    public function edit($id)
     {
-        //
+        $data = Jabatan::FindOrFail($id);
+        $active = 'jabatanedit';
+        $pageTitle = 'jabatan';
+        return view('jabatan.jabatan-edit', compact('data', 'active', 'pageTitle'));
     }
 
     /**
@@ -73,9 +78,12 @@ class JabatanController extends Controller
      * @param  \App\Models\Jabatan  $jabatan
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Jabatan $jabatan)
+    public function update(Request $request, $id)
     {
-        //
+         $data = Jabatan::FindOrFail($id);
+         $data->update($request->all());
+         Alert::success('Berhasil');
+         return redirect()->route('jabatan.index');
     }
 
     /**

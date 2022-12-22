@@ -4,12 +4,6 @@
 
     <div class="card">
         <div class="card-body" style="overflow-y: auto">
-            <p class="card-title">Data Jabatan</p>
-                @if (Session('message'))
-                    <div class="alert alert-success" role="alert">
-                        {{ Session('message') }}
-                    </div>
-                @endif
             <button type="button" class="btn btn-sm btn-primary mb-3" data-bs-toggle="modal"
                 data-bs-target="#staticBackdrop">
                 <i class="bi bi-plus-lg"></i> Data Jabatan
@@ -29,8 +23,11 @@
                                 <td>{{$value+1}}</td>
                                 <td>{{$item->status_jabatan}}</td>
                                 <td>
-                                    <a href="{{ route('jabatan.destroy', $item->id) }}"
-                                        class="btn btn-sm btn-danger rounded-circle"><i
+                                    <a href="{{ route('jabatan.edit', $item->id) }}"
+                                        class="btn btn-sm btn-warning rounded-circle"><i
+                                            class="ri ri-edit-box-line text-white"></i></a>
+                                    <a href="#"
+                                        class="delete btn btn-danger text-white btn-sm rounded-circle" data-id="{{$item->id}}" data-name="{{$item->status_jabatan}}"><i
                                             class="ri ri-delete-bin-line"></i></a>
                                 </td>
                             </tr>
@@ -66,12 +63,36 @@
         </div>
     </div>
 </div>
+
+@endsection
+@section('scripts')
 <script>
     $(document).ready(function() {
         $('#dataTable').DataTable({
             responsive: true
         });
     });
-</script>
 
+    $('.delete').click( function(){
+        var delete_nama = $(this).attr('data-name');
+        var delete_id = $(this).attr('data-id');
+        swal({
+        title: "Are you sure?",
+        text: "Kamu akan menghapus data dengan nama "+delete_nama+"",
+        icon: "warning",
+        buttons: true,
+        dangerMode: true,
+        })
+        .then((willDelete) => {
+        if (willDelete) {
+            window.location="/jabatan/destroy/"+delete_id+""
+            swal("Data Berhasil Dihapus", {
+            icon: "success",
+            });
+        } else {
+            swal("Your imaginary file is safe!");
+        }
+        });
+    });
+</script>
 @endsection

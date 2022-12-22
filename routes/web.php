@@ -110,6 +110,8 @@ Route::group(['middleware' => ['auth', 'HakAkses:admin']], function () {
     // tahun
     Route::get('/tahun/index', [TahunController::class, 'index'])->name('tahun.index');
     Route::post('/tahun/store', [TahunController::class, 'store'])->name('tahun.store');
+    Route::get('/tahun/edit/{id}', [TahunController::class, 'edit'])->name('tahun.edit');
+    Route::post('/tahun/update/{id}', [TahunController::class, 'update'])->name('tahun.update');
     Route::get('/tahun/destroy/{id}', [TahunController::class, 'destroy'])->name('tahun.destroy');
     
     // klasifikasi umur
@@ -120,6 +122,8 @@ Route::group(['middleware' => ['auth', 'HakAkses:admin']], function () {
     // klasifikasi umur
     Route::get('/jabatan/index', [JabatanController::class, 'index'])->name('jabatan.index');
     Route::post('/jabatan/store', [JabatanController::class, 'store'])->name('jabatan.store');
+    Route::get('/jabatan/edit/{id}', [JabatanController::class, 'edit'])->name('jabatan.edit');
+    Route::post('/jabatan/update/{id}', [JabatanController::class, 'update'])->name('jabatan.update');
     Route::get('/jabatan/destroy/{id}', [JabatanController::class, 'destroy'])->name('jabatan.destroy');
 
     Route::get('/pegawai/index', [PegawaiController::class, 'index'])->name('pegawai.index');

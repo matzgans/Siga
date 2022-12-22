@@ -3,12 +3,6 @@
     <div class="col-12">
         <div class="card">
             <div class="card-body" style="overflow-y: auto">
-                <p class="card-title">Data Tahun</p>
-                @if (Session('message'))
-                    <div class="alert alert-success" role="alert">
-                        {{ Session('message') }}
-                    </div>
-                @endif
                 <button type="button" class="btn btn-sm mb-3 btn-primary" data-bs-toggle="modal"
                     data-bs-target="#staticBackdrop">
                     <i class="bi bi-plus-lg"></i> Tambah Tahun
@@ -28,8 +22,12 @@
                                     <td>{{ $index + 1 }}</td>
                                     <td>{{ $item->nama_tahun }}</td>
                                     <td>
-                                        <a href="{{ route('tahun.destroy', $item->id) }}"
-                                            class="btn btn-danger btn-sm rounded-circle"><i
+                                        <a href="{{ route('tahun.edit', $item->id) }}"
+                                            class="btn btn-warning text-white btn-sm rounded-circle"><i
+                                                class="ri ri-edit-box-fill"></i></a>
+
+                                        <a href="#"
+                                            class="delete btn btn-danger text-white btn-sm rounded-circle" data-id="{{$item->id}}" data-name="{{$item->nama_tahun}}"><i
                                                 class="ri ri-delete-bin-line"></i></a>
                                     </td>
                                 </tr>
@@ -39,15 +37,6 @@
                 </div>
             </div>
         </div>
-        <script>
-            $(document).ready(function() {
-                $('#dataTable').DataTable({
-                    responsive: true
-                });
-            });
-        </script>
-        <!-- Vertically centered modal -->
-        <!-- Button trigger modal -->
 
 
         <!-- Modal -->
@@ -62,9 +51,14 @@
                     <div class="modal-body">
                         <form action="{{ route('tahun.store') }}" method="post" class="row">
                             @csrf
-                            <div class="col-md-6 col-12 mb-2">
+                            <div class="col-md-12  col-12 mb-2">
                                 <label for="nama" class="form-label">Tahun</label>
-                                <input type="number" class="form-control" name="nama_tahun" id="nama_tahun">
+                                <input type="number" name="nama_tahun" class="form-control @error('nama_tahun') is-invalid @enderror" id="nama_tahun" required>
+                                @error('nama_tahun')
+                                    <div class="invalid-feedback">
+                                        {{$message}}
+                                    </div>
+                                @enderror
                             </div>
                     </div>
                     <div class="modal-footer">
@@ -77,4 +71,32 @@
         </div>
 
     </div>
+@endsection
+@section('scripts')
+    <script>
+        $(document).ready(function() {
+            $('#dataTable').DataTable();
+        });
+        $('.delete').click( function(){
+            var delete_nama = $(this).attr('data-name');
+            var delete_id = $(this).attr('data-id');
+            swal({
+            title: "Are you sure?",
+            text: "Kamu akan menghapus data dengan nama "+delete_nama+"",
+            icon: "warning",
+            buttons: true,
+            dangerMode: true,
+            })
+            .then((willDelete) => {
+            if (willDelete) {
+                window.location="/tahun/destroy/"+delete_id+""
+                swal("Data Berhasil Dihapus", {
+                icon: "success",
+                });
+            } else {
+                swal("Your imaginary file is safe!");
+            }
+            });
+        });
+    </script>
 @endsection

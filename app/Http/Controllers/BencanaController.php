@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use App\Models\Bencana;
 use Illuminate\Http\Request;
+use RealRashid\SweetAlert\Facades\Alert;
+
 
 class BencanaController extends Controller
 {
@@ -41,7 +43,8 @@ class BencanaController extends Controller
         Bencana::create([
             'nama_bencana'=>ucfirst($request->nama_bencana),
         ]);
-        return redirect()->back()->with('message', 'Berhasil Tambah Data');
+        Alert::success('Berhasil Tambah Data');
+        return redirect()->back();
     }
 
     /**
@@ -80,7 +83,8 @@ class BencanaController extends Controller
     {
         $data = Bencana::FindOrFail($id);
         $data->update($request->all());
-        return redirect()->route('bencana.index')->with('message', 'berhasil edit data');
+        Alert::success('Berhasil Ubah Data');
+        return redirect()->route('bencana.index');
     }
 
     /**

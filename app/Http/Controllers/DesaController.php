@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\{Desa, User};
 use Illuminate\Http\Request;
 use Illuminate\Support\Str;
+use RealRashid\SweetAlert\Facades\Alert;
 
 class DesaController extends Controller
 {
@@ -43,6 +44,7 @@ class DesaController extends Controller
             'nama_desa' => ucfirst($request->nama_desa),
             'kepala_desa' => $request->kepala_desa,
         ]);
+        Alert::success('Berhasil');
         return redirect()->back();
     }
 
@@ -87,6 +89,7 @@ class DesaController extends Controller
 
         $data =  Desa::FindOrFail($id);
         $data->update($request->all());
+        Alert::success('Berhasil');
 
         return redirect()->route('desa.index');
     }

@@ -14,32 +14,36 @@
                     {{Session('message')}}
                 </div>
             @endif
-            <table class="table table-sm table-hover dataTable" id="dataTable">
-                <thead>
-                    <tr>
-                        <th>No</th>
-                        <th>Nama</th>
-                        <th>Email</th>
-                        <th>aksi</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    @foreach ($data as $value=>$item)
+            <div class="overflow-auto">
+                <table class="table table-hover table-bordered" id="dataTable" >
+                    <thead>
                         <tr>
-                            <td>{{$value+1}}</td>
-                            <td>{{$item->nama}}</td>
-                            <td>{{$item->user->email}}</td>
-                            <td>
-                                <a href="{{ route('pegawai.destroy', $item->id) }}"
-                                    class="btn btn-danger btn-sm rounded-circle"><i
-                                        class="ri ri-delete-bin-line"></i></a>
-                                <a href="{{ route('pegawai.edit', $item->id) }}"
-                                    class="btn btn-warning btn-sm rounded-circle text-white"><i class="ri ri-edit-box-line"></i></a>
-                            </td>
+                            <th>No</th>
+                            <th>Nama Pegawai</th>
+                            <th>Email</th>
+                            <th>Aksi</th>
                         </tr>
-                    @endforeach
-                </tbody>
-            </table>
+                    </thead>
+                    <tbody>
+                        @foreach ($data as $value => $item)
+                            <tr>
+                                <td>{{ $value + 1 }}</td>
+                                <td>{{ $item->nama }}</td>
+                                <td>{{ $item->user->email }}</td>
+                                <td>
+                                    <a href="{{ route('pegawai.edit', $item->id) }}"
+                                        class="btn btn-warning btn-sm rounded-circle"><i
+                                            class="ri ri-edit-box-fill"></i></a>
+                                    <a href="#"
+                                        class="delete btn btn-danger text-white btn-sm rounded-circle" data-id="{{$item->id}}" data-name="{{$item->nama}}"><i
+                                            class="ri ri-delete-bin-line"></i></a>
+                                </td>
+                            </tr>
+                        @endforeach
+
+                    </tbody>
+                </table>
+            </div>
         </div>
     </div>
 </div>
@@ -72,8 +76,31 @@
    
 @endsection
 @section('scripts')
-<script>
-    $(document).ready(function() {
-        $('#dataTable').DataTable();
-    });
-</script>
+    <script>
+        $(document).ready(function() {
+            $('#dataTable').DataTable();
+        });
+
+        $('.delete').click( function(){
+            var delete_nama = $(this).attr('data-name');
+            var delete_id = $(this).attr('data-id');
+            swal({
+            title: "Are you sure?",
+            text: "Kamu akan menghapus data dengan nama "+delete_nama+"",
+            icon: "warning",
+            buttons: true,
+            dangerMode: true,
+            })
+            .then((willDelete) => {
+            if (willDelete) {
+                window.location="/pegawai/destroy/"+delete_id+""
+                swal("Data Berhasil Dihapus", {
+                icon: "success",
+                });
+            } else {
+                swal("Your imaginary file is safe!");
+            }
+            });
+        });
+    </script>
+@endsection

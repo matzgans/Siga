@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Tahun;
 use Illuminate\Http\Request;
+use RealRashid\SweetAlert\Facades\Alert;
 
 class TahunController extends Controller
 {
@@ -38,9 +39,13 @@ class TahunController extends Controller
      */
     public function store(Request $request)
     {
+        $request->validate([
+            'nama_tahun'=> ['unique:tahuns'],
+        ]);
         Tahun::create([
             'nama_tahun' => $request->nama_tahun,
         ]);
+        Alert::success('Berhasil Tambah Data');
         return redirect()->back();
     }
 
@@ -61,9 +66,12 @@ class TahunController extends Controller
      * @param  \App\Models\Tahun  $tahun
      * @return \Illuminate\Http\Response
      */
-    public function edit(Tahun $tahun)
+    public function edit($id)
     {
-        //
+        $data = Tahun::FindOrFail($id);
+        $active = 'tahunedit';
+        $pageTitle = 'Tahun';
+        return view('tahun.tahun-edit', compact('data', 'active', 'pageTitle'));
     }
 
     /**
@@ -73,9 +81,12 @@ class TahunController extends Controller
      * @param  \App\Models\Tahun  $tahun
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Tahun $tahun)
+    public function update(Request $request, $id)
     {
-        //
+        $data = Tahun::FindOrFail($id);
+        $data->update($request->all());
+        Alert::success('Berhasil Ubah Data');
+        return redirect()->route('tahun.index');
     }
 
     /**
