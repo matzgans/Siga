@@ -716,9 +716,10 @@ class DashboardController extends Controller
 
     public function bhukum()
     {
-        $data = Pkematian::all();
+        $data = Plapa::all();
+        $disabilitas = Disabilitas::all();
         $title = 'Data Terpilah Bidang Hukum Dan Sosial Budaya';
         $subtitle = 'Data Kematian merupakan data dari jumlah kematian ibu, ditampilkan secara lengkap dan terupdate';
-        return view('landing.terpilah-hukum', compact('title', 'subtitle', 'data'));
+        return view('landing.terpilah-hukum', compact('title', 'subtitle', 'data', 'disabilitas'));
     }
 }
