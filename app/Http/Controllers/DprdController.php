@@ -5,6 +5,9 @@ namespace App\Http\Controllers;
 use App\Models\Dprd;
 use Illuminate\Http\Request;
 use App\Models\{Tahun};
+use OpenSpout\Common\Entity\Style\Color;
+use OpenSpout\Common\Entity\Style\Style;
+use Rap2hpoutre\FastExcel\FastExcel;
 
 class DprdController extends Controller
 {
@@ -27,9 +30,23 @@ class DprdController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
+    public function cetak()
     {
-        //
+        $style = (new Style())->setFontBold();
+        $rows_style = (new Style())
+         ->setBackgroundColor("EDEDED");
+        $bsda = Dprd::get();
+        return (new FastExcel(Dprd::all()))->HeaderStyle($style)->rowsStyle($rows_style)->download('file.xlsx', function ($dprd) {
+            return [
+
+                'Tahun'=>$dprd->tahun->nama_tahun,
+                'Komisi' => $dprd->komisi,
+                'Laki - Laki' => $dprd->l,
+                'Perempuan' => $dprd->p,
+                'Ket' => $dprd->ket,
+                'Sumber' => $dprd->sumber,
+            ];
+        });
     }
 
     /**

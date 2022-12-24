@@ -648,16 +648,18 @@ class DashboardController extends Controller
 
     public function ipgJenkel()
     {
-        $title = 'Data Jenis Kelamin';
-        $subtitle = 'Data dajdajd daidhadnada dadiahdiad adihadahr ahairhairhriara  arahriahrai arairiayriy';
-        return view('landing.landing-ipg-jenkel', compact('title', 'subtitle'));
+        $title = 'Data Penduduk Menurut Jenis Kelamin';
+        $subtitle = 'Data ini memuat jumlah penduduk menurut jenis kelamin dari penduduk yang ada dikabupaten Bonebolango';
+        $data = Klasprespend::get();
+        return view('landing.landing-ipg-jenkel', compact('title', 'subtitle', 'data'));
     }
 
     public function ipgUmur()
     {
         $title = 'Data Kelompok Umur';
-        $subtitle = 'Data dajdajd daidhadnada dadiahdiad adihadahr ahairhairhriara  arahriahrai arairiayriy';
-        return view('landing.landing-ipg-umur', compact('title', 'subtitle'));
+        $subtitle = 'Data ini memuat jumlah penduduk menurut kelompok umur dari penduduk yang ada dikabupaten Bonebolango';
+        $data = Prespenduduk::get();
+        return view('landing.landing-ipg-umur', compact('title', 'subtitle', 'data'));
     }
 
     public function ipgPendidikan()
@@ -665,7 +667,7 @@ class DashboardController extends Controller
         $data = Ptssekolah::all();
         $title = 'Data Pendidikan Terakhir';
         $subtitle = 'Data dajdajd daidhadnada dadiahdiad adihadahr ahairhairhriara  arahriahrai arairiayriy';
-        return view('landing.landing-ipg-pendidikan', compact('title', 'subtitle', 'data', 'ptsSekolah'));
+        return view('landing.landing-ipg-pendidikan', compact('title', 'subtitle', 'data'));
     }
 
     public function bkesehatan()

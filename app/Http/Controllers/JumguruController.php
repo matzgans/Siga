@@ -4,6 +4,9 @@ namespace App\Http\Controllers;
 
 use App\Models\{Jumguru, Tahun};
 use Illuminate\Http\Request;
+use OpenSpout\Common\Entity\Style\Color;
+use OpenSpout\Common\Entity\Style\Style;
+use Rap2hpoutre\FastExcel\FastExcel;
 
 class JumguruController extends Controller
 {
@@ -26,9 +29,22 @@ class JumguruController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
+    public function cetak()
     {
-        //
+        $style = (new Style())->setFontBold();
+        $rows_style = (new Style())
+         ->setBackgroundColor("EDEDED");
+        $jumguru = Jumguru::get();
+        return (new FastExcel(Jumguru::all()))->HeaderStyle($style)->rowsStyle($rows_style)->download('file.xlsx', function ($jumguru) {
+            return [
+                'Tahun'=>$jumguru->tahun->nama_tahun,
+                'Laki Laki'=>$jumguru->l,
+                'Perempuan'=>$jumguru->p,
+                'Total Jumlah'=>$jumguru->jum,
+                'Ket' => $jumguru->ket,
+                'Sumber' => $jumguru->sumber,
+            ];
+        });
     }
 
     /**

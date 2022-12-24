@@ -141,6 +141,7 @@ Route::group(['middleware' => ['auth', 'HakAkses:pegawai']], function () {
     // Data Terpilah Bidang Kesehatan
     // 1. Kematia Ibu Hamil
     Route::get('/pkematian/index', [PkematianController::class, 'index'])->name('pkematian.index');
+    Route::get('/pkematian/cetak', [PkematianController::class, 'cetak'])->name('pkematian.cetak');
     Route::post('/pkematian/store', [PkematianController::class, 'store'])->name('pkematian.store');
     Route::post('/pkematian/update/{id}', [PkematianController::class, 'update'])->name('pkematian.update');
     Route::get('/pkematian/edit/{id}', [PkematianController::class, 'edit'])->name('pkematian.edit');
@@ -148,6 +149,7 @@ Route::group(['middleware' => ['auth', 'HakAkses:pegawai']], function () {
 
     // 2. Penderita Hiv
     Route::get('/hiv/index', [HivController::class, 'index'])->name('hiv.index');
+    Route::get('/hiv/cetak', [HivController::class, 'cetak'])->name('hiv.cetak');
     Route::post('/hiv/store', [HivController::class, 'store'])->name('hiv.store');
     Route::post('/hiv/update/{id}', [HivController::class, 'update'])->name('hiv.update');
     Route::get('/hiv/edit/{id}', [HivController::class, 'edit'])->name('hiv.edit');
@@ -155,6 +157,7 @@ Route::group(['middleware' => ['auth', 'HakAkses:pegawai']], function () {
 
     // 3. kematian bayi
     Route::get('/kmtbayi/index', [KmtbayiController::class, 'index'])->name('kmtbayi.index');
+    Route::get('/kmtbayi/cetak', [KmtbayiController::class, 'cetak'])->name('kmtbayi.cetak');
     Route::post('/kmtbayi/store', [KmtbayiController::class, 'store'])->name('kmtbayi.store');
     Route::post('/kmtbayi/update/{id}', [KmtbayiController::class, 'update'])->name('kmtbayi.update');
     Route::get('/kmtbayi/edit/{id}', [KmtbayiController::class, 'edit'])->name('kmtbayi.edit');
@@ -162,6 +165,7 @@ Route::group(['middleware' => ['auth', 'HakAkses:pegawai']], function () {
     //  Data Terpilah Bidang Pendidikan
     // 1. Partisipasi sekolah
     Route::get('/partsekolah/index', [PartsekolahController::class, 'index'])->name('partsekolah.index');
+    Route::get('/partsekolah/cetak', [PartsekolahController::class, 'cetak'])->name('partsekolah.cetak');
     Route::post('/partsekolah/store', [PartsekolahController::class, 'store'])->name('partsekolah.store');
     Route::post('/partsekolah/update/{id}', [PartsekolahController::class, 'update'])->name('partsekolah.update');
     Route::get('/partsekolah/edit/{id}', [PartsekolahController::class, 'edit'])->name('partsekolah.edit');
@@ -169,6 +173,7 @@ Route::group(['middleware' => ['auth', 'HakAkses:pegawai']], function () {
     
     // 2. Angka Putus Sekolah
     Route::get('/ptssekolah/index', [PtssekolahController::class, 'index'])->name('ptssekolah.index');
+    Route::get('/ptssekolah/cetak', [PtssekolahController::class, 'cetak'])->name('ptssekolah.cetak');
     Route::post('/ptssekolah/store', [PtssekolahController::class, 'store'])->name('ptssekolah.store');
     Route::post('/ptssekolah/update/{id}', [PtssekolahController::class, 'update'])->name('ptssekolah.update');
     Route::get('/ptssekolah/edit/{id}', [PtssekolahController::class, 'edit'])->name('ptssekolah.edit');
@@ -176,6 +181,7 @@ Route::group(['middleware' => ['auth', 'HakAkses:pegawai']], function () {
     
     // 3. Jumlah Guru
     Route::get('/jumguru/index', [JumguruController::class, 'index'])->name('jumguru.index');
+    Route::get('/jumguru/cetak', [JumguruController::class, 'cetak'])->name('jumguru.cetak');
     Route::post('/jumguru/store', [JumguruController::class, 'store'])->name('jumguru.store');
     Route::post('/jumguru/update/{id}', [JumguruController::class, 'update'])->name('jumguru.update');
     Route::get('/jumguru/edit/{id}', [JumguruController::class, 'edit'])->name('jumguru.edit');
@@ -213,6 +219,7 @@ Route::group(['middleware' => ['auth', 'HakAkses:pegawai']], function () {
     // BSDA / LINGKUNGAN
     // 1. Korban Bencana
     Route::get('/bsda/index', [BsdaController::class, 'index'])->name('bsda.index');
+    Route::get('/bsda/cetak', [BsdaController::class, 'cetak'])->name('bsda.cetak');
     Route::post('/bsda/store', [BsdaController::class, 'store'])->name('bsda.store');
     Route::post('/bsda/update/{id}', [BsdaController::class, 'update'])->name('bsda.update');
     Route::get('/bsda/edit/{id}', [BsdaController::class, 'edit'])->name('bsda.edit');
@@ -221,6 +228,7 @@ Route::group(['middleware' => ['auth', 'HakAkses:pegawai']], function () {
     // Data Terpilah Bodang Ekonomi / Ketenaga kerjaan
     // 1. Jum Penduduk
     Route::get('/aktkerja/index', [AktkerjaController::class, 'index'])->name('aktkerja.index');
+    Route::get('/aktkerja/cetak', [AktkerjaController::class, 'cetak'])->name('aktkerja.cetak');
     Route::post('/aktkerja/store', [AktkerjaController::class, 'store'])->name('aktkerja.store');
     Route::post('/aktkerja/update/{id}', [AktkerjaController::class, 'update'])->name('aktkerja.update');
     Route::get('/aktkerja/edit/{id}', [AktkerjaController::class, 'edit'])->name('aktkerja.edit');
@@ -229,18 +237,21 @@ Route::group(['middleware' => ['auth', 'HakAkses:pegawai']], function () {
     // Data Terpilah Bodang Politik
     // 1. Jum Kades
     Route::get('/jumkades/index', [JumkadesController::class, 'index'])->name('jumkades.index');
+    Route::get('/jumkades/cetak', [JumkadesController::class, 'cetak'])->name('jumkades.cetak');
     Route::post('/jumkades/store', [JumkadesController::class, 'store'])->name('jumkades.store');
     Route::post('/jumkades/update/{id}', [JumkadesController::class, 'update'])->name('jumkades.update');
     Route::get('/jumkades/edit/{id}', [JumkadesController::class, 'edit'])->name('jumkades.edit');
     Route::get('/jumkades/destroy/{id}', [JumkadesController::class, 'destroy'])->name('jumkades.destroy');
     // 2. Pns
     Route::get('/pns/index', [PnsController::class, 'index'])->name('pns.index');
+    Route::get('/pns/cetak', [PnsController::class, 'cetak'])->name('pns.cetak');
     Route::post('/pns/store', [PnsController::class, 'store'])->name('pns.store');
     Route::post('/pns/update/{id}', [PnsController::class, 'update'])->name('pns.update');
     Route::get('/pns/edit/{id}', [PnsController::class, 'edit'])->name('pns.edit');
     Route::get('/pns/destroy/{id}', [PnsController::class, 'destroy'])->name('pns.destroy');
     // 3. Dprd
     Route::get('/dprd/index', [DprdController::class, 'index'])->name('dprd.index');
+    Route::get('/dprd/cetak', [DprdController::class, 'cetak'])->name('dprd.cetak');
     Route::post('/dprd/store', [DprdController::class, 'store'])->name('dprd.store');
     Route::post('/dprd/update/{id}', [DprdController::class, 'update'])->name('dprd.update');
     Route::get('/dprd/edit/{id}', [DprdController::class, 'edit'])->name('dprd.edit');
@@ -249,6 +260,7 @@ Route::group(['middleware' => ['auth', 'HakAkses:pegawai']], function () {
     // Data Terpilah Bidang Hukum / Sosial Budaya
     // 1. Jum Penguni lapas
     Route::get('/plapas/index', [PlapaController::class, 'index'])->name('plapas.index');
+    Route::get('/plapas/cetak', [PlapaController::class, 'cetak'])->name('plapas.cetak');
     Route::post('/plapas/store', [PlapaController::class, 'store'])->name('plapas.store');
     Route::post('/plapas/update/{id}', [PlapaController::class, 'update'])->name('plapas.update');
     Route::get('/plapas/edit/{id}', [PlapaController::class, 'edit'])->name('plapas.edit');
@@ -256,6 +268,7 @@ Route::group(['middleware' => ['auth', 'HakAkses:pegawai']], function () {
    
     // 2. Disabilitas
     Route::get('/disabilitas/index', [DisabilitasController::class, 'index'])->name('disabilitas.index');
+    Route::get('/disabilitas/cetak', [DisabilitasController::class, 'cetak'])->name('disabilitas.cetak');
     Route::post('/disabilitas/store', [DisabilitasController::class, 'store'])->name('disabilitas.store');
     Route::post('/disabilitas/update/{id}', [DisabilitasController::class, 'update'])->name('disabilitas.update');
     Route::get('/disabilitas/edit/{id}', [DisabilitasController::class, 'edit'])->name('disabilitas.edit');

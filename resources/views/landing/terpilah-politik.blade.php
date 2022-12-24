@@ -42,6 +42,7 @@
                     <div class="tab-pane fade show active" id="jumKades" role="tabpanel"
                         aria-labelledby="pills-kematianIbu-tab">
                         <h5 class="">Jumlah Kepala Desa</h5>
+                        <a href="{{route('jumkades.cetak')}}" class="btn btn-primary"><i class="fa-solid fa-print"></i></a>
                         <table class="table table-hover table-bordered dataTable" id="dataTable">
                             <thead class="text-light" style="background-color:#37517E; height:100px">
                                 <tr>
@@ -76,6 +77,7 @@
                     <div class="tab-pane fade" id="dataPns" role="tabpanel"
                         aria-labelledby="pills-kematianBayi-tab">
                         <h5 class="">PNS </h5>
+                        <a href="{{route('pns.cetak')}}" class="btn btn-primary"><i class="fa-solid fa-print"></i></a>
                         <table class="table table-hover table-bordered dataTable w-100" id="dataTable">
                             <thead class="text-light" style="background-color:#37517E; height:100px">
                                 <tr>
@@ -112,6 +114,7 @@
                     <div class="tab-pane fade" id="dprd" role="tabpanel"
                         aria-labelledby="pills-penderitaHiv-tab">
                         <h5 class="">DPRD</h5>
+                        <a href="{{route('dprd.cetak')}}" class="btn btn-primary"><i class="fa-solid fa-print"></i></a>
                         <table class="table table-hover table-bordered dataTable w-100" id="dataTable">
                             <thead class="text-light" style="background-color:#37517E; height:100px">
                                 <tr>

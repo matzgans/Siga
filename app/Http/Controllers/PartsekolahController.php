@@ -4,6 +4,9 @@ namespace App\Http\Controllers;
 
 use App\Models\{Partsekolah,  Desa, Tahun};
 use Illuminate\Http\Request;
+use OpenSpout\Common\Entity\Style\Color;
+use OpenSpout\Common\Entity\Style\Style;
+use Rap2hpoutre\FastExcel\FastExcel;
 
 class PartsekolahController extends Controller
 {
@@ -27,9 +30,29 @@ class PartsekolahController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
+     public function cetak()
     {
-        //
+        $style = (new Style())->setFontBold();
+        $rows_style = (new Style())
+         ->setBackgroundColor("EDEDED");
+        $partsekolah = Partsekolah::get();
+        return (new FastExcel(Partsekolah::all()))->HeaderStyle($style)->rowsStyle($rows_style)->download('file.xlsx', function ($partsekolah) {
+            return [
+
+                'Tahun'=>$partsekolah->tahun->nama_tahun,
+                'Desa' => $partsekolah->desa->nama_desa,
+                'Laki - Laki (Umur 7-12)' => $partsekolah->l7.' %',
+                'Perempuan (Umur 7-12)' => $partsekolah->p7.' %',
+                'Laki - Laki (Umur 13 - 15)' => $partsekolah->l13.' %',
+                'Perempuan (Umur 13 - 15)' => $partsekolah->p13.' %',
+                'Laki - Laki (Umur 16 - 18)' => $partsekolah->l16.' %',
+                'Perempuan (Umur 16 - 18)' => $partsekolah->p16.' %',
+                'Laki - Laki (Umur 19 - 24)' => $partsekolah->l19.' %',
+                'Perempuan (Umur 19 - 24)' => $partsekolah->p19.' %',
+                'Ket' => $partsekolah->ket,
+                'Sumber' => $partsekolah->sumber,
+            ];
+        });
     }
 
     /**

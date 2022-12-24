@@ -37,6 +37,7 @@
                 <div class="tab-pane fade show active" id="plapas" role="tabpanel"
                     aria-labelledby="pills-kematianIbu-tab">
                     <h5 class="">Data Penghuni Lapas</h5>
+                    <a href="{{route('plapas.cetak')}}" class="btn btn-primary"><i class="fa-solid fa-print"></i></a>
                     <table class="table table-hover table-bordered dataTable" id="dataTable">
                         <thead class="text-light" style="background-color:#37517E; height:100px">
                             <tr>
@@ -72,6 +73,7 @@
                 </div>
                 <div class="tab-pane fade" id="disabilitas" role="tabpanel" aria-labelledby="pills-kematianBayi-tab">
                     <h5 class="">Data Disabilitas</h5>
+                    <a href="{{route('disabilitas.cetak')}}" class="btn btn-primary"><i class="fa-solid fa-print"></i></a>
                     <table class="table table-hover table-bordered dataTable w-100" id="dataTable">
                         <thead class="text-light" style="background-color:#37517E; height:100px">
                             <tr>

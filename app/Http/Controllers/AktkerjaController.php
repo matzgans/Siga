@@ -4,6 +4,9 @@ namespace App\Http\Controllers;
 
 use App\Models\{Aktkerja, Tahun, Desa};
 use Illuminate\Http\Request;
+use OpenSpout\Common\Entity\Style\Color;
+use OpenSpout\Common\Entity\Style\Style;
+use Rap2hpoutre\FastExcel\FastExcel;
 
 class AktkerjaController extends Controller
 {
@@ -27,9 +30,29 @@ class AktkerjaController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
+     public function cetak()
     {
-        //
+        $style = (new Style())->setFontBold();
+        $rows_style = (new Style())
+         ->setBackgroundColor("EDEDED");
+        $aktkerja = Aktkerja::get();
+        return (new FastExcel(Aktkerja::all()))->HeaderStyle($style)->rowsStyle($rows_style)->download('file.xlsx', function ($aktkerja) {
+            return [
+
+                'Tahun'=>$aktkerja->tahun->nama_tahun,
+                'Desa' => $aktkerja->desa->nama_desa,
+                'Laki - Laki (SD)' => $aktkerja->lsd,
+                'Perempuan (SD)' => $aktkerja->psd,
+                'Laki - Laki (SMP)' => $aktkerja->lsmp,
+                'Perempuan (SMP)' => $aktkerja->psmp,
+                'Laki - Laki (SMA)' => $aktkerja->lsma,
+                'Perempuan (SMA)' => $aktkerja->psma,
+                'Laki - Laki (PT)' => $aktkerja->lpt,
+                'Perempuan (PT)' => $aktkerja->ppt,
+                'Ket' => $aktkerja->ket,
+                'Sumber' => $aktkerja->sumber,
+            ];
+        });
     }
 
     /**

@@ -31,10 +31,22 @@ class PrespendudukController extends Controller
     public function cetak()
     {
         $penduduk = Prespenduduk::get();
-        return (new FastExcel(Prespenduduk::all()))->download('file.xlsx', function ($user) {
+        return (new FastExcel(Prespenduduk::all()))->download('file.xlsx', function ($penduduk) {
             return [
-                'Email' => $user->desa->nama_desa,
-                'First Name' => $user->p0,
+                'Tahun' => $penduduk->tahun->nama_tahun,
+                'Desa' => $penduduk->desa->nama_desa,
+                'Laki - Laki (0-5 Tahun)' => $penduduk->l6,
+                'Perempuan (0-5 Tahun)' => $penduduk->p0,
+                'Laki - Laki (6-12 Tahun)' => $penduduk->l6,
+                'Perempuan (6-12 Tahun)' => $penduduk->p6,
+                'Laki - Laki (13-17 Tahun)' => $penduduk->l13,
+                'Perempuan (13-17 Tahun)' => $penduduk->p13,
+                'Laki - Laki (18-50 Tahun)' => $penduduk->l18,
+                'Perempuan (18-50 Tahun)' => $penduduk->p18,
+                'Laki - Laki (51+ Tahun)' => $penduduk->l51,
+                'Perempuan (51+ Tahun)' => $penduduk->p51,
+                'Keterangan' => $penduduk->ket,
+                'Sumber' => $penduduk->sumber,
             ];
         });
     }

@@ -4,6 +4,9 @@ namespace App\Http\Controllers;
 
 use App\Models\{Hiv, Desa, Tahun};
 use Illuminate\Http\Request;
+use OpenSpout\Common\Entity\Style\Color;
+use OpenSpout\Common\Entity\Style\Style;
+use Rap2hpoutre\FastExcel\FastExcel;
 
 class HivController extends Controller
 {
@@ -27,9 +30,22 @@ class HivController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
+    public function cetak()
     {
-        //
+        $style = (new Style())->setFontBold();
+        $rows_style = (new Style())
+         ->setBackgroundColor("EDEDED");
+        $hiv = Hiv::get();
+        return (new FastExcel(Hiv::all()))->HeaderStyle($style)->rowsStyle($rows_style)->download('file.xlsx', function ($hiv) {
+            return [
+                'Tahun'=>$hiv->tahun->nama_tahun,
+                'Desa' => $hiv->desa->nama_desa,
+                'Laki Laki'=>$hiv->l,
+                'Perempuan'=>$hiv->p,
+                'Ket' => $hiv->ket,
+                'Sumber' => $hiv->sumber,
+            ];
+        });
     }
 
     /**

@@ -16,7 +16,7 @@
                     {{Session('message')}}
                 </div>
             @endif
-            <p class="card-title">Data Jumlah Penduduk menurut Jenis Kelamin</p>
+            <p class="card-title">Data Jumlah Penduduk menurut Kelompok Umur dan Jenis Kelamin</p>
             <div class="overflow-auto">
                 <table class="table table-hover table-bordered dataTable" id="dataTable">
                     <thead>

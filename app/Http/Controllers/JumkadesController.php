@@ -6,6 +6,9 @@ use App\Models\Jumguru;
 use App\Models\Jumkades;
 use App\Models\Tahun;
 use Illuminate\Http\Request;
+use OpenSpout\Common\Entity\Style\Color;
+use OpenSpout\Common\Entity\Style\Style;
+use Rap2hpoutre\FastExcel\FastExcel;
 
 class JumkadesController extends Controller
 {
@@ -28,9 +31,22 @@ class JumkadesController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
+     public function cetak()
     {
-        //
+        $style = (new Style())->setFontBold();
+        $rows_style = (new Style())
+         ->setBackgroundColor("EDEDED");
+        $jumkades = Jumkades::get();
+        return (new FastExcel(Jumkades::all()))->HeaderStyle($style)->rowsStyle($rows_style)->download('file.xlsx', function ($jumkades) {
+            return [
+
+                'Tahun'=>$jumkades->tahun->nama_tahun,
+                'Laki - Laki' => $jumkades->l,
+                'Perempuan' => $jumkades->p,
+                'Ket' => $jumkades->ket,
+                'Sumber' => $jumkades->sumber,
+            ];
+        });
     }
 
     /**

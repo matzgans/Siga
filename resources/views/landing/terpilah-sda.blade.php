@@ -36,6 +36,7 @@
                     <div class="tab-pane fade show active" id="pills-kematianIbu" role="tabpanel"
                         aria-labelledby="pills-kematianIbu-tab">
                         <h5 class="">Data Korban Bencana</h5>
+                        <a href="{{route('bsda.cetak')}}" class="btn btn-primary"><i class="fa-solid fa-print"></i></a>
                         <table class="table table-hover table-bordered dataTable w-100" id="dataTable">
                             <thead class="text-light" style="background-color:#37517E; height:100px">
                                 <tr class="text-center">

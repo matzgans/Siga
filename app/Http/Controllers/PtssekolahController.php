@@ -4,6 +4,9 @@ namespace App\Http\Controllers;
 
 use App\Models\{Ptssekolah, Desa, Tahun};
 use Illuminate\Http\Request;
+use OpenSpout\Common\Entity\Style\Color;
+use OpenSpout\Common\Entity\Style\Style;
+use Rap2hpoutre\FastExcel\FastExcel;
 
 class PtssekolahController extends Controller
 {
@@ -27,9 +30,27 @@ class PtssekolahController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
+     public function cetak()
     {
-        //
+        $style = (new Style())->setFontBold();
+        $rows_style = (new Style())
+         ->setBackgroundColor("EDEDED");
+        $ptssekolah = Ptssekolah::get();
+        return (new FastExcel(Ptssekolah::all()))->HeaderStyle($style)->rowsStyle($rows_style)->download('file.xlsx', function ($ptssekolah) {
+            return [
+
+                'Tahun'=>$ptssekolah->tahun->nama_tahun,
+                'Desa' => $ptssekolah->desa->nama_desa,
+                'Laki - Laki (SD)' => $ptssekolah->lsd.' %',
+                'Perempuan (SD)' => $ptssekolah->psd.' %',
+                'Laki - Laki (SMP)' => $ptssekolah->lsmp.' %',
+                'Perempuan (SMP)' => $ptssekolah->psmp.' %',
+                'Laki - Laki (SMA)' => $ptssekolah->lsma.' %',
+                'Perempuan (SMA)' => $ptssekolah->psma.' %',
+                'Ket' => $ptssekolah->ket,
+                'Sumber' => $ptssekolah->sumber,
+            ];
+        });
     }
 
     /**

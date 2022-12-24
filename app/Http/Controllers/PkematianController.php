@@ -4,6 +4,9 @@ namespace App\Http\Controllers;
 
 use App\Models\{Pkematian, Desa, Tahun};
 use Illuminate\Http\Request;
+use OpenSpout\Common\Entity\Style\Color;
+use OpenSpout\Common\Entity\Style\Style;
+use Rap2hpoutre\FastExcel\FastExcel;
 
 class PkematianController extends Controller
 {
@@ -27,9 +30,26 @@ class PkematianController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
+    public function cetak()
     {
-        //
+        $style = (new Style())->setFontBold();
+        $rows_style = (new Style())
+         ->setBackgroundColor("EDEDED");
+        $pkematian = Pkematian::get();
+        return (new FastExcel(Pkematian::all()))->HeaderStyle($style)->rowsStyle($rows_style)->download('file.xlsx', function ($pkematian) {
+            return [
+
+                'Tahun'=>$pkematian->tahun->nama_tahun,
+                'Desa' => $pkematian->desa->nama_desa,
+                'Partus Lama' => $pkematian->jum_partuslama,
+                'Infeksi' => $pkematian->jum_infeksi,
+                'Hipertensi' => $pkematian->jum_hirpetensi,
+                'Pendarahan' => $pkematian->jum_pendarahan,
+                'Penyebab Lain' => $pkematian->jum_penyebablain,
+                'Ket' => $pkematian->ket,
+                'Sumber' => $pkematian->sumber,
+            ];
+        });
     }
 
     /**

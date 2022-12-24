@@ -63,7 +63,7 @@
                     <li><a class="nav-link scrollto" href="/">IPHA</a></li>
                     <li class="dropdown"><a href="#" class="nav-link"><span>IPG</span> <i class="bi bi-chevron-down"></i></a>
                         <ul>
-                            <li><a href="{{ route('ipg-penduduk') }}" class="nav-link">Persentase penduduk</a></li>
+                            {{-- <li><a href="{{ route('ipg-penduduk') }}" class="nav-link">Persentase penduduk</a></li> --}}
                             <li><a href="{{ route('ipg-jenkel') }}" class="nav-link">Jenis Kelamin</a></li>
                             <li><a href="{{ route('ipg-umur') }}" class="nav-link">Kelompok Umur</a></li>
                             <li><a href="{{ route('ipg-pendidikan') }}" class="nav-link">Pendidikan Terakhir</a></li>

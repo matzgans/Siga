@@ -3,6 +3,9 @@
 namespace App\Http\Controllers;
 use App\Models\{Bsda, Bencana, Tahun};
 use Illuminate\Http\Request;
+use OpenSpout\Common\Entity\Style\Color;
+use OpenSpout\Common\Entity\Style\Style;
+use Rap2hpoutre\FastExcel\FastExcel;
 
 class BsdaController extends Controller
 {
@@ -26,9 +29,25 @@ class BsdaController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
+    public function cetak()
     {
-        //
+        $style = (new Style())->setFontBold();
+        $rows_style = (new Style())
+         ->setBackgroundColor("EDEDED");
+        $bsda = Bsda::get();
+        return (new FastExcel(Bsda::all()))->HeaderStyle($style)->rowsStyle($rows_style)->download('file.xlsx', function ($bsda) {
+            return [
+
+                'Tahun'=>$bsda->tahun->nama_tahun,
+                'Bencana' => $bsda->bencana->nama_bencana,
+                'Laki - Laki (Anak -Anak)' => $bsda->lan,
+                'Perempuan (Anak -Anak)' => $bsda->pan,
+                'Laki - Laki (Dewasa)' => $bsda->ldes,
+                'Perempuan (Dewasa)' => $bsda->pdes,
+                'Ket' => $bsda->ket,
+                'Sumber' => $bsda->sumber,
+            ];
+        });
     }
 
     /**

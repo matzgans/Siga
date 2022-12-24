@@ -42,6 +42,7 @@
                 <div class="tab-pane fade show active" id="pills-kematianIbu" role="tabpanel"
                     aria-labelledby="pills-kematianIbu-tab">
                     <h5 class="">Penyebab Kematian Ibu Hamil</h5>
+                    <a href="{{route('pkematian.cetak')}}" class="btn btn-primary"><i class="fa-solid fa-print"></i></a>
                     <table class="table table-hover table-bordered dataTable" id="dataTable">
                         <thead class="text-light" style="background-color:#37517E; height:100px">
                             <tr class="align-middle text-center">
@@ -54,6 +55,7 @@
                                 <th class="text-center">Hipertensi</th>
                                 <th class="text-center">Pendarahan</th>
                                 <th class="text-center">Penyebab Lainya</th>
+                                <th class="text-center">Keterangan</th>
                                 <th class="text-center">Sumber</th>
                             </tr>
                         </thead>
@@ -74,6 +76,7 @@
                                     <td>{{ $item->jum_hirpetensi }} Orang</td>
                                     <td>{{ $item->jum_pendarahan }} Orang</td>
                                     <td>{{ $item->jum_penyebablain }} Orang</td>
+                                    <td>{{ $item->ket }}</td>
                                     <td>{{ $item->sumber }}</td>
                                 </tr>
                             @empty
@@ -85,6 +88,7 @@
                 </div>
                 <div class="tab-pane fade" id="pills-kematianBayi" role="tabpanel" aria-labelledby="pills-kematianBayi-tab">
                     <h5 class="">Penyebab Kematian Bayi</h5>
+                    <a href="{{route('kmtbayi.cetak')}}" class="btn btn-primary"><i class="fa-solid fa-print"></i></a>
                     <table class="table table-hover table-bordered dataTable w-100" id="dataTable">
                         <thead class="text-light" style="background-color:#37517E; height:100px">
                             <tr class="align-middle text-center">
@@ -120,6 +124,7 @@
                 </div>
                 <div class="tab-pane fade" id="pills-penderitaHiv" role="tabpanel" aria-labelledby="pills-penderitaHiv-tab">
                     <h5 class="">Penderita HIV/AIDS</h5>
+                    <a href="{{route('hiv.cetak')}}" class="btn btn-primary"><i class="fa-solid fa-print"></i></a>
                     <table class="table table-hover table-bordered dataTable w-100" id="dataTable">
                         <thead class="text-light" style="background-color:#37517E; height:100px">
                             <tr class="align-middle">

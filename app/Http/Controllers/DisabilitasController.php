@@ -4,6 +4,9 @@ namespace App\Http\Controllers;
 
 use App\Models\{Desa, Tahun, Disabilitas};
 use Illuminate\Http\Request;
+use OpenSpout\Common\Entity\Style\Color;
+use OpenSpout\Common\Entity\Style\Style;
+use Rap2hpoutre\FastExcel\FastExcel;
 
 class DisabilitasController extends Controller
 {
@@ -27,9 +30,23 @@ class DisabilitasController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
+     public function cetak()
     {
-        //
+        $style = (new Style())->setFontBold();
+        $rows_style = (new Style())
+         ->setBackgroundColor("EDEDED");
+        $disabilitas = Disabilitas::get();
+        return (new FastExcel(Disabilitas::all()))->HeaderStyle($style)->rowsStyle($rows_style)->download('file.xlsx', function ($disabilitas) {
+            return [
+
+                'Tahun'=>$disabilitas->tahun->nama_tahun,
+                'Jenis Disabilitas' => $disabilitas->jenis_disabilitas,
+                'Laki - Laki' => $disabilitas->l,
+                'Perempuan' => $disabilitas->p,
+                'Ket' => $disabilitas->ket,
+                'Sumber' => $disabilitas->sumber,
+            ];
+        });
     }
 
     /**

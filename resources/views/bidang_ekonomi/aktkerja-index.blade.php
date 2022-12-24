@@ -16,7 +16,7 @@
                     {{Session('message')}}
                 </div>
             @endif
-            <p class="card-title">Data Presentase Pendidikan Terakhir</p>
+            <p class="card-title">Data Angkatan Kerja Berdasarkan Pendidikan</p>
             <div class="overflow-auto">
                 <table class="table table-hover table-bordered" id="dataTable">
                     <thead>

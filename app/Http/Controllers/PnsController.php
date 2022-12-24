@@ -4,6 +4,9 @@ namespace App\Http\Controllers;
 
 use App\Models\{Pns, Tahun};
 use Illuminate\Http\Request;
+use OpenSpout\Common\Entity\Style\Color;
+use OpenSpout\Common\Entity\Style\Style;
+use Rap2hpoutre\FastExcel\FastExcel;
 
 class PnsController extends Controller
 {
@@ -26,9 +29,23 @@ class PnsController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
+    public function cetak()
     {
-        //
+        $style = (new Style())->setFontBold();
+        $rows_style = (new Style())
+         ->setBackgroundColor("EDEDED");
+        $pns = Pns::get();
+        return (new FastExcel(Pns::all()))->HeaderStyle($style)->rowsStyle($rows_style)->download('file.xlsx', function ($pns) {
+            return [
+
+                'Tahun'=>$pns->tahun->nama_tahun,
+                'Golongan' => $pns->golongan,
+                'Laki - Laki' => $pns->l,
+                'Perempuan' => $pns->p,
+                'Ket' => $pns->ket,
+                'Sumber' => $pns->sumber,
+            ];
+        });
     }
 
     /**

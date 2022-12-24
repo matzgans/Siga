@@ -44,6 +44,7 @@
                     <div class="tab-pane fade show active" id="partsekolah" role="tabpanel"
                         aria-labelledby="pills-kematianIbu-tab">
                         <h5 class="">Data Partisipasi Sekolah</h5>
+                        <a href="{{route('partsekolah.cetak')}}" class="btn btn-primary"><i class="fa-solid fa-print"></i></a>
                         <table class="table table-hover table-bordered dataTable" id="dataTable">
                             <thead class="text-light" style="background-color:#37517E; width:100px">
                                 <tr class="align-middle">
@@ -97,7 +98,8 @@
                     </div>
                     <div class="tab-pane fade" id="ptssekolah" role="tabpanel"
                         aria-labelledby="pills-kematianBayi-tab">
-                        <h5 class="">Data Partisipasi Sekolah</h5>
+                        <h5 class="">Data Putus Sekolah</h5>
+                        <a href="{{route('ptssekolah.cetak')}}" class="btn btn-primary"><i class="fa-solid fa-print"></i></a>
                         <table class="table table-hover table-bordered dataTable w-100" id="dataTable">
                             <thead class="text-light" style="background-color:#37517E; width:100px">
                                 <tr class="align-middle">
@@ -147,6 +149,7 @@
                     <div class="tab-pane fade" id="jumguru" role="tabpanel"
                         aria-labelledby="pills-penderitaHiv-tab">
                         <h5 class="">Jumlah Guru</h5>
+                        <a href="{{route('jumguru.cetak')}}" class="btn btn-primary"><i class="fa-solid fa-print"></i></a>
                         <table class="table table-hover table-bordered dataTable w-100" id="dataTable">
                             <thead class="text-light" style="background-color:#37517E;">
                                 <tr>

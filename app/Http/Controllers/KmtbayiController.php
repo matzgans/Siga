@@ -4,6 +4,9 @@ namespace App\Http\Controllers;
 
 use App\Models\{Kmtbayi, Desa, Tahun};
 use Illuminate\Http\Request;
+use OpenSpout\Common\Entity\Style\Color;
+use OpenSpout\Common\Entity\Style\Style;
+use Rap2hpoutre\FastExcel\FastExcel;
 
 class KmtbayiController extends Controller
 {
@@ -27,9 +30,22 @@ class KmtbayiController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
+    public function cetak()
     {
-        //
+        $style = (new Style())->setFontBold();
+        $rows_style = (new Style())
+         ->setBackgroundColor("EDEDED");
+        $kmtbayi = Kmtbayi::get();
+        return (new FastExcel(Kmtbayi::all()))->HeaderStyle($style)->rowsStyle($rows_style)->download('file.xlsx', function ($kmtbayi) {
+            return [
+                'Tahun'=>$kmtbayi->tahun->nama_tahun,
+                'Desa' => $kmtbayi->desa->nama_desa,
+                'Laki Laki'=>$kmtbayi->l,
+                'Perempuan'=>$kmtbayi->p,
+                'Ket' => $kmtbayi->ket,
+                'Sumber' => $kmtbayi->sumber,
+            ];
+        });
     }
 
     /**

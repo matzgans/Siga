@@ -37,8 +37,8 @@
                                 <td>{{$value+1}}</td>
                                 <td>{{$item->tahun->nama_tahun}}</td>
                                 <td>{{$item->desa->nama_desa}}</td>
-                                <td>{{$item->l}}</td>
-                                <td>{{$item->p}}</td>
+                                <td>{{$item->l}} orang</td>
+                                <td>{{$item->p}} orang</td>
                                 <td>{{$item->ket}}</td>
                                 <td>{{$item->sumber}}</td>
                                 <td>

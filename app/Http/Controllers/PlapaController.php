@@ -4,6 +4,9 @@ namespace App\Http\Controllers;
 
 use App\Models\{Plapa, Tahun, Tahanan};
 use Illuminate\Http\Request;
+use OpenSpout\Common\Entity\Style\Color;
+use OpenSpout\Common\Entity\Style\Style;
+use Rap2hpoutre\FastExcel\FastExcel;
 
 class PlapaController extends Controller
 {
@@ -27,9 +30,23 @@ class PlapaController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
+     public function cetak()
     {
-        //
+        $style = (new Style())->setFontBold();
+        $rows_style = (new Style())
+         ->setBackgroundColor("EDEDED");
+        $plapa = Plapa::get();
+        return (new FastExcel(Plapa::all()))->HeaderStyle($style)->rowsStyle($rows_style)->download('file.xlsx', function ($plapa) {
+            return [
+
+                'Tahun'=>$plapa->tahun->nama_tahun,
+                'Jenis Tahanan' => $plapa->tahanan->jenis_tahanan,
+                'Laki - Laki' => $plapa->l,
+                'Perempuan' => $plapa->p,
+                'Ket' => $plapa->ket,
+                'Sumber' => $plapa->sumber,
+            ];
+        });
     }
 
     /**
