@@ -256,11 +256,6 @@
                                         data-bs-target="#kekerasan" type="button" role="tab" aria-controls="contact"
                                         aria-selected="false">Kekerasan</button>
                                 </li>
-                                <li class="nav-item" role="presentation">
-                                    <button class="nav-link" id="contact-tab" data-bs-toggle="tab"
-                                        data-bs-target="#sdaLingkungan" type="button" role="tab"
-                                        aria-controls="contact" aria-selected="false">SDA Lingkungan</button>
-                                </li>
                             </ul>
                             <div class="card-body">
                                 <div class="tab-content" id="myTabContent">
@@ -270,8 +265,10 @@
                                             <div class="nav nav-tabs" id="nav-tab" role="tablist">
                                                 <button class="nav-link active" id="nav-home-tab" data-bs-toggle="tab"
                                                     data-bs-target="#presentasePenduduk" type="button" role="tab"
-                                                    aria-controls="nav-home" aria-selected="true">Presentase
-                                                    Penduduk</button>
+                                                    aria-controls="nav-home" aria-selected="true">IPG</button>
+                                                <button class="nav-link" id="nav-home-tab" data-bs-toggle="tab"
+                                                    data-bs-target="#ipha" type="button" role="tab"
+                                                    aria-controls="nav-home" aria-selected="true">IPHA</button>
                                             </div>
                                         </nav>
                                         <div class="tab-content" id="nav-tabContent">
@@ -279,7 +276,7 @@
                                                 role="tabpanel" aria-labelledby="nav-home-tab">
                                                 <div class="tab-pane fade show active" id="bidangKesehatan"
                                                     role="tabpanel" aria-labelledby="nav-home-tab">
-                                                    <h3 class="text-center mt-3">Data Presentase Penduduk</h3>
+                                                    <h3 class="text-center mt-3">Index Pembangunan Gender</h3>
                                                     <hr class="mx-5">
                                                     <div class="row">
                                                         <div class="col">
@@ -296,12 +293,19 @@
                                                     </div>
                                                 </div>
                                             </div>
-                                            <div class="tab-pane fade" id="jenisKelamin" role="tabpanel"
-                                                aria-labelledby="nav-profile-tab">Jenis Kelamin</div>
-                                            <div class="tab-pane fade" id="kelompokUmur" role="tabpanel"
-                                                aria-labelledby="nav-contact-tab">Kelompok Umur</div>
-                                            <div class="tab-pane fade" id="pendidikanTerakhir" role="tabpanel"
-                                                aria-labelledby="nav-contact-tab">Pendidikan Terakhir</div>
+                                            <div class="tab-pane fade" id="ipha"
+                                                role="tabpanel" aria-labelledby="nav-home-tab">
+                                                <div class="tab-pane fade show active" id="bidangKesehatan"
+                                                    role="tabpanel" aria-labelledby="nav-home-tab">
+                                                    <h3 class="text-center mt-3">Index Pemenuhan Hak Anak</h3>
+                                                    <hr class="mx-5">
+                                                    <div class="row mx-5 mb-3">
+                                                        <div class="col">
+                                                            <div id="barchart_ipha"></div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
                                         </div>
                                     </div>
                                     <div class="tab-pane fade" id="dataTerpilah" role="tabpanel"
@@ -556,22 +560,13 @@
                                             <div class="nav nav-tabs" id="nav-tab" role="tablist">
                                                 <button class="nav-link active" id="nav-home-tab" data-bs-toggle="tab"
                                                     data-bs-target="#kekerasanTerhadap" type="button" role="tab"
-                                                    aria-controls="nav-home" aria-selected="true">Kekerasan
-                                                    Terhadap</button>
-                                                <button class="nav-link" id="nav-profile-tab" data-bs-toggle="tab"
-                                                    data-bs-target="#lokasiKekerasan" type="button" role="tab"
-                                                    aria-controls="nav-profile" aria-selected="false">Lokasi
-                                                    Kekerasan</button>
-                                                <button class="nav-link" id="nav-contact-tab" data-bs-toggle="tab"
-                                                    data-bs-target="#statusKekerasan" type="button" role="tab"
-                                                    aria-controls="nav-contact" aria-selected="false">Status
-                                                    Kekerasan</button>
+                                                    aria-controls="nav-home" aria-selected="true">Data Kekerasan</button>
                                             </div>
                                         </nav>
                                         <div class="tab-content" id="nav-tabContent">
                                             <div class="tab-pane fade show active" id="kekerasanTerhadap" role="tabpanel"
                                                 aria-labelledby="nav-home-tab">
-                                                <h3 class="text-center mt-3">Data kekerasan</h3>
+                                                <h3 class="text-center mt-3">Data Kekerasan</h3>
                                                 <hr class="mx-5">
                                                 <div class="row">
                                                     <div class="col">
@@ -586,11 +581,26 @@
                                                         <div id="logaritma_kekerasan"></div>
                                                     </div>
                                                 </div>
+                                                <h3 class="text-center mt-3">Data Kekerasan Berdasarkan Lokasi & Pendidikan</h3>
+                                                <hr class="mx-5">
+                                                <div class="row">
+                                                    <div class="col">
+                                                        <div id="barchart_kekerasanP"></div>
+                                                    </div>
+                                                    <div class="col">
+                                                        <div id="piechart_kekerasanP"></div>
+                                                    </div>
+                                                </div>
+                                                <div class="row mx-5 mb-3">
+                                                    <div class="col">
+                                                        <div id="logaritma_kekerasanP"></div>
+                                                    </div>
+                                                </div>
                                             </div>
                                             <div class="tab-pane fade" id="lokasiKekerasan" role="tabpanel"
-                                                aria-labelledby="nav-profile-tab">Lokasi Kekerasan</div>
-                                            <div class="tab-pane fade" id="statusKekerasan" role="tabpanel"
-                                                aria-labelledby="nav-contact-tab">Status Kekerasan</div>
+                                                aria-labelledby="nav-profile-tab">
+
+                                            </div>
                                         </div>
                                     </div>
                                     <div class="tab-pane fade" id="sdaLingkungan" role="tabpanel"
@@ -3276,6 +3286,224 @@
                 }]
             }
 
+        });
+
+        Highcharts.chart('barchart_kekerasanP', {
+            chart: {
+                type: 'column'
+            },
+            title: {
+                text: 'Data Lokasi Kekerasan'
+            },
+            subtitle: {
+                text: 'Source: Bps.id'
+            },
+            xAxis: {
+                categories: {!! json_encode($desaJumkekerasanP) !!},
+                crosshair: true
+            },
+            yAxis: {
+                min: 0,
+                title: {
+                    text: 'Total'
+                }
+            },
+            tooltip: {
+                headerFormat: '<span style="font-size:10px">{point.key}</span><table>',
+                pointFormat: '<tr><td style="color:{series.color};padding:0">{series.name}: </td>' +
+                    '<td style="padding:0"><b>{point.y} Orang</b></td></tr>',
+                footerFormat: '</table>',
+                shared: true,
+                useHTML: true
+            },
+            plotOptions: {
+                column: {
+                    pointPadding: 0.2,
+                    borderWidth: 0
+                }
+            },
+            series: [{
+                    name: 'Orang',
+                    data: {!! json_encode($jumJumkekerasanP) !!}
+
+                },
+
+            ]
+        });
+
+        Highcharts.chart('piechart_kekerasanP', {
+            chart: {
+                type: 'pie'
+            },
+            title: {
+                text: 'Data Terpilah Kekerasan Berdasarkan Pendidikan'
+            },
+            subtitle: {
+                text: 'Click the slices to view versions. Source: <a href="http://statcounter.com" target="_blank">statcounter.com</a>'
+            },
+
+            accessibility: {
+                announceNewData: {
+                    enabled: true
+                },
+                point: {
+                    valueSuffix: '%'
+                }
+            },
+
+            plotOptions: {
+                series: {
+                    dataLabels: {
+                        enabled: true,
+                        // format: '{point.name}: {point.y:.1f}%'
+                    }
+                }
+            },
+
+            tooltip: {
+                headerFormat: '<span style="font-size:11px">{series.name}</span><br>',
+                pointFormat: '<span style="color:{point.color}">{point.name}</span>: <b>{point.y} Orang</b> of total<br/>'
+            },
+
+            series: [{
+                name: "Orang",
+                colorByPoint: true,
+                data: [{
+                        name: "Belum Sekolah",
+                        y: {{ $piechartJumkekerasanP->bs == null ? '0' : $piechartJumkekerasanP->bs }},
+                    },
+                    {
+                        name: "Sekolah Dasar",
+                        y: {{ $piechartJumkekerasanP->sd == null ? '0' : $piechartJumkekerasanP->sd }},
+                    },
+                    {
+                        name: "Sekolah Menengah Pertama",
+                        y: {{ $piechartJumkekerasanP->smp == null ? '0' : $piechartJumkekerasanP->smp }},
+                    },
+                    {
+                        name: "Sekolah Menengah Atas",
+                        y: {{ $piechartJumkekerasanP->sma == null ? '0' : $piechartJumkekerasanP->sma }},
+                    },
+                    {
+                        name: "Perguruan Tinggi",
+                        y: {{ $piechartJumkekerasanP->pt == null ? '0' : $piechartJumkekerasanP->pt }},
+                    },
+                ]
+            }]
+        });
+
+        Highcharts.chart('logaritma_kekerasanP', {
+
+            title: {
+                text: 'Kenaikan Jumlah Kekerasan'
+            },
+
+            yAxis: {
+                title: {
+                    text: 'Total Kenaikan'
+                }
+            },
+
+            xAxis: {
+                title: {
+                    text: 'Tahun'
+                },
+                type: 'datetime',
+                accessibility: {
+                    rangeDescription: 'Range: 2022 to 2025'
+                }
+            },
+
+            tooltip: {
+                headerFormat: '<span style="font-size:10px">{point.key}</span><table>',
+                pointFormat: '<tr><td style="color:{series.color};padding:0">{series.name}: </td>' +
+                    '<td style="padding:0"><b>{point.y} Orang</b></td></tr>',
+                footerFormat: '</table>',
+                shared: true,
+                useHTML: true
+            },
+
+            legend: {
+                layout: 'vertical',
+                align: 'right',
+                verticalAlign: 'middle',
+            },
+
+            plotOptions: {
+                series: {
+                    label: {
+                        connectorAllowed: false
+                    },
+                    pointStart: Date.UTC(2022, 0, 1),
+                    pointInterval: 8760 * 3600 * 1000,
+                }
+            },
+
+            series: [{
+                name: 'Total Kekerasan',
+                data: {!! json_encode($logjumJumkekerasan) !!}
+            }],
+
+            responsive: {
+                rules: [{
+                    condition: {
+                        maxWidth: 500
+                    },
+                    chartOptions: {
+                        legend: {
+                            layout: 'horizontal',
+                            align: 'center',
+                            verticalAlign: 'bottom'
+                        }
+                    }
+                }]
+            }
+
+        });
+
+
+        // IPHA
+        Highcharts.chart('barchart_ipha', {
+            chart: {
+                type: 'column'
+            },
+            title: {
+                text: 'Data IPHA'
+            },
+            subtitle: {
+                text: 'Source: Bps.id'
+            },
+            xAxis: {
+                categories: {!! json_encode($desaIpha) !!},
+                crosshair: true
+            },
+            yAxis: {
+                min: 0,
+                title: {
+                    text: 'Total'
+                }
+            },
+            tooltip: {
+                headerFormat: '<span style="font-size:10px">{point.key}</span><table>',
+                pointFormat: '<tr><td style="color:{series.color};padding:0">{series.name}: </td>' +
+                    '<td style="padding:0"><b>{point.y} Orang</b></td></tr>',
+                footerFormat: '</table>',
+                shared: true,
+                useHTML: true
+            },
+            plotOptions: {
+                column: {
+                    pointPadding: 0.2,
+                    borderWidth: 0
+                }
+            },
+            series: [{
+                    name: 'Orang',
+                    data: {!! json_encode($jumIpha) !!}
+
+                },
+
+            ]
         });
     </script>
 @endsection

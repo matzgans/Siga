@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\{Desa, Tahun, Disabilitas};
 use Illuminate\Http\Request;
 use OpenSpout\Common\Entity\Style\Color;
+use RealRashid\SweetAlert\Facades\Alert;
 use OpenSpout\Common\Entity\Style\Style;
 use Rap2hpoutre\FastExcel\FastExcel;
 
@@ -60,14 +61,17 @@ class DisabilitasController extends Controller
         $data = Disabilitas::where('desa_id', $request->desa_id)->first();
         if($data != null){
             if($data->tahun_id == $request->tahun_id){
-                return redirect()->back()->with('message', 'Desa Dengan Tahun Yang sama telah ada');
+                Alert::error('Gagal', 'Data dengan tahun yang sama telah ada');
+                return redirect()->back();
             }else{
                 Disabilitas::create($request->all());
-                return redirect()->back()->with('message', 'Data Berhasil Ditambahkan');
+                Alert::success('Berhasil', 'Data Telah Ditambahkan');
+                return redirect()->back();
             }
         }else{
             Disabilitas::create($request->all());
-            return redirect()->back()->with('message', 'Data Berhasil Ditambahkan');
+            Alert::success('Berhasil', 'Data Telah Ditambahkan');
+            return redirect()->back();
         }
     }
 
@@ -109,7 +113,8 @@ class DisabilitasController extends Controller
     {
         $data = Disabilitas::FindOrFail($id);
         $data->update($request->all());
-        return redirect()->route('disabilitas.index')->with('message', 'Berhasil Ubah Data');
+        Alert::success('Berhasil', 'Data Telah Diubah');
+        return redirect()->route('disabilitas.index');
     }
 
     /**
@@ -122,6 +127,6 @@ class DisabilitasController extends Controller
     {
         $data = Disabilitas::FindOrFail($id);
         $data->delete();
-        return redirect()->back()->with('message', 'Berhasil Hapus Data');
+        return redirect()->back();
     }
 }

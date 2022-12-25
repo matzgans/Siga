@@ -128,5 +128,27 @@
     $(document).ready(function() {
         $('#dataTable').DataTable();
     });
+
+    $('.delete').click( function(){
+        var delete_nama = $(this).attr('data-name');
+        var delete_id = $(this).attr('data-id');
+        swal({
+        title: "Are you sure?",
+        text: "Kamu akan menghapus data",
+        icon: "warning",
+        buttons: true,
+        dangerMode: true,
+        })
+        .then((willDelete) => {
+        if (willDelete) {
+            window.location="/jumkekerasan/destroy/"+delete_id+""
+            swal("Data Berhasil Dihapus", {
+            icon: "success",
+            });
+        } else {
+            swal("Your imaginary file is safe!");
+        }
+        });
+    });
 </script>
 @endsection

@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\{Jumkekerasan, Tahun, Desa, Jumguru};
 use Illuminate\Http\Request;
+use RealRashid\SweetAlert\Facades\Alert;
 
 class JumkekerasanController extends Controller
 {
@@ -43,7 +44,8 @@ class JumkekerasanController extends Controller
         $data = Jumkekerasan::where('desa_id', $request->desa_id)->first();
         if($data != null){
             if($data->tahun_id == $request->tahun_id){
-                return redirect()->back()->with('message', 'Desa Dengan Tahun Yang sama telah ada');
+                Alert::error('Gagal', 'Data dengan tahun yang sama telah ada');
+                return redirect()->back();
             }else{
                 Jumkekerasan::create([
                     'desa_id'=>$request->desa_id,
@@ -53,7 +55,8 @@ class JumkekerasanController extends Controller
                     'sumber'=>$request->sumber,
                     'ket'=>$request->ket,
                 ]);
-                return redirect()->back()->with('message', 'Data Berhasil Ditambahkan');
+                Alert::success('Berhasil', 'Data Telah Ditambahkan');
+                return redirect()->back();
             }
         }else{
             Jumkekerasan::create([
@@ -64,7 +67,8 @@ class JumkekerasanController extends Controller
                 'sumber'=>$request->sumber,
                 'ket'=>$request->ket,
             ]);
-            return redirect()->back()->with('message', 'Data Berhasil Ditambahkan');
+            Alert::success('Berhasil', 'Data Telah Ditambahkan');
+            return redirect()->back();
         }
     }
 
@@ -106,7 +110,8 @@ class JumkekerasanController extends Controller
     {
         $data = Jumkekerasan::FindOrFail($id);
         $data->update($request->all());
-        return redirect()->route('jumkekerasan.index')->with('message', 'Berhasil Ubah Data');
+        Alert::success('Berhasil', 'Data Telah Diubah');
+        return redirect()->route('jumkekerasan.index');
     }
 
     /**
@@ -119,6 +124,6 @@ class JumkekerasanController extends Controller
     {
         $data = Jumkekerasan::FindOrFail($id);
         $data->delete();
-        return redirect()->back()->with('message', 'Berhasil Hapus Data');
+        return redirect()->back();
     }
 }

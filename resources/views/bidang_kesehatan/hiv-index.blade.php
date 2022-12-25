@@ -43,8 +43,8 @@
                                 <td>{{$item->ket}}</td>
                                 <td>
                                     <a href="#"
-                                    class="delete btn btn-danger text-white btn-sm rounded-circle" data-id="{{$item->id}}" data-name="{{$item->nama}}"><i
-                                        class="ri ri-delete-bin-line"></i></a>
+                                        class="delete btn btn-danger text-white btn-sm rounded-circle" data-id="{{$item->id}}" data-name="{{$item->nama}}"><i
+                                            class="ri ri-delete-bin-line"></i></a>
                                     <a href="{{ route('hiv.edit', $item->id) }}"
                                         class="btn btn-warning text-white btn-sm rounded-circle"><i
                                             class="ri ri-edit-box-fill"></i></a>

@@ -602,7 +602,7 @@
                     <li> <a href="{{ route('jumkekerasan.index') }}"> <i class="bi bi-circle"></i><span>Jumlah Kekerasan Terhadap Perempuan dan Anak</span> </a>
                     </li>
                     <li> <a href="{{ route('jumkerlok.index') }}"> <i
-                                class="bi bi-circle"></i><span>Jumlah Kekerasan Terhadap Perempuan dan Anak Menurut Jenis Kelamin</span> </a>
+                                class="bi bi-circle"></i><span>Jumlah Kekerasan Terhadap Perempuan dan Anak Menurut Pendidikan dan Lokasi</span> </a>
                     </li>
                 </ul>
             </li>

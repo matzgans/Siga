@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\{Pns, Tahun};
 use Illuminate\Http\Request;
+use RealRashid\SweetAlert\Facades\Alert;
 use OpenSpout\Common\Entity\Style\Color;
 use OpenSpout\Common\Entity\Style\Style;
 use Rap2hpoutre\FastExcel\FastExcel;
@@ -59,14 +60,17 @@ class PnsController extends Controller
         $data = Pns::where('golongan', $request->golongan)->first();
         if($data != null){
             if($data->tahun_id == $request->tahun_id){
-                return redirect()->back()->with('message', 'Desa Dengan Tahun Yang sama telah ada');
+                Alert::error('Gagal', 'Data dengan tahun yang sama telah ada');
+                return redirect()->back();
             }else{
                 Pns::create($request->all());
-                return redirect()->back()->with('message', 'Data Berhasil Ditambahkan');
+                Alert::success('Berhasil', 'Data Telah Ditambahkan');
+                return redirect()->back();
             }
         }else{
             Pns::create($request->all());
-            return redirect()->back()->with('message', 'Data Berhasil Ditambahkan');
+            Alert::success('Berhasil', 'Data Telah Ditambahkan');
+            return redirect()->back();
         }
     }
 
@@ -107,7 +111,8 @@ class PnsController extends Controller
     {
         $data = Pns::FindOrFail($id);
         $data->update($request->all());
-        return redirect()->route('pns.index')->with('message', 'berhasil ubah data');
+        Alert::success('Berhasil', 'Data Telah Diubah');
+        return redirect()->route('pns.index');
     }
 
     /**
@@ -120,6 +125,6 @@ class PnsController extends Controller
     {
         $data = Pns::FindOrFail($id);
         $data->delete();
-        return redirect()->back()->with('message', 'Berhasil Hapus Data');
+        return redirect()->back();
     }
 }

@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\{Jumkerlok, Tahun, Desa};
 use Illuminate\Http\Request;
+use RealRashid\SweetAlert\Facades\Alert;
 
 class JumkerlokController extends Controller
 {
@@ -43,18 +44,21 @@ class JumkerlokController extends Controller
         $data = Jumkerlok::where('desa_id',$request->desa_id)->first();
         if($data != null){
             if($data->tahun_id == $request->tahun_id){
-                return redirect()->back()->with('message', 'Desa Dengan Tahun Yang sama telah ada');
+                Alert::error('Gagal', 'Data dengan tahun yang sama telah ada');
+                return redirect()->back();
             }else{
                 Jumkerlok::create(
                     $request->all()
                 );
-                return redirect()->back()->with('message', 'Berhasil Tambah data');
+                Alert::success('Berhasil', 'Data Telah Ditambahkan');
+                return redirect()->back();
             }
         }else{
             Jumkerlok::create(
                 $request->all()
             );
-            return redirect()->back()->with('message', 'Berhasil Tambah data');
+            Alert::success('Berhasil', 'Data Telah Ditambahkan');
+            return redirect()->back();
         }
     }
 
@@ -96,7 +100,8 @@ class JumkerlokController extends Controller
     {
         $data = Jumkerlok::FindOrFail($id);
         $data->update($request->all());
-        return redirect()->route('jumkerlok.index')->with('message', 'Berhasil Ubah Data');
+        Alert::success('Berhasil', 'Data Telah Diubah');
+        return redirect()->route('jumkerlok.index');
     }
 
     /**
@@ -109,6 +114,6 @@ class JumkerlokController extends Controller
     {
         $data = Jumkerlok::FindOrFail($id);
         $data->delete();
-        return redirect()->back()->with('message', 'Berhasil Hapus Data');
+        return redirect()->back();
     }
 }

@@ -6,6 +6,7 @@ use App\Models\Jumguru;
 use App\Models\Jumkades;
 use App\Models\Tahun;
 use Illuminate\Http\Request;
+use RealRashid\SweetAlert\Facades\Alert;
 use OpenSpout\Common\Entity\Style\Color;
 use OpenSpout\Common\Entity\Style\Style;
 use Rap2hpoutre\FastExcel\FastExcel;
@@ -59,10 +60,12 @@ class JumkadesController extends Controller
     {
         $data = Jumkades::where('tahun_id',$request->tahun_id)->first();
         if($data != null){
-            return redirect()->back()->with('message', 'Data Dengan Tahun Yang sama telah ada');
+            Alert::error('Gagal', 'Data dengan tahun yang sama telah ada');
+            return redirect()->back();
         }else{
             Jumkades::create($request->all());
-            return redirect()->back()->with('message', 'Data Berhasil Ditambahkan');
+            Alert::success('Berhasil', 'Data Telah Ditambahkan');
+            return redirect()->back();
         }
     }
 
@@ -103,7 +106,8 @@ class JumkadesController extends Controller
     {
         $data = Jumkades::FindOrFail($id);
         $data->update($request->all());
-        return redirect()->route('jumkades.index')->with('message', 'Berhasil Ubah Data');
+        Alert::success('Berhasil', 'Data Telah Diubah');
+        return redirect()->route('jumkades.index');
     }
 
     /**
@@ -116,6 +120,6 @@ class JumkadesController extends Controller
     {
         $data = Jumkades::FindOrFail($id);
         $data->delete();
-        return redirect()->back()->with('message', 'Berhasil Ubah Data');
+        return redirect()->back();
     }
 }

@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Dprd;
 use Illuminate\Http\Request;
 use App\Models\{Tahun};
+use RealRashid\SweetAlert\Facades\Alert;
 use OpenSpout\Common\Entity\Style\Color;
 use OpenSpout\Common\Entity\Style\Style;
 use Rap2hpoutre\FastExcel\FastExcel;
@@ -60,14 +61,17 @@ class DprdController extends Controller
         $data = Dprd::where('komisi', $request->komisi)->first();
         if($data != null){
             if($data->tahun_id == $request->tahun_id){
-                return redirect()->back()->with('message', 'Desa Dengan Tahun Yang sama telah ada');
+                Alert::error('Gagal', 'Data dengan tahun yang sama telah ada');
+                return redirect()->back();
             }else{
                 Dprd::create($request->all());
-                return redirect()->back()->with('message', 'Data Berhasil Ditambahkan');
+                Alert::success('Berhasil', 'Data Telah Ditambahkan');
+                return redirect()->back();
             }
         }else{
             Dprd::create($request->all());
-            return redirect()->back()->with('message', 'Data Berhasil Ditambahkan');
+            Alert::success('Berhasil', 'Data Telah Ditambahkan');
+            return redirect()->back();
         }
     }
 
@@ -108,7 +112,8 @@ class DprdController extends Controller
     {
         $data = Dprd::FindOrFail($id);
         $data->update($request->all());
-        return redirect()->route('dprd.index')->with('message', 'berhasil ubah data');
+        Alert::success('Berhasil', 'Data Telah Ditambahkan');
+        return redirect()->route('dprd.index');
     }
 
     /**
@@ -121,6 +126,6 @@ class DprdController extends Controller
     {
         $data = Dprd::FindOrFail($id);
         $data->delete();
-        return redirect()->back()->with('message', 'Berhasil Hapus data');
+        return redirect()->back();
     }
 }

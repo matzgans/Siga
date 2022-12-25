@@ -87,12 +87,7 @@
                             <li><a href="#" class="nav-link">Data Bencana Lingkungan Terhadap Anak</a></li>
                         </ul>
                     </li> --}}
-                    <li class="dropdown"><a href="#" class="nav-link"><span>Kekerasan</span> <i class="bi bi-chevron-down"></i></a>
-                        <ul class="dropdown-menu dropdown-menu-start">
-                            <li><a href="#" class="nav-link">Kekerasan Terhadap Perempuan dan Anak</a></li>
-                            <li><a href="#" class="nav-link">Data Lokasi Kekerasan</a></li>
-                            <li><a href="#" class="nav-link">Data Status Kekerasan</a></li>
-                        </ul>
+                    <li><a href="{{route('kkrsn')}}" class="nav-link"><span>Kekerasan</span></a>
                     </li>
                 </ul>
                 <i class="bi bi-list mobile-nav-toggle"></i>

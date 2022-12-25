@@ -59,6 +59,7 @@ Route::prefix('/')->group( function(){
     Route::get('/bekonomi', [DashboardController::class, 'bekonomi'])->name('bekonomi');
     Route::get('/bpolitik', [DashboardController::class, 'bpolitik'])->name('bpolitik');
     Route::get('/bhukum', [DashboardController::class, 'bhukum'])->name('bhukum');
+    Route::get('/kkrsn', [DashboardController::class, 'kkrsn'])->name('kkrsn');
 
 });
 
