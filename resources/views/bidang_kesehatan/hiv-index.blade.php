@@ -42,9 +42,9 @@
                                 <td>{{$item->sumber}}</td>
                                 <td>{{$item->ket}}</td>
                                 <td>
-                                    <a href="{{ route('hiv.destroy', $item->id) }}"
-                                        class="btn btn-danger btn-sm rounded-circle"><i
-                                            class="ri ri-delete-bin-line"></i></a>
+                                    <a href="#"
+                                    class="delete btn btn-danger text-white btn-sm rounded-circle" data-id="{{$item->id}}" data-name="{{$item->nama}}"><i
+                                        class="ri ri-delete-bin-line"></i></a>
                                     <a href="{{ route('hiv.edit', $item->id) }}"
                                         class="btn btn-warning text-white btn-sm rounded-circle"><i
                                             class="ri ri-edit-box-fill"></i></a>
@@ -127,6 +127,28 @@
 <script>
     $(document).ready(function() {
         $('#dataTable').DataTable();
+    });
+
+    $('.delete').click( function(){
+        var delete_nama = $(this).attr('data-name');
+        var delete_id = $(this).attr('data-id');
+        swal({
+        title: "Are you sure?",
+        text: "Kamu akan menghapus data",
+        icon: "warning",
+        buttons: true,
+        dangerMode: true,
+        })
+        .then((willDelete) => {
+        if (willDelete) {
+            window.location="/hiv/destroy/"+delete_id+""
+            swal("Data Berhasil Dihapus", {
+            icon: "success",
+            });
+        } else {
+            swal("Your imaginary file is safe!");
+        }
+        });
     });
 </script>
 @endsection

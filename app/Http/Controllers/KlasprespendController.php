@@ -63,14 +63,17 @@ class KlasprespendController extends Controller
         $data = Klasprespend::where('desa_id', $request->desa_id)->first();
         if($data != null){
             if($data->tahun_id == $request->tahun_id){
-                return redirect()->back()->with('message', 'Desa Dengan Tahun Yang sama telah ada');
+                Alert::error('Gagal', 'Data desa dengan tahun yang sama telah ada');
+                return redirect()->back();
             }else{
                 Klasprespend::create($request->all());
-                return redirect()->back()->with('message', 'Data Berhasil Ditambahkan');
+                Alert::success('Berhasil', 'Data Telah Ditambahkan');
+                return redirect()->back();
             }
         }else{
             Klasprespend::create($request->all());
-            return redirect()->back()->with('message', 'Data Berhasil Ditambahkan');
+            Alert::success('Berhasil', 'Data Telah Ditambahkan');
+            return redirect()->back();
         }
     }
 
@@ -112,7 +115,8 @@ class KlasprespendController extends Controller
     {
         $data = Klasprespend::FindOrFail($id);
         $data->update($request->all());
-        return redirect()->route('klasprespend.index')->with('message', 'Berhasil Ubah Data');
+        Alert::success('Berhasil', 'Data Telah Diubah');
+        return redirect()->route('klasprespend.index');
     }
 
     /**
@@ -126,6 +130,6 @@ class KlasprespendController extends Controller
         $data = Klasprespend::FindOrFail($id);
         $data->delete();
         
-        return redirect()->back()->with('message', 'Berhasil Hapus Data');
+        return redirect()->back();
     }
 }

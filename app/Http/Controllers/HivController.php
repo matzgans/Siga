@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\{Hiv, Desa, Tahun};
 use Illuminate\Http\Request;
+use RealRashid\SweetAlert\Facades\Alert;
 use OpenSpout\Common\Entity\Style\Color;
 use OpenSpout\Common\Entity\Style\Style;
 use Rap2hpoutre\FastExcel\FastExcel;
@@ -59,7 +60,8 @@ class HivController extends Controller
         $data = Hiv::where('desa_id', $request->desa_id)->first();
         if($data != null){
             if($data->tahun_id == $request->tahun_id){
-                return redirect()->back()->with('message', 'Desa Dengan Tahun Yang sama telah ada');
+                Alert::error('Gagal', 'Data desa dengan tahun yang sama telah ada');
+                return redirect()->back();
             }else{
                 Hiv::create([
                     'desa_id'=>$request->desa_id,
@@ -69,7 +71,8 @@ class HivController extends Controller
                     'sumber'=>$request->sumber,
                     'ket'=>$request->ket,
                 ]);
-                return redirect()->back()->with('message', 'Data Berhasil Ditambahkan');
+                Alert::success('Berhasil', 'Data Telah Ditambahkan');
+                return redirect()->back();
             }
         }else{
             Hiv::create([
@@ -80,7 +83,8 @@ class HivController extends Controller
                 'sumber'=>$request->sumber,
                 'ket'=>$request->ket,
             ]);
-            return redirect()->back()->with('message', 'Data Berhasil Ditambahkan');
+            Alert::success('Berhasil', 'Data Telah Ditambahkan');
+            return redirect()->back();
         }
     }
 
@@ -122,7 +126,8 @@ class HivController extends Controller
     {
         $data = Hiv::FindOrFail($id);
         $data->update($request->all());
-        return redirect()->route('hiv.index')->with('message', 'Berhasil Ubah Data');
+        Alert::success('Berhasil', 'Data Telah Diubah');
+        return redirect()->route('hiv.index');
     }
 
     /**

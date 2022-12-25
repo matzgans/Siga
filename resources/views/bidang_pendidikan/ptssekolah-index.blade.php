@@ -46,17 +46,17 @@
                                 <td>{{$value+1}}</td>
                                 <td>{{$item->tahun->nama_tahun}}</td>
                                 <td>{{$item->desa->nama_desa}}</td>
-                                <td>{{$item->lsd}}</td>
-                                <td>{{$item->psd}}</td>
-                                <td>{{$item->lsmp}}</td>
-                                <td>{{$item->psmp}}</td>
-                                <td>{{$item->lsma}}</td>
-                                <td>{{$item->psma}}</td>
+                                <td>{{$item->lsd}} %</td>
+                                <td>{{$item->psd}} %</td>
+                                <td>{{$item->lsmp}} %</td>
+                                <td>{{$item->psmp}} %</td>
+                                <td>{{$item->lsma}} %</td>
+                                <td>{{$item->psma}} %</td>
                                 <td>{{$item->ket}}</td>
                                 <td>{{$item->sumber}}</td>
                                 <td>
-                                    <a href="{{ route('ptssekolah.destroy', $item->id) }}"
-                                        class="btn btn-danger btn-sm rounded-circle"><i
+                                    <a href="#"
+                                        class="delete btn btn-danger text-white btn-sm rounded-circle" data-id="{{$item->id}}" data-name="{{$item->nama}}"><i
                                             class="ri ri-delete-bin-line"></i></a>
                                     <a href="{{ route('ptssekolah.edit', $item->id) }}"
                                         class="btn btn-warning text-white btn-sm rounded-circle"><i
@@ -94,27 +94,27 @@
                         </div>
                         <div class="col-md-6 col-12 mb-2">
                             <label for="lsd" class="form-label">L(SD)</label>
-                            <input type="number" name="lsd" class="floatNumberField" value="0.00" placeholder="0.00" step="0.01" id="lsd" required />
+                            <input type="number" name="lsd" class="floatNumberField form-control" value="0.00" placeholder="0.00" step="0.01" id="lsd" required />
                         </div>
                         <div class="col-md-6 col-12 mb-2">
                             <label for="psd" class="form-label">P(SD)</label>
-                            <input type="number" name="psd" class="floatNumberField" value="0.00" placeholder="0.00" step="0.01" id="psd" required />
+                            <input type="number" name="psd" class="floatNumberField form-control" value="0.00" placeholder="0.00" step="0.01" id="psd" required />
                         </div>
                         <div class="col-md-6 col-12 mb-2">
                             <label for="lsmp" class="form-label">L(SMP)</label>
-                            <input type="number" name="lsmp" class="floatNumberField" value="0.00" placeholder="0.00" step="0.01" id="lsmp" required />
+                            <input type="number" name="lsmp" class="floatNumberField form-control" value="0.00" placeholder="0.00" step="0.01" id="lsmp" required />
                         </div>
                         <div class="col-md-6 col-12 mb-2">
                             <label for="psmp" class="form-label">P(SMP)</label>
-                            <input type="number" name="psmp" class="floatNumberField" value="0.00" placeholder="0.00" step="0.01" id="psmp" required />
+                            <input type="number" name="psmp" class="floatNumberField form-control" value="0.00" placeholder="0.00" step="0.01" id="psmp" required />
                         </div>
                         <div class="col-md-6 col-12 mb-2">
                             <label for="lsma" class="form-label">L(SMA)</label>
-                            <input type="number" name="lsma" class="floatNumberField" value="0.00" placeholder="0.00" step="0.01" id="lsma" required />
+                            <input type="number" name="lsma" class="floatNumberField form-control" value="0.00" placeholder="0.00" step="0.01" id="lsma" required />
                         </div>
                         <div class="col-md-6 col-12 mb-2">
                             <label for="psma" class="form-label">P(SMA)</label>
-                            <input type="number" name="psma" class="floatNumberField" value="0.00" placeholder="0.00" step="0.01" id="psma" required />
+                            <input type="number" name="psma" class="floatNumberField form-control" value="0.00" placeholder="0.00" step="0.01" id="psma" required />
                         </div>
                         <div class="col-md-6 col-12 mb-2">
                             <label for="ket" class="form-label">Keterangan</label>
@@ -122,7 +122,12 @@
                         </div>
                         <div class="col-md-6 col-12 mb-2">
                             <label for="sumber" class="form-label">Sumber</label>
-                            <input type="text" class="form-control" name="sumber" id="sumber">
+                            <select class="form-select" name="sumber" id="sumber" aria-label="Default select example">
+                                <option selected>Sumber</option>
+                                <option Value="Dinas Kesahatan">Dinas Pendidikan</option>
+                                <option Value="Puskesmas">Bps</option>
+                                <option value="Data Lainya">Data Lainya</option>
+                            </select>
                         </div>
                         <div class="col-md-12 col-12 mb-2">
                             <label for="tahun" class="form-label">Tahun</label>
@@ -154,6 +159,28 @@
 
     $(document).ready(function() {
         $('#dataTable').DataTable();
+    });
+
+    $('.delete').click( function(){
+        var delete_nama = $(this).attr('data-name');
+        var delete_id = $(this).attr('data-id');
+        swal({
+        title: "Are you sure?",
+        text: "Kamu akan menghapus data",
+        icon: "warning",
+        buttons: true,
+        dangerMode: true,
+        })
+        .then((willDelete) => {
+        if (willDelete) {
+            window.location="/ptssekolah/destroy/"+delete_id+""
+            swal("Data Berhasil Dihapus", {
+            icon: "success",
+            });
+        } else {
+            swal("Your imaginary file is safe!");
+        }
+        });
     });
 </script>
 

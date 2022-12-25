@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\{Pkematian, Desa, Tahun};
 use Illuminate\Http\Request;
+use RealRashid\SweetAlert\Facades\Alert;
 use OpenSpout\Common\Entity\Style\Color;
 use OpenSpout\Common\Entity\Style\Style;
 use Rap2hpoutre\FastExcel\FastExcel;
@@ -63,7 +64,8 @@ class PkematianController extends Controller
         $data = Pkematian::where('desa_id',$request->desa_id)->first();
         if($data != null){
             if($data->tahun_id == $request->tahun_id){
-                return redirect()->back()->with('message', 'Desa Dengan Tahun Yang sama telah ada');
+                Alert::error('Gagal', 'Data desa dengan tahun yang sama telah ada');
+                return redirect()->back();
             }else{
                 Pkematian::create([
                     'desa_id'=>$request->desa_id,
@@ -76,6 +78,7 @@ class PkematianController extends Controller
                     'ket'=>ucfirst($request->ket),
                     'tahun_id'=>$request->tahun_id,
                 ]);
+                Alert::success('Berhasil', 'Data Telah Ditambahkan');
                 return redirect()->back();
             }
         }else{
@@ -90,6 +93,7 @@ class PkematianController extends Controller
                 'ket'=>ucfirst($request->ket),
                 'tahun_id'=>$request->tahun_id,
             ]);
+            Alert::success('Berhasil', 'Data Telah Ditambahkan');
             return redirect()->back();
         }
        
@@ -133,6 +137,7 @@ class PkematianController extends Controller
     {
         $data = Pkematian::FindOrFail($id);
         $data->update($request->all());
+        Alert::success('Berhasil', 'Data Telah Diubah');
         return redirect()->route('pkematian.index');
     }
 

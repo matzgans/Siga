@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\{Ipha, Tahun};
 use Illuminate\Http\Request;
+use RealRashid\SweetAlert\Facades\Alert;
 
 class IphaController extends Controller
 {
@@ -45,14 +46,17 @@ class IphaController extends Controller
         $data = Ipha::where('klaster', $request->klaster)->first();
         if($data != null){
             if($data->tahun_id == $request->tahun_id){
-                return redirect()->back()->with('message', 'Desa Dengan Tahun Yang sama telah ada');
+                Alert::error('Gagal', 'Data desa dengan tahun yang sama telah ada');
+                return redirect()->back();
             }else{
                 Ipha::create($request->all());
-                return redirect()->back()->with('message', 'Data Berhasil Ditambahkan');
+                Alert::success('Berhasil', 'Data Telah Ditambahkan');
+                return redirect()->back();
             }
         }else{
             Ipha::create($request->all());
-            return redirect()->back()->with('message', 'Data Berhasil Ditambahkan');
+            Alert::success('Berhasil', 'Data Telah Ditambahkan');
+            return redirect()->back();
         }
     }
 
@@ -93,7 +97,8 @@ class IphaController extends Controller
     {
         $data = Ipha::FindOrFail($id);
         $data->update($request->all());
-        return redirect()->route('ipha.index')->with('message', 'berhasil ubah data');
+        Alert::success('Berhasil', 'Data Telah Diubah');
+        return redirect()->route('ipha.index');
     }
 
     /**
@@ -106,6 +111,6 @@ class IphaController extends Controller
     {
         $data = Ipha::FindOrFail($id);
         $data->delete();
-        return redirect()->back()->with('message', 'Berhasil Hapus data');
+        return redirect()->back();
     }
 }

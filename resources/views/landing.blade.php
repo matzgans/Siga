@@ -80,13 +80,13 @@
                             <li><a href="{{ route('bhukum') }}" class="nav-link">Bidang Hukum Dan Sosial Budaya</a></li>
                         </ul>
                     </li>
-                    <li class="dropdown w-50"><a href="#" class="nav-link"><span>SDA Lingkukan</span> <i
+                    {{-- <li class="dropdown w-50"><a href="#" class="nav-link"><span>SDA Lingkukan</span> <i
                                 class="bi bi-chevron-down"></i></a>
                         <ul>
                             <li><a href="#" class="nav-link">Data Bencana Lingkungan Terhadap Gender</a></li>
                             <li><a href="#" class="nav-link">Data Bencana Lingkungan Terhadap Anak</a></li>
                         </ul>
-                    </li>
+                    </li> --}}
                     <li class="dropdown"><a href="#" class="nav-link"><span>Kekerasan</span> <i class="bi bi-chevron-down"></i></a>
                         <ul class="dropdown-menu dropdown-menu-start">
                             <li><a href="#" class="nav-link">Kekerasan Terhadap Perempuan dan Anak</a></li>
@@ -128,9 +128,9 @@
                     <div class="col-lg-3 col-md-6 footer-contact">
                         <h3>Arsha</h3>
                         <p>
-                            A108 Adam Street <br>
-                            New York, NY 535022<br>
-                            United States <br><br>
+                            H45V+2V2 <br>
+                            Ulanta, Suwawa, Bone Bolango Regenc<br>
+                            Gorontalo 96113 <br><br>
                             <strong>Phone:</strong> +1 5589 55488 55<br>
                             <strong>Email:</strong> info@example.com<br>
                         </p>
@@ -140,10 +140,10 @@
                         <h4>Useful Links</h4>
                         <ul>
                             <li><i class="bx bx-chevron-right"></i> <a href="#">Home</a></li>
-                            <li><i class="bx bx-chevron-right"></i> <a href="#">About us</a></li>
-                            <li><i class="bx bx-chevron-right"></i> <a href="#">Services</a></li>
-                            <li><i class="bx bx-chevron-right"></i> <a href="#">Terms of service</a></li>
-                            <li><i class="bx bx-chevron-right"></i> <a href="#">Privacy policy</a></li>
+                            <li><i class="bx bx-chevron-right"></i> <a href="#">IPG</a></li>
+                            <li><i class="bx bx-chevron-right"></i> <a href="#">IPHA</a></li>
+                            <li><i class="bx bx-chevron-right"></i> <a href="#">Data Terpilah</a></li>
+                            <li><i class="bx bx-chevron-right"></i> <a href="#">Kekerasan</a></li>
                         </ul>
                     </div>
 

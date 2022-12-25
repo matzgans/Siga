@@ -36,8 +36,8 @@
                                 <td>{{$item->klaster}}</td>
                                 <td>{{$item->bobot}}</td>
                                 <td>
-                                    <a href="{{ route('ipha.destroy', $item->id) }}"
-                                        class="btn btn-danger btn-sm rounded-circle"><i
+                                    <a href="#"
+                                        class="delete btn btn-danger text-white btn-sm rounded-circle" data-id="{{$item->id}}" data-name="{{$item->nama}}"><i
                                             class="ri ri-delete-bin-line"></i></a>
                                     <a href="{{ route('ipha.edit', $item->id) }}"
                                         class="btn btn-warning text-white btn-sm rounded-circle"><i
@@ -103,6 +103,28 @@
 <script>
     $(document).ready(function() {
         $('#dataTable').DataTable();
+    });
+
+    $('.delete').click( function(){
+        var delete_nama = $(this).attr('data-name');
+        var delete_id = $(this).attr('data-id');
+        swal({
+        title: "Are you sure?",
+        text: "Kamu akan menghapus data dengan nama "+delete_nama+"",
+        icon: "warning",
+        buttons: true,
+        dangerMode: true,
+        })
+        .then((willDelete) => {
+        if (willDelete) {
+            window.location="/ipha/destroy/"+delete_id+""
+            swal("Data Berhasil Dihapus", {
+            icon: "success",
+            });
+        } else {
+            swal("Your imaginary file is safe!");
+        }
+        });
     });
 </script>
 @endsection

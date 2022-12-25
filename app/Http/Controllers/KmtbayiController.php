@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\{Kmtbayi, Desa, Tahun};
 use Illuminate\Http\Request;
+use RealRashid\SweetAlert\Facades\Alert;
 use OpenSpout\Common\Entity\Style\Color;
 use OpenSpout\Common\Entity\Style\Style;
 use Rap2hpoutre\FastExcel\FastExcel;
@@ -63,7 +64,8 @@ class KmtbayiController extends Controller
         $data = Kmtbayi::where('desa_id', $request->desa_id)->first();
         if($data != null){
             if($data->tahun_id == $request->tahun_id){
-                return redirect()->back()->with('message', 'Desa Dengan Tahun Yang sama telah ada');
+                Alert::error('Gagal', 'Data desa dengan tahun yang sama telah ada');
+                return redirect()->back();
             }else{
                 Kmtbayi::create([
                     'desa_id'=>$request->desa_id,
@@ -73,7 +75,8 @@ class KmtbayiController extends Controller
                     'sumber'=>$request->sumber,
                     'ket'=>$request->ket,
                 ]);
-                return redirect()->back()->with('message', 'Data Berhasil Ditambahkan');
+                Alert::success('Berhasil', 'Data Telah Ditambahkan');
+                return redirect()->back();
             }
         }else{
             Kmtbayi::create([
@@ -84,7 +87,8 @@ class KmtbayiController extends Controller
                 'sumber'=>$request->sumber,
                 'ket'=>$request->ket,
             ]);
-            return redirect()->back()->with('message', 'Data Berhasil Ditambahkan');
+            Alert::success('Berhasil', 'Data Telah Ditambahkan');
+            return redirect()->back();
         }
     }
 
@@ -126,7 +130,8 @@ class KmtbayiController extends Controller
     {
         $data = Kmtbayi::FindOrFail($id);
         $data->update($request->all());
-        return redirect()->route('kmtbayi.index')->with('message', 'Berhasil Ubah Data');
+        Alert::success('Berhasil', 'Data Telah Diubah');
+        return redirect()->route('kmtbayi.index');
     }
 
     /**
@@ -139,6 +144,6 @@ class KmtbayiController extends Controller
     {
         $data = Kmtbayi::FindOrFail($id);
         $data->delete();
-        return redirect()->back()->with('message', 'Berhasil Hapus Data');
+        return redirect()->back();
     }
 }

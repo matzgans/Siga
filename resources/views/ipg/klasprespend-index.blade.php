@@ -11,11 +11,6 @@
     </a>
     <div class="card">
         <div class="card-body">
-            @if(Session('message'))
-                <div class="alert alert-success" role="alert">
-                    {{Session('message')}}
-                </div>
-            @endif
             <p class="card-title">Data Jumlah Penduduk menurut Jenis Kelamin</p>
             <div class="overflow-auto">
                 <table class="table table-hover table-bordered dataTable" id="dataTable">
@@ -42,8 +37,8 @@
                                 <td>{{$item->ket}}</td>
                                 <td>{{$item->sumber}}</td>
                                 <td>
-                                    <a href="{{ route('klasprespend.destroy', $item->id) }}"
-                                        class="btn btn-danger btn-sm rounded-circle"><i
+                                    <a href="#"
+                                        class="delete btn btn-danger text-white btn-sm rounded-circle" data-id="{{$item->id}}" data-name="{{$item->nama}}"><i
                                             class="ri ri-delete-bin-line"></i></a>
                                     <a href="{{ route('klasprespend.edit', $item->id) }}"
                                         class="btn btn-warning text-white btn-sm rounded-circle"><i
@@ -123,10 +118,32 @@
 
    
 @endsection
-@section('scripta')
+@section('scripts')
 <script>
     $(document).ready(function() {
         $('#dataTable').DataTable();
+    });
+
+    $('.delete').click( function(){
+        var delete_nama = $(this).attr('data-name');
+        var delete_id = $(this).attr('data-id');
+        swal({
+        title: "Are you sure?",
+        text: "Kamu akan menghapus data",
+        icon: "warning",
+        buttons: true,
+        dangerMode: true,
+        })
+        .then((willDelete) => {
+        if (willDelete) {
+            window.location="/klasprespend/destroy/"+delete_id+""
+            swal("Data Berhasil Dihapus", {
+            icon: "success",
+            });
+        } else {
+            swal("Your imaginary file is safe!");
+        }
+        });
     });
 </script>
 @endsection

@@ -65,8 +65,8 @@
                                 <td>{{$item->ket}}</td>
                                 <td>{{$item->sumber}}</td>
                                 <td>
-                                    <a href="{{ route('prespenduduk.destroy', $item->id) }}"
-                                        class="btn btn-danger btn-sm rounded-circle"><i
+                                    <a href="#"
+                                        class="delete btn btn-danger text-white btn-sm rounded-circle" data-id="{{$item->id}}" data-name="{{$item->nama}}"><i
                                             class="ri ri-delete-bin-line"></i></a>
                                     <a href="{{ route('prespenduduk.edit', $item->id) }}"
                                         class="btn btn-warning text-white btn-sm rounded-circle"><i
@@ -171,10 +171,12 @@
 
    
 @endsection
-@section('scripta')
+@section('scripts')
 <script>
     $(document).ready(function() {
         $('#dataTable').DataTable();
     });
+
+
 </script>
 @endsection

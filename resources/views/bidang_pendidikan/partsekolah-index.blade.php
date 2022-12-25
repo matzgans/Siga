@@ -60,8 +60,8 @@
                                 <td>{{$item->ket}}</td>
                                 <td>{{$item->sumber}}</td>
                                 <td>
-                                    <a href="{{ route('partsekolah.destroy', $item->id) }}"
-                                        class="btn btn-danger btn-sm rounded-circle"><i
+                                    <a href="#"
+                                        class="delete btn btn-danger text-white btn-sm rounded-circle" data-id="{{$item->id}}" data-name="{{$item->nama}}"><i
                                             class="ri ri-delete-bin-line"></i></a>
                                     <a href="{{ route('partsekolah.edit', $item->id) }}"
                                         class="btn btn-warning text-white btn-sm rounded-circle"><i
@@ -99,35 +99,35 @@
                         </div>
                         <div class="col-md-6 col-12 mb-2">
                             <label for="l7" class="form-label">L(7-12)</label>
-                            <input type="number" name="l7" class="floatNumberField" value="0.00" placeholder="0.00" step="0.01" id="l7" required />
+                            <input type="number" name="l7" class="floatNumberField form-control" value="0.00" placeholder="0.00" step="0.01" id="l7" required />
                         </div>
                         <div class="col-md-6 col-12 mb-2">
                             <label for="p7" class="form-label">P(7-12)</label>
-                            <input type="number" name="p7" class="floatNumberField" value="0.00" placeholder="0.00" step="0.01" id="p7" required />
+                            <input type="number" name="p7" class="floatNumberField form-control" value="0.00" placeholder="0.00" step="0.01" id="p7" required />
                         </div>
                         <div class="col-md-6 col-12 mb-2">
                             <label for="l13" class="form-label">L(13-15)</label>
-                            <input type="number" name="l13" class="floatNumberField" value="0.00" placeholder="0.00" step="0.01" id="l13" required />
+                            <input type="number" name="l13" class="floatNumberField form-control" value="0.00" placeholder="0.00" step="0.01" id="l13" required />
                         </div>
                         <div class="col-md-6 col-12 mb-2">
                             <label for="p13" class="form-label">P(13-15)</label>
-                            <input type="number" name="p13" class="floatNumberField" value="0.00" placeholder="0.00" step="0.01" id="p13" required />
+                            <input type="number" name="p13" class="floatNumberField form-control" value="0.00" placeholder="0.00" step="0.01" id="p13" required />
                         </div>
                         <div class="col-md-6 col-12 mb-2">
                             <label for="l16" class="form-label">L(16-18)</label>
-                            <input type="number" name="l16" class="floatNumberField" value="0.00" placeholder="0.00" step="0.01" id="l16" required />
+                            <input type="number" name="l16" class="floatNumberField form-control" value="0.00" placeholder="0.00" step="0.01" id="l16" required />
                         </div>
                         <div class="col-md-6 col-12 mb-2">
                             <label for="p16" class="form-label">P(16-18)</label>
-                            <input type="number" name="p16" class="floatNumberField" value="0.00" placeholder="0.00" step="0.01" id="p16" required />
+                            <input type="number" name="p16" class="floatNumberField form-control" value="0.00" placeholder="0.00" step="0.01" id="p16" required />
                         </div>
                         <div class="col-md-6 col-12 mb-2">
                             <label for="l19" class="form-label">L(19-14)</label>
-                            <input type="number" name="l19" class="floatNumberField" value="0.00" placeholder="0.00" step="0.01" id="l19" required />
+                            <input type="number" name="l19" class="floatNumberField form-control" value="0.00" placeholder="0.00" step="0.01" id="l19" required />
                         </div>
                         <div class="col-md-6 col-12 mb-2">
                             <label for="p19" class="form-label">P(19-14)</label>
-                            <input type="number" name="p19" class="floatNumberField" value="0.00" placeholder="0.00" step="0.01" id="p19" required />
+                            <input type="number" name="p19" class="floatNumberField form-control" value="0.00" placeholder="0.00" step="0.01" id="p19" required />
                         </div>
                         <div class="col-md-6 col-12 mb-2">
                             <label for="ket" class="form-label">Keterangan</label>
@@ -167,6 +167,28 @@
 
     $(document).ready(function() {
         $('#dataTable').DataTable();
+    });
+
+    $('.delete').click( function(){
+        var delete_nama = $(this).attr('data-name');
+        var delete_id = $(this).attr('data-id');
+        swal({
+        title: "Are you sure?",
+        text: "Kamu akan menghapus data",
+        icon: "warning",
+        buttons: true,
+        dangerMode: true,
+        })
+        .then((willDelete) => {
+        if (willDelete) {
+            window.location="/partsekolah/destroy/"+delete_id+""
+            swal("Data Berhasil Dihapus", {
+            icon: "success",
+            });
+        } else {
+            swal("Your imaginary file is safe!");
+        }
+        });
     });
 </script>
 

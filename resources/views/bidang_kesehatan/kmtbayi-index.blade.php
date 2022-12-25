@@ -11,12 +11,7 @@
     </a>
     <div class="card">
         <div class="card-body">
-            @if(Session('message'))
-                <div class="alert alert-danger" role="alert">
-                    {{Session('message')}}
-                </div>
-            @endif
-            <p class="card-title">Data Hiv / Aids</p>
+            <p class="card-title">Data Kematian Bayi</p>
             <div class="overflow-auto">
                 <table class="table table-hover table-bordered" id="dataTable">
                     <thead>
@@ -37,13 +32,13 @@
                                 <td>{{$value+1}}</td>
                                 <td>{{$item->tahun->nama_tahun}}</td>
                                 <td>{{$item->desa->nama_desa}}</td>
-                                <td>{{$item->p}}</td>
-                                <td>{{$item->l}}</td>
+                                <td>{{$item->p}} Bayi</td>
+                                <td>{{$item->l}} Bayi</td>
                                 <td>{{$item->sumber}}</td>
                                 <td>{{$item->ket}}</td>
                                 <td>
-                                    <a href="{{ route('kmtbayi.destroy', $item->id) }}"
-                                        class="btn btn-danger btn-sm rounded-circle"><i
+                                    <a href="#"
+                                        class="delete btn btn-danger text-white btn-sm rounded-circle" data-id="{{$item->id}}" data-name="{{$item->nama}}"><i
                                             class="ri ri-delete-bin-line"></i></a>
                                     <a href="{{ route('kmtbayi.edit', $item->id) }}"
                                         class="btn btn-warning text-white btn-sm rounded-circle"><i
@@ -127,6 +122,28 @@
 <script>
     $(document).ready(function() {
         $('#dataTable').DataTable();
+    });
+
+    $('.delete').click( function(){
+        var delete_nama = $(this).attr('data-name');
+        var delete_id = $(this).attr('data-id');
+        swal({
+        title: "Are you sure?",
+        text: "Kamu akan menghapus data",
+        icon: "warning",
+        buttons: true,
+        dangerMode: true,
+        })
+        .then((willDelete) => {
+        if (willDelete) {
+            window.location="/kmtbayi/destroy/"+delete_id+""
+            swal("Data Berhasil Dihapus", {
+            icon: "success",
+            });
+        } else {
+            swal("Your imaginary file is safe!");
+        }
+        });
     });
 </script>
 @endsection 

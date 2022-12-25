@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\{Prespendidikan, Tahun, Desa};
 use Illuminate\Http\Request;
+use RealRashid\SweetAlert\Facades\Alert;
 
 class PrespendidikanController extends Controller
 {
@@ -43,17 +44,20 @@ class PrespendidikanController extends Controller
         $data = Prespendidikan::where('desa_id',$request->desa_id)->first();
         if($data != null){
             if($data->tahun_id == $request->tahun_id){
-                return redirect()->back()->with('message', 'Desa Dengan Tahun Yang sama telah ada');
+                Alert::error('Gagal', 'Data desa dengan tahun yang sama telah ada');
+                return redirect()->back();
             }else{
                 Prespendidikan::create(
                     $request->all()
                 );
+                Alert::success('Berhasil', 'Data Telah Ditambahkan');
                 return redirect()->back();
             }
         }else{
             Prespendidikan::create(
                 $request->all()
             );
+            Alert::success('Berhasil', 'Data Telah Ditambahkan');
             return redirect()->back();
         }
     }
@@ -96,7 +100,8 @@ class PrespendidikanController extends Controller
     {
         $data = Prespendidikan::FindOrFail($id);
         $data->update($request->all());
-        return redirect()->route('prespendidikan.index')->with('message', 'berhasil ubah data');
+        Alert::success('Berhasil', 'Data Telah Diubah');
+        return redirect()->route('prespendidikan.index');
     }
 
     /**
@@ -109,6 +114,6 @@ class PrespendidikanController extends Controller
     {
         $data = Prespendidikan::FindOrFail($id);
         $data->delete();
-        return redirect()->back()->with('message', 'data berhasil dihapus');
+        return redirect()->back();
     }
 }

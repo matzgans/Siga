@@ -43,19 +43,19 @@
                                 <td>{{$value+1}}</td>
                                 <td>{{$item->tahun->nama_tahun}}</td>
                                 <td>{{$item->desa->nama_desa}}</td>
-                                <td>{{$item->lsd}}</td>
-                                <td>{{$item->psd}}</td>
-                                <td>{{$item->lsmp}}</td>
-                                <td>{{$item->psmp}}</td>
-                                <td>{{$item->lsma}}</td>
-                                <td>{{$item->psma}}</td>
-                                <td>{{$item->lpt}}</td>
-                                <td>{{$item->ppt}}</td>
+                                <td>{{$item->lsd}} Orang</td>
+                                <td>{{$item->psd}} Orang</td>
+                                <td>{{$item->lsmp}} Orang</td>
+                                <td>{{$item->psmp}} Orang</td>
+                                <td>{{$item->lsma}} Orang</td>
+                                <td>{{$item->psma}} Orang</td>
+                                <td>{{$item->lpt}} Orang</td>
+                                <td>{{$item->ppt}} Orang</td>
                                 <td>{{$item->ket}}</td>
                                 <td>{{$item->sumber}}</td>
                                 <td>
-                                    <a href="{{ route('aktkerja.destroy', $item->id) }}"
-                                        class="btn btn-danger btn-sm rounded-circle"><i
+                                    <a href="#"
+                                        class="delete btn btn-danger text-white btn-sm rounded-circle" data-id="{{$item->id}}" data-name="{{$item->nama}}"><i
                                             class="ri ri-delete-bin-line"></i></a>
                                     <a href="{{ route('aktkerja.edit', $item->id) }}"
                                         class="btn btn-warning text-white btn-sm rounded-circle"><i
@@ -161,6 +161,28 @@
 
     $(document).ready(function() {
         $('#dataTable').DataTable();
+    });
+
+    $('.delete').click( function(){
+        var delete_nama = $(this).attr('data-name');
+        var delete_id = $(this).attr('data-id');
+        swal({
+        title: "Are you sure?",
+        text: "Kamu akan menghapus data",
+        icon: "warning",
+        buttons: true,
+        dangerMode: true,
+        })
+        .then((willDelete) => {
+        if (willDelete) {
+            window.location="/aktkerja/destroy/"+delete_id+""
+            swal("Data Berhasil Dihapus", {
+            icon: "success",
+            });
+        } else {
+            swal("Your imaginary file is safe!");
+        }
+        });
     });
 </script>
 

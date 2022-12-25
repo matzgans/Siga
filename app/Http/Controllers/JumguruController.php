@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\{Jumguru, Tahun};
 use Illuminate\Http\Request;
+use RealRashid\SweetAlert\Facades\Alert;
 use OpenSpout\Common\Entity\Style\Color;
 use OpenSpout\Common\Entity\Style\Style;
 use Rap2hpoutre\FastExcel\FastExcel;
@@ -57,7 +58,8 @@ class JumguruController extends Controller
     {
         $data = Jumguru::where('tahun_id',$request->tahun_id)->first();
         if($data != null){
-            return redirect()->back()->with('message', 'Data dengan tahun yang sama telah adaa');
+            Alert::error('Gagal', 'Data dengan tahun yang sama telah ada');
+            return redirect()->back();
         }else{
             Jumguru::create([
                 'l'=>$request->l,
@@ -67,7 +69,8 @@ class JumguruController extends Controller
                 'ket'=>$request->ket,
                 'sumber'=>$request->sumber,
             ]);
-            return redirect()->back()->with('message', 'berhasil tambah data');
+            Alert::success('Berhasil', 'Data Telah Ditambahkan');
+            return redirect()->back();
         }
     }
 
@@ -114,7 +117,8 @@ class JumguruController extends Controller
             'ket'=>$request->ket,
             'sumber'=>$request->sumber,
         ]);
-        return redirect()->route('jumguru.index')->with('message', 'berhasil Ubah data');
+        Alert::success('Berhasil', 'Data Telah Diubah');
+        return redirect()->route('jumguru.index');
     }
 
     /**
@@ -127,6 +131,6 @@ class JumguruController extends Controller
     {
         $data = Jumguru::FindOrFail($id);
         $data->delete();
-        return redirect()->back()->with('message', 'Berhasil Menghapus Data');
+        return redirect()->back();
     }
 }

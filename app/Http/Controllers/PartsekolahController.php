@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\{Partsekolah,  Desa, Tahun};
 use Illuminate\Http\Request;
+use RealRashid\SweetAlert\Facades\Alert;
 use OpenSpout\Common\Entity\Style\Color;
 use OpenSpout\Common\Entity\Style\Style;
 use Rap2hpoutre\FastExcel\FastExcel;
@@ -66,17 +67,20 @@ class PartsekolahController extends Controller
         $data = Partsekolah::where('desa_id',$request->desa_id)->first();
         if($data != null){
             if($data->tahun_id == $request->tahun_id){
-                return redirect()->back()->with('message', 'Desa Dengan Tahun Yang sama telah ada');
+                Alert::error('Gagal', 'Data desa dengan tahun yang sama telah ada');
+                return redirect()->back();
             }else{
                 Partsekolah::create(
                     $request->all()
                 );
+                Alert::success('Berhasil', 'Data Telah Ditambahkan');
                 return redirect()->back();
             }
         }else{
             Partsekolah::create(
                 $request->all()
             );
+            Alert::success('Berhasil', 'Data Telah Ditambahkan');
             return redirect()->back();
         }
     }
@@ -119,7 +123,8 @@ class PartsekolahController extends Controller
     {
         $data = Partsekolah::FindOrFail($id);
         $data->update($request->all());
-        return redirect()->route('partsekolah.index')->with('message', 'berhasil ubah data');
+        Alert::success('Berhasil', 'Data Telah Ditambahkan');
+        return redirect()->route('partsekolah.index');
     }
 
     /**
@@ -132,6 +137,6 @@ class PartsekolahController extends Controller
     {
         $data = Partsekolah::FindOrFail($id);
         $data->delete();
-        return redirect()->back()->with('message', 'berhasil hapus data');
+        return redirect()->back();
     }
 }

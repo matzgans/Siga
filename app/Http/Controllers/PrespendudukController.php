@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\{Prespenduduk, Desa, Tahun};
 use Illuminate\Http\Request;
+use RealRashid\SweetAlert\Facades\Alert;
 use Rap2hpoutre\FastExcel\FastExcel;
 
 class PrespendudukController extends Controller
@@ -62,17 +63,20 @@ class PrespendudukController extends Controller
         $data = Prespenduduk::where('desa_id',$request->desa_id)->first();
         if($data != null){
             if($data->tahun_id == $request->tahun_id){
-                return redirect()->back()->with('message', 'Desa Dengan Tahun Yang sama telah ada');
+                Alert::error('Gagal', 'Data desa dengan tahun yang sama telah ada');
+                return redirect()->back();
             }else{
                 Prespenduduk::create(
                     $request->all()
                 );
+                Alert::success('Berhasil', 'Data Telah Ditambahkan');
                 return redirect()->back();
             }
         }else{
             Prespenduduk::create(
                 $request->all()
             );
+            Alert::success('Berhasil', 'Data Telah Ditambahkan');
             return redirect()->back();
         }
     }
@@ -119,7 +123,8 @@ class PrespendudukController extends Controller
 
         $data = Prespenduduk::FindOrFail($id);
         $data->update($request->all());
-        return redirect()->route('prespenduduk.index')->with('message', 'berhasil update data');
+        Alert::success('Berhasil', 'Data Telah Diubah');
+        return redirect()->route('prespenduduk.index');
     }
 
     /**
@@ -132,6 +137,6 @@ class PrespendudukController extends Controller
     {
         $data = Prespenduduk::FindOrFail($id);
         $data->delete();
-        return redirect()->back()->with('message', 'berhasil hapus data');
+        return redirect()->back();
     }
 }
