@@ -46,7 +46,7 @@
                     <div class="tab-pane fade show active" id="kkrsn" role="tabpanel"
                         aria-labelledby="pills-kematianIbu-tab">
                         <h5 class="">Data Kekerasan</h5>
-                        <a href="{{route('bsda.cetak')}}" class="btn btn-primary"><i class="fa-solid fa-print"></i></a>
+                        <a href="{{route('bsda.cetak')}}" class="btn btn-primary m-2"><i class="fa-solid fa-print"></i> Cetak Data</a>
                         <table class="table table-hover table-bordered dataTable w-100" id="dataTable">
                             <thead class="text-light" style="background-color:#37517E; height:100px">
                                 <tr class="text-center">
@@ -83,7 +83,7 @@
                     <div class="tab-pane fade" id="kkrsnLokasi" role="tabpanel"
                         aria-labelledby="pills-kematianIbu-tab">
                         <h5 class="">Data Kekerasan Berdasarkan Lokasi</h5>
-                        <a href="{{route('bsda.cetak')}}" class="btn btn-primary"><i class="fa-solid fa-print"></i></a>
+                        <a href="{{route('bsda.cetak')}}" class="btn btn-primary m-2"><i class="fa-solid fa-print"></i> Cetak Data</a>
                         <table class="table table-hover table-bordered dataTable w-100" id="dataTable">
                             <thead class="text-light" style="background-color:#37517E; height:100px">
                                 <tr class="text-center">

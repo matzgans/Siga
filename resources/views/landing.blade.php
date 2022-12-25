@@ -10,7 +10,7 @@
     <meta content="" name="keywords">
 
     <!-- Favicons -->
-    <link href="{{ asset('assets') }}/img/favicon.png" rel="icon">
+    <link href="{{ asset('foto_landing') }}/1.png" rel="icon" class="rounded-circle">
     <link href="{{ asset('assets') }}/img/apple-touch-icon.png" rel="apple-touch-icon">
 
     <!-- Google Fonts -->
@@ -53,7 +53,7 @@
     <header id="header" class="fixed-top ">
         <div class="container d-flex align-items-center">
             
-            <a class=" me-auto" href="/"><img src="{{ asset('foto_landing') }}/SIgafix.png" alt="" width="100px"></a>
+            <a class=" me-auto" href="/"><img src="{{ asset('foto_landing') }}/1.png" alt="" width="65px"><img src="{{ asset('foto_landing') }}/SIgafix.png" alt="" width="100px"></a>
             <!-- Uncomment below if you prefer to use an image logo -->
             <!-- <a href="index.html" class="logo me-auto"><img src="assets/img/logo.png" alt="" class="img-fluid"></a>-->
 
@@ -171,14 +171,14 @@
 
         <div class="container footer-bottom clearfix">
             <div class="copyright">
-                &copy; Copyright <strong><span>Arsha</span></strong>. All Rights Reserved
+                &copy; Copyright <strong><span>Akatsuki</span></strong>. All Rights Reserved
             </div>
             <div class="credits">
                 <!-- All the links in the footer should remain intact. -->
                 <!-- You can delete the links only if you purchased the pro version. -->
                 <!-- Licensing information: https://bootstrapmade.com/license/ -->
                 <!-- Purchase the pro version with working PHP/AJAX contact form: https://bootstrapmade.com/arsha-free-bootstrap-html-template-corporate/ -->
-                Designed by <a href="https://bootstrapmade.com/">BootstrapMade</a>
+                Designed by <a href="https://bootstrapmade.com/">Akatsuki</a>
             </div>
         </div>
     </footer><!-- End Footer -->

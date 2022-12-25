@@ -244,7 +244,7 @@
                                 <li class="nav-item" role="presentation">
                                     <button class="nav-link active" id="home-tab" data-bs-toggle="tab"
                                         data-bs-target="#ipg" type="button" role="tab" aria-controls="home"
-                                        aria-selected="true">IPG</button>
+                                        aria-selected="true">IPG/IPHA</button>
                                 </li>
                                 <li class="nav-item" role="presentation">
                                     <button class="nav-link" id="profile-tab" data-bs-toggle="tab"
@@ -873,7 +873,7 @@
 
             tooltip: {
                 headerFormat: '<span style="font-size:11px">{series.data.name}</span><br>',
-                // pointFormat: '<span style="color:{point.color}">{point.name}</span>: <b>{point.y:.2f}%</b> of total<br/>'
+                pointFormat: '<span style="color:{point.color}">{point.name}</span>: <b>{point.y} Orang</b><br/>'
             },
 
             series: [{
@@ -1825,7 +1825,6 @@
             series: [{
                     name: 'Persentase',
                     data: {!! json_encode($jumJumguru) !!}
-
                 },
 
             ]
@@ -2078,7 +2077,7 @@
             tooltip: {
                 headerFormat: '<span style="font-size:10px">{point.key}</span><table>',
                 pointFormat: '<tr><td style="color:{series.color};padding:0">{series.name}: </td>' +
-                    '<td style="padding:0"><b>{point.y} %</b></td></tr>',
+                    '<td style="padding:0"><b>{point.y} Orang</b></td></tr>',
                 footerFormat: '</table>',
                 shared: true,
                 useHTML: true
@@ -2267,7 +2266,7 @@
             tooltip: {
                 headerFormat: '<span style="font-size:10px">{point.key}</span><table>',
                 pointFormat: '<tr><td style="color:{series.color};padding:0">{series.name}: </td>' +
-                    '<td style="padding:0"><b>{point.y} %</b></td></tr>',
+                    '<td style="padding:0"><b>{point.y} Orang</b></td></tr>',
                 footerFormat: '</table>',
                 shared: true,
                 useHTML: true
@@ -2388,7 +2387,7 @@
 
             tooltip: {
                 headerFormat: '<span style="font-size:11px">{series.name}</span><br>',
-                pointFormat: '<span style="color:{point.color}">{point.name}</span>: <b>{point.y} Orang</b> of total<br/>'
+                pointFormat: '<span style="color:{point.color}">{point.name}</span>: <b>{point.y} Orang</b><br/>'
             },
 
             series: [{
@@ -2549,7 +2548,7 @@
 
             tooltip: {
                 headerFormat: '<span style="font-size:11px">{series.name}</span><br>',
-                pointFormat: '<span style="color:{point.color}">{point.name}</span>: <b>{point.y} Orang</b> of total<br/>'
+                pointFormat: '<span style="color:{point.color}">{point.name}</span>: <b>{point.y} Orang</b><br/>'
             },
 
             series: [{
@@ -2710,7 +2709,7 @@
 
             tooltip: {
                 headerFormat: '<span style="font-size:11px">{series.name}</span><br>',
-                pointFormat: '<span style="color:{point.color}">{point.name}</span>: <b>{point.y} Orang</b> of total<br/>'
+                pointFormat: '<span style="color:{point.color}">{point.name}</span>: <b>{point.y} Orang</b><br/>'
             },
 
             series: [{
@@ -2875,7 +2874,7 @@
 
             tooltip: {
                 headerFormat: '<span style="font-size:11px">{series.name}</span><br>',
-                pointFormat: '<span style="color:{point.color}">{point.name}</span>: <b>{point.y} Orang</b> of total<br/>'
+                pointFormat: '<span style="color:{point.color}">{point.name}</span>: <b>{point.y} Orang</b><br/>'
             },
 
             series: [{
@@ -3037,7 +3036,7 @@
 
             tooltip: {
                 headerFormat: '<span style="font-size:11px">{series.name}</span><br>',
-                pointFormat: '<span style="color:{point.color}">{point.name}</span>: <b>{point.y} Orang</b> of total<br/>'
+                pointFormat: '<span style="color:{point.color}">{point.name}</span>: <b>{point.y} Orang</b><br/>'
             },
 
             series: [{
@@ -3201,7 +3200,7 @@
 
             tooltip: {
                 headerFormat: '<span style="font-size:11px">{series.name}</span><br>',
-                pointFormat: '<span style="color:{point.color}">{point.name}</span>: <b>{point.y} Orang</b> of total<br/>'
+                pointFormat: '<span style="color:{point.color}">{point.name}</span>: <b>{point.y} Orang</b><br/>'
             },
 
             series: [{
@@ -3362,7 +3361,7 @@
 
             tooltip: {
                 headerFormat: '<span style="font-size:11px">{series.name}</span><br>',
-                pointFormat: '<span style="color:{point.color}">{point.name}</span>: <b>{point.y} Orang</b> of total<br/>'
+                pointFormat: '<span style="color:{point.color}">{point.name}</span>: <b>{point.y} Orang</b><br/>'
             },
 
             series: [{
@@ -3441,7 +3440,7 @@
 
             series: [{
                 name: 'Total Kekerasan',
-                data: {!! json_encode($logjumJumkekerasan) !!}
+                data: {!! json_encode($logjumJumkekerasanP) !!}
             }],
 
             responsive: {

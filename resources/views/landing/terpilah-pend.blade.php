@@ -22,29 +22,31 @@
         </div>
 
         <div class="card">
-            <ul class="nav nav-tabs" id="myTab" role="tablist">
-                <li class="nav-item" role="presentation">
-                    <button class="nav-link active" id="home-tab" data-bs-toggle="tab"
-                        data-bs-target="#partsekolah" type="button" role="tab" aria-controls="home"
-                        aria-selected="true">Data Partisipasi Sekolah</button>
-                </li>
-                <li class="nav-item" role="presentation">
-                    <button class="nav-link" id="contact-tab" data-bs-toggle="tab" data-bs-target="#ptssekolah"
-                        type="button" role="tab" aria-controls="contact"
-                        aria-selected="false"> Data Putus Sekolah</button>
-                </li>
-                <li class="nav-item" role="presentation">
-                    <button class="nav-link" id="contact-tab" data-bs-toggle="tab"
-                        data-bs-target="#jumguru" type="button" role="tab" aria-controls="contact"
-                        aria-selected="false">Jumlah Guru</button>
-                </li>
-            </ul>
+            <div class="card-header">
+                <ul class="nav nav-pills" id="pills-tab" role="tablist">
+                    <li class="nav-item" role="presentation">
+                        <button class="nav-link active" id="home-tab" data-bs-toggle="pill"
+                            data-bs-target="#partsekolah" type="button" role="tab" aria-controls="home"
+                            aria-selected="true">Data Partisipasi Sekolah</button>
+                    </li>
+                    <li class="nav-item" role="presentation">
+                        <button class="nav-link" id="contact-tab" data-bs-toggle="tab" data-bs-target="#ptssekolah"
+                            type="button" role="tab" aria-controls="contact"
+                            aria-selected="false"> Data Putus Sekolah</button>
+                    </li>
+                    <li class="nav-item" role="presentation">
+                        <button class="nav-link" id="contact-tab" data-bs-toggle="tab"
+                            data-bs-target="#jumguru" type="button" role="tab" aria-controls="contact"
+                            aria-selected="false">Jumlah Guru</button>
+                    </li>
+                </ul>
+            </div>
             <div class="card-body">
                 <div class="tab-content" id="pills-tabContent">
                     <div class="tab-pane fade show active" id="partsekolah" role="tabpanel"
                         aria-labelledby="pills-kematianIbu-tab">
                         <h5 class="">Data Partisipasi Sekolah</h5>
-                        <a href="{{route('partsekolah.cetak')}}" class="btn btn-primary"><i class="fa-solid fa-print"></i></a>
+                        <a href="{{route('partsekolah.cetak')}}" class="btn btn-primary m-2"><i class="fa-solid fa-print"></i> Cetak Data</a>
                         <table class="table table-hover table-bordered dataTable" id="dataTable">
                             <thead class="text-light" style="background-color:#37517E; width:100px">
                                 <tr class="align-middle">
@@ -99,7 +101,7 @@
                     <div class="tab-pane fade" id="ptssekolah" role="tabpanel"
                         aria-labelledby="pills-kematianBayi-tab">
                         <h5 class="">Data Putus Sekolah</h5>
-                        <a href="{{route('ptssekolah.cetak')}}" class="btn btn-primary"><i class="fa-solid fa-print"></i></a>
+                        <a href="{{route('ptssekolah.cetak')}}" class="btn btn-primary m-2"><i class="fa-solid fa-print"></i> Cetak Data</a>
                         <table class="table table-hover table-bordered dataTable w-100" id="dataTable">
                             <thead class="text-light" style="background-color:#37517E; width:100px">
                                 <tr class="align-middle">
@@ -149,7 +151,7 @@
                     <div class="tab-pane fade" id="jumguru" role="tabpanel"
                         aria-labelledby="pills-penderitaHiv-tab">
                         <h5 class="">Jumlah Guru</h5>
-                        <a href="{{route('jumguru.cetak')}}" class="btn btn-primary"><i class="fa-solid fa-print"></i></a>
+                        <a href="{{route('jumguru.cetak')}}" class="btn btn-primary m-2"><i class="fa-solid fa-print"></i> Cetak Data</a>
                         <table class="table table-hover table-bordered dataTable w-100" id="dataTable">
                             <thead class="text-light" style="background-color:#37517E;">
                                 <tr>

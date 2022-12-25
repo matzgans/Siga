@@ -429,7 +429,10 @@ class DashboardController extends Controller
         // Barchart Data Guru
         $dataDesaJumguru = Jumguru::groupBy('tahun_id')
             ->select('tahun_id')
-            ->selectRaw('sum(jum) as jum')
+            ->selectRaw(
+                'sum(l) as l,
+                sum(p) as p'
+                )
             ->get();
 
         $desaJumguru = [];
@@ -734,18 +737,13 @@ class DashboardController extends Controller
         }
 
 
-        $dataDesaIpha = Ipha::groupBy('tahun_id')
-            ->select('tahun_id')
-            ->selectRaw(
-                'sum(bobot) as b',
-            )
-            ->get();
+        $dataDesaIpha = Ipha::all();
 
         $desaIpha = [];
         $jumIpha = [];
         foreach ($dataDesaIpha as $item) {
-            $desaIpha[] = $item->tahun->nama_tahun;
-            $jumIpha[] = $item->b;
+            $desaIpha[] = $item->klaster;
+            $jumIpha[] = $item->bobot;
         }
 
         return view(
@@ -848,7 +846,7 @@ class DashboardController extends Controller
     {
         $data = Ptssekolah::all();
         $title = 'Data Pendidikan Terakhir';
-        $subtitle = 'Data dajdajd daidhadnada dadiahdiad adihadahr ahairhairhriara  arahriahrai arairiayriy';
+        $subtitle = 'Data ini memuat jumlah penduduk menurut pendidikan terakhir dari penduduk yang ada dikabupaten Bonebolango';
         return view('landing.landing-ipg-pendidikan', compact('title', 'subtitle', 'data'));
     }
 
@@ -858,7 +856,7 @@ class DashboardController extends Controller
         $dataKmtbayi = Kmtbayi::all();
         $hiv = Hiv::all();
         $title = 'Data Terpilah Bidang Kesehatan';
-        $subtitle = 'Data Kematian merupakan data dari jumlah kematian ibu, ditampilkan secara lengkap dan terupdate';
+        $subtitle = 'Data Kesehatan merupakan data dari jumlah kematian ibu, jumlah kematian bayi, dan jumlah penderita HIV yang ditampilkan secara lengkap dan terupdate';
         return view('landing.terpilah-kes', compact('title', 'subtitle', 'data', 'hiv', 'dataKmtbayi'));
     }
 
@@ -868,7 +866,7 @@ class DashboardController extends Controller
         $ptsSekolah = Ptssekolah::all();
         $jumGuru = Jumguru::all();
         $title = 'Data Terpilah Bidang Pendidikan';
-        $subtitle = 'Data Kematian merupakan data dari jumlah kematian ibu, ditampilkan secara lengkap dan terupdate';
+        $subtitle = 'Data Pendidikan merupakan data dari persentase partisipasi sekolah, persentase putus sekolah, dan jumlah guru yang ditampilkan secara lengkap dan terupdate';
         return view('landing.terpilah-pend', compact('title', 'subtitle', 'data', 'ptsSekolah', 'jumGuru'));
     }
 
@@ -876,7 +874,7 @@ class DashboardController extends Controller
     {
         $data = Bsda::all();
         $title = 'Data Terpilah Bidang Sumber Daya Alam Dan Lingkungan';
-        $subtitle = 'Data Kematian merupakan data dari jumlah kematian ibu, ditampilkan secara lengkap dan terupdate';
+        $subtitle = 'Data Sumber Daya Alam merupakan data dari jumlah korban yang ditampilkan secara lengkap dan terupdate';
         return view('landing.terpilah-sda', compact('title', 'subtitle', 'data'));
     }
 
@@ -884,7 +882,7 @@ class DashboardController extends Controller
     {
         $data = Aktkerja::all();
         $title = 'Data Terpilah Bidang Ekonomi Dan Ketenaga Kerjaan';
-        $subtitle = 'Data Kematian merupakan data dari jumlah kematian ibu, ditampilkan secara lengkap dan terupdate';
+        $subtitle = 'Data Ekonomi merupakan data dari jumlah angkatan kerja berdasarkan pendidikan yang ditampilkan secara lengkap dan terupdate';
         return view('landing.terpilah-ekonomi', compact('title', 'subtitle', 'data'));
     }
 
@@ -894,7 +892,7 @@ class DashboardController extends Controller
         $pns = Pns::all();
         $dprd = Dprd::all();
         $title = 'Data Terpilah Bidang Politik Dan Pengambilan Keputusan';
-        $subtitle = 'Data Kematian merupakan data dari jumlah kematian ibu, ditampilkan secara lengkap dan terupdate';
+        $subtitle = 'Data Politik merupakan data dari jumlah kepala desa, jumlah pegawai negeri sipil, dan jumlah anggota dprd yang ditampilkan secara lengkap dan terupdate';
         return view('landing.terpilah-politik', compact('title', 'subtitle', 'data', 'pns', 'dprd'));
     }
 
@@ -903,7 +901,7 @@ class DashboardController extends Controller
         $data = Plapa::all();
         $disabilitas = Disabilitas::all();
         $title = 'Data Terpilah Bidang Hukum Dan Sosial Budaya';
-        $subtitle = 'Data Kematian merupakan data dari jumlah kematian ibu, ditampilkan secara lengkap dan terupdate';
+        $subtitle = 'Data Hukum merupakan data dari jumlah penghuni lapas dan jumlah penyandang disabilitas yang ditampilkan secara lengkap dan terupdate';
         return view('landing.terpilah-hukum', compact('title', 'subtitle', 'data', 'disabilitas'));
     }
 
@@ -912,7 +910,7 @@ class DashboardController extends Controller
         $dataKr = Jumkekerasan::all();
         $data = Jumkerlok::all();
         $title = 'Data Kekerasan';
-        $subtitle = 'Lorem ipsum dolor, sit amet consectetur adipisicing elit. Excepturi in aperiam velit ex molestias! Nostrum aliquam dolor provident ut, obcaecati autem ipsa eius consequatur doloremque.';
+        $subtitle = 'Data Kekerasan merupakan data dari jumlah kekerasan terhadap perempuan dan anak berdasarkan lokasi dan pendidikan terakhir yang ditampilkan secara lengkap dan terupdate';
         return view('landing.kkrsn', compact('data', 'dataKr', 'title','subtitle'));
     }
 }

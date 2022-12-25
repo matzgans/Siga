@@ -24,20 +24,25 @@
             <div class="row content">
                 <div class="col-12">
                     <div class="card">
-                        <ul class="nav nav-tabs" id="myTab" role="tablist">
-                            <li class="nav-item" role="presentation">
-                                <button class="nav-link active" id="home-tab" data-bs-toggle="tab" data-bs-target="#sd"
-                                    type="button" role="tab" aria-controls="home" aria-selected="true">SD</button>
-                            </li>
-                            <li class="nav-item" role="presentation">
-                                <button class="nav-link" id="profile-tab" data-bs-toggle="tab" data-bs-target="#smp"
-                                    type="button" role="tab" aria-controls="profile" aria-selected="false">SMP</button>
-                            </li>
-                            <li class="nav-item" role="presentation">
-                                <button class="nav-link" id="contact-tab" data-bs-toggle="tab" data-bs-target="#sma"
-                                    type="button" role="tab" aria-controls="contact" aria-selected="false">SMA</button>
-                            </li>
-                        </ul>
+                        <div class="card-header">
+                            <ul class="nav nav-pills mb-3" id="pills-tab" role="tablist">
+                                <li class="nav-item" role="presentation">
+                                    <button class="nav-link active" id="pills-kematianIbu-tab" data-bs-toggle="pill"
+                                        data-bs-target="#sd" type="button" role="tab" aria-controls="pills-kematianIbu" style="margin-top:10px"
+                                        aria-selected="true">Sekolah Dasar</button>
+                                </li>
+                                <li class="nav-item" role="presentation">
+                                    <button class="nav-link" id="pills-kematianBayi-tab" data-bs-toggle="pill"
+                                        data-bs-target="#smp" type="button" role="tab"
+                                        aria-controls="pills-kematianBayi" aria-selected="false">Sekolah Menengah Pertama</button>
+                                </li>
+                                <li class="nav-item" role="presentation">
+                                    <button class="nav-link" id="pills-penderitaHiv-tab" data-bs-toggle="pill"
+                                        data-bs-target="#sma" type="button" role="tab"
+                                        aria-controls="pills-penderitaHiv" aria-selected="false">Sekolah Menengah Atas</button>
+                                </li>
+                            </ul>
+                        </div>
                         <div class="card-body" style="overflow-y: auto">
                             <div class="tab-content" id="myTabContent">
                                 <div class="tab-pane fade show active" id="sd" role="tabpanel"
@@ -45,15 +50,15 @@
                                     <table class="table table-sm table-bordered dataTable" id="dataTable" style="width: 100%">
                                         <thead class="text-white align-middle" style="background-color: #37517e">
                                             <tr class="text-center">
-                                                <th rowspan="2">No.</th>
-                                                <th rowspan="2">Desa</th>
-                                                <th colspan="2">Sekolah Dasar</th>
-                                                <th rowspan="2">Sumber</th>
-                                                <th rowspan="2">Tahun</th>
+                                                <th class="text-center align-middle" rowspan="2">No.</th>
+                                                <th class="text-center align-middle" rowspan="2">Desa</th>
+                                                <th class="text-center align-middle" colspan="2">Sekolah Dasar</th>
+                                                <th class="text-center align-middle" rowspan="2">Sumber</th>
+                                                <th class="text-center align-middle" rowspan="2">Tahun</th>
                                             </tr>
                                             <tr class="text-center">
-                                                <th>Putus</th>
-                                                <th>Lulus</th>
+                                                <th class="text-center align-middle">Putus</th>
+                                                <th class="text-center align-middle">Lulus</th>
                                             </tr>
                                         </thead>
                                         <tbody>
@@ -61,9 +66,9 @@
                                                 <tr>
                                                     <td>{{$value + 1}}</td>
                                                     <td>{{$item->desa->nama_desa}}</td>
-                                                    <td>{{$item->ptssekolah?->psd}}</td>
-                                                    <td>{{$item->ptssekolah?->lsd}}</td>
-                                                    <td>{{$item->ptssekolah?->sumber}}</td>
+                                                    <td>{{$item->psd}} %</td>
+                                                    <td>{{$item->lsd}} %</td>
+                                                    <td>{{$item->sumber}}</td>
                                                     <td>{{$item->tahun->nama_tahun}}</td>
                                                 </tr>
                                             @empty
@@ -77,15 +82,15 @@
                                     <table class="table table-sm table-bordered dataTable" id="dataTable" style="width: 100%">
                                         <thead class="text-white align-middle" style="background-color: #37517e">
                                             <tr class="text-center">
-                                                <th rowspan="2">No.</th>
-                                                <th rowspan="2">Desa</th>
-                                                <th colspan="2">Sekolah Menengah Pertama</th>
-                                                <th rowspan="2">Sumber</th>
-                                                <th rowspan="2">Tahun</th>
+                                                <th class="text-center align-middle" rowspan="2">No.</th>
+                                                <th class="text-center align-middle" rowspan="2">Desa</th>
+                                                <th class="text-center align-middle" colspan="2">Sekolah Menengah Pertama</th>
+                                                <th class="text-center align-middle" rowspan="2">Sumber</th>
+                                                <th class="text-center align-middle" rowspan="2">Tahun</th>
                                             </tr>
                                             <tr class="text-center">
-                                                <th>Putus</th>
-                                                <th>Lulus</th>
+                                                <th class="text-center align-middle">Putus</th>
+                                                <th class="text-center align-middle">Lulus</th>
                                             </tr>
                                         </thead>
                                         <tbody>
@@ -93,9 +98,9 @@
                                                 <tr>
                                                     <td>{{$value + 1}}</td>
                                                     <td>{{$item->desa->nama_desa}}</td>
-                                                    <td>{{$item->ptssekolah?->psd}}</td>
-                                                    <td>{{$item->ptssekolah?->lsd}}</td>
-                                                    <td>{{$item->ptssekolah?->sumber}}</td>
+                                                    <td>{{$item->psmp}} %</td>
+                                                    <td>{{$item->lsmp}} %</td>
+                                                    <td>{{$item->sumber}}</td>
                                                     <td>{{$item->tahun->nama_tahun}}</td>
                                                 </tr>
                                             @empty
@@ -109,15 +114,15 @@
                                     <table class="table table-sm table-bordered dataTable" id="dataTable" style="width: 100%">
                                         <thead class="text-white align-middle" style="background-color: #37517e">
                                             <tr class="text-center">
-                                                <th rowspan="2">No.</th>
-                                                <th rowspan="2">Desa</th>
-                                                <th colspan="2">Sekolah Menengah Atas</th>
-                                                <th rowspan="2">Sumber</th>
-                                                <th rowspan="2">Tahun</th>
+                                                <th class="text-center align-middle" rowspan="2">No.</th>
+                                                <th class="text-center align-middle" rowspan="2">Desa</th>
+                                                <th class="text-center align-middle" colspan="2">Sekolah Menengah Atas</th>
+                                                <th class="text-center align-middle" rowspan="2">Sumber</th>
+                                                <th class="text-center align-middle" rowspan="2">Tahun</th>
                                             </tr>
                                             <tr class="text-center">
-                                                <th>Putus</th>
-                                                <th>Lulus</th>
+                                                <th class="text-center align-middle">Putus</th>
+                                                <th class="text-center align-middle">Lulus</th>
                                             </tr>
                                         </thead>
                                         <tbody>
@@ -125,9 +130,9 @@
                                                 <tr>
                                                     <td>{{$value + 1}}</td>
                                                     <td>{{$item->desa->nama_desa}}</td>
-                                                    <td>{{$item->ptssekolah?->psd}}</td>
-                                                    <td>{{$item->ptssekolah?->lsd}}</td>
-                                                    <td>{{$item->ptssekolah?->sumber}}</td>
+                                                    <td>{{$item->psma}} %</td>
+                                                    <td>{{$item->lsma}} %</td>
+                                                    <td>{{$item->sumber}}</td>
                                                     <td>{{$item->tahun->nama_tahun}}</td>
                                                 </tr>
                                             @empty

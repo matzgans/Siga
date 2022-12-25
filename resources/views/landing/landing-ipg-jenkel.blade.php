@@ -24,38 +24,42 @@
         <div class="row content">
             
             <div class="col-lg-12">
-                <a href="{{route('klasprespend.cetak')}}" class="btn btn-primary mb-2"><i class="fa-solid fa-print"></i></a>
-                <table class="table table-hover table-bordered dataTable" id="dataTable">
-                    <thead class="text-white" style="background-color:#37517E;">
-                        <tr>
-                            <th class="text-center" rowspan="2">No</th>
-                            <th class="text-center" rowspan="2">Tahun</th>
-                            <th class="text-center" rowspan="2">Desa</th>
-                            <th class="text-center" colspan="2">Gender</th>
-                            <th class="text-center" rowspan="2">Keterangan</th>
-                            <th class="text-center" rowspan="2">Sumber</th>
-                        </tr>
-                        <tr>
-                            <th class="text-center">L</th>
-                            <th class="text-center">P</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        @foreach ($data as $value=>$item)
-                            <tr>
-                                <td>{{$value+1}}</td>
-                                <td>{{$item->tahun->nama_tahun}}</td>
-                                <td>{{$item->desa->nama_desa}}</td>
-                                <td>{{$item->l}} Orang</td>
-                                <td>{{$item->p}} Orang</td>
-                                <td>{{$item->ket}}</td>
-                                <td>{{$item->sumber}}</td>
-                            </tr>
-                        @endforeach
-                        
-                    </tbody>
-
-                </table>
+                <div class="card">
+                    <div class="card-body">
+                        <a href="{{route('klasprespend.cetak')}}" class="btn btn-primary mb-2"><i class="fa-solid fa-print"></i> Cetak Data</a>
+                        <table class="table table-hover table-bordered dataTable" id="dataTable">
+                            <thead class="text-white" style="background-color:#37517E;">
+                                <tr>
+                                    <th class="text-center align-middle" rowspan="2">No</th>
+                                    <th class="text-center align-middle" rowspan="2">Tahun</th>
+                                    <th class="text-center align-middle" rowspan="2">Desa</th>
+                                    <th class="text-center align-middle" colspan="2">Gender</th>
+                                    <th class="text-center align-middle" rowspan="2">Keterangan</th>
+                                    <th class="text-center align-middle" rowspan="2">Sumber</th>
+                                </tr>
+                                <tr>
+                                    <th class="text-center align-middle">L</th>
+                                    <th class="text-center align-middle">P</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @foreach ($data as $value=>$item)
+                                    <tr>
+                                        <td>{{$value+1}}</td>
+                                        <td>{{$item->tahun->nama_tahun}}</td>
+                                        <td>{{$item->desa->nama_desa}}</td>
+                                        <td>{{$item->l}} Orang</td>
+                                        <td>{{$item->p}} Orang</td>
+                                        <td>{{$item->ket}}</td>
+                                        <td>{{$item->sumber}}</td>
+                                    </tr>
+                                @endforeach
+                                
+                            </tbody>
+        
+                        </table>
+                    </div>
+                </div>
             </div>
         </div>
 
