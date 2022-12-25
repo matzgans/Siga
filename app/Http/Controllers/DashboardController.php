@@ -917,8 +917,8 @@ class DashboardController extends Controller
     public function ipha()
     {
         $data = Ipha::all();
-        $title = 'Data Index Pembangunan Gneder';
-        $subtitle = 'Lorem ipsum dolor, sit amet consectetur adipisicing elit. Excepturi in aperiam velit ex molestias! Nostrum aliquam dolor provident ut, obcaecati autem ipsa eius consequatur doloremque.';
+        $title = 'Data Index Pembangunan Gender';
+        $subtitle = 'Data IPHA merupakan data dari jumlah bobot dari klaster pembangunan gender yang ditampilkan secara lengkap dan terupdate';
         return view('landing.ipha', compact('data','title','subtitle'));
     }
 }
