@@ -913,4 +913,12 @@ class DashboardController extends Controller
         $subtitle = 'Data Kekerasan merupakan data dari jumlah kekerasan terhadap perempuan dan anak berdasarkan lokasi dan pendidikan terakhir yang ditampilkan secara lengkap dan terupdate';
         return view('landing.kkrsn', compact('data', 'dataKr', 'title','subtitle'));
     }
+
+    public function ipha()
+    {
+        $data = Ipha::all();
+        $title = 'Data Index Pembangunan Gneder';
+        $subtitle = 'Lorem ipsum dolor, sit amet consectetur adipisicing elit. Excepturi in aperiam velit ex molestias! Nostrum aliquam dolor provident ut, obcaecati autem ipsa eius consequatur doloremque.';
+        return view('landing.ipha', compact('data','title','subtitle'));
+    }
 }

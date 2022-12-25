@@ -5,6 +5,9 @@ namespace App\Http\Controllers;
 use App\Models\{Ipha, Tahun};
 use Illuminate\Http\Request;
 use RealRashid\SweetAlert\Facades\Alert;
+use OpenSpout\Common\Entity\Style\Color;
+use OpenSpout\Common\Entity\Style\Style;
+use Rap2hpoutre\FastExcel\FastExcel;
 
 class IphaController extends Controller
 {
@@ -27,9 +30,20 @@ class IphaController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
+    public function cetak()
     {
-        //
+        $style = (new Style())->setFontBold();
+        $rows_style = (new Style())
+         ->setBackgroundColor("EDEDED");
+        $ipha = Ipha::get();
+        return (new FastExcel(Ipha::all()))->HeaderStyle($style)->rowsStyle($rows_style)->download('file.xlsx', function ($ipha) {
+            return [
+
+                'Tahun'=>$ipha->tahun->nama_tahun,
+                'Klaster'=>$ipha->klaster,
+                'Bobot'=>$ipha->bobot,
+            ];
+        });
     }
 
     /**
