@@ -60,6 +60,7 @@ Route::prefix('/')->group( function(){
     Route::get('/bpolitik', [DashboardController::class, 'bpolitik'])->name('bpolitik');
     Route::get('/bhukum', [DashboardController::class, 'bhukum'])->name('bhukum');
     Route::get('/kkrsn', [DashboardController::class, 'kkrsn'])->name('kkrsn');
+    Route::get('/ipha', [DashboardController::class, 'ipha'])->name('ipha');
 
 });
 
@@ -213,6 +214,7 @@ Route::group(['middleware' => ['auth', 'HakAkses:pegawai']], function () {
     // IPHA
     // 1. IPHA
     Route::get('/ipha/index', [IphaController::class, 'index'])->name('ipha.index');
+    Route::get('/ipha/cetak', [IphaController::class, 'cetak'])->name('ipha.cetak');
     Route::post('/ipha/store', [IphaController::class, 'store'])->name('ipha.store');
     Route::post('/ipha/update/{id}', [IphaController::class, 'update'])->name('ipha.update');
     Route::get('/ipha/edit/{id}', [IphaController::class, 'edit'])->name('ipha.edit');
