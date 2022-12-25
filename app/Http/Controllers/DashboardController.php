@@ -2,8 +2,30 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\{Desa, Opd, Tahun, Agama, Pekerjaan, Pkematian, Hiv, Ptssekolah,
-     Kmtbayi, Partsekolah, Bsda, Aktkerja, Ipha, Jumguru, Jumkekerasan, Klasprespend, Prespenduduk, Jumkades, Plapa, Disabilitas, Pns, Dprd};
+use App\Models\{
+    Desa,
+    Opd,
+    Tahun,
+    Agama,
+    Pekerjaan,
+    Pkematian,
+    Hiv,
+    Ptssekolah,
+    Kmtbayi,
+    Partsekolah,
+    Bsda,
+    Aktkerja,
+    Ipha,
+    Jumguru,
+    Jumkekerasan,
+    Klasprespend,
+    Prespenduduk,
+    Jumkades,
+    Plapa,
+    Disabilitas,
+    Pns,
+    Dprd,
+};
 
 class DashboardController extends Controller
 {
@@ -17,7 +39,7 @@ class DashboardController extends Controller
         $agama = Agama::count();
         $pageTitle = 'Dashboard';
         // Penduduk menurt jk
-        $pendudukLaki = Klasprespend::sum('l'); 
+        $pendudukLaki = Klasprespend::sum('l');
         $pendudukPerempuan = Klasprespend::sum('p');
         // kematian Ibu hamil
         $dataKmtIbu = Pkematian::selectRaw(
@@ -35,10 +57,22 @@ class DashboardController extends Controller
         // Data Kererasan 
         $jumKerL = Jumkekerasan::sum('l');
         $jumKerP = Jumkekerasan::sum('p');
-        
-        return view('dashboard.dashboard-index', compact('pendudukLaki','pendudukPerempuan',
-        'active', 'desa', 'opd', 'pekerjaan', 'tahun', 'agama', 'pageTitle', 'jumKematianIbu', 'dataKlaster',
-        'jumKerL','jumKerP'));
+
+        return view('dashboard.dashboard-index', compact(
+            'pendudukLaki',
+            'pendudukPerempuan',
+            'active',
+            'desa',
+            'opd',
+            'pekerjaan',
+            'tahun',
+            'agama',
+            'pageTitle',
+            'jumKematianIbu',
+            'dataKlaster',
+            'jumKerL',
+            'jumKerP'
+        ));
     }
 
     public function landing()
@@ -77,7 +111,7 @@ class DashboardController extends Controller
             $jumKlasprespenduduk[] = $item->l + $item->p;
         }
         // dd($jumKlasprespenduduk);
-        
+
         // PIECHART_PRES_PENDUDUK
         $dataKlasprespend = Klasprespend::selectRaw(
             'sum(l) as co,
@@ -99,9 +133,9 @@ class DashboardController extends Controller
         foreach ($logdataKlasprespend as $itemk) {
             $logjumKlasprespend[] = $itemk->co + $itemk->ce;
         }
-        
-        
-        
+
+
+
 
         // BARCHART_KEMATIAN_IBU;
         $dataDesa = Pkematian::groupBy('desa_id')
@@ -340,14 +374,14 @@ class DashboardController extends Controller
         // Bidang SDA
         // barchart korban bencana
         $dataBencana = Bsda::groupBy('bencana_id')
-        ->select('bencana_id')
-        ->selectRaw(
-            'sum(lan) as lan,
+            ->select('bencana_id')
+            ->selectRaw(
+                'sum(lan) as lan,
             sum(pan) as pan,
             sum(ldes) as ldes,
             sum(pdes) as pdes',
-        )
-        ->get();
+            )
+            ->get();
 
         $jenis_bencana = [];
         $jum_bencana = [];
@@ -366,15 +400,15 @@ class DashboardController extends Controller
         }
         // Logchart Korban Bencana
         $logdataKorbencana = Bsda::groupBy('tahun_id')
-        ->selectRaw(
-            'sum(lan) as lan,
+            ->selectRaw(
+                'sum(lan) as lan,
             sum(pan) as pan,
             sum(ldes) as ldes,
             sum(pdes) as pdes',
-        )
-        ->get();
+            )
+            ->get();
         $logjumKorbencana = [];
-        
+
         foreach ($logdataKorbencana as $itemk) {
             $logjumKorbencana[] = $itemk->ldes + $itemk->pdes + $itemk->lan + $itemk->pan;
         }
@@ -382,9 +416,9 @@ class DashboardController extends Controller
         // Bidang SDA
         // barchart aktkerja
         $dataAktkerja = Aktkerja::groupBy('desa_id')
-        ->select('desa_id')
-        ->selectRaw(
-            'sum(lsd) as lsd,
+            ->select('desa_id')
+            ->selectRaw(
+                'sum(lsd) as lsd,
             sum(psd) as psd,
             sum(lsmp) as lsmp,
             sum(psmp) as psmp,
@@ -392,18 +426,18 @@ class DashboardController extends Controller
             sum(psma) as psma,
             sum(lpt) as lpt,
             sum(ppt) as ppt',
-        )
-        ->get();
+            )
+            ->get();
 
         $desa_aktkerja = [];
         $jum_aktkerja = [];
         foreach ($dataAktkerja as $item) {
             $desa_aktkerja[] = $item->desa->nama_desa;
             $jum_aktkerja[] = $item->lsd + $item->psd + $item->lsmp + $item->psmp + $item->lsma + $item->psma
-            + $item->lpt + $item->ppt;
+                + $item->lpt + $item->ppt;
         }
-         // piechart Angkatan Kerja
-         $aktkerja_jk = Aktkerja::selectRaw(
+        // piechart Angkatan Kerja
+        $aktkerja_jk = Aktkerja::selectRaw(
             'sum(lsd) as lsd,
             sum(psd) as psd,
             sum(lsmp) as lsmp,
@@ -417,8 +451,8 @@ class DashboardController extends Controller
         }
         // Logchart Angkatan Kerja
         $logdataAktkerja = Aktkerja::groupBy('tahun_id')
-        ->selectRaw(
-            'sum(lsd) as lsd,
+            ->selectRaw(
+                'sum(lsd) as lsd,
             sum(psd) as psd,
             sum(lsmp) as lsmp,
             sum(psmp) as psmp,
@@ -426,18 +460,18 @@ class DashboardController extends Controller
             sum(psma) as psma,
             sum(lpt) as lpt,
             sum(ppt) as ppt',
-        )
-        ->get();
+            )
+            ->get();
         $logjumAktkerja = [];
-        
+
         foreach ($logdataAktkerja as $itemk) {
             $logjumAktkerja[] = $item->lsd + $item->psd + $item->lsmp + $item->psmp + $item->lsma + $item->psma
-            + $item->lpt + $item->ppt;
+                + $item->lpt + $item->ppt;
         }
-       
-        
-         // Barchart Data Guru
-         $dataDesaJumguru = Jumguru::groupBy('tahun_id')
+
+
+        // Barchart Data Guru
+        $dataDesaJumguru = Jumguru::groupBy('tahun_id')
             ->select('tahun_id')
             ->selectRaw(
                 'sum(jum) as jum',
@@ -451,7 +485,7 @@ class DashboardController extends Controller
             $jumJumguru[] = $item->jum;
         }
         // dd($jumJumguru);
-        
+
         // Piechart Data Guru
         $dataJumguru = Jumguru::selectRaw(
             'sum(l) as l,
@@ -549,8 +583,8 @@ class DashboardController extends Controller
             $logjumPlapas[] = $itemk->l + $itemk->p;
         }
 
-         // Barchart Disabilitas
-         $dataDesaDisabilitas = Disabilitas::groupBy('tahun_id')
+        // Barchart Disabilitas
+        $dataDesaDisabilitas = Disabilitas::groupBy('tahun_id')
             ->select('tahun_id')
             ->selectRaw(
                 'sum(l) as l,
@@ -585,58 +619,182 @@ class DashboardController extends Controller
         foreach ($logdataDisabilitas as $itemk) {
             $logjumDisabilitas[] = $itemk->l + $itemk->p;
         }
-        
-        
+
+        // Barchart PNS
+        $dataDesaPns = Pns::groupBy('golongan')
+            ->select('golongan')
+            ->selectRaw(
+                'sum(l) as l,
+                sum(p) as p',
+            )
+            ->get();
+
+        $desaPns = [];
+        $jumPns = [];
+        foreach ($dataDesaPns as $item) {
+            $desaPns[] = $item->golongan;
+            $jumPns[] = $item->l + $item->p;
+        }
+
+        // Piechart PNS
+        $dataPns = Pns::selectRaw(
+            'sum(l) as l,
+            sum(p) as p',
+        )->get();
+        foreach ($dataPns as $piechartPns) {
+        }
+
+        // LogPNS
+        $logdataPns = Pns::groupBy('tahun_id')
+            ->selectRaw(
+                'sum(l) as l,
+            sum(p) as p',
+            )
+            ->get();
+        $logjumPns = [];
+
+        foreach ($logdataPns as $itemk) {
+            $logjumPns[] = $itemk->l + $itemk->p;
+        }
+
+        // Barchart DPRD
+        $dataDesaDprd = Dprd::groupBy('komisi')
+            ->select('komisi')
+            ->selectRaw(
+                'sum(l) as l,
+                sum(p) as p',
+            )
+            ->get();
+
+        $desaDprd = [];
+        $jumDprd = [];
+        foreach ($dataDesaDprd as $item) {
+            $desaDprd[] = $item->komisi;
+            $jumDprd[] = $item->l + $item->p;
+        }
+
+        // Piechart DPRD
+        $dataDprd = Dprd::selectRaw(
+            'sum(l) as l,
+            sum(p) as p',
+        )->get();
+        foreach ($dataDprd as $piechartDprd) {
+        }
+
+        // LogDPRD
+        $logdataDprd = Dprd::groupBy('tahun_id')
+            ->selectRaw(
+                'sum(l) as l,
+            sum(p) as p',
+            )
+            ->get();
+        $logjumDprd = [];
+
+        foreach ($logdataDprd as $itemk) {
+            $logjumDprd[] = $itemk->l + $itemk->p;
+        }
+
+
+        // BIDANG KEKERASAN    
+        // Barchart Kekerasan
+        $dataDesaJumkekerasan = Jumkekerasan::groupBy('desa_id')
+            ->select('desa_id')
+            ->selectRaw(
+                'sum(l) as l,
+                sum(p) as p',
+            )
+            ->get();
+
+        $desaJumkekerasan = [];
+        $jumJumkekerasan = [];
+        foreach ($dataDesaJumkekerasan as $item) {
+            $desaJumkekerasan[] = $item->desa->nama_desa;
+            $jumJumkekerasan[] = $item->l + $item->p;
+        }
+
+        // Piechart Kekerasan
+        $dataJumkekerasan = Jumkekerasan::selectRaw(
+            'sum(l) as l,
+            sum(p) as p',
+        )->get();
+        foreach ($dataJumkekerasan as $piechartJumkekerasan) {
+        }
+
+        // LogKekerasan
+        $logdataJumkekerasan = Jumkekerasan::groupBy('tahun_id')
+            ->selectRaw(
+                'sum(l) as l,
+            sum(p) as p',
+            )
+            ->get();
+        $logjumJumkekerasan = [];
+
+        foreach ($logdataJumkekerasan as $itemk) {
+            $logjumJumkekerasan[] = $itemk->l + $itemk->p;
+        }
+
         return view('landing.welcome', compact(
-        'desaKlasprespenduduk',
-        'jumKlasprespenduduk',
-        'desa', 
-        'jum', 
-        'piechartKlasprespend',
-        'piechartKmtIbu', 
-        'piechartKmtBayi', 
-        'piechartHiv', 
-        'piechartPartsekolah', 
-        'piechartPtssekolah', 
-        'piechartJumguru', 
-        'piechartkorbencana',
-        'piechart_aktkerja', 
-        'piechartJumkades', 
-        'piechartPlapas', 
-        'piechartDisabilitas', 
-        'jumKematian', 
-        'desaKmtbayi', 
-        'desaHiv', 
-        'desaPartsekolah', 
-        'desaPtssekolah', 
-        'desaJumguru', 
-        'desa_aktkerja',
-        'desaJumkades',
-        'desaPlapas',
-        'desaDisabilitas',
-        'jenis_bencana',
-        'jumKmtbayi', 
-        'jumHiv', 
-        'jumPartsekolah', 
-        'jumPtssekolah', 
-        'jumJumguru', 
-        'jum_bencana',
-        'jum_aktkerja',
-        'jumJumkades',
-        'jumPlapas',
-        'jumDisabilitas',
-        'logjumKlasprespend', 
-        'logjumKmtbayi', 
-        'logjumHiv', 
-        'logjumPartsekolah',
-        'logjumPtssekolah',
-        'logjumJumguru',
-        'logjumKorbencana',
-        'logjumAktkerja',
-        'logjumJumkades',
-        'logjumPlapas',
-        'logjumDisabilitas'
-    ));
+            'desaKlasprespenduduk',
+            'jumKlasprespenduduk',
+            'desa',
+            'jum',
+            'piechartKlasprespend',
+            'piechartKmtIbu',
+            'piechartKmtBayi',
+            'piechartHiv',
+            'piechartPartsekolah',
+            'piechartPtssekolah',
+            'piechartJumguru',
+            'piechartkorbencana',
+            'piechart_aktkerja',
+            'piechartJumkades',
+            'piechartPlapas',
+            'piechartDisabilitas',
+            'piechartPns',
+            'piechartDprd',
+            'piechartJumkekerasan',
+            'jumKematian',
+            'desaKmtbayi',
+            'desaHiv',
+            'desaPartsekolah',
+            'desaPtssekolah',
+            'desaJumguru',
+            'desa_aktkerja',
+            'desaJumkades',
+            'desaPlapas',
+            'desaDisabilitas',
+            'desaPns',
+            'desaDprd',
+            'desaJumkekerasan',
+            'jenis_bencana',
+            'jumKmtbayi',
+            'jumHiv',
+            'jumPartsekolah',
+            'jumPtssekolah',
+            'jumJumguru',
+            'jum_bencana',
+            'jum_aktkerja',
+            'jumJumkades',
+            'jumPlapas',
+            'jumDisabilitas',
+            'jumPns',
+            'jumDprd',
+            'jumJumkekerasan',
+            'logjumKlasprespend',
+            'logjumKmtbayi',
+            'logjumHiv',
+            'logjumPartsekolah',
+            'logjumPtssekolah',
+            'logjumJumguru',
+            'logjumKorbencana',
+            'logjumAktkerja',
+            'logjumJumkades',
+            'logjumPlapas',
+            'logjumDisabilitas',
+            'logjumPns',
+            'logjumDprd',
+            'logjumJumkekerasan',
+        ));
     }
 
     public function ipgPenduduk()
@@ -713,7 +871,7 @@ class DashboardController extends Controller
         $dprd = Dprd::all();
         $title = 'Data Terpilah Bidang Politik Dan Pengambilan Keputusan';
         $subtitle = 'Data Kematian merupakan data dari jumlah kematian ibu, ditampilkan secara lengkap dan terupdate';
-        return view('landing.terpilah-politik', compact('title', 'subtitle', 'data','pns','dprd'));
+        return view('landing.terpilah-politik', compact('title', 'subtitle', 'data', 'pns', 'dprd'));
     }
 
     public function bhukum()
