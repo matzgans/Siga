@@ -5,7 +5,11 @@ namespace App\Http\Controllers;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Str;
+use RealRashid\SweetAlert\Facades\Alert;
+use OpenSpout\Common\Entity\Style\Color;
+use OpenSpout\Common\Entity\Style\Style;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Hash;
 
 class AuthController extends Controller
 {
@@ -110,5 +114,45 @@ class AuthController extends Controller
     {
         Auth::logout();
         return redirect()->route('login');
+    }
+
+    function change()
+    {
+        $active = 'Ubah';
+        $pageTitle = 'Ubah Password';
+        return view('auth.auth-change', compact('active', 'pageTitle'));
+    }
+
+    function changepass(Request $request)
+    {
+        
+        
+        // $request->validate([
+        //     'current_password' => 'required',
+        //     'new_password' => 'required|string|min:8|confirmed',
+        //     'new_password_confirmation' => 'required|string|min:8|confirmed',
+        // ]);
+
+        $user = Auth::user();
+        $hashedPassword = $user->password;
+
+        
+        if($request->new_password == $request->new_password_confirmation) {
+            if(Hash::check($request->current_password, $hashedPassword)){
+                $user->password = Hash::make($request->new_password);
+                $user->save();
+                Alert::success('Berhasil', 'Data Telah Ditambahkan');
+                return redirect()->back();
+
+            }else{
+                Alert::error('Gagal', 'Data Bencana dengan tahun yang sama telah ada');
+                return redirect()->back();
+            }
+
+        }else{
+            Alert::error('Gagal', 'Data Bencana dengan tahun yang sama telah ada');
+            return redirect()->back();
+        }
+        
     }
 }

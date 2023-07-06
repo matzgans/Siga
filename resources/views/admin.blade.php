@@ -240,7 +240,7 @@
                         </li>
 
                         <li>
-                            <a class="dropdown-item d-flex align-items-center" href="users-profile.html">
+                            <a class="dropdown-item d-flex align-items-center" href="{{ route('change') }}">
                                 <i class="bi bi-gear"></i>
                                 <span>Account Settings</span>
                             </a>

@@ -193,14 +193,14 @@ Route::group(['middleware' => ['auth', 'HakAkses:pegawai']], function () {
     // 1. Jum Penduduk
     Route::get('/prespenduduk/index', [PrespendudukController::class, 'index'])->name('prespenduduk.index');
     Route::post('/prespenduduk/store', [PrespendudukController::class, 'store'])->name('prespenduduk.store');
-    Route::get('/prespenduduk/cetak', [PrespendudukController::class, 'cetak'])->name('prespenduduk.cetak');
+    
     Route::post('/prespenduduk/update/{id}', [PrespendudukController::class, 'update'])->name('prespenduduk.update');
     Route::get('/prespenduduk/edit/{id}', [PrespendudukController::class, 'edit'])->name('prespenduduk.edit');
     Route::get('/prespenduduk/destroy/{id}', [PrespendudukController::class, 'destroy'])->name('prespenduduk.destroy');
     // 2. Klasifikasi Presetanse Penduduk
     Route::get('/klasprespend/index', [KlasprespendController::class, 'index'])->name('klasprespend.index');
     Route::post('/klasprespend/store', [KlasprespendController::class, 'store'])->name('klasprespend.store');
-    Route::get('/klasprespend/cetak', [KlasprespendController::class, 'cetak'])->name('klasprespend.cetak');
+    
     Route::post('/klasprespend/update/{id}', [KlasprespendController::class, 'update'])->name('klasprespend.update');
     Route::get('/klasprespend/edit/{id}', [KlasprespendController::class, 'edit'])->name('klasprespend.edit');
     Route::get('/klasprespend/destroy/{id}', [KlasprespendController::class, 'destroy'])->name('klasprespend.destroy');
@@ -294,6 +294,8 @@ Route::group(['middleware' => ['auth', 'HakAkses:pegawai']], function () {
 
 Route::group(['middleware' => ['auth', 'HakAkses:pegawai,admin']], function(){
     Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard');
+    Route::get('/change', [AuthController::class, 'change'])->name('change');
+    Route::post('/change/pass', [AuthController::class, 'changepass'])->name('change.pass');
 
 });
 
@@ -305,3 +307,5 @@ Route::get('/auth/login', [AuthController::class, 'login'])->name('login');
 Route::post('/auth/loginproses', [AuthController::class, 'loginproses'])->name('auth.loginproses');
 Route::get('/auth/logout', [AuthController::class, 'logout'])->name('auth.logout');
 Route::get('/ipha/cetak', [IphaController::class, 'cetak'])->name('ipha.cetak');
+Route::get('/klasprespend/cetak', [KlasprespendController::class, 'cetak'])->name('klasprespend.cetak');
+Route::get('/prespenduduk/cetak', [PrespendudukController::class, 'cetak'])->name('prespenduduk.cetak');
