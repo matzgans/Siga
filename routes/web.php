@@ -214,7 +214,7 @@ Route::group(['middleware' => ['auth', 'HakAkses:pegawai']], function () {
     // IPHA
     // 1. IPHA
     Route::get('/ipha/index', [IphaController::class, 'index'])->name('ipha.index');
-    Route::get('/ipha/cetak', [IphaController::class, 'cetak'])->name('ipha.cetak');
+    
     Route::post('/ipha/store', [IphaController::class, 'store'])->name('ipha.store');
     Route::post('/ipha/update/{id}', [IphaController::class, 'update'])->name('ipha.update');
     Route::get('/ipha/edit/{id}', [IphaController::class, 'edit'])->name('ipha.edit');
@@ -304,3 +304,4 @@ Route::post('/auth/register', [AuthController::class, 'registerproses'])->name('
 Route::get('/auth/login', [AuthController::class, 'login'])->name('login');
 Route::post('/auth/loginproses', [AuthController::class, 'loginproses'])->name('auth.loginproses');
 Route::get('/auth/logout', [AuthController::class, 'logout'])->name('auth.logout');
+Route::get('/ipha/cetak', [IphaController::class, 'cetak'])->name('ipha.cetak');

@@ -2,7 +2,8 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\{Desa, Opd, Tahun, Agama, Pekerjaan, Pkematian, Hiv, Ptssekolah, Kmtbayi, Partsekolah, Bsda, Aktkerja, Ipha, Jumguru, Jumkekerasan, Klasprespend, Prespenduduk, Jumkades, Plapa, Disabilitas, Pns, Dprd, Jumkerlok};
+use App\Models\{Desa, Opd, Tahun, Agama, Pekerjaan, Pkematian, Hiv, Ptssekolah, Kmtbayi, Partsekolah, Bsda, Aktkerja, Ipha, Jumguru, 
+    Jumkekerasan, Klasprespend, Prespenduduk, Jumkades, Plapa, Disabilitas, Pns, Dprd, Jumkerlok, Pengaturan, pegawai};
 
 class DashboardController extends Controller
 {
@@ -745,10 +746,20 @@ class DashboardController extends Controller
             $desaIpha[] = $item->klaster;
             $jumIpha[] = $item->bobot;
         }
+        
+        $settings = Pengaturan::all();
+        $sett = $settings->first();
+
+        $pegawai = Pegawai::all();
+
+        
+
 
         return view(
             'landing.welcome',
             compact(
+                'pegawai',
+                'sett',
                 'desaKlasprespenduduk',
                 'jumKlasprespenduduk',
                 'desa',
