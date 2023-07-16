@@ -40,7 +40,7 @@
                                         <label for="contack" class="form-label">contact</label>
                                         <input type="text" class="form-control" name="contack" id="contack" value="{{$data->contack}}" required>
                                     </div>
-                                    <button class="btn btn-warning col-md-12" type="submit">Update</button>
+                                    <button class="btn btn-warning col-md-11 mx-auto text-white" type="submit"><b>Update</b></button>
                                 </div>
                             </div>
 
